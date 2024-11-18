@@ -42,14 +42,43 @@ extern fsp_err_t R_ETHER_PHY_StartAutoNegotiate (ether_phy_ctrl_t * const p_ctrl
 #endif
 void handle_error(fsp_err_t err);
 
+static bool app_status = 0;
+static void foe_sample (void);
+
 /*******************************************************************************************************************//**
  * @brief  EtherCAT Slave Stack example application
  *
  * The EtherCAT Slave Stack Code is provided by SSC tool.
  *
  **********************************************************************************************************************/
-void foe_sample (void)
+static void netdev_status_callback(struct netdev *netdev, rt_bool_t up)
 {
+    if (up)
+    {
+        foe_sample();
+    }
+    else
+    {
+        return;
+    }
+}
+
+void netdev_monitor_init(void *param)
+{
+    struct netdev *netdev = netdev_get_by_name("e0");
+    if (netdev == RT_NULL)
+    {
+        rt_kprintf("Failed to get network device.\n");
+    }
+
+    netdev_set_status_callback(netdev, netdev_status_callback);
+}
+INIT_APP_EXPORT(netdev_monitor_init);
+
+static void foe_sample (void)
+{
+	if(app_status == 0)
+	{
 	fsp_err_t err;
 
     /* Open the QSPI instance */
@@ -133,8 +162,11 @@ void foe_sample (void)
 #endif
 	/* Close SSC Port */
 	RM_ETHERCAT_SSC_PORT_Close(gp_ethercat_ssc_port->p_ctrl);
+	return;
+	}
+
+	return;
 }
-MSH_CMD_EXPORT(foe_sample, foe_sample);
 
 void handle_error(fsp_err_t err)
 {

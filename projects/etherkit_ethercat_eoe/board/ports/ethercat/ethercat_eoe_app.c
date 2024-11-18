@@ -25,31 +25,61 @@
 
 #include "fsp_common_api.h"
 
-static void ecat_thread_entry();
-
 static rt_uint8_t ethercat_thread_stack[1024 * 4];
 static struct rt_thread ethercat_thread;
 
-int eoe_app(void)
+static bool app_status = 0;
+
+static void ecat_thread_entry();
+static void eoe_app(void);
+
+static void netdev_status_callback(struct netdev *netdev, rt_bool_t up)
 {
-	rt_kprintf("==================================================\n");
-	rt_kprintf("EtherCAT Slave with EOE Project!\n");
-	rt_kprintf("==================================================\n");
-
-	rt_thread_init(&ethercat_thread,
-				   "ethercat_thread",
-				   ecat_thread_entry,
-				   RT_NULL,
-				   &ethercat_thread_stack[0],
-				   sizeof(ethercat_thread_stack),
-				   16, 10);
-
-	rt_thread_startup(&ethercat_thread);
-
-	return 0;
+    if (up)
+    {
+        foe_sample();
+    }
+    else
+    {
+        return;
+    }
 }
-MSH_CMD_EXPORT(eoe_app, eoe_app);
-// INIT_APP_EXPORT(eoe_app);
+
+void netdev_monitor_init(void *param)
+{
+    struct netdev *netdev = netdev_get_by_name("e0");
+    if (netdev == RT_NULL)
+    {
+        rt_kprintf("Failed to get network device.\n");
+    }
+
+    netdev_set_status_callback(netdev, netdev_status_callback);
+}
+INIT_APP_EXPORT(netdev_monitor_init);
+
+static void eoe_app(void)
+{
+	if(app_status == 0)
+	{
+		rt_kprintf("==================================================\n");
+		rt_kprintf("EtherCAT Slave with EOE Project!\n");
+		rt_kprintf("==================================================\n");
+
+		rt_thread_init(&ethercat_thread,
+					"ethercat_thread",
+					ecat_thread_entry,
+					RT_NULL,
+					&ethercat_thread_stack[0],
+					sizeof(ethercat_thread_stack),
+					16, 10);
+
+		rt_thread_startup(&ethercat_thread);
+
+		return;
+	}
+
+	return;
+}
 
 static void ecat_thread_entry(void *parameter)
 {

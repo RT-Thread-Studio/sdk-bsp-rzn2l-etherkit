@@ -26,6 +26,9 @@
 
 #include <string.h>
 
+#include <rtthread.h>
+#include <netdev.h>
+
 #ifdef RT_USING_DFS
 #include <dfs_fs.h>
 #include "dfs_ramfs.h"
@@ -48,9 +51,37 @@ static app_data_t * sample_app = NULL;
 static pnet_cfg_t pnet_cfg = {0};
 app_args_t app_args = {0};
 
+static bool app_status = 0;
+
 /****************************** Main ******************************************/
 
-void pnet_main (void *param)
+static void pnet_app(void);
+
+static void netdev_status_callback(struct netdev *netdev, rt_bool_t up)
+{
+    if (up)
+    {
+        pnet_app();
+    }
+    else
+    {
+        return;
+    }
+}
+
+void netdev_monitor_init(void *param)
+{
+    struct netdev *netdev = netdev_get_by_name("e0");
+    if (netdev == RT_NULL)
+    {
+        APP_LOG_ERROR("Failed to get network device.\n");
+    }
+
+    netdev_set_status_callback(netdev, netdev_status_callback);
+}
+INIT_APP_EXPORT(netdev_monitor_init);
+
+void pnet_main ()
 {
    int ret;
    app_utils_netif_namelist_t netif_name_list;
@@ -117,23 +148,28 @@ void pnet_main (void *param)
    app_loop_forever (sample_app);
 }
 
-int pnet_app(void)
+static void pnet_app(void)
 {
+    if(app_status == 0)
+    {
 #if defined(PNET_USING_RAMFS)
-	rt_align(PNET_RAMFS_SIZE)
-   static char ramfs_buf[PNET_RAMFS_SIZE];
-   if (dfs_mount(RT_NULL, "/", "ram", 0, dfs_ramfs_create(ramfs_buf, PNET_RAMFS_SIZE)) == 0)
-   {
-      rt_kprintf("RAM file system initializated!\n");
-   }
-   else
-   {
-      rt_kprintf("RAM file system initializate failed!\n");
-   }
+        rt_align(PNET_RAMFS_SIZE)
+       static char ramfs_buf[PNET_RAMFS_SIZE];
+       if (dfs_mount(RT_NULL, "/", "ram", 0, dfs_ramfs_create(ramfs_buf, PNET_RAMFS_SIZE)) == 0)
+       {
+          rt_kprintf("RAM file system initializated!\n");
+       }
+       else
+       {
+          rt_kprintf("RAM file system initializate failed!\n");
+       }
 #endif
 
-    rt_thread_t pnet_thread = rt_thread_create("pnet", pnet_main, RT_NULL, 5124, 25, 10);
-    rt_thread_startup(pnet_thread);
-    return 0;
+        rt_thread_t pnet_thread = rt_thread_create("pnet", pnet_main, RT_NULL, 5124, 25, 10);
+        rt_thread_startup(pnet_thread);
+        app_status = 1;
+        return;
+    }
+
+    return;
 }
-MSH_CMD_EXPORT(pnet_app, pnet_app)
