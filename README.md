@@ -31,22 +31,38 @@ Key **onboard resources** include:
 
 This BSP currently supports the following peripherals:
 
-| **On-chip Peripheral** | **Support Status** | **Notes** |
-| :---------------------- | :------------------ | :-------- |
-| UART                    | Supported           | UART0 is the default log output port |
-| GPIO                    | Supported           |          |
-| HWIMER                  | Supported           |          |
-| IIC                     | Supported           |          |
-| WDT                     | Supported           |          |
-| RTC                     | Supported           |          |
-| ADC                     | Supported           |          |
-| DAC                     | Supported           |          |
-| SPI                     | Supported           |          |
-| FLASH                   | Supported           |          |
-| PWM                     | Supported           |          |
-| CAN                     | Supported           |          |
-| ETH                     | Supported           |          |
-| Ongoing updates...      |                     |          |
+| **On-Chip Peripherals** | **Support Status** | **Remarks** |
+| :----------------------- | :----------------- | :---------- |
+| UART                     | Supported          | UART0 is the default log output port |
+| GPIO                     | Supported          |                      |
+| HWIMER                   | Supported          |                      |
+| IIC                      | Supported          |                      |
+| WDT                      | Supported          |                      |
+| RTC                      | Supported          |                      |
+| ADC                      | Supported          |                      |
+| DAC                      | Supported          |                      |
+| SPI                      | Supported          |                      |
+| HyperRAM                 | Supported          |                      |
+| FLASH                    | Supported          |                      |
+| PWM                      | Supported          |                      |
+| CAN                      | Supported          |                      |
+| ETH                      | Supported          |                      |
+| **Components**           | **Support Status** | **Remarks** |
+| LWIP                     | Supported          |                      |
+| TCP/UDP                  | Supported          |                      |
+| MQTT                     | Supported          |                      |
+| TFTP                     | Supported          |                      |
+| Modbus Master/Slave Protocol | Supported       |                      |
+| **EtherCAT Solutions**   | **Support Status** | **Remarks** |
+| EtherCAT_IO              | Supported          |                      |
+| EtherCAT_EOE             | Supported          |                      |
+| EtherCAT_FOE             | Supported          |                      |
+| EtherCAT_COE             | Supported          |                      |
+| **PROFINET Solutions**   | **Support Status** | **Remarks** |
+| P-Net                    | Supported          | Only evaluation version of the open-source P-Net package is provided |
+| **Ethernet/IP Solutions** | **Support Status** | **Remarks** |
+| N/A                      | N/A                | Support is in progress... |
+
 
 ## Usage Instructions
 

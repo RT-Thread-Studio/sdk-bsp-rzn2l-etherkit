@@ -1718,6 +1718,8 @@ void ether_phy_targets_initialize (ether_phy_instance_ctrl_t * p_instance_ctrl)
         }
 #endif
 
+        default:
+        {
         /* User custom */
 #if (ETHER_PHY_CFG_USE_CUSTOM_PHY_LSI_ENABLE)
         {
@@ -1734,10 +1736,6 @@ void ether_phy_targets_initialize (ether_phy_instance_ctrl_t * p_instance_ctrl)
             break;
         }
 #endif
-
-        default:
-        {
-            break;
         }
     }
 }                                      /* End of function ether_phy_targets_initialize() */

@@ -1735,7 +1735,6 @@ void ether_phy_targets_initialize (ether_phy_instance_ctrl_t * p_instance_ctrl)
             break;
         }
 #endif
-            break;
         }
     }
 }                                      /* End of function ether_phy_targets_initialize() */
