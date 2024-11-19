@@ -56,7 +56,7 @@ const ether_phy_extend_cfg_t g_ether_phy1_extend =
     .phy_reset_pin       = BSP_IO_PORT_13_PIN_4,
     .phy_reset_time      = 15000,
     .p_selector_instance = (ether_selector_instance_t *)&g_ether_selector1,
-    .p_target_init       = eth_delay,
+    .p_target_init       = phy_rtl8211f_initial,
 };
 
 const ether_phy_cfg_t g_ether_phy1_cfg =
@@ -112,7 +112,7 @@ const ether_phy_extend_cfg_t g_ether_phy0_extend =
     .phy_reset_pin       = BSP_IO_PORT_13_PIN_4,
     .phy_reset_time      = 15000,
     .p_selector_instance = (ether_selector_instance_t *)&g_ether_selector0,
-    .p_target_init       = eth_delay,
+    .p_target_init       = phy_rtl8211f_initial,
 };
 
 const ether_phy_cfg_t g_ether_phy0_cfg =

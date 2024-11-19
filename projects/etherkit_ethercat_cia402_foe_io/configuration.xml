@@ -779,7 +779,7 @@
       <property id="module.driver.ether_phy.flow_control" value="module.driver.ether_phy.flow_control.disable"/>
       <property id="module.driver.ether_phy.port_type" value="module.driver.ether_phy.port_type.0"/>
       <property id="module.driver.ether_phy.phy_lsi_type" value="module.driver.ether_phy.phy_lsi_type.custom"/>
-      <property id="module.driver.ether_phy.target_init" value="eth_delay"/>
+      <property id="module.driver.ether_phy.target_init" value="phy_rtl8211f_initial"/>
       <property id="module.driver.ether_phy.mdio_type" value="module.driver.ether_phy.mdio_type.0"/>
       <property id="module.driver.ether_phy.auto_negotiation" value="module.driver.ether_phy.auto_negotiation.1"/>
       <property id="module.driver.ether_phy.bps" value="module.driver.ether_phy.bps.1"/>
@@ -867,7 +867,7 @@
       <property id="module.driver.ether_phy.flow_control" value="module.driver.ether_phy.flow_control.disable"/>
       <property id="module.driver.ether_phy.port_type" value="module.driver.ether_phy.port_type.0"/>
       <property id="module.driver.ether_phy.phy_lsi_type" value="module.driver.ether_phy.phy_lsi_type.custom"/>
-      <property id="module.driver.ether_phy.target_init" value="eth_delay"/>
+      <property id="module.driver.ether_phy.target_init" value="phy_rtl8211f_initial"/>
       <property id="module.driver.ether_phy.mdio_type" value="module.driver.ether_phy.mdio_type.0"/>
       <property id="module.driver.ether_phy.auto_negotiation" value="module.driver.ether_phy.auto_negotiation.1"/>
       <property id="module.driver.ether_phy.bps" value="module.driver.ether_phy.bps.1"/>

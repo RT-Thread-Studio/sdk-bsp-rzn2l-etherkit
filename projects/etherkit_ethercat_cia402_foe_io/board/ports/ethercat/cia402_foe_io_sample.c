@@ -42,48 +42,54 @@ extern fsp_err_t R_ETHER_PHY_StartAutoNegotiate (ether_phy_ctrl_t * const p_ctrl
 #endif
 void handle_error(fsp_err_t err);
 
-static bool app_status = 0;
-static void foe_sample (void);
-
 /*******************************************************************************************************************//**
  * @brief  EtherCAT Slave Stack example application
  *
  * The EtherCAT Slave Stack Code is provided by SSC tool.
  *
  **********************************************************************************************************************/
-static void netdev_status_callback(struct netdev *netdev, rt_bool_t up)
-{
-    if (up)
-    {
-        foe_sample();
-    }
-    else
-    {
-        return;
-    }
-}
 
-void netdev_monitor_init(void *param)
+void phy_rtl8211f_initial(ether_phy_instance_ctrl_t *phydev)
 {
-    struct netdev *netdev = netdev_get_by_name("e0");
-    if (netdev == RT_NULL)
-    {
-        rt_kprintf("Failed to get network device.\n");
-    }
+#define RTL_8211F_PAGE_SELECT 0x1F
+#define RTL_8211F_EEELCR_ADDR 0x11
+#define RTL_8211F_LED_PAGE 0xD04
+#define RTL_8211F_LCR_ADDR 0x10
 
-    netdev_set_status_callback(netdev, netdev_status_callback);
+    uint32_t val1, val2 = 0;
+
+    /* switch to led page */
+    R_ETHER_PHY_Write(phydev, RTL_8211F_PAGE_SELECT, RTL_8211F_LED_PAGE);
+
+    /* set led1(green) Link 10/100/1000M, and set led2(yellow) Link 10/100/1000M+Active */
+    R_ETHER_PHY_Read(phydev, RTL_8211F_LCR_ADDR, &val1);
+    val1 |= (1 << 5);
+    val1 |= (1 << 8);
+    val1 &= (~(1 << 9));
+    val1 |= (1 << 10);
+    val1 |= (1 << 11);
+    R_ETHER_PHY_Write(phydev, RTL_8211F_LCR_ADDR, val1);
+
+    /* set led1(green) EEE LED function disabled so it can keep on when linked */
+    R_ETHER_PHY_Read(phydev, RTL_8211F_EEELCR_ADDR, &val2);
+    val2 &= (~(1 << 2));
+    R_ETHER_PHY_Write(phydev, RTL_8211F_EEELCR_ADDR, val2);
+
+    /* switch back to page0 */
+    R_ETHER_PHY_Write(phydev, RTL_8211F_PAGE_SELECT, 0xa42);
+
+    rt_thread_mdelay(100);
+
+    return 0;
 }
-INIT_APP_EXPORT(netdev_monitor_init);
 
 static void foe_sample (void)
 {
-	if(app_status == 0)
-	{
-	fsp_err_t err;
+    fsp_err_t err;
 
     /* Open the QSPI instance */
     err = R_XSPI_QSPI_Open(&g_qspi0_ctrl, &g_qspi0_cfg);
-	handle_error(err);
+    handle_error(err);
 
 #if defined(BOARD_RZT2M_RSK) && (BSP_CFG_CORE_CR52 == 1)
     /* Open the shared memory driver. */
@@ -92,32 +98,29 @@ static void foe_sample (void)
 #endif
 
 #if defined(BOARD_RZT2L_RSK)
-	ethercat_ssc_port_extend_cfg_t * p_ethercat_ssc_port_ext_cfg;
-	ether_phy_instance_t * p_ether_phy0;
-	ether_phy_instance_t * p_ether_phy1;
+    ethercat_ssc_port_extend_cfg_t * p_ethercat_ssc_port_ext_cfg;
+    ether_phy_instance_t * p_ether_phy0;
+    ether_phy_instance_t * p_ether_phy1;
 
-	p_ethercat_ssc_port_ext_cfg = (ethercat_ssc_port_extend_cfg_t *)gp_ethercat_ssc_port->p_cfg->p_extend;
-	p_ether_phy0 = (ether_phy_instance_t *)p_ethercat_ssc_port_ext_cfg->p_ether_phy_instance[0];
-	p_ether_phy1 = (ether_phy_instance_t *)p_ethercat_ssc_port_ext_cfg->p_ether_phy_instance[1];
+    p_ethercat_ssc_port_ext_cfg = (ethercat_ssc_port_extend_cfg_t *)gp_ethercat_ssc_port->p_cfg->p_extend;
+    p_ether_phy0 = (ether_phy_instance_t *)p_ethercat_ssc_port_ext_cfg->p_ether_phy_instance[0];
+    p_ether_phy1 = (ether_phy_instance_t *)p_ethercat_ssc_port_ext_cfg->p_ether_phy_instance[1];
 #endif
 
-	/* Initialize EtherCAT SSC Port */
-	err = RM_ETHERCAT_SSC_PORT_Open(gp_ethercat_ssc_port->p_ctrl, gp_ethercat_ssc_port->p_cfg);
-	handle_error(err);
+    /* Initialize EtherCAT SSC Port */
+    err = RM_ETHERCAT_SSC_PORT_Open(gp_ethercat_ssc_port->p_ctrl, gp_ethercat_ssc_port->p_cfg);
+    handle_error(err);
 
 #if defined(BOARD_RZT2L_RSK)
-	/* RZ/T2L RSK board needs starting auto negotiation by phy register access */
-	R_ETHER_PHY_StartAutoNegotiate(p_ether_phy0->p_ctrl);
-	R_ETHER_PHY_StartAutoNegotiate(p_ether_phy1->p_ctrl);
+    /* RZ/T2L RSK board needs starting auto negotiation by phy register access */
+    R_ETHER_PHY_StartAutoNegotiate(p_ether_phy0->p_ctrl);
+    R_ETHER_PHY_StartAutoNegotiate(p_ether_phy1->p_ctrl);
 #endif
 
-	/* Enable interrupt */
-	__asm volatile ("cpsie i");
-
-	/* Print that the EtherCAT Sample starts */
+    /* Print that the EtherCAT Sample starts */
 #if defined(BOARD_RZT2M_RSK)
 #if (BANK == 0)
-	char start_messege[] = "RZ/T2M EtherCAT sample program starts on BANK0.\r\n";
+    char start_messege[] = "RZ/T2M EtherCAT sample program starts on BANK0.\r\n";
 #elif (BANK == 1)
     char start_messege[] = "RZ/T2M EtherCAT sample program starts on BANK1.\r\n";
 #endif
@@ -139,34 +142,33 @@ static void foe_sample (void)
     /* Send massage to PC by UART communication. */
     rt_kprintf("%s",start_messege);
 
-	/* Initilize the stack */
-	MainInit();
+    /* Initilize the stack */
+    MainInit();
 #if (CiA402_SAMPLE_APPLICATION == 1)
-	/* Initialize axis structures */
-	CiA402_Init();
+    /* Initialize axis structures */
+    CiA402_Init();
 #endif
 
-	/* Create basic mapping */
-	APPL_GenerateMapping(&nPdInputSize,&nPdOutputSize);
-	/* Set stack run flag */
-	bRunApplication = TRUE;
+    /* Create basic mapping */
+    APPL_GenerateMapping(&nPdInputSize,&nPdOutputSize);
+    /* Set stack run flag */
+    bRunApplication = TRUE;
 
-	/* Execute the stack */
-	while(bRunApplication == TRUE)
-	{
-		MainLoop();
-	}
+    /* Execute the stack */
+    while(bRunApplication == TRUE)
+    {
+        MainLoop();
+    }
 #if (CiA402_SAMPLE_APPLICATION == 1)
-	/* Remove all allocated axes resources */
-	CiA402_DeallocateAxis();
+    /* Remove all allocated axes resources */
+    CiA402_DeallocateAxis();
 #endif
-	/* Close SSC Port */
-	RM_ETHERCAT_SSC_PORT_Close(gp_ethercat_ssc_port->p_ctrl);
-	return;
-	}
+    /* Close SSC Port */
+    RM_ETHERCAT_SSC_PORT_Close(gp_ethercat_ssc_port->p_ctrl);
 
-	return;
+    return;
 }
+MSH_CMD_EXPORT(foe_sample, foe_sample)
 
 void handle_error(fsp_err_t err)
 {

@@ -1963,7 +1963,8 @@ int pf_lldp_recv (
    pnal_buf_t * p_frame_buf,
    uint16_t offset)
 {
-   uint8_t * buf = p_frame_buf->payload + offset;
+   // uint8_t * buf = p_frame_buf->payload + offset;
+   uint8_t * buf = (uint8_t *)(p_frame_buf->payload) + offset;
    uint16_t buf_len = p_frame_buf->len - offset;
    pf_lldp_peer_info_t peer_data;
    int err = 0;

@@ -36,17 +36,73 @@ extern "C" {
 #define CC_FROM_LE32(x) ((uint32_t)(x))
 #define CC_FROM_LE64(x) ((uint64_t)(x))
 #define CC_TO_BE16(x)   ((uint16_t)__builtin_bswap16 (x))
-#define CC_TO_BE32(x)   ((uint32_t)__builtin_bswap32 (x))
-#define CC_TO_BE64(x)   ((uint64_t)__builtin_bswap64 (x))
+#if defined(__GNUC__) || defined(__clang__)
 #define CC_FROM_BE16(x) ((uint16_t)__builtin_bswap16 (x))
+#define CC_TO_BE32(x)   ((uint32_t)__builtin_bswap32 (x))
 #define CC_FROM_BE32(x) ((uint32_t)__builtin_bswap32 (x))
+#else
+#define CC_FROM_BE16(x)   ( \
+        (uint16_t)( \
+            (((x) & 0xFF00U) >> 8) | \
+            (((x) & 0x00FFU) << 8) \
+        ) \
+    )
+#define CC_TO_BE32(x)   ( \
+    (typeof(x)) ( \
+        ((x) & 0xFF000000U) >> 24 | \
+        ((x) & 0x00FF0000U) >> 8  | \
+        ((x) & 0x0000FF00U) << 8  | \
+        ((x) & 0x000000FFU) << 24 \
+    ) \
+)
+#define CC_FROM_BE32(x)   ( \
+    (typeof(x)) ( \
+        ((x) & 0xFF000000U) >> 24 | \
+        ((x) & 0x00FF0000U) >> 8  | \
+        ((x) & 0x0000FF00U) << 8  | \
+        ((x) & 0x000000FFU) << 24 \
+    ) \
+)
+#endif
+#define CC_TO_BE64(x)   ((uint64_t)__builtin_bswap64 (x))
 #define CC_FROM_BE64(x) ((uint64_t)__builtin_bswap64 (x))
 #else
+#if defined(__GNUC__) || defined(__clang__)
 #define CC_TO_LE16(x)   ((uint16_t)__builtin_bswap16 (x))
-#define CC_TO_LE32(x)   ((uint32_t)__builtin_bswap32 (x))
-#define CC_TO_LE64(x)   ((uint64_t)__builtin_bswap64 (x))
 #define CC_FROM_LE16(x) ((uint16_t)__builtin_bswap16 (x))
 #define CC_FROM_LE32(x) ((uint32_t)__builtin_bswap32 (x))
+#define CC_TO_LE32(x)   ((uint32_t)__builtin_bswap32 (x))
+#else
+#define CC_TO_LE16(x)   ( \
+        (uint16_t)( \
+            (((x) & 0xFF00U) >> 8) | \
+            (((x) & 0x00FFU) << 8) \
+        ) \
+    )
+#define CC_FROM_LE16(x)   ( \
+        (uint16_t)( \
+            (((x) & 0xFF00U) >> 8) | \
+            (((x) & 0x00FFU) << 8) \
+        ) \
+    )
+#define CC_FROM_LE32(x)   ( \
+    (typeof(x)) ( \
+        ((x) & 0xFF000000U) >> 24 | \
+        ((x) & 0x00FF0000U) >> 8  | \
+        ((x) & 0x0000FF00U) << 8  | \
+        ((x) & 0x000000FFU) << 24 \
+    ) \
+)
+#define CC_TO_LE32(x)   ( \
+    (typeof(x)) ( \
+        ((x) & 0xFF000000U) >> 24 | \
+        ((x) & 0x00FF0000U) >> 8  | \
+        ((x) & 0x0000FF00U) << 8  | \
+        ((x) & 0x000000FFU) << 24 \
+    ) \
+)
+#endif
+#define CC_TO_LE64(x)   ((uint64_t)__builtin_bswap64 (x))
 #define CC_FROM_LE64(x) ((uint64_t)__builtin_bswap64 (x))
 #define CC_TO_BE16(x)   ((uint16_t)(x))
 #define CC_TO_BE32(x)   ((uint32_t)(x))

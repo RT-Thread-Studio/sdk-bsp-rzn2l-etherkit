@@ -34,8 +34,8 @@ extern const ether_selector_cfg_t g_ether_selector1_cfg;
   #define ETHER_PHY_LSI_TYPE_KIT_COMPONENT ETHER_PHY_LSI_TYPE_DEFAULT
 #endif
 
-#ifndef eth_delay
-void eth_delay(ether_phy_instance_ctrl_t * p_instance_ctrl);
+#ifndef phy_rtl8211f_initial
+void phy_rtl8211f_initial(ether_phy_instance_ctrl_t * p_instance_ctrl);
 #endif
 
 /** ether_phy on ether_phy Instance. */
@@ -54,8 +54,8 @@ extern const ether_selector_cfg_t g_ether_selector0_cfg;
   #define ETHER_PHY_LSI_TYPE_KIT_COMPONENT ETHER_PHY_LSI_TYPE_DEFAULT
 #endif
 
-#ifndef eth_delay
-void eth_delay(ether_phy_instance_ctrl_t * p_instance_ctrl);
+#ifndef phy_rtl8211f_initial
+void phy_rtl8211f_initial(ether_phy_instance_ctrl_t * p_instance_ctrl);
 #endif
 
 /** ether_phy on ether_phy Instance. */
