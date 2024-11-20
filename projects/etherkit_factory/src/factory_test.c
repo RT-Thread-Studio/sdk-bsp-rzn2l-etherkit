@@ -218,21 +218,22 @@ rt_uint8_t adc_channel_test(rt_device_t dev,rt_uint8_t channel)
 {
        rt_uint32_t vol, value = 2048;
        c_struct.adc_flag=0;
+       int count=0;
        rt_adc_enable(dev, channel);
        for (int i = 0; i < 8; i++)
        {
         value = rt_adc_read(dev, channel);
-         if(value <50)
+         if(value <10)
          {
-             c_struct.adc_flag=1;
-             rt_adc_disable(dev, channel);
-             return RT_EOK;
+              count++;
          }
         vol = value * REFER_VOLTAGE / CONVERT_BITS;
         rt_kprintf("vlo%d\r\n",value);
         rt_kprintf("the adc voltage is :%d.%02d \n", vol / 100, vol % 100);
         rt_thread_mdelay(200);
        }
+       if(count >7)
+           c_struct.adc_flag=1;
     rt_adc_disable(dev, channel);
 }
 
@@ -338,7 +339,7 @@ int netdev_cmd_ping_test(char* target_name, char *netdev_name, rt_uint32_t times
 
         }
         else
-        {            
+        {
             if (ping_resp.ttl == 0)
             {
 
@@ -360,4 +361,3 @@ int netdev_cmd_ping_test(char* target_name, char *netdev_name, rt_uint32_t times
     }
     return RT_EOK;
 }
-

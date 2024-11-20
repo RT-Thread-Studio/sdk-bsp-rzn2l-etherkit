@@ -12,7 +12,9 @@
 #include "hal_data.h"
 #include <rtdevice.h>
 #include <board.h>
-#include <test.h>
+#include <factory_test.h>
+#include <arpa/inet.h>
+#include <netdev.h>
 #define LED_PIN_0    BSP_IO_PORT_14_PIN_3 /* Onboard LED pins */
 #define LED_PIN_1    BSP_IO_PORT_14_PIN_0 /* Onboard LED pins */
 #define LED_PIN_2    BSP_IO_PORT_14_PIN_1 /* Onboard LED pins */
@@ -139,91 +141,91 @@ void  test_board_entry(void)
          rt_kprintf("=====================RTCTEST=============================\n");
          if(rtc_sample()!=RT_EOK)
          {
-            rt_kprintf("RTC 测试失败\r\n");
+            rt_kprintf("RTC Test Failed\r\n");
             goto error_print;
          }
           rt_kprintf("=====================RTCTESTEND=============================\n");
          rt_kprintf("=====================ADCTEST=============================\n");
-         rt_kprintf("=====================ADC0通道0开始测试=============================\n");
+         rt_kprintf("=====================ADC0-CHANNEL0 Start Test!=============================\n");
          adc_channel_test(c_struct.dev_adc_0,0);
          if (c_struct.adc_flag==0)
          {
             /* code */
-            rt_kprintf("ADC0通道0测试失败!\n");
+            rt_kprintf("ADC0-CHANNEL0 Test Failed!\n");
             goto error_print;
          }
 
-         rt_kprintf("=====================ADC0通道0结束测试=============================\n");
-        rt_kprintf("=====================ADC0通道1开始测试=============================\n");
+         rt_kprintf("=====================ADC0-CHANNEL0 END Test!=============================\n");
+        rt_kprintf("=====================ADC0-CHANNEL1 Start Test!=============================\n");
         adc_channel_test(c_struct.dev_adc_0,1);
          if (c_struct.adc_flag==0)
          {
             /* code */
-            rt_kprintf("ADC0通道1测试失败!\n");
-          goto error_print;
+            rt_kprintf("ADC0-CHANNEL1 Test Failed!\n");
+         goto error_print;
          }
-         rt_kprintf("=====================ADC0通道1结束测试=============================\n");
-         rt_kprintf("=====================ADC0通道2开始测试=============================\n");
+         rt_kprintf("=====================ADC0-CHANNEL1 END Test!=============================\n");
+         rt_kprintf("=====================ADC0-CHANNEL2 Start Test!=============================\n");
          adc_channel_test(c_struct.dev_adc_0,2);
          if (c_struct.adc_flag==0)
          {
             /* code */
-            rt_kprintf("ADC0通道2测试失败!\n");
+            rt_kprintf("ADC0-CHANNEL2 Test Failed!\n");
             goto error_print;
          }
-         rt_kprintf("=====================ADC0通道2结束测试=============================\n");
-         rt_kprintf("=====================ADC0通道3开始测试=============================\n");
+         rt_kprintf("=====================ADC0-CHANNEL2 END Test!=============================\n");
+         rt_kprintf("=====================ADC0-CHANNEL3 Start Test!=============================\n");
          adc_channel_test(c_struct.dev_adc_0,3);
         if (c_struct.adc_flag==0)
          {
             /* code */
-            rt_kprintf("ADC0通道3测试失败!\n");
+            rt_kprintf("ADC0-CHANNEL3 Test Failed!\n");
             goto error_print;
          }
-         rt_kprintf("=====================ADC0通道3结束测试=============================\n");
+         rt_kprintf("=====================ADC0-CHANNEL3 END Test!=============================\n");
 
-         rt_kprintf("=====================ADC1通道0开始测试=============================\n");
+         rt_kprintf("=====================ADC1-CHANNEL0 Start Test!=============================\n");
          adc_channel_test(c_struct.dev_adc_1,0);
          if (c_struct.adc_flag==0)
          {
             /* code */
-            rt_kprintf("ADC1通道0测试失败!\n");
+            rt_kprintf("ADC1-CHANNEL0 Test Failed!\n");
             goto error_print;
          }
-         rt_kprintf("=====================ADC1通道0结束测试=============================\n");
-                  rt_kprintf("=====================ADC1通道1开始测试=============================\n");
+         rt_kprintf("=========================ADC1-CHANNEL0 END Test!=========================\n");
+         rt_kprintf("=====================ADC1-CHANNEL1 Start Test!=============================\n");
         adc_channel_test(c_struct.dev_adc_1,1);
          if (c_struct.adc_flag==0)
          {
             /* code */
-            rt_kprintf("ADC1通道1测试失败!\n");
+            rt_kprintf("ADC1-CHANNEL1 Test Failed!\n");
             goto error_print;
          }
-         rt_kprintf("=====================ADC1通道1结束测试=============================\n");
-         rt_kprintf("=====================ADC1通道2开始测试=============================\n");
+         rt_kprintf("=====================ADC1-CHANNEL1 END Test!=============================\n");
+         rt_kprintf("=====================ADC1-CHANNEL2 Start Test!=============================\n");
          adc_channel_test(c_struct.dev_adc_1,2);
          if (c_struct.adc_flag==0)
          {
             /* code */
-            rt_kprintf("ADC1通道2测试失败!\n");
+            rt_kprintf("ADC1-CHANNEL2 Test Failed!\n");
             goto error_print;
          }
-         rt_kprintf("=====================ADC1通道2结束测试=============================\n");
-         rt_kprintf("=====================ADC1通道3开始测试=============================\n");
+         rt_kprintf("=====================ADC1-CHANNEL2 END Test!=============================\n");
+         rt_kprintf("=====================ADC1-CHANNEL3 Start Test!=============================\n");
          adc_channel_test(c_struct.dev_adc_1,3);
         if (c_struct.adc_flag==0)
          {
             /* code */
-            rt_kprintf("ADC1通道2测试失败!\n");
+            rt_kprintf("ADC1-CHANNEL3 Test Failed!\n");
             goto error_print;
          }
-         rt_kprintf("=====================ADC1通道3结束测试=============================\n");
+         rt_kprintf("=====================ADC1-CHANNEL3 END Test!=============================\n");
 
 
         rt_kprintf("=====================EEROMTEST=============================\n");
         if(at24cxx()!=RT_EOK)
          {
-              rt_kprintf("EEPROM测试失败!\n");
+              rt_kprintf("EEPROM Test Failed!\n");
               goto error_print;
 
          }
@@ -231,29 +233,29 @@ void  test_board_entry(void)
        rt_kprintf("=====================DIGITAL_TEST=============================\n");
        if(rt_pin_read(DIGITAL_IN0))
        {
-           rt_kprintf("DIGITAL_IN0/OUT0测试失败!\n");
+           rt_kprintf("DIGITAL_IN0/OUT0 Test Failed!\n");
            goto error_print;
        }
        if(rt_pin_read(DIGITAL_IN1))
        {
-           rt_kprintf("DIGITAL_IN1/OUT1测试失败!\n");
+           rt_kprintf("DIGITAL_IN1/OUT1 Test Failed!\n");
            goto error_print;
        }
        if(rt_pin_read(DIGITAL_IN2))
        {
-           rt_kprintf("DIGITAL_IN2/OUT2测试失败!\n");
+           rt_kprintf("DIGITAL_IN2/OUT2 Test Failed!\n");
            goto error_print;
        }
        if(rt_pin_read(DIGITAL_IN3))
        {
-           rt_kprintf("DIGITAL_IN3/OUT3测试失败!\n");
+           rt_kprintf("DIGITAL_IN3/OUT3 Test Failed!\n");
            goto error_print;
        }
        rt_kprintf("=====================DIGITAL_TESTEND=============================\n");
        rt_kprintf("=====================ETHTEST=============================\n");
        if(eth_test()!=RT_EOK)
        {
-             rt_kprintf("ETH测试失败!\n");
+             rt_kprintf("ETH Test Failed!\n");
              goto error_print;
        }
        rt_kprintf("=====================ETHTESTEND=============================\n");
@@ -262,7 +264,7 @@ void  test_board_entry(void)
        rt_thread_delay(1000);
        if(c_struct.serial_flag!=1)
        {
-           rt_kprintf("RS485测试失败!\n");
+           rt_kprintf("RS485 Test Failed!\n");
            goto error_print;
        }
        R_SCI_UART_Close(&g_uart5_ctrl);
@@ -274,7 +276,7 @@ void  test_board_entry(void)
        rt_thread_delay(1000);
        if(c_struct.can_flag1!=1)
        {
-         rt_kprintf("CAN测试失败!\n");
+         rt_kprintf("CAN Test Failed!\n");
          goto error_print;
         };
         rt_kprintf("=====================CANTESTSUCCESS=============================\n");
@@ -301,7 +303,7 @@ rt_uint8_t eth_test()
     rt_pin_write(LED_PIN_1, PIN_HIGH);
     return RT_ERROR;
    }
-}    
+}
 #define RTC_NAME       "rtc"
 
 static int rtc_sample(void)
