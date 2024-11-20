@@ -53,11 +53,14 @@ jobs:
          - {RTT_BSP: "etherkit_blink_led"}
          - {RTT_BSP: "etherkit_basic_key"}
          - {RTT_BSP: "etherkit_basic_rtc"}
+         - {RTT_BSP: "etherkit_driver_adc"}
+         - {RTT_BSP: "etherkit_driver_i2c"}
          - {RTT_BSP: "etherkit_driver_canfd"}
          - {RTT_BSP: "etherkit_ethernet"}
          - {RTT_BSP: "etherkit_ethercat_eoe"}
          - {RTT_BSP: "etherkit_ethercat_cia402_foe_io"}
          - {RTT_BSP: "etherkit_profinet_pnet"}
+         - {RTT_BSP: "etherkit_factory"}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python

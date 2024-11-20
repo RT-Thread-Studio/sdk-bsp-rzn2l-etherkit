@@ -1,0 +1,7 @@
+[
+ {
+  "path": "/packages/peripherals/at24cxx", 
+  "ver": "latest", 
+  "name": "AT24CXX"
+ }
+]
