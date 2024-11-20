@@ -37,7 +37,7 @@ static void netdev_status_callback(struct netdev *netdev, rt_bool_t up)
 {
     if (up)
     {
-        foe_sample();
+        eoe_app();
     }
     else
     {
