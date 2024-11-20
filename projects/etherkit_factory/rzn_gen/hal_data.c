@@ -990,7 +990,7 @@ const adc_extended_cfg_t g_adc0_cfg_extend =
 const adc_cfg_t g_adc0_cfg =
 {
     .unit                = 0,
-    .mode                = ADC_MODE_SINGLE_SCAN,
+    .mode                = ADC_MODE_CONTINUOUS_SCAN,
     .resolution          = ADC_RESOLUTION_12_BIT,
     .alignment           = (adc_alignment_t)ADC_ALIGNMENT_RIGHT,
     .trigger             = ADC_TRIGGER_SOFTWARE,
