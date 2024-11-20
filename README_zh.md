@@ -17,7 +17,7 @@
 
 开发板正面外观如下图：
 
-![image-20240314165241884](.\docs\figures\big.jpg)
+![image-20240314165241884](.\docs\figures\big.png)
 
 该开发板常用 **板载资源** 如下：
 

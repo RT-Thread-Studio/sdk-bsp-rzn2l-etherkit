@@ -1,6 +1,6 @@
 # EtherKit Development Board BSP Documentation
 
-**Chinese** | [**English**](./README.md)
+**English** | **[Chinese](./README_zh.md)**
 
 ## Introduction
 
@@ -17,7 +17,7 @@ The EtherKit development board is based on the Renesas RZ/N2L and is designed to
 
 The front view of the development board is shown below:
 
-![image-20240314165241884](.\docs\figures\big.jpg)
+![image-20240314165241884](figures/big.png)
 
 Key **onboard resources** include:
 
@@ -31,22 +31,25 @@ Key **onboard resources** include:
 
 This BSP currently supports the following peripherals:
 
-| **On-chip Peripheral** | **Support Status** | **Notes** |
-| :---------------------- | :------------------ | :-------- |
-| UART                    | Supported           | UART0 is the default log output port |
-| GPIO                    | Supported           |          |
-| HWIMER                  | Supported           |          |
-| IIC                     | Supported           |          |
-| WDT                     | Supported           |          |
-| RTC                     | Supported           |          |
-| ADC                     | Supported           |          |
-| DAC                     | Supported           |          |
-| SPI                     | Supported           |          |
-| FLASH                   | Supported           |          |
-| PWM                     | Supported           |          |
-| CAN                     | Supported           |          |
-| ETH                     | Supported           |          |
-| Ongoing updates...      |                     |          |
+Here is the translated text in English, keeping the markdown format:
+
+| **EtherCAT Solution** | **Support Status** | **EtherCAT Solution** | **Support Status** |
+| --------------------- | ------------------ | --------------------- | ------------------ |
+| EtherCAT_IO           | Supported          | EtherCAT_FOE          | Supported          |
+| EtherCAT_EOE          | Supported          | EtherCAT_COE          | Supported          |
+| **PROFINET Solution** | **Support Status** | **Ethernet/IP Solution** | **Support Status** |
+| P-Net (Open source evaluation package supporting ProfiNET slave protocol stack) | Supported | EIP | In progress... |
+| **On-chip Peripherals** | **Support Status** | **Components**        | **Support Status** |
+| UART                  | Supported          | LWIP                  | Supported          |
+| GPIO                  | Supported          | TCP/UDP               | Supported          |
+| HWIMER                | Supported          | MQTT                  | Supported          |
+| IIC                   | Supported          | TFTP                  | Supported          |
+| WDT                   | Supported          | Modbus Master/Slave Protocol | Supported |
+| RTC                   | Supported          |                       |                    |
+| ADC                   | Supported          |                       |                    |
+| DAC                   | Supported          |                       |                    |
+| SPI                   | Supported          |                       |                    |
+
 
 ## Usage Instructions
 

@@ -6,13 +6,13 @@ board:
   description_en: The EtherKit Development Board is RT-Thread's R9A07G084 chip based on Renesas Cortex-R52 architecture, providing engineers with a flexible and comprehensive development platform to help developers gain a deeper experience in EtherCAT industrial Ethernet.
   description_zh: EtherKit 开发板是 RT-Thread 推出基于瑞萨 Cortex-R52 架构 R9A07G084 芯片，为工程师们提供了一个灵活、全面的开发平台，助力开发者在EtherCAT工业以太网领域获得更深层次的体验。
   emulator_machine: ''
-  large_image: docs/figures/big.jpg
+  large_image: docs/figures/big.png
   name: EtherKit
   price_cn: N/A CNY
   price_global: N/A USD
   sale_contact_cn: https://www.rt-thread.org/
   sale_contact_global: https://www.rt-thread.org/
-  small_image: docs/figures/small.jpg
+  small_image: docs/figures/small.png
   vendor: Renesas
   version: 1.0.0
 chip:
@@ -29,13 +29,13 @@ chip:
   uart_name: UART0
 docs:
 - category: manual
-  file: documents/User’s Manual Hardware.pdf
+  file: docs/User’s Manual Hardware.pdf
   title: User’s Manual Hardware
 - category: sheet
-  file: documents/rzn2l-group-datasheet.pdf
+  file: docs/rzn2l-group-datasheet.pdf
   title: rzn2l-group-datasheet
 - category: other
-  file: documents/EtherKit_Board_Schematic.pdf
+  file: docs/EtherKit_Board_Schematic.pdf
   title: EtherKit_Board_Schematic
 features:
 - Arm® Cortex®-R52, maximum operating frequency 400MHz
