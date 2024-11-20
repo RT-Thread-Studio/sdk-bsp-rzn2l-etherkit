@@ -1384,7 +1384,7 @@ FSP Configuration
       General: Name: g_adc0
       General: Unit: 0
       General: Clear after read: On
-      General: Mode: Single Scan
+      General: Mode: Continuous Scan
       General: Double-trigger: Disabled
       Input: Channel Scan Mask (channel availability varies by MCU): Channel 0, Channel 1, Channel 2, Channel 3
       Input: Group B Scan Mask (channel availability varies by MCU): 

@@ -195,11 +195,10 @@
             <path>rzn_gen/vector_data.h</path>
         </group>
         <group name="Program Entry">
-            <path>src/error.h</path>
+            <path>src/factory_test.c</path>
+            <path>src/factory_test.h</path>
             <path>src/hal_entry.c</path>
             <path>src/SConscript</path>
-            <path>src/test.c</path>
-            <path>src/test.h</path>
         </group>
     </files>
 </iarProjectConnection>

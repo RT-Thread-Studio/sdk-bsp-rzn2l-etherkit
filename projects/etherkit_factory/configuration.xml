@@ -927,7 +927,7 @@
       <property id="module.driver.adc.name" value="g_adc0"/>
       <property id="module.driver.adc.unit" value="0"/>
       <property id="module.driver.adc.clearing" value="module.driver.adc.clearing.clear_after_read_on"/>
-      <property id="module.driver.adc.mode" value="module.driver.adc.mode.mode_single_scan"/>
+      <property id="module.driver.adc.mode" value="module.driver.adc.mode.mode_continuous_scan"/>
       <property id="module.driver.adc.mode.dt" value="module.driver.adc.mode.dt.disabled"/>
       <property id="module.driver.adc.scan_mask" value="module.driver.adc.scan_mask.channel_0,module.driver.adc.scan_mask.channel_1,module.driver.adc.scan_mask.channel_2,module.driver.adc.scan_mask.channel_3"/>
       <property id="module.driver.adc.scan_mask_group_b" value=""/>

@@ -161,11 +161,11 @@ example_projects:
     source_path_offset: ''
     target_path_offset: ''
     files_and_folders: []
-- project_name: etherkit_drive_i2c
+- project_name: etherkit_driver_i2c
   project_description: master i2c 示例
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
-  - source_path_offset: projects/etherkit_drive_i2c
+  - source_path_offset: projects/etherkit_driver_i2c
     target_path_offset: ''
     files_and_folders:
     - "*"
