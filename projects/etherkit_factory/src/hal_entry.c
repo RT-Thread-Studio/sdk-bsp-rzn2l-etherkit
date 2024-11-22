@@ -291,8 +291,16 @@ void  test_board_entry(void)
 rt_uint8_t eth_test()
 {
     flag_eth=0;
-    rt_kprintf("Start ping www.rt-thread.org!!\r\n");
-    if(netdev_cmd_ping_test(ip_addr, RT_NULL, 4, 0)==RT_EOK)
+    rt_kprintf("Start ping!!\r\n");
+
+    struct netdev *netdev=netdev_get_by_name("e0");
+    if(netdev==RT_NULL)
+    {
+        rt_kprintf("erron\r\n");
+    }
+    char * target_name=ip4addr_ntoa(&(netdev->gw));
+    netdev = netdev_get_first_by_flags(NETDEV_FLAG_LINK_UP);
+    if(netdev_cmd_ping(target_name, RT_NULL, 2, 0)==RT_EOK)
     {
     //同时蓝灯LED1常亮
     rt_pin_write(LED_PIN_1, PIN_LOW);

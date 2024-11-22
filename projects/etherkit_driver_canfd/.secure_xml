@@ -67,16 +67,14 @@
   </raClockConfiguration>
   <raPinConfiguration>
     <pincfg active="true" name="" symbol="">
-      <configSetting altId="canfd0.canrx0.p01_7" configurationId="canfd0.canrx0" isUsedByDriver="true"/>
-      <configSetting altId="canfd0.cantx0.p02_2" configurationId="canfd0.cantx0" isUsedByDriver="true"/>
+      <configSetting altId="canfd0.canrx0.p05_2" configurationId="canfd0.canrx0" isUsedByDriver="true"/>
+      <configSetting altId="canfd0.cantx0.p05_3" configurationId="canfd0.cantx0" isUsedByDriver="true"/>
       <configSetting altId="canfd1.canrx1.p02_3" configurationId="canfd1.canrx1" isUsedByDriver="true"/>
       <configSetting altId="canfd1.cantx1.p02_0" configurationId="canfd1.cantx1" isUsedByDriver="true"/>
       <configSetting altId="ether_gmac.gmac_mdc.p08_7" configurationId="ether_gmac.gmac_mdc"/>
       <configSetting altId="ether_gmac.gmac_mdio.p09_0" configurationId="ether_gmac.gmac_mdio"/>
       <configSetting altId="iic0.iic_scl0.p13_2" configurationId="iic0.iic_scl0"/>
       <configSetting altId="iic0.iic_sda0.p13_3" configurationId="iic0.iic_sda0"/>
-      <configSetting altId="iic1.iic_scl1.p05_2" configurationId="iic1.iic_scl1"/>
-      <configSetting altId="iic1.iic_sda1.p05_3" configurationId="iic1.iic_sda1"/>
       <configSetting altId="jtag_fslash_swd.tck_swclk.p02_7" configurationId="jtag_fslash_swd.tck_swclk" isUsedByDriver="true"/>
       <configSetting altId="jtag_fslash_swd.tdi.p02_5" configurationId="jtag_fslash_swd.tdi" isUsedByDriver="true"/>
       <configSetting altId="jtag_fslash_swd.tdo.p02_4" configurationId="jtag_fslash_swd.tdo" isUsedByDriver="true"/>

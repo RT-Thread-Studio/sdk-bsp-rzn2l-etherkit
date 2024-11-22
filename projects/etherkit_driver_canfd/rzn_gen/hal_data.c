@@ -49,7 +49,7 @@ canfd_global_cfg_t g_canfd_global_cfg =
 canfd_extended_cfg_t g_canfd1_extended_cfg =
 {
     .p_afl              = p_canfd1_afl,
-    .txmb_txi_enable    = ((1ULL << 1) |  0ULL),
+    .txmb_txi_enable    = ((1ULL << 0) | (1ULL << 1) |  0ULL),
     .error_interrupts   = ( 0U),
     .p_data_timing      = &g_canfd1_data_timing_cfg,
     .delay_compensation = (1),
@@ -132,7 +132,7 @@ canfd_global_cfg_t g_canfd_global_cfg =
 canfd_extended_cfg_t g_canfd0_extended_cfg =
 {
     .p_afl              = p_canfd0_afl,
-    .txmb_txi_enable    = ((1ULL << 0) |  0ULL),
+    .txmb_txi_enable    = ((1ULL << 0) | (1ULL << 1) |  0ULL),
     .error_interrupts   = ( 0U),
     .p_data_timing      = &g_canfd0_data_timing_cfg,
     .delay_compensation = (1),

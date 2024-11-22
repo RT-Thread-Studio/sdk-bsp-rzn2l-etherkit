@@ -781,7 +781,7 @@
       <property id="module.driver.canfd.manual.data.sync_jump_width" value="1"/>
       <property id="module.driver.canfd.bitrate.manual.use_manual" value="module.driver.canfd.bitrate.manual.use_manual.disabled"/>
       <property id="module.driver.canfd.p_callback" value="canfd0_callback"/>
-      <property id="module.driver.canfd.txmb.int" value="module.driver.canfd.txmb.int.0"/>
+      <property id="module.driver.canfd.txmb.int" value="module.driver.canfd.txmb.int.0,module.driver.canfd.txmb.int.1"/>
       <property id="module.driver.canfd.ch_err.int" value=""/>
       <property id="module.driver.canfd.ipl" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.canfd.afl_array" value="p_canfd0_afl"/>
@@ -803,7 +803,7 @@
       <property id="module.driver.canfd.manual.data.sync_jump_width" value="1"/>
       <property id="module.driver.canfd.bitrate.manual.use_manual" value="module.driver.canfd.bitrate.manual.use_manual.disabled"/>
       <property id="module.driver.canfd.p_callback" value="canfd1_callback"/>
-      <property id="module.driver.canfd.txmb.int" value="module.driver.canfd.txmb.int.1"/>
+      <property id="module.driver.canfd.txmb.int" value="module.driver.canfd.txmb.int.0,module.driver.canfd.txmb.int.1"/>
       <property id="module.driver.canfd.ch_err.int" value=""/>
       <property id="module.driver.canfd.ipl" value="board.icu.common.irq.priority12"/>
       <property id="module.driver.canfd.afl_array" value="p_canfd1_afl"/>
@@ -830,7 +830,7 @@
       <property id="config.driver.canfd.multiplex_interrupt" value="config.driver.canfd.multiplex_interrupt.disabled"/>
       <property id="config.driver.canfd.global_err.ipl" value="board.icu.common.irq.priority12"/>
       <property id="config.driver.canfd.global_err.sources" value=""/>
-      <property id="config.driver.canfd.global_err.cb_channel" value="config.driver.canfd.global_err.cb_channel.0"/>
+      <property id="config.driver.canfd.global_err.cb_channel" value="config.driver.canfd.global_err.cb_channel.1"/>
       <property id="config.driver.canfd.tx_priority" value="config.driver.canfd.tx_priority.buffer"/>
       <property id="config.driver.canfd.dlc_check" value="config.driver.canfd.dlc_check.disabled"/>
       <property id="config.driver.canfd.clock_source" value="config.driver.canfd.clock_source.pclkcan"/>
@@ -839,7 +839,7 @@
       <property id="config.driver.canfd.rxmb.number" value="0"/>
       <property id="config.driver.canfd.rxmb.size" value="config.driver.canfd.rxmb.size.8"/>
       <property id="config.driver.canfd.rxfifo.ipl" value="board.icu.common.irq.priority12"/>
-      <property id="config.driver.canfd.rxfifo.0.enable" value="config.driver.canfd.rxfifo.0.enable.disabled"/>
+      <property id="config.driver.canfd.rxfifo.0.enable" value="config.driver.canfd.rxfifo.0.enable.enabled"/>
       <property id="config.driver.canfd.rxfifo.0.int_mode" value="enum.driver.canfd.fifo.int_mode.every_frame"/>
       <property id="config.driver.canfd.rxfifo.0.int_threshold" value="enum.driver.canfd.fifo.int_threshold.1_2"/>
       <property id="config.driver.canfd.rxfifo.0.payload" value="enum.driver.canfd.fifo.payload.64"/>
@@ -987,8 +987,8 @@
     <symbolicName propertyId="p24_1.symbolic_name" value="ETH2_RXCLK"/>
     <symbolicName propertyId="p24_2.symbolic_name" value="ETH2_RXD2"/>
     <pincfg active="true" name="RSK+RZN2L" selected="true" symbol="g_bsp_pin_cfg">
-      <configSetting altId="canfd0.canrx0.p01_7" configurationId="canfd0.canrx0"/>
-      <configSetting altId="canfd0.cantx0.p02_2" configurationId="canfd0.cantx0"/>
+      <configSetting altId="canfd0.canrx0.p05_2" configurationId="canfd0.canrx0"/>
+      <configSetting altId="canfd0.cantx0.p05_3" configurationId="canfd0.cantx0"/>
       <configSetting altId="canfd0.mode.enabled.free" configurationId="canfd0.mode"/>
       <configSetting altId="canfd1.canrx1.p02_3" configurationId="canfd1.canrx1"/>
       <configSetting altId="canfd1.cantx1.p02_0" configurationId="canfd1.cantx1"/>
@@ -1000,23 +1000,14 @@
       <configSetting altId="iic0.iic_scl0.p13_2" configurationId="iic0.iic_scl0"/>
       <configSetting altId="iic0.iic_sda0.p13_3" configurationId="iic0.iic_sda0"/>
       <configSetting altId="iic0.mode.enabled.free" configurationId="iic0.mode"/>
-      <configSetting altId="iic1.iic_scl1.p05_2" configurationId="iic1.iic_scl1"/>
-      <configSetting altId="iic1.iic_sda1.p05_3" configurationId="iic1.iic_sda1"/>
-      <configSetting altId="iic1.mode.enabled.free" configurationId="iic1.mode"/>
       <configSetting altId="jtag_fslash_swd.mode.jtag.free" configurationId="jtag_fslash_swd.mode"/>
       <configSetting altId="jtag_fslash_swd.tck_swclk.p02_7" configurationId="jtag_fslash_swd.tck_swclk"/>
       <configSetting altId="jtag_fslash_swd.tdi.p02_5" configurationId="jtag_fslash_swd.tdi"/>
       <configSetting altId="jtag_fslash_swd.tdo.p02_4" configurationId="jtag_fslash_swd.tdo"/>
       <configSetting altId="jtag_fslash_swd.tms_swdio.p02_6" configurationId="jtag_fslash_swd.tms_swdio"/>
-      <configSetting altId="p01_7.canfd0.canrx0" configurationId="p01_7"/>
-      <configSetting altId="p01_7.gpio_speed.gpio_speed_middle" configurationId="p01_7.gpio_drivecapacity"/>
-      <configSetting altId="p01_7.gpio_mode.gpio_mode_peripheral" configurationId="p01_7.gpio_mode"/>
       <configSetting altId="p02_0.canfd1.cantx1" configurationId="p02_0"/>
       <configSetting altId="p02_0.gpio_speed.gpio_speed_middle" configurationId="p02_0.gpio_drivecapacity"/>
       <configSetting altId="p02_0.gpio_mode.gpio_mode_peripheral" configurationId="p02_0.gpio_mode"/>
-      <configSetting altId="p02_2.canfd0.cantx0" configurationId="p02_2"/>
-      <configSetting altId="p02_2.gpio_speed.gpio_speed_middle" configurationId="p02_2.gpio_drivecapacity"/>
-      <configSetting altId="p02_2.gpio_mode.gpio_mode_peripheral" configurationId="p02_2.gpio_mode"/>
       <configSetting altId="p02_3.canfd1.canrx1" configurationId="p02_3"/>
       <configSetting altId="p02_3.gpio_speed.gpio_speed_middle" configurationId="p02_3.gpio_drivecapacity"/>
       <configSetting altId="p02_3.gpio_mode.gpio_mode_peripheral" configurationId="p02_3.gpio_mode"/>
@@ -1040,10 +1031,10 @@
       <configSetting altId="p04_4.gpio_mode.gpio_mode_out.low" configurationId="p04_4.gpio_mode"/>
       <configSetting altId="p05_0.output.low" configurationId="p05_0"/>
       <configSetting altId="p05_0.gpio_mode.gpio_mode_out.low" configurationId="p05_0.gpio_mode"/>
-      <configSetting altId="p05_2.iic1.iic_scl1" configurationId="p05_2"/>
+      <configSetting altId="p05_2.canfd0.canrx0" configurationId="p05_2"/>
       <configSetting altId="p05_2.gpio_speed.gpio_speed_middle" configurationId="p05_2.gpio_drivecapacity"/>
       <configSetting altId="p05_2.gpio_mode.gpio_mode_peripheral" configurationId="p05_2.gpio_mode"/>
-      <configSetting altId="p05_3.iic1.iic_sda1" configurationId="p05_3"/>
+      <configSetting altId="p05_3.canfd0.cantx0" configurationId="p05_3"/>
       <configSetting altId="p05_3.gpio_speed.gpio_speed_middle" configurationId="p05_3.gpio_drivecapacity"/>
       <configSetting altId="p05_3.gpio_mode.gpio_mode_peripheral" configurationId="p05_3.gpio_mode"/>
       <configSetting altId="p05_4.input" configurationId="p05_4"/>

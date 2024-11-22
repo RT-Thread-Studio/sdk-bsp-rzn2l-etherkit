@@ -17,12 +17,12 @@
 #define DBG_LVL DBG_LOG
 #include <rtdbg.h>
 
-#define CAN0_DEV_NAME       "can0"      /* CAN0 设备名称 */
-#define CAN1_DEV_NAME       "can1"      /* CAN1 设备名称 */
+#define CAN0_DEV_NAME       "canfd0"      /* CAN0 设备名称 */
+#define CAN1_DEV_NAME       "canfd1"      /* CAN1 设备名称 */
 
 static struct rt_semaphore rx_sem;     /* 用于接收消息的信号量 */
-static rt_device_t can_dev;            /* CAN 设备句柄 */
-
+static rt_device_t can0_dev;            /* CAN 设备句柄 */
+static rt_device_t can1_dev;            /* CAN 设备句柄 */
 void hal_entry(void)
 {
     rt_kprintf("\nHello RT-Thread!\n");
@@ -37,7 +37,7 @@ void hal_entry(void)
 }
 
 /* 接收数据回调函数 */
-static rt_err_t can_rx_call(rt_device_t dev, rt_size_t size)
+static rt_err_t can1_rx_call(rt_device_t dev, rt_size_t size)
 {
     /* CAN 接收到数据后产生中断，调用此回调函数，然后发送接收信号量 */
     rt_sem_release(&rx_sem);
@@ -45,12 +45,12 @@ static rt_err_t can_rx_call(rt_device_t dev, rt_size_t size)
     return RT_EOK;
 }
 
-static void can_rx_thread(void *parameter)
+static void can1_rx_thread(void *parameter)
 {
     struct rt_can_msg rxmsg = {0};
 
     /* 设置接收回调函数 */
-    rt_device_set_rx_indicate(can_dev, can_rx_call);
+    rt_device_set_rx_indicate(can1_dev, can1_rx_call);
 
     while (1)
     {
@@ -59,13 +59,13 @@ static void can_rx_thread(void *parameter)
         /* 阻塞等待接收信号量 */
         rt_sem_take(&rx_sem, RT_WAITING_FOREVER);
         /* 从 CAN 读取一帧数据 */
-        rt_device_read(can_dev, 0, &rxmsg, sizeof(rxmsg));
+        rt_device_read(can1_dev, 0, &rxmsg, sizeof(rxmsg));
         /* 打印数据 ID 及内容 */
         rt_kprintf("ID:%x\tmessege:%s\n", rxmsg.id, rxmsg.data);
     }
 }
 
-static void can_tx_thread(void *parameter)
+static void can0_tx_thread(void *parameter)
 {
     struct rt_can_msg msg = {0};
     rt_size_t  size;
@@ -80,7 +80,7 @@ static void can_tx_thread(void *parameter)
     {
         /* 发送一帧 CAN 数据 */
         rt_sprintf((char *)msg.data,"rtt:%d",number++);
-        size = rt_device_write(can_dev, 0, &msg, sizeof(msg));
+        size = rt_device_write(can0_dev, 0, &msg, sizeof(msg));
         if (size == 0)
         {
             rt_kprintf("can dev write data failed!\n");
@@ -89,7 +89,7 @@ static void can_tx_thread(void *parameter)
     }
 }
 
-int can_sample_receive(int argc, char *argv[])
+int can1_sample_receive(int argc, char *argv[])
 {
     rt_err_t res;
     rt_thread_t thread;
@@ -104,8 +104,8 @@ int can_sample_receive(int argc, char *argv[])
         rt_strncpy(can_name, CAN1_DEV_NAME, RT_NAME_MAX);
     }
     /* 查找 CAN 设备 */
-    can_dev = rt_device_find(can_name);
-    if (!can_dev)
+    can1_dev = rt_device_find(can_name);
+    if (!can1_dev)
     {
         rt_kprintf("find %s failed!\n", can_name);
         return RT_ERROR;
@@ -115,10 +115,10 @@ int can_sample_receive(int argc, char *argv[])
     rt_sem_init(&rx_sem, "rx_sem", 0, RT_IPC_FLAG_FIFO);
 
     /* 以中断接收及发送方式打开 CAN 设备 */
-    res = rt_device_open(can_dev, RT_DEVICE_FLAG_INT_TX | RT_DEVICE_FLAG_INT_RX);
+    res = rt_device_open(can1_dev, RT_DEVICE_FLAG_INT_TX | RT_DEVICE_FLAG_INT_RX);
     RT_ASSERT(res == RT_EOK);
     /* 创建数据接收线程 */
-    thread = rt_thread_create("can_rx", can_rx_thread, RT_NULL, 1024, 25, 10);
+    thread = rt_thread_create("can1_rx", can1_rx_thread, RT_NULL, 1024, 25, 10);
     if (thread != RT_NULL)
     {
         rt_thread_startup(thread);
@@ -130,9 +130,9 @@ int can_sample_receive(int argc, char *argv[])
     return res;
 }
 /* 导出到 msh 命令列表中 */
-MSH_CMD_EXPORT(can_sample_receive, can device sample);
+MSH_CMD_EXPORT(can1_sample_receive, can device sample);
 
-int can_sample_send(int argc, char *argv[])
+int can0_sample_send(int argc, char *argv[])
 {
     rt_err_t res;
     rt_thread_t thread;
@@ -147,18 +147,18 @@ int can_sample_send(int argc, char *argv[])
         rt_strncpy(can_name, CAN0_DEV_NAME, RT_NAME_MAX);
     }
     /* 查找 CAN 设备 */
-    can_dev = rt_device_find(can_name);
-    if (!can_dev)
+    can0_dev = rt_device_find(can_name);
+    if (!can0_dev)
     {
         rt_kprintf("find %s failed!\n", can_name);
         return RT_ERROR;
     }
 
     /* 以中断接收及发送方式打开 CAN 设备 */
-    res = rt_device_open(can_dev, RT_DEVICE_FLAG_INT_TX | RT_DEVICE_FLAG_INT_RX);
+    res = rt_device_open(can0_dev, RT_DEVICE_FLAG_INT_TX | RT_DEVICE_FLAG_INT_RX);
     RT_ASSERT(res == RT_EOK);
     /* 创建数据接收线程 */
-    thread = rt_thread_create("can_tx", can_tx_thread, RT_NULL, 1024, 25, 10);
+    thread = rt_thread_create("can0_tx", can0_tx_thread, RT_NULL, 1024, 25, 10);
     if (thread != RT_NULL)
     {
         rt_thread_startup(thread);
@@ -171,4 +171,4 @@ int can_sample_send(int argc, char *argv[])
     return res;
 }
 /* 导出到 msh 命令列表中 */
-MSH_CMD_EXPORT(can_sample_send, can device sample);
+MSH_CMD_EXPORT(can0_sample_send, can device sample);

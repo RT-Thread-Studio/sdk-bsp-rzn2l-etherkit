@@ -1,4 +1,4 @@
-#Tue Nov 19 13:54:57 CST 2024
+#Fri Nov 22 10:37:05 CST 2024
 com.renesas.cdt.ddsc.contentgen.options/options/suppresswarningspaths=
 com.renesas.cdt.ddsc.threads.configurator/collapse/module.driver.i2c_on_iic_master.394272458=false
 com.renesas.cdt.ddsc.threads.configurator/collapse/module.driver.ether_phy_on_ether_phy.1390104279=false
@@ -43,7 +43,7 @@ com.renesas.cdt.ddsc.packs.componentfiles/Arm\#\#CMSIS\#\#CMSIS5\#\#Core\#\#\#\#
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#BSP\#\#rzn2l\#\#device\#\#R9A07G084M04GBG\#\#2.0.0/all=
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#HAL\ Drivers\#\#all\#\#r_iic_master\#\#\#\#2.0.0/all=2604866465,rzn/fsp/src/r_iic_master/r_iic_master.c|1703238073,rzn/fsp/inc/instances/r_iic_master.h|3586794436,rzn/fsp/inc/api/r_transfer_api.h|175122595,rzn/fsp/inc/api/r_i2c_master_api.h
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#HAL\ Drivers\#\#all\#\#r_canfd\#\#\#\#2.0.0/all=1539693906,rzn/fsp/src/r_canfd/r_canfd.c|1929537883,rzn/fsp/inc/instances/r_canfd.h|3345882754,rzn/fsp/inc/api/r_can_api.h
-com.renesas.cdt.ddsc.settingseditor/com.renesas.cdt.ddsc.settingseditor.active_page=PinConfiguration
+com.renesas.cdt.ddsc.settingseditor/com.renesas.cdt.ddsc.settingseditor.active_page=SWPConfigurator
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#HAL\ Drivers\#\#all\#\#r_icu\#\#\#\#2.0.0/all=3076664292,rzn/fsp/src/r_icu/r_icu.c|2881269901,rzn/fsp/inc/instances/r_icu.h|1436939059,rzn/fsp/inc/api/r_external_irq_api.h
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#HAL\ Drivers\#\#all\#\#r_ether_selector\#\#\#\#2.0.0/libraries=
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#HAL\ Drivers\#\#all\#\#r_gmac\#\#\#\#2.0.0/all=3140167061,rzn/fsp/src/r_gmac/r_gmac.c|2926181503,rzn/fsp/inc/instances/r_gmac.h|1398217987,rzn/fsp/inc/api/r_ether_api.h

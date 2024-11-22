@@ -55,6 +55,10 @@ jobs:
          - {RTT_BSP: "etherkit_basic_rtc"}
          - {RTT_BSP: "etherkit_driver_adc"}
          - {RTT_BSP: "etherkit_driver_i2c"}
+         - {RTT_BSP: "etherkit_driver_spi"}
+         - {RTT_BSP: "etherkit_driver_wdt"}
+         - {RTT_BSP: "etherkit_driver_rs485"}
+         - {RTT_BSP: "etherkit_driver_gpt"}
          - {RTT_BSP: "etherkit_driver_canfd"}
          - {RTT_BSP: "etherkit_ethernet"}
          - {RTT_BSP: "etherkit_ethercat_eoe"}

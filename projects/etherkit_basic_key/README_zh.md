@@ -1,167 +1,147 @@
-# EtherKit 开发板 BSP 说明
+# RZ EtherKit 开发板 KEY使用 说明
 
 **中文** | [**English**](./README.md)
 
 ## 简介
 
-本文档为 RT-Thread EtherKit 开发板提供的 BSP (板级支持包) 说明。通过阅读快速上手章节开发者可以快速地上手该 BSP，将 RT-Thread 运行在开发板上。
+​	本例程主要功能是通过板载的按键KEY控制RGB-LED 中RGB的亮灭。
 
-主要内容如下：
+## 硬件说明
 
-- 开发板介绍
-- BSP 快速上手指南
+![img](./figures/wps23.jpg) 
 
-## 开发板介绍
+图3-1 key电路原理图
 
-基于瑞萨 RZ/N2L 开发的 EtherKit 开发板，通过灵活配置软件包和 IDE，对嵌入系统应用程序进行开发。
+![img](./figures/wps24.jpg) 
 
-开发板正面外观如下图：
+图3-2 key引脚示意图
 
-![image-20240314165241884](..\..\docs\figures\big.png)
+如上图所示， KEY1(LEFT)、KEY2(RIGHT)引脚分别连接单片机P14_2(LEFT)和P16_3(RIGHT)引脚, KEY按键按下为高电平，松开为低电平。
 
-该开发板常用 **板载资源** 如下：
+KEY 在开发板中的位置如下图所示：
 
-- MPU：R9A07G084M04GBG，最大工作频率 400MHz，Arm Cortex®-R52 内核，紧密耦合内存 128KB（带 ECC），内部 RAM 1.5 MB（带 ECC）
-- 调试接口：板载 J-Link 接口
-- 扩展接口：一个 PMOD 连接器
+![img](./figures/wps25.jpg) 
 
-**更多详细资料及工具**
+图3-3 按键位置
 
-## 外设支持
+## 软件说明
 
-本 BSP 目前对外设的支持情况如下：
+本例程的源码位于/projects/etherkit_basic_key。
 
-| **EtherCAT方案** | **支持情况** | **EtherCAT方案** | **支持情况** |
-| ---------------- | ------------ | ---------------- | ------------ |
-| EtherCAT_IO      | 支持         | EtherCAT_FOE      | 支持   		|
-| EtherCAT_EOE     | 支持         | EtherCAT_COE | 支持 |
-| **PROFINET方案** | **支持情况** | **Ethernet/IP方案** | **支持情况** |
-| P-Net（支持ProfiNET从站协议栈的开源评估软件包） | 支持         | EIP   | 正在支持中... |
-| **片上外设**     | **支持情况** | **组件**         | **支持情况** |
-| UART             | 支持         | LWIP             | 支持         |
-| GPIO             | 支持         | TCP/UDP          | 支持         |
-| HWIMER           | 支持         | MQTT             | 支持         |
-| IIC              | 支持         | TFTP             | 支持         |
-| WDT              | 支持         | Modbus主从站协议 | 支持         |
-| RTC              | 支持         |                  |              |
-| ADC              | 支持         |                  |              |
-| DAC              | 支持         |                  |              |
-| SPI              | 支持         |                  |              |
+KEY1(LEFT) 、KEY2(RIGHT)对应的单片机引脚定义如下。
 
-## 使用说明
+/* 配置 KEY 输入引脚  */
 
-使用说明分为如下两个章节：
+\#define PIN_KEY1     BSP_IO_PORT_14_PIN_2    // P14_2 :  KEY1
 
-- 快速上手
+\#define PIN_KEY2     BSP_IO_PORT_16_PIN_3    // P16_3 :  KEY2
 
-  本章节是为刚接触 RT-Thread 的新手准备的使用说明，遵循简单的步骤即可将 RT-Thread 操作系统运行在该开发板上，看到实验效果 。
-- 进阶使用
+ 
 
-  本章节是为需要在 RT-Thread 操作系统上使用更多开发板资源的开发者准备的。通过使用 ENV 工具对 BSP 进行配置，可以开启更多板载资源，实现更多高级功能。
+按键输入的源代码位于/projects/etherkit_basic_key/src/hal_entry.c 中。首先为了实验效果清晰可见，板载RGB 蓝色LED 作为KEY1(LEFT) 的状态指示灯，板载RGB 绿色LED 作为KEY2(RIGHT) 的状态指示灯，设置RGB 红灯引脚的模式为输出模式，然后设置按键引脚为输入模式，最后在while 循环中通过rt_pin_read(PIN_KEY) 判断KEY的电平状态，并作50ms的消抖处理，如果成功判断KEY为低电平状态（即按键按下）则打印输出“KEYx pressed!” 并且指示灯亮，否则指示灯熄灭。
 
-### 快速上手
+```
+ unsigned int count = 1;
 
-本 BSP 目前提供 GCC/IAR 工程。下面以 [IAR Embedded Workbench for Arm](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/) 开发环境为例，介绍如何将系统运行起来。
+  /* 设置 RGB 绿灯引脚的模式为输出模式 */
 
-**硬件连接**
+  rt_pin_mode(LED_PIN_B, PIN_MODE_OUTPUT);
 
-使用 USB 数据线连接开发板到 PC，使用 J-link 接口下载和 DEBUG 程序。
+  rt_pin_mode(LED_PIN_G, PIN_MODE_OUTPUT);
 
-**编译下载**
+  /* 设置 KEY 引脚的模式为输入上拉模式 */
 
-- 进入 bsp 目录下，打开 ENV 使用命令 `scons --target=iar` 生成 IAR工程。
-- 编译：双击 project.eww 文件，打开 IAR 工程，编译程序。
-- 调试：IAR 左上方导航栏点击 `Project->Download and Debug`下载并启动调试。
+  rt_pin_mode(PIN_KEY1, PIN_MODE_INPUT_PULLUP);
 
+  rt_pin_mode(PIN_KEY2, PIN_MODE_INPUT_PULLUP);
 
+  while (count > 0)
 
-**查看运行结果**
+  {
 
-下载程序成功之后，系统会自动运行并打印系统信息。
+​    /* 读取按键 KEY 的引脚状态 */
 
-连接开发板对应串口到 PC , 在终端工具里打开相应的串口（115200-8-1-N），复位设备后，可以看到 RT-Thread 的输出信息。输入 help 命令可查看系统中支持的命令。
+​    if (rt_pin_read(PIN_KEY1) == PIN_LOW)
 
-```bash
- \ | /
-- RT -     Thread Operating System
- / | \     5.1.0 build Mar 14 2024 18:26:01
- 2006 - 2024 Copyright by RT-Thread team
+​    {
 
-Hello RT-Thread!
-==================================================
-This is a iar project which mode is ram execution!
-==================================================
-msh >help
-RT-Thread shell commands:
-clear            - clear the terminal screen
-version          - show RT-Thread version information
-list             - list objects
-backtrace        - print backtrace of a thread
-help             - RT-Thread shell help
-ps               - List threads in the system
-free             - Show the memory usage in the system
-pin              - pin [option]
+​      rt_thread_mdelay(50);
 
-msh >
+​      if (rt_pin_read(PIN_KEY1) == PIN_LOW)
+
+​      {
+
+​        /* 按键已被按下，输出 log，点亮 LED 灯 */
+
+​        LOG_D("KEY1 pressed!");
+
+​        rt_pin_write(LED_PIN_B, PIN_LOW);
+
+​      }
+
+​    }
+
+​    else if(rt_pin_read(PIN_KEY2) == PIN_LOW)
+
+​    {
+
+​      rt_thread_mdelay(50);
+
+​      if (rt_pin_read(PIN_KEY2) == PIN_LOW)
+
+​      {
+
+​        /* 按键已被按下，输出 log，点亮 LED 灯 */
+
+​        LOG_D("KEY2 pressed!");
+
+​        rt_pin_write(LED_PIN_G, PIN_LOW);
+
+​      }
+
+​    }
+
+​    else
+
+​    {
+
+​      /* 按键没被按下，熄灭 LED 灯 */
+
+​      rt_pin_write(LED_PIN_B, PIN_HIGH);
+
+​      rt_pin_write(LED_PIN_G, PIN_HIGH);
+
+​    }
+
+​    rt_thread_mdelay(10);
+
+​    count++;
+
+  }
 ```
 
-**应用入口函数**
+ 
 
-应用层的入口函数在 **src\hal_entry.c** 中 的 `void hal_entry(void)` 。用户编写的源文件可直接放在 src 目录下。
+## 运行
 
-```c
-void hal_entry(void)
-{
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_kprintf("==================================================\n");
-    rt_kprintf("This is a iar project which mode is ram execution!\n");
-    rt_kprintf("==================================================\n");
+### 编译&下载
 
-    while (1)
-    {
-        rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
-    }
-}
-```
+l RT-Thread Studio：在RT-Thread Studio 的包管理器中下载EtherKit 资源包，然后创建新工程，执行编译。
 
-### 进阶使用
+l IAR：首先双击mklinks.bat，生成rt-thread 与libraries 文件夹链接；再使用Env 生成IAR 工程；最后双击project.eww打开IAR工程，执行编译。
 
-**资料及文档**
+编译完成后，将开发板的Jlink接口与PC 机连接，然后将固件下载至开发板。
 
-- [开发板官网主页](https://www.renesas.cn/zh/products/microcontrollers-microprocessors/rz-mpus/rzn2l-integrated-tsn-compliant-3-port-gigabit-ethernet-switch-enables-various-industrial-applications)
-- [开发板数据手册](https://www.renesas.cn/zh/document/dst/rzn2l-group-datasheet?r=1622651)
-- [开发板硬件手册](https://www.renesas.cn/zh/document/mah/rzn2l-group-users-manual-hardware?r=1622651)
-- [RZ/N2L MCU 快速入门指南](https://www.renesas.cn/zh/document/apn/rzt2-rzn2-device-setup-guide-flash-boot-application-note?r=1622651)
-- [RZ/N2L Easy Download Guide](https://www.renesas.cn/zh/document/gde/rzn2l-easy-download-guide?r=1622651)
-- [Renesas RZ/N2L Group](https://www.renesas.cn/zh/document/fly/renesas-rzn2l-group?r=1622651)
+### 运行效果
 
-**FSP 配置**
+按下复位按键重启开发板，初始状态下的LED1和LED2出于灭灯状态，当按下KEY1时，LED1(Blue)亮起；当按下KEY2时，LED2(Green)亮起。
 
-需要修改瑞萨的 BSP 外设配置或添加新的外设端口，需要用到瑞萨的 [FSP](https://www2.renesas.cn/jp/zh/software-tool/flexible-software-package-fsp#document) 配置工具。请务必按照如下步骤完成配置。配置中有任何问题可到[RT-Thread 社区论坛](https://club.rt-thread.org/)中提问。
+![img](./figures/wps26.jpg) 
 
-1. [下载灵活配置软件包 (FSP) | Renesas](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe)，请使用 FSP 2.0.0 版本
-2. 如何将 **”EtherKit板级支持包“**添加到 FSP 中，请参考文档[如何导入板级支持包](https://www2.renesas.cn/document/ppt/1527171?language=zh&r=1527191)
-3. 请参考文档：[RA系列使用FSP配置外设驱动](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/make-bsp/renesas-ra/RA系列使用FSP配置外设驱动?id=ra系列使用-fsp-配置外设驱动)。
+## 注意事项
 
-**ENV 配置**
+​	暂无
 
-- 如何使用 ENV 工具：[RT-Thread env 工具用户手册](https://www.rt-thread.org/document/site/#/development-tools/env/env)
+## 引用参考
 
-此 BSP 默认只开启了 UART0 的功能，如果需使用更多高级功能例如组件、软件包等，需要利用 ENV 工具进行配置。
-
-步骤如下：
-1. 在 bsp 下打开 env 工具。
-2. 输入`menuconfig`命令配置工程，配置好之后保存退出。
-3. 输入`pkgs --update`命令更新软件包。
-4. 输入`scons --target=iar` 命令重新生成工程。
-
-## 联系人信息
-
-在使用过程中若您有任何的想法和建议，建议您通过以下方式来联系到我们  [RT-Thread 社区论坛](https://club.rt-thread.org/)
-
-## 贡献代码
-
-如果您对 EtherKit 感兴趣，并且有一些好玩的项目愿意与大家分享的话欢迎给我们贡献代码，您可以参考 [如何向 RT-Thread 代码贡献](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/development-guide/github/github)。
+设备与驱动：[PIN 设备](#/rt-thread-version/rt-thread-standard/programming-manual/device/pin/pin)

@@ -1,166 +1,126 @@
-# EtherKit Development Board BSP Documentation
+# Etherkit ADC Application Example Description
 
-**Chinese** | [**English**](./README.md)
+**中文** | [**English**](./README.md)
 
 ## Introduction
 
-This document provides the BSP (Board Support Package) documentation for the RT-Thread EtherKit development board. By following the Quick Start section, developers can quickly get started with this BSP and run RT-Thread on the development board.
+This example mainly illustrates how to use the ADC framework of rtthread on EtherKit to complete the analog signal acquisition through ADC and the conversion of digital signals. The main contents are as follows:
 
-The main contents are as follows:
+## Hardware Description
 
-- Introduction to the Development Board
-- BSP Quick Start Guide
+![image-20241121103638590](./figures/image-20241121103638590.png)
 
-## Introduction to the Development Board
+As shown in the above schematic diagram: There are 8-channel Analog Input interfaces on EtherKit, which are respectively connected to channels 0, 1, 2, and 3 of adc0 and adc1 of the single-chip microcomputer; (Note that the withstand voltage range of Analog Input is 0~1.8v).
 
-The EtherKit development board is based on the Renesas RZ/N2L and is designed to facilitate embedded system application development by offering flexible software package and IDE configurations.
+## Software Description
 
-The front view of the development board is shown below:
+## FSP Configuration Description
 
-![image-20240314165241884](.\docs\figures\big.jpg)
+Step 1: Open FSP and import the xml configuration file; (or directly click the FSP link file in Rtthread Studio).
+Step 2: Create a new r_adc Stack to configure the adc device and the used channels.
 
-Key **onboard resources** include:
+![image-20241121103645572](./figures/image-20241121103645572.png)
 
-- MPU: R9A07G084M04GBG, maximum operating frequency of 400MHz, Arm Cortex®-R52 core, 128KB tightly coupled memory (with ECC), 1.5MB internal RAM (with ECC)
-- Debug Interface: Onboard J-Link interface
-- Expansion Interface: One PMOD connector
+Step 3: Save and click Generate Project; the generated code is saved in hal_data.c.
 
-**More detailed information and tools**
+​                                                                   ![image-20241121103700878](./figures/image-20241121103700878.png) 
 
-## Peripheral Support
+The source code of this example is located in /projects/etherkit_driver_adc.
 
-This BSP currently supports the following peripherals:
+## env Configuration
 
-| **On-chip Peripheral** | **Support Status** | **Notes** |
-| :---------------------- | :------------------ | :-------- |
-| UART                    | Supported           | UART0 is the default log output port |
-| GPIO                    | Supported           |          |
-| HWIMER                  | Supported           |          |
-| IIC                     | Supported           |          |
-| WDT                     | Supported           |          |
-| RTC                     | Supported           |          |
-| ADC                     | Supported           |          |
-| DAC                     | Supported           |          |
-| SPI                     | Supported           |          |
-| FLASH                   | Supported           |          |
-| PWM                     | Supported           |          |
-| CAN                     | Supported           |          |
-| ETH                     | Supported           |          |
-| Ongoing updates...      |                     |          |
+Use the env tool to enable the adc0 peripheral.
 
-## Usage Instructions
+![image-20241121103710539](./figures/image-20241121103710539.png)
 
-Usage instructions are divided into two sections:
+### Project Example Description
 
-- **Quick Start**
+The source code of ADC is located in /projects/etherkit_driver_adc/src/hal_entry.c.
+The used macro definitions are as follows:：
 
-  This section is designed for beginners who are new to RT-Thread. By following simple steps, users can run the RT-Thread OS on the development board and observe the experimental results.
+​                                                                    ![image-20241121103731800](./figures/image-20241121103731800.png) 
 
-- **Advanced Usage**
+The specific function is to sample the analog voltage of channel 0 of ADC0 and perform a conversion every 1000ms.
+The specific code is as follows:
 
-  This section is for developers who need to use more of the development board's resources within the RT-Thread OS. By configuring the BSP using the ENV tool, additional onboard resources and advanced features can be enabled.
-
-### Quick Start
-
-This BSP currently provides GCC/IAR project support. Below is a guide using the [IAR Embedded Workbench for Arm](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/) development environment to run the system.
-
-**Hardware Connection**
-
-Connect the development board to the PC via a USB cable. Use the J-Link interface to download and debug the program.
-
-**Compilation and Download**
-
-- Navigate to the `bsp` directory and use the command `scons --target=iar` to generate the IAR project.
-- Compile: Double-click the `project.eww` file to open the IAR project and compile the program.
-- Debug: In the IAR navigation bar, click `Project -> Download and Debug` to download and start debugging.
-
-**Viewing the Run Results**
-
-After successfully downloading the program, the system will automatically run and print system information.
-
-Connect the corresponding serial port of the development board to the PC. Open the relevant serial port (115200-8-1-N) in the terminal tool. After resetting the device, you can view the RT-Thread output. Enter the `help` command to see the list of supported system commands.
-
-```bash
- \ | /  
-- RT -     Thread Operating System  
- / | \     5.1.0 build Mar 14 2024 18:26:01  
- 2006 - 2024 Copyright by RT-Thread team  
-
-Hello RT-Thread!  
-==================================================  
-This is an IAR project in RAM execution mode!  
-==================================================  
-msh > help  
-RT-Thread shell commands:  
-clear            - clear the terminal screen  
-version          - show RT-Thread version information  
-list             - list objects  
-backtrace        - print backtrace of a thread  
-help             - RT-Thread shell help  
-ps               - List threads in the system  
-free             - Show the memory usage in the system  
-pin              - pin [option]  
-
-msh >
 ```
+static int adc_vol_sample()
 
-**Application Entry Function**
-
-The entry function for the application layer is located in **src\hal_entry.c** within `void hal_entry(void)`. User source files can be placed directly in the `src` directory.
-
-```c
-void hal_entry(void)
 {
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_kprintf("==================================================\n");
-    rt_kprintf("This is an IAR project in RAM execution mode!\n");
-    rt_kprintf("==================================================\n");
 
-    while (1)
-    {
-        rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
-    }
+  rt_adc_device_t adc_dev;
+
+  rt_uint32_t value, vol;
+
+  rt_err_t ret = RT_EOK;
+
+  /* 查找设备 */
+
+  adc_dev = (rt_adc_device_t)rt_device_find(ADC_DEV_NAME);
+
+  if (adc_dev == RT_NULL)
+
+  {
+
+​    rt_kprintf("adc sample run failed! can't find %s device!\n", ADC_DEV_NAME);
+
+​    return RT_ERROR;
+
+  }
+
+  /* 使能设备 */
+
+  ret = rt_adc_enable(adc_dev, ADC_DEV_CHANNEL);
+
+  /* 读取采样值 */
+
+  value = rt_adc_read(adc_dev, ADC_DEV_CHANNEL);
+
+  rt_kprintf("the value is :%d \n", value);
+
+  /* 转换为对应电压值 */
+
+  vol = value * REFER_VOLTAGE / CONVERT_BITS;
+
+  rt_kprintf("the voltage is :%d.%02d \n", vol / 100, vol % 100);
+
+  /* 关闭通道 */
+
+  ret = rt_adc_disable(adc_dev, ADC_DEV_CHANNEL);
+
+  return ret;
+
 }
 ```
 
-### Advanced Usage
 
-**Resources and Documentation**
 
-- [Development Board Official Homepage](https://www.renesas.cn/zh/products/microcontrollers-microprocessors/rz-mpus/rzn2l-integrated-tsn-compliant-3-port-gigabit-ethernet-switch-enables-various-industrial-applications)
-- [Development Board Datasheet](https://www.renesas.cn/zh/document/dst/rzn2l-group-datasheet?r=1622651)
-- [Development Board Hardware Manual](https://www.renesas.cn/zh/document/mah/rzn2l-group-users-manual-hardware?r=1622651)
-- [RZ/N2L MCU Quick Start Guide](https://www.renesas.cn/zh/document/apn/rzt2-rzn2-device-setup-guide-flash-boot-application-note?r=1622651)
-- [RZ/N2L Easy Download Guide](https://www.renesas.cn/zh/document/gde/rzn2l-easy-download-guide?r=1622651)
-- [Renesas RZ/N2L Group](https://www.renesas.cn/zh/document/fly/renesas-rzn2l-group?r=1622651)
+ 
 
-**FSP Configuration**
+In the example, the While loop calls adc_vol_sample every 1000ms.
 
-To modify Renesas BSP peripheral configurations or add new peripheral ports, the Renesas [FSP](https://www2.renesas.cn/jp/zh/software-tool/flexible-software-package-fsp#document) configuration tool is required. Please follow the steps outlined below for configuration. For any questions regarding the configuration, please visit the [RT-Thread Community Forum](https://club.rt-thread.org/).
+ 
 
-1. [Download the Flexible Software Package (FSP) | Renesas](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe), use FSP version 2.0.0.
-2. To add the **"EtherKit Board Support Package"** to FSP, refer to the document [How to Import a BSP](https://www2.renesas.cn/document/ppt/1527171?language=zh&r=1527191).
-3. For guidance on configuring peripheral drivers using FSP, refer to the document: [Configuring Peripheral Drivers Using FSP for RA Series](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/make-bsp/renesas-ra/RA-series-using-FSP-configure-peripheral-drivers?id=ra-series-using-fsp-configure-peripheral-drivers).
+## Operation
 
-**ENV Configuration**
+### Compilation & Download
 
-- To learn how to use the ENV tool, refer to the [RT-Thread ENV Tool User Manual](https://www.rt-thread.org/document/site/#/development-tools/env/env).
+RT-Thread Studio: Download the EtherKit resource package in the package manager of RT-Thread Studio, then create a new project and perform compilation.
+IAR: First double-click mklinks.bat to generate the links of the rt-thread and libraries folders; then use Env to generate the IAR project; finally double-click project.eww to open the IAR project and perform compilation.
+After compilation, connect the Jlink interface of the development board to the PC, and then download the firmware to the development board.
 
-By default, this BSP only enables the UART0 functionality. To use more advanced features such as components, software packages, and more, the ENV tool must be used for configuration.
+### Operation Effect
 
-The steps are as follows:
-1. Open the ENV tool in the `bsp` directory.
-2. Use the `menuconfig` command to configure the project. Save and exit once the configuration is complete.
-3. Run the `pkgs --update` command to update the software packages.
-4. Run the `scons --target=iar` command to regenerate the project.
+The effect of collecting 1.8v voltage using channel 0 of adc0 is as follows:
 
-## Contact Information
+​                                                      ![image-20241121103743949](./figures/image-20241121103743949.png) 
 
-If you have any thoughts or suggestions during usage, please feel free to contact us via the [RT-Thread Community Forum](https://club.rt-thread.org/).
+## Precautions
 
-## Contribute Code
+​	The ADC sampling voltage withstand voltage of the R9A07G084M08GBG chip is 1.8v!
 
-If you're interested in EtherKit and have some exciting projects you'd like to share, we welcome code contributions. Please refer to [How to Contribute to RT-Thread Code](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/development-guide/github/github).
+## Citation References
+
+Devices and Drivers：[ADC Device](#/rt-thread-version/rt-thread-standard/programming-manual/device/adc/adc)
+
+ 
