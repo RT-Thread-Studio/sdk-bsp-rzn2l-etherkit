@@ -1,0 +1,13 @@
+"C:\Program Files\IAR Systems\Embedded Workbench 9.2\arm\bin\armPROC.dll" 
+
+"C:\Program Files\IAR Systems\Embedded Workbench 9.2\arm\bin\armJLINK.dll" 
+
+"D:\manufacture_apps\RT-ThreadStudio\repo\Local\Board_Support_Packages\Renesas\EtherKit\1.0.0\projects\etherkit_component_mqtt\Debug\Exe\template.out" 
+
+--plugin="C:\Program Files\IAR Systems\Embedded Workbench 9.2\arm\bin\armLibSupportUniversal.dll" 
+
+--device_macro="C:\Program Files\IAR Systems\Embedded Workbench 9.2\arm/config/debugger/Renesas/RZN2L.dmac" 
+
+
+
+

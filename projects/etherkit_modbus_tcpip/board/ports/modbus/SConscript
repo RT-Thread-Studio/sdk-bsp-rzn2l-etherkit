@@ -1,0 +1,24 @@
+
+from building import *
+import rtconfig
+
+group = []
+cwd = GetCurrentDir()
+
+tcp_src = Glob('tcp_modbus/*.c')
+modbus_src = Glob('modbus_define/*.c')
+
+path = [cwd]
+path += [cwd + '/tcp_modbus']
+
+LOCAL_CFLAGS = ''
+
+if rtconfig.PLATFORM in ['gcc', 'armclang']:
+    LOCAL_CFLAGS += ' -std=c99'
+elif rtconfig.PLATFORM in ['armcc']:
+    LOCAL_CFLAGS += ' --c99'
+
+group = group + DefineGroup('modbus_src', modbus_src, depend = ['PKG_USING_AGILE_MODBUS'])
+group = group + DefineGroup('modbus_tcp', tcp_src, depend = ['PKG_USING_AGILE_MODBUS'], CPPPATH = path, LOCAL_CFLAGS = LOCAL_CFLAGS)
+
+Return('group')

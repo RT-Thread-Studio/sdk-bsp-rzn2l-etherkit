@@ -88,6 +88,7 @@
 #define RT_SERIAL_USING_DMA
 #define RT_USING_RTC
 #define RT_USING_ALARM
+#define RT_USING_SOFT_RTC
 #define RT_USING_PIN
 
 /* Using USB */

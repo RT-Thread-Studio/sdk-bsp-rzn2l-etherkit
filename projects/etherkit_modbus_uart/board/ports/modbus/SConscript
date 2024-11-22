@@ -1,0 +1,21 @@
+
+from building import *
+import rtconfig
+
+group = []
+cwd = GetCurrentDir()
+
+uart_src = Glob('*.c')
+uart_src += Glob('uart_master/*.c')
+uart_src += Glob('uart_slave/*.c')
+
+modbus_src = Glob('modbus_define/*.c')
+
+path = [cwd]
+path += [cwd + '/uart_master']
+path += [cwd + '/uart_slave']
+
+group = group + DefineGroup('modbus_define', modbus_src, depend = ['PKG_USING_AGILE_MODBUS'])
+group = group + DefineGroup('modbus_uart', uart_src, depend = ['PKG_USING_AGILE_MODBUS'], CPPPATH = path)
+
+Return('group')
