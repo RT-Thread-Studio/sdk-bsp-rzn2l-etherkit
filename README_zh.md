@@ -25,7 +25,7 @@ $ sdk-bsp-rzn2l-etherkit
 ├── libraries
 │   ├── HAL_Drivers
 ├── projects
-│   ├── etherkit_basic_key
+│   ├── etherkit_basic_key_irq
 │   ├── etherkit_basic_rtc
 │   ├── etherkit_blink_led
 │   ├── etherkit_basic_key
@@ -38,6 +38,11 @@ $ sdk-bsp-rzn2l-etherkit
 │   ├── etherkit_ethercat_eoe
 │   ├── etherkit_ethernet
 │   ├── etherkit_factory
+│   ├── etherkit_modbus_tcpip
+│   ├── etherkit_modbus_uart
+│   ├── etherkit_usb_pcdc
+│   ├── etherkit_usb_pmsc
+│   ├── etherkit_component_mqtt
 │   └── etherkit_profinet_pnet
 └── rt-thread
 ```
