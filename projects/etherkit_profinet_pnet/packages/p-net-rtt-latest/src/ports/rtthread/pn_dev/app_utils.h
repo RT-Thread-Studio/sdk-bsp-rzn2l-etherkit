@@ -32,7 +32,6 @@
 extern "C" {
 #endif
 
-#include "osal.h"
 #include "pnal.h"
 #include <pnet_api.h>
 

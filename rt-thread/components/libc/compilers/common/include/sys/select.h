@@ -14,7 +14,7 @@
 
 #include <rtconfig.h>
 #include <sys/types.h>
-// #include <sys/time.h>
+#include <sys/time.h>
 #include <string.h>
 
 #ifdef __cplusplus

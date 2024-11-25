@@ -179,57 +179,8 @@ static pnal_eth_mau_t calculate_mau_type (uint8_t link_state)
    }
 }
 
-/**
- * Calculate advertised capabilities
- *
- * @param capabilities     In:    rt-kernel advertised capabilities as a
- *                                bitfield.
- * @return Profinet advertised capabilities as a bitfield.
- */
-static uint16_t calculate_capabilities (uint32_t capabilities)
-{
-   uint16_t out = 0;
-
-//   if (capabilities & PHY_CAPABILITY_10)
-//   {
-//      out |= PNAL_ETH_AUTONEG_CAP_10BaseT_HALF_DUPLEX;
-//   }
-//   if (capabilities & PHY_CAPABILITY_10_FD)
-//   {
-//      out |= PNAL_ETH_AUTONEG_CAP_10BaseT_FULL_DUPLEX;
-//   }
-//   if (capabilities & PHY_CAPABILITY_100)
-//   {
-//      out |= PNAL_ETH_AUTONEG_CAP_100BaseTX_HALF_DUPLEX;
-//   }
-//   if (capabilities & PHY_CAPABILITY_100_FD)
-//   {
-//      out |= PNAL_ETH_AUTONEG_CAP_100BaseTX_FULL_DUPLEX;
-//   }
-//
-//   if (out == 0)
-//   {
-//      out |= PNAL_ETH_AUTONEG_CAP_UNKNOWN;
-//   }
-//   printf("do not realize calculate_capabilities!\n");
-
-   return PNAL_ETH_AUTONEG_CAP_100BaseTX_FULL_DUPLEX;
-}
-
 int pnal_eth_get_status (const char * interface_name, pnal_eth_status_t * status)
 {
-  struct eth_device *ethif;
-//  struct netif * netif;
-
-//  LOCK_TCPIP_CORE();
-//  netif = netif_find (interface_name);
-//  UNLOCK_TCPIP_CORE();
-
-//  CC_ASSERT (netif != NULL);
-
-//  ethif = netif->state;
-//  CC_ASSERT (ethif != NULL);
-
   status->is_autonegotiation_supported = true;
   status->is_autonegotiation_enabled = true;
   status->autonegotiation_advertised_capabilities =
@@ -239,14 +190,6 @@ int pnal_eth_get_status (const char * interface_name, pnal_eth_status_t * status
   status->running = true;
 
   return 0;
-   //  status->is_autonegotiation_supported = false;
-   //  status->is_autonegotiation_enabled = false;
-   //  status->autonegotiation_advertised_capabilities = 0;
-
-   //  status->operational_mau_type = PNAL_ETH_MAU_COPPER_100BaseTX_FULL_DUPLEX;
-   //  status->running = true;
-
-   //  return 0;
 }
 
 int pnal_save_file (

@@ -1,0 +1,12 @@
+[
+ {
+  "path": "/packages/iot/netutils", 
+  "ver": "latest", 
+  "name": "NETUTILS"
+ }, 
+ {
+  "path": "/packages/system/ramdisk", 
+  "ver": "v0.1.0", 
+  "name": "RAMDISK"
+ }
+]

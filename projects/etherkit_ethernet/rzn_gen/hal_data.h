@@ -25,6 +25,26 @@ extern const ether_switch_cfg_t g_ethsw0_cfg;
 void gmac_callback_ethsw(ether_switch_callback_args_t * const p_arg);
 #endif
 /** ether_selector on ether_selector Instance. */
+extern const ether_selector_instance_t g_ether_selector2;
+
+/** Access the Ethernet Selector instance using these structures when calling API functions directly (::p_api is not used). */
+extern ether_selector_instance_ctrl_t g_ether_selector2_ctrl;
+extern const ether_selector_cfg_t g_ether_selector2_cfg;
+#ifndef ETHER_PHY_LSI_TYPE_KIT_COMPONENT
+  #define ETHER_PHY_LSI_TYPE_KIT_COMPONENT ETHER_PHY_LSI_TYPE_DEFAULT
+#endif
+
+#ifndef ether_phy_targets_initialize_rtl8211_rgmii
+void ether_phy_targets_initialize_rtl8211_rgmii(ether_phy_instance_ctrl_t * p_instance_ctrl);
+#endif
+
+/** ether_phy on ether_phy Instance. */
+extern const ether_phy_instance_t g_ether_phy2;
+
+/** Access the Ethernet PHY instance using these structures when calling API functions directly (::p_api is not used). */
+extern ether_phy_instance_ctrl_t g_ether_phy2_ctrl;
+extern const ether_phy_cfg_t g_ether_phy2_cfg;
+/** ether_selector on ether_selector Instance. */
 extern const ether_selector_instance_t g_ether_selector1;
 
 /** Access the Ethernet Selector instance using these structures when calling API functions directly (::p_api is not used). */

@@ -43,7 +43,7 @@ extern "C" {
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <stdio.h>
+#include <sys/time.h>
 
 #define PNET_PRODUCT_NAME_MAX_LEN  25 /* Not including termination */
 #define PNET_ORDER_ID_MAX_LEN      20 /* Not including termination */

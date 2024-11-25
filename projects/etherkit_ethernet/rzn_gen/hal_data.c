@@ -37,6 +37,62 @@ const ether_switch_instance_t g_ethsw0 =
     .p_cfg         = &g_ethsw0_cfg,
     .p_api         = &g_ether_switch_on_ethsw
 };
+ether_selector_instance_ctrl_t g_ether_selector2_ctrl;
+
+const ether_selector_cfg_t g_ether_selector2_cfg =
+{
+    .channel                   = 2,
+    .phylink                   = ETHER_SELECTOR_PHYLINK_POLARITY_LOW,
+    .interface                 = ETHER_SELECTOR_INTERFACE_RGMII,
+    .speed                     = ETHER_SELECTOR_SPEED_100_MBPS,
+    .duplex                    = ETHER_SELECTOR_DUPLEX_FULL,
+    .ref_clock                 = ETHER_SELECTOR_REF_CLOCK_INPUT,
+    .p_extend                  = NULL,
+};
+
+/* Instance structure to use this module. */
+const ether_selector_instance_t g_ether_selector2 =
+{
+    .p_ctrl        = &g_ether_selector2_ctrl,
+    .p_cfg         = &g_ether_selector2_cfg,
+    .p_api         = &g_ether_selector_on_ether_selector
+};
+ether_phy_instance_ctrl_t g_ether_phy2_ctrl;
+
+const ether_phy_extend_cfg_t g_ether_phy2_extend =
+{
+    .port_type           = ETHER_PHY_PORT_TYPE_ETHERNET,
+    .mdio_type           = ETHER_PHY_MDIO_GMAC,
+    .bps                 = ETHER_PHY_SPEED_100,
+    .duplex              = ETHER_PHY_DUPLEX_FULL,
+    .auto_negotiation    = ETHER_PHY_AUTO_NEGOTIATION_ON,
+    .phy_reset_pin       = BSP_IO_PORT_13_PIN_4,
+    .phy_reset_time      = 15000,
+    .p_selector_instance = (ether_selector_instance_t *)&g_ether_selector2,
+    .p_target_init       = ether_phy_targets_initialize_rtl8211_rgmii,
+};
+
+const ether_phy_cfg_t g_ether_phy2_cfg =
+{
+
+    .channel                   = 2,
+    .phy_lsi_address           = 3,
+    .phy_reset_wait_time       = 0x00020000,
+    .mii_bit_access_wait_time  = 0,                         // Unused
+    .phy_lsi_type              = ETHER_PHY_LSI_TYPE_CUSTOM,
+    .flow_control              = ETHER_PHY_FLOW_CONTROL_DISABLE,
+    .mii_type                  = (ether_phy_mii_type_t) 0,  // Unused
+    .p_context                 = NULL,
+    .p_extend                  = &g_ether_phy2_extend
+};
+
+/* Instance structure to use this module. */
+const ether_phy_instance_t g_ether_phy2 =
+{
+    .p_ctrl        = &g_ether_phy2_ctrl,
+    .p_cfg         = &g_ether_phy2_cfg,
+    .p_api         = &g_ether_phy_on_ether_phy
+};
 ether_selector_instance_ctrl_t g_ether_selector1_ctrl;
 
 const ether_selector_cfg_t g_ether_selector1_cfg =
@@ -162,10 +218,10 @@ const ether_phy_instance_t *g_ether0_phy_instance[BSP_FEATURE_GMAC_MAX_PORTS] =
 #else
                     &g_ether_phy1,
 #endif
-#if (FSP_NOT_DEFINED == FSP_NOT_DEFINED)
+#if (FSP_NOT_DEFINED == g_ether_phy2)
                     NULL,
 #else
-                    &FSP_NOT_DEFINED,
+                    &g_ether_phy2,
 #endif
 #undef FSP_NOT_DEFINED
             };
