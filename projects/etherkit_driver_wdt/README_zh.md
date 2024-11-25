@@ -24,7 +24,7 @@
 
 通过在空闲函数中执行喂狗操作来保证我们的程序如期运转;
 
-```
+```c
 static void idle_hook(void)
 {
     /* 在空闲线程的回调函数里喂狗 */
@@ -33,7 +33,7 @@ static void idle_hook(void)
 }
 ```
 
-```
+```c
 static int wdt_test(int argc, char *argv[])
 {
     rt_err_t ret = RT_EOK;
@@ -43,6 +43,7 @@ static int wdt_test(int argc, char *argv[])
     {
         rt_strncpy(device_name, argv[1], RT_NAME_MAX);
     }
+}
 ```
 
 

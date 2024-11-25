@@ -24,7 +24,7 @@ Open the FSP tool and create a new stack, selecting `r_wdt`.
 
 By performing a watchdog operation in the idle function, we ensure that our program runs as expected.
 
-```
+```c
 static void idle_hook(void)
 {
     /* 在空闲线程的回调函数里喂狗 */
@@ -33,7 +33,7 @@ static void idle_hook(void)
 }
 ```
 
-```
+```c
 static int wdt_test(int argc, char *argv[])
 {
     rt_err_t ret = RT_EOK;
@@ -43,6 +43,7 @@ static int wdt_test(int argc, char *argv[])
     {
         rt_strncpy(device_name, argv[1], RT_NAME_MAX);
     }
+}
 ```
 
 ## Running
