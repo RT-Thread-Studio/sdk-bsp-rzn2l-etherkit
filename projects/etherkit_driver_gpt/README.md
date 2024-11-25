@@ -1,6 +1,6 @@
 # RZ EtherKit Development Board GPT Usage Instructions
 
-**English** | [**中文**](./README_zh.md)
+**English** | **[Chinese](./README_zh.md)**
 
 ## Introduction
 

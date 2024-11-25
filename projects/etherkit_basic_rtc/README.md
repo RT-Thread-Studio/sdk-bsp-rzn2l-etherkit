@@ -1,6 +1,6 @@
 # RZ EtherKit Development Board RTC and Alarm Usage Example
 
-**中文** | [**English**](./README.md)
+**English** | **[Chinese](./README_zh.md)**
 
 ## Introduction
 

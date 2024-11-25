@@ -1,6 +1,6 @@
 # RZ EtherKit Development Board SCI_SPI Usage Guide
 
-**English** | [**中文**](./README_zh.md)
+**English** | **[Chinese](./README_zh.md)**
 
 ## Introduction
 

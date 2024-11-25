@@ -1,6 +1,6 @@
 # Etherkit ADC Application Example Description
 
-**中文** | [**English**](./README.md)
+**English** | **[Chinese](./README_zh.md)**
 
 ## Introduction
 

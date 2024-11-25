@@ -1,6 +1,6 @@
 # RZ EtherKit Development Board EEROM Example Description
 
-**中文** | [**English**](./README.md)
+**English** | **[Chinese](./README_zh.md)**
 
 ## Introduction
 
