@@ -1,167 +1,87 @@
-# EtherKit 开发板 BSP 说明
+# sdk-bsp-rzn2l-etherkit
 
 **中文** | [**English**](./README.md)
 
 ## 简介
 
-本文档为 RT-Thread EtherKit 开发板提供的 BSP (板级支持包) 说明。通过阅读快速上手章节开发者可以快速地上手该 BSP，将 RT-Thread 运行在开发板上。
+中文页
 
-主要内容如下：
+sdk-bsp-rzn2l-etherkit 是 RT-Thread 团队对 `EtherKit`  开发板所作的支持包，也可作为用户开发使用的软件SDK，让用户可以更简单方便的开发自己的应用程序。
 
-- 开发板介绍
-- BSP 快速上手指南
+EtherKit  开发板是 RT-Thread 推出基于 Arm Cortex®-R52 架构 R9A07G084M04GBG 芯片，为工程师们提供了一个灵活、全面的开发平台，助力开发者在机器视觉领域获得更深层次的体验。
 
-## 开发板介绍
+![](docs/figures/big.png)
 
-基于瑞萨 RZ/N2L 开发的 EtherKit 开发板，通过灵活配置软件包和 IDE，对嵌入系统应用程序进行开发。
+## 目录结构
 
-开发板正面外观如下图：
-
-![image-20240314165241884](.\docs\figures\big.png)
-
-该开发板常用 **板载资源** 如下：
-
-- MPU：R9A07G084M04GBG，最大工作频率 400MHz，Arm Cortex®-R52 内核，紧密耦合内存 128KB（带 ECC），内部 RAM 1.5 MB（带 ECC）
-- 调试接口：板载 J-Link 接口
-- 扩展接口：一个 PMOD 连接器
-
-**更多详细资料及工具**
-
-## 外设支持
-
-本 BSP 目前对外设的支持情况如下：
-
-| **EtherCAT方案** | **支持情况** | **EtherCAT方案** | **支持情况** |
-| ---------------- | ------------ | ---------------- | ------------ |
-| EtherCAT_IO      | 支持         | EtherCAT_FOE      | 支持   		|
-| EtherCAT_EOE     | 支持         | EtherCAT_COE | 支持 |
-| **PROFINET方案** | **支持情况** | **Ethernet/IP方案** | **支持情况** |
-| P-Net（支持ProfiNET从站协议栈的开源评估软件包） | 支持         | EIP   | 正在支持中... |
-| **片上外设**     | **支持情况** | **组件**         | **支持情况** |
-| UART             | 支持         | LWIP             | 支持         |
-| GPIO             | 支持         | TCP/UDP          | 支持         |
-| HWIMER           | 支持         | MQTT             | 支持         |
-| IIC              | 支持         | TFTP             | 支持         |
-| WDT              | 支持         | Modbus主从站协议 | 支持         |
-| RTC              | 支持         |                  |              |
-| ADC              | 支持         |                  |              |
-| DAC              | 支持         |                  |              |
-| SPI              | 支持         |                  |              |
-
-## 使用说明
-
-使用说明分为如下两个章节：
-
-- 快速上手
-
-  本章节是为刚接触 RT-Thread 的新手准备的使用说明，遵循简单的步骤即可将 RT-Thread 操作系统运行在该开发板上，看到实验效果 。
-- 进阶使用
-
-  本章节是为需要在 RT-Thread 操作系统上使用更多开发板资源的开发者准备的。通过使用 ENV 工具对 BSP 进行配置，可以开启更多板载资源，实现更多高级功能。
-
-### 快速上手
-
-本 BSP 目前提供 GCC/IAR 工程。下面以 [IAR Embedded Workbench for Arm](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/) 开发环境为例，介绍如何将系统运行起来。
-
-**硬件连接**
-
-使用 USB 数据线连接开发板到 PC，使用 J-link 接口下载和 DEBUG 程序。
-
-**编译下载**
-
-- 进入 bsp 目录下，打开 ENV 使用命令 `scons --target=iar` 生成 IAR工程。
-- 编译：双击 project.eww 文件，打开 IAR 工程，编译程序。
-- 调试：IAR 左上方导航栏点击 `Project->Download and Debug`下载并启动调试。
-
-
-
-**查看运行结果**
-
-下载程序成功之后，系统会自动运行并打印系统信息。
-
-连接开发板对应串口到 PC , 在终端工具里打开相应的串口（115200-8-1-N），复位设备后，可以看到 RT-Thread 的输出信息。输入 help 命令可查看系统中支持的命令。
-
-```bash
- \ | /
-- RT -     Thread Operating System
- / | \     5.1.0 build Mar 14 2024 18:26:01
- 2006 - 2024 Copyright by RT-Thread team
-
-Hello RT-Thread!
-==================================================
-This is a iar project which mode is ram execution!
-==================================================
-msh >help
-RT-Thread shell commands:
-clear            - clear the terminal screen
-version          - show RT-Thread version information
-list             - list objects
-backtrace        - print backtrace of a thread
-help             - RT-Thread shell help
-ps               - List threads in the system
-free             - Show the memory usage in the system
-pin              - pin [option]
-
-msh >
+```
+$ sdk-bsp-rzn2l-etherkit
+├── README.md
+├── sdk-bsp-rzn2l-etherkit.yaml
+├── documents
+│   ├── rzn2l-group-datasheet.pdf
+│   ├── EtherKit_Board_Schematic.pdf
+│   └── User’s Manual Hardware.pdf
+├── libraries
+│   ├── HAL_Drivers
+├── projects
+│   ├── etherkit_basic_key
+│   ├── etherkit_basic_rtc
+│   ├── etherkit_blink_led
+│   ├── etherkit_basic_key
+│   ├── etherkit_driver_canfd
+│   ├── etherkit_driver_gpt
+│   ├── etherkit_driver_i2c
+│   ├── etherkit_driver_rs485
+│   ├── etherkit_driver_spi
+│   ├── etherkit_driver_wdt
+│   ├── etherkit_ethercat_eoe
+│   ├── etherkit_ethernet
+│   ├── etherkit_factory
+│   └── etherkit_profinet_pnet
+└── rt-thread
 ```
 
-**应用入口函数**
+- sdk-bsp-rzn2l-etherkit.yaml：描述 EtherKit 的硬件信息
+- documents：开发板原理图，文档，图片以及 datasheets 等
+- libraries ：EtherKit 通用外设驱动
+- projects：示例工程文件夹，包含出厂程序，EtherCAT 程序等
+- rt-thread： rt-thread 源码
 
-应用层的入口函数在 **src\hal_entry.c** 中 的 `void hal_entry(void)` 。用户编写的源文件可直接放在 src 目录下。
+## 使用方式
 
-```c
-void hal_entry(void)
-{
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_kprintf("==================================================\n");
-    rt_kprintf("This is a iar project which mode is ram execution!\n");
-    rt_kprintf("==================================================\n");
+`sdk-bsp-rzn2l-etherkit` 支持 **RT-Thread Studio** 和 **IAR** 开发方式
 
-    while (1)
-    {
-        rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
-    }
-}
-```
+## **RT-Thread Studio 开发步骤**
 
-### 进阶使用
+1. 打开RT-Thread Studio ，安装 EtherKit 开发板支持包（如有最新建议安装最新版本，下图版本仅供参考）
 
-**资料及文档**
+![](docs/figures/1.png)
 
-- [开发板官网主页](https://www.renesas.cn/zh/products/microcontrollers-microprocessors/rz-mpus/rzn2l-integrated-tsn-compliant-3-port-gigabit-ethernet-switch-enables-various-industrial-applications)
-- [开发板数据手册](https://www.renesas.cn/zh/document/dst/rzn2l-group-datasheet?r=1622651)
-- [开发板硬件手册](https://www.renesas.cn/zh/document/mah/rzn2l-group-users-manual-hardware?r=1622651)
-- [RZ/N2L MCU 快速入门指南](https://www.renesas.cn/zh/document/apn/rzt2-rzn2-device-setup-guide-flash-boot-application-note?r=1622651)
-- [RZ/N2L Easy Download Guide](https://www.renesas.cn/zh/document/gde/rzn2l-easy-download-guide?r=1622651)
-- [Renesas RZ/N2L Group](https://www.renesas.cn/zh/document/fly/renesas-rzn2l-group?r=1622651)
+2. 新建 EtherKit 工程，选择左上角文件->新建->RT-Thread 项目->基于开发板，可以创建示例工程和模板工程
 
-**FSP 配置**
+![](docs/figures/2.png)
 
-需要修改瑞萨的 BSP 外设配置或添加新的外设端口，需要用到瑞萨的 [FSP](https://www2.renesas.cn/jp/zh/software-tool/flexible-software-package-fsp#document) 配置工具。请务必按照如下步骤完成配置。配置中有任何问题可到[RT-Thread 社区论坛](https://club.rt-thread.org/)中提问。
+3. 进行工程的编译和下载：
 
-1. [下载灵活配置软件包 (FSP) | Renesas](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe)，请使用 FSP 2.0.0 版本
-2. 如何将 **”EtherKit板级支持包“**添加到 FSP 中，请参考文档[如何导入板级支持包](https://www2.renesas.cn/document/ppt/1527171?language=zh&r=1527191)
-3. 请参考文档：[RA系列使用FSP配置外设驱动](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/make-bsp/renesas-ra/RA系列使用FSP配置外设驱动?id=ra系列使用-fsp-配置外设驱动)。
+![](docs/figures/3.png)
 
-**ENV 配置**
+## IAR开发步骤
 
-- 如何使用 ENV 工具：[RT-Thread env 工具用户手册](https://www.rt-thread.org/document/site/#/development-tools/env/env)
+1. 双击 mklinks.bat 文件，执行脚本后会生成 rt-thread、libraries 两个文件夹：
 
-此 BSP 默认只开启了 UART0 的功能，如果需使用更多高级功能例如组件、软件包等，需要利用 ENV 工具进行配置。
+![](docs/figures/4.png)
 
-步骤如下：
-1. 在 bsp 下打开 env 工具。
-2. 输入`menuconfig`命令配置工程，配置好之后保存退出。
-3. 输入`pkgs --update`命令更新软件包。
-4. 输入`scons --target=iar` 命令重新生成工程。
+**注意：如果无法执行mklinks脚本，需要手动将 `sdk-bsp-rzn2l-etherkit` 目录下的 rt-thread、libraries 两个文件夹手动拷贝到工程目录**
 
-## 联系人信息
+2. 双击 **project.eww** 文件打开IAR工程
 
-在使用过程中若您有任何的想法和建议，建议您通过以下方式来联系到我们  [RT-Thread 社区论坛](https://club.rt-thread.org/)
+![](docs/figures/5.png)
 
-## 贡献代码
+3. 点击下图按钮进行项目全编译：
 
-如果您对 EtherKit 感兴趣，并且有一些好玩的项目愿意与大家分享的话欢迎给我们贡献代码，您可以参考 [如何向 RT-Thread 代码贡献](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/development-guide/github/github)。
+![](docs/figures/6.png)
+
+4. 点击下图按钮进行固件烧录：
+
+![](docs/figures/7.png)
