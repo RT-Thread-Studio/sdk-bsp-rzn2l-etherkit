@@ -204,7 +204,7 @@ IAR：首先双击mklinks.bat，生成rt-thread与libraries 文件夹链接；�
 
 使用串口分别发送can0_sample_send,can1_sample_receive命令
 
-![img](./figures/wps40.jpg) 
+![image-20241125160014899](./figures/image-20241125160014899.png)
 
 ## 注意事项
 
@@ -212,3 +212,4 @@ IAR：首先双击mklinks.bat，生成rt-thread与libraries 文件夹链接；�
 
 ##  引用参考
 
+ 设备与驱动：[CAN设备](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/can/can)

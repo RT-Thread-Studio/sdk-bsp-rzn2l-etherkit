@@ -122,7 +122,7 @@ MSH_CMD_EXPORT(eeprom_test, eeprom test sample);
 
 写串口终端输入 eeprom_test指令： 
 
-![image-20241121103545398](./figures/image-20241121103545398.png) 
+![image-20241125151355534](./figures/image-20241125151355534.png) 
 
 ##  注意事项
 
@@ -130,5 +130,5 @@ MSH_CMD_EXPORT(eeprom_test, eeprom test sample);
 
 ## 引用参考
 
- 设备与驱动：[I2C 设备](#/rt-thread-version/rt-thread-standard/programming-manual/device/i2c/i2c)
+ 设备与驱动：[I2C 设备](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/i2c/i2c)：
 

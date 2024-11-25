@@ -18,6 +18,10 @@
 
 打开FSP工具 新建Stacks选择r_sci_uart5
 
+具体配置信息如下：
+
+![image-20241125103948014](./figures/image-20241125103948014.png)
+
 ### RT-Thread Settings配置
 
 无
@@ -25,6 +29,46 @@
 ### 工程示例说明
 
 工程使用FSP库函数开发；
+
+rs485发送函数：每隔1s发送一次，总共发送10次数据，每次发送为1个字节；
+
+```
+int rs485_send_test(void)
+{
+   static uint8_t i;
+
+   for(i =1; i <= 10; i++)
+   {
+       /*发送数据*/
+       RS485_Send_Example(i);
+       rt_thread_delay(1000);
+   }
+   return 0;
+}
+```
+
+rs485接受中断函数（需要在FSP里提前配置接受中断名称）：
+
+```
+/*RS485_1中断回调函数*/
+void rs485_callback(uart_callback_args_t * p_args)
+{
+    rt_interrupt_enter();
+
+    switch(p_args->event)
+    {
+        /*接收数据时将数据打印出来*/
+        case UART_EVENT_RX_CHAR:
+          {
+            rt_kprintf("%d\n", p_args->data);
+            break;
+          }
+        default:
+            break;
+    }
+```
+
+
 
 ## 运行
 
@@ -40,6 +84,8 @@ IAR：首先双击mklinks.bat，生成rt-thread与libraries 文件夹链接；�
 
 串口输出指令rs485_send指令 打开另一个串口的终端查看收到的数据
 
+![image-20241125151756122](./figures/image-20241125151756122.png)
+
 ![image-20241122171605909](./figures/image-20241122171605909.png)
 
 ## 注意事项
@@ -48,4 +94,4 @@ IAR：首先双击mklinks.bat，生成rt-thread与libraries 文件夹链接；�
 
 ## 引用参考
 
- 设备与驱动：[UART_V2 设备](#/rt-thread-version/rt-thread-standard/programming-manual/device/uart/uart_v2/uart)
+ 设备与驱动：[UART_V2 设备](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/uart/uart_v2/uart)

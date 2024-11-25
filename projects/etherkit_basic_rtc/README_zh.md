@@ -14,6 +14,38 @@ RT-Thread 的RTC 设备为操作系统的时间系统提供了基础服务。面
 
 ##  软件说明
 
+### FSP配置说明
+
+​	打开FSP，选择对应的工程文件下的configuration.xml，新增RTC Stack;
+
+![img](./figures/wps7.jpg) 
+
+图5-1 新增RTC Stack
+
+​	下面进行RTC参数的配置，设置rtc stack name为g_rtc，设置RTC中断回调函数为rtc_callback，并配置中断回调优先级；
+
+![img](./figures/wps8.jpg) 
+
+图4-2 RTC参数配置
+
+RT-Thread Settings配置
+
+打开RT-Thread Settings，找到硬件选项，使能RTC；
+
+![img](./figures/wps9.jpg) 
+
+RTC使能
+
+​	接下来我们配置RTC，首先需要使能RT-Thread的RTC设备框架，同时使能软件alarm功能（注：瑞萨rzn系列的alarm功能暂时存在一些问题，因此闹钟功能暂时使用软件模拟，不影响使用）；
+
+![img](./figures/wps10.jpg) 
+
+RTC配置
+
+
+
+##  示例代码说明
+
 本例程的源码位于/projects/etherkit_basic_rtc。在hal_entry()函数中，获取到了RTC 设备，然后设置一次系统时间，随后获取一次系统时间以便检测时间是否设置成功，最后延时1s 后再次获取系统时间。
 
 ```
@@ -220,5 +252,5 @@ user alarm callback function.
 
 ## 引用参考
 
-设备与驱动：[RTC 设备](#/rt-thread-version/rt-thread-standard/programming-manual/device/rtc/rtc)：
+设备与驱动：[RTC 设备](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/rtc/rtc)：
 

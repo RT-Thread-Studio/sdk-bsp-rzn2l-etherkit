@@ -138,7 +138,7 @@ void spi_loop_test(void)
 
 ### 运行效果
 
-![img](./figures/wps17.jpg) 
+![image-20241125151444619](./figures/image-20241125151444619.png) 
 
 ## 注意事项
 
@@ -146,5 +146,5 @@ void spi_loop_test(void)
 
 ## 引用参考
 
- 设备与驱动：[SPI 设备](#/rt-thread-version/rt-thread-standard/programming-manual/device/spi/spi)
+ 设备与驱动：[SPI 设备](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/spi/spi)
 

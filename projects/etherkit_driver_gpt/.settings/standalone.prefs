@@ -1,4 +1,4 @@
-#Thu Nov 21 17:31:35 CST 2024
+#Mon Nov 25 15:41:34 CST 2024
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#BSP\#\#Board\#\#rzn2l_rsk\#\#xspi0_x1_boot\#\#2.0.0/libraries=
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#BSP\#\#Board\#\#rzn2l_rsk\#\#xspi0_x1_boot\#\#2.0.0/all=907937621,script/fsp_xspi0_boot.icf|3822962514,rzn/board/rzn2l_rsk/board_leds.c|358444977,rzn/board/rzn2l_rsk/board_init.c|2067006575,rzn/board/rzn2l_rsk/board.h|736691883,rzn/board/rzn2l_rsk/board_ethernet_phy.h|1631979823,rzn/board/rzn2l_rsk/board_leds.h|1430483072,rzn/board/rzn2l_rsk/board_init.h
 com.renesas.cdt.ddsc.contentgen.options/options/suppresswarningspaths=

@@ -134,10 +134,12 @@ After compilation, connect the Jlink interface of the development board to the P
 
 Use the serial port to send the `can0_sample_send` and `can1_sample_receive` commands.
 
-![img](./figures/wps40.jpg) 
+![image-20241125160006861](./figures/image-20241125160006861.png)
 
 ## Notes
 
 None
 
 ## References
+Device and Driver: [CAN Device](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/can/can)
+

@@ -29,7 +29,7 @@ void hal_entry(void)
 {
     rt_kprintf("\nHello RT-Thread!\n");
     rt_kprintf("==================================================\n");
-    rt_kprintf("This example project is an basic key routine!\n");
+    rt_kprintf("This example project is an driver iic routine!\n");
     rt_kprintf("==================================================\n");
 
     unsigned int count = 1;

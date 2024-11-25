@@ -38,7 +38,7 @@ const gpt_extended_cfg_t g_timer5_extend =
     .gtioca = { .output_enabled = true,
                 .stop_level     = GPT_PIN_LEVEL_LOW
               },
-    .gtiocb = { .output_enabled = false,
+    .gtiocb = { .output_enabled = true,
                 .stop_level     = GPT_PIN_LEVEL_LOW
               },
     .start_source        = (gpt_source_t) ( GPT_SOURCE_NONE),
@@ -83,7 +83,7 @@ const gpt_extended_cfg_t g_timer5_extend =
 const timer_cfg_t g_timer5_cfg =
 {
     .mode                = TIMER_MODE_PWM,
-    /* Actual period: 2 seconds. Actual duty: 50%. */ .period_counts = (uint32_t) 0x2faf0800, .duty_cycle_counts = 0x17d78400, .source_div = (timer_source_div_t)0,
+    /* Actual period: 0.00005 seconds. Actual duty: 50%. */ .period_counts = (uint32_t) 0x4e20, .duty_cycle_counts = 0x2710, .source_div = (timer_source_div_t)0,
     .channel             = GPT_CHANNEL_UNIT0_5,
     .p_callback          = NULL,
     .p_context           = NULL,

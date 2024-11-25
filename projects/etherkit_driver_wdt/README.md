@@ -20,6 +20,31 @@ Open the FSP tool and create a new stack, selecting `r_wdt`.
 
 ![img](./figures/wps28.jpg)
 
+## Example project description
+
+By performing a watchdog operation in the idle function, we ensure that our program runs as expected.
+
+```
+static void idle_hook(void)
+{
+    /* 在空闲线程的回调函数里喂狗 */
+    rt_device_control(wdg_dev, RT_DEVICE_CTRL_WDT_KEEPALIVE, NULL);
+    rt_kprintf("feed the dog!\n ");
+}
+```
+
+```
+static int wdt_test(int argc, char *argv[])
+{
+    rt_err_t ret = RT_EOK;
+    char device_name[RT_NAME_MAX];
+    /* 判断命令行参数是否给定了设备名称 */
+    if (argc == 2)
+    {
+        rt_strncpy(device_name, argv[1], RT_NAME_MAX);
+    }
+```
+
 ## Running
 
 ### Compilation & Download
@@ -32,7 +57,7 @@ After compilation, connect the Jlink interface of the development board to the P
 
 ### Running Effects
 
-![img](./figures/wps29.jpg)
+![image-20241125151707999](./figures/image-20241125151707999.png)
 
 ## Notes
 
@@ -40,4 +65,4 @@ None
 
 ## References
 
-Device and Driver: [WDT Device](#/rt-thread-version/rt-thread-standard/programming-manual/device/watchdog/watchdog)
+Device and Driver: [WDT Device](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/watchdog/watchdog)

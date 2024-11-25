@@ -24,14 +24,14 @@
 /* 配置 KEY 输入引脚  */
 #define PIN_KEY1        BSP_IO_PORT_14_PIN_2      // P14_2 :  KEY1
 #define PIN_KEY2        BSP_IO_PORT_16_PIN_3      // P16_3 :  KEY2
-
+void GPT_PWM_Init(void);
 void hal_entry(void)
 {
     rt_kprintf("\nHello RT-Thread!\n");
     rt_kprintf("==================================================\n");
-    rt_kprintf("This example project is an basic key routine!\n");
+    rt_kprintf("This example project is an driver gpt routine!\n");
     rt_kprintf("==================================================\n");
-
+    GPT_PWM_Init();
     unsigned int count = 1;
 
     /* 设置 RGB 绿灯引脚的模式为输出模式 */
@@ -73,4 +73,9 @@ void hal_entry(void)
         rt_thread_mdelay(10);
         count++;
     }
+}
+void GPT_PWM_Init(void)
+{
+    R_GPT_Open(&g_timer5_ctrl, &g_timer5_cfg);
+    R_GPT_Start(&g_timer5_ctrl);
 }

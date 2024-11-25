@@ -26,101 +26,130 @@ KEY 在开发板中的位置如下图所示：
 
 ## 软件说明
 
-本例程的源码位于/projects/etherkit_basic_key。
+## FSP配置
+
+​	首先下载官方FSP代码生成工具：https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe；安装成功之后我们双击eclipse下的rasc.exe，并依次根据下图打开工程配置文件configuration.xml：
+
+![img](./figures/wps1.jpg) 
+
+打开配置文件
+
+​	下面我们新增两个Stack：New Stack->Input->External IRQ(r_icu)；
+
+![img](./figures/wps2.jpg) 
+
+ 新增IRQ Stack
+
+​	接着我们需要在引脚配置那开启IRQ功能，根据下图选中我们要使能的两个中断引脚：KEY1(IRQ6)和KEY2(IRQ7)；
+
+![img](./figures/wps3.jpg) 
+
+ IRQ开启
+
+​	回到Stacks界面，这里分别设置IRQ6和IRQ7，配置对应的中断名称、通道号以及中断回调函数；
+
+![img](./figures/wps4.jpg) 
+
+ IRQ配置
+
+###  示例代码说明
+
+本例程的源码位于/projects/etherkit_basic_key_irq。
 
 KEY1(LEFT) 、KEY2(RIGHT)对应的单片机引脚定义如下。
 
-/* 配置 KEY 输入引脚  */
-
-\#define PIN_KEY1     BSP_IO_PORT_14_PIN_2    // P14_2 :  KEY1
-
-\#define PIN_KEY2     BSP_IO_PORT_16_PIN_3    // P16_3 :  KEY2
+```
+/* 配置 key irq 引脚 */
 
  
 
-按键输入的源代码位于/projects/etherkit_basic_key/src/hal_entry.c 中。首先为了实验效果清晰可见，板载RGB 蓝色LED 作为KEY1(LEFT) 的状态指示灯，板载RGB 绿色LED 作为KEY2(RIGHT) 的状态指示灯，设置RGB 红灯引脚的模式为输出模式，然后设置按键引脚为输入模式，最后在while 循环中通过rt_pin_read(PIN_KEY) 判断KEY的电平状态，并作50ms的消抖处理，如果成功判断KEY为低电平状态（即按键按下）则打印输出“KEYx pressed!” 并且指示灯亮，否则指示灯熄灭。
+#define IRQ_TEST_PIN1 BSP_IO_PORT_14_PIN_2
+
+#define IRQ_TEST_PIN2 BSP_IO_PORT_16_PIN_3
+
+LED灯的单片机引脚定义如下。
+
+/* 配置 LED 灯引脚 */
+#define LED_PIN_B   BSP_IO_PORT_14_PIN_0 /* Onboard BLUE LED pins */
+
+#define LED_PIN_G   BSP_IO_PORT_14_PIN_1 /* Onboard GREEN LED pins */
+```
+
+ 
+
+按键中断的源代码位于/projects/etherkit_basic_key_irq/src/hal_entry.c中，当按下对应的中断按键，会触发相应的打印信息。
 
 ```
- unsigned int count = 1;
+static void irq_callback_test(void *args)
 
-  /* 设置 RGB 绿灯引脚的模式为输出模式 */
+{
 
-  rt_pin_mode(LED_PIN_B, PIN_MODE_OUTPUT);
+  rt_kprintf("\n IRQ:%d triggered \n", args);
 
-  rt_pin_mode(LED_PIN_G, PIN_MODE_OUTPUT);
+}
 
-  /* 设置 KEY 引脚的模式为输入上拉模式 */
+ 
 
-  rt_pin_mode(PIN_KEY1, PIN_MODE_INPUT_PULLUP);
+void hal_entry(void)
 
-  rt_pin_mode(PIN_KEY2, PIN_MODE_INPUT_PULLUP);
+{
 
-  while (count > 0)
+  rt_kprintf("\nHello RT-Thread!\n");
+
+  rt_kprintf("==================================================\n");
+
+  rt_kprintf("This example project is an basic key irq routine!\n");
+
+  rt_kprintf("==================================================\n");
+
+ 
+
+  /* init */
+
+  rt_err_t err = rt_pin_attach_irq(IRQ_TEST_PIN1, PIN_IRQ_MODE_RISING, irq_callback_test, (void *)1);
+
+  if (RT_EOK != err)
 
   {
 
-​    /* 读取按键 KEY 的引脚状态 */
-
-​    if (rt_pin_read(PIN_KEY1) == PIN_LOW)
-
-​    {
-
-​      rt_thread_mdelay(50);
-
-​      if (rt_pin_read(PIN_KEY1) == PIN_LOW)
-
-​      {
-
-​        /* 按键已被按下，输出 log，点亮 LED 灯 */
-
-​        LOG_D("KEY1 pressed!");
-
-​        rt_pin_write(LED_PIN_B, PIN_LOW);
-
-​      }
-
-​    }
-
-​    else if(rt_pin_read(PIN_KEY2) == PIN_LOW)
-
-​    {
-
-​      rt_thread_mdelay(50);
-
-​      if (rt_pin_read(PIN_KEY2) == PIN_LOW)
-
-​      {
-
-​        /* 按键已被按下，输出 log，点亮 LED 灯 */
-
-​        LOG_D("KEY2 pressed!");
-
-​        rt_pin_write(LED_PIN_G, PIN_LOW);
-
-​      }
-
-​    }
-
-​    else
-
-​    {
-
-​      /* 按键没被按下，熄灭 LED 灯 */
-
-​      rt_pin_write(LED_PIN_B, PIN_HIGH);
-
-​      rt_pin_write(LED_PIN_G, PIN_HIGH);
-
-​    }
-
-​    rt_thread_mdelay(10);
-
-​    count++;
+​    rt_kprintf("\n attach irq failed. \n");
 
   }
-```
+
+  err = rt_pin_attach_irq(IRQ_TEST_PIN2, PIN_IRQ_MODE_RISING, irq_callback_test, (void *)2);
+
+  if (RT_EOK != err)
+
+  {
+
+​    rt_kprintf("\n attach irq failed. \n");
+
+  }
 
  
+
+  err = rt_pin_irq_enable(IRQ_TEST_PIN1, PIN_IRQ_ENABLE);
+
+  if (RT_EOK != err)
+
+  {
+
+​    rt_kprintf("\n enable irq failed. \n");
+
+  }
+
+  err = rt_pin_irq_enable(IRQ_TEST_PIN2, PIN_IRQ_ENABLE);
+
+  if (RT_EOK != err)
+
+  {
+
+​    rt_kprintf("\n enable irq failed. \n");
+
+  }
+
+}
+```
 
 ## 运行
 
@@ -144,4 +173,5 @@ l IAR：首先双击mklinks.bat，生成rt-thread 与libraries 文件夹链接�
 
 ## 引用参考
 
-设备与驱动：[PIN 设备](#/rt-thread-version/rt-thread-standard/programming-manual/device/pin/pin)
+设备与驱动：[PIN 设备](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/pin/pin)
+

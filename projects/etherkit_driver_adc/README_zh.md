@@ -118,7 +118,7 @@ l IAR：首先双击mklinks.bat，生成rt-thread与libraries 文件夹链接；
 
 使用adc0 的0通道采集1.8v电压效果如下：
 
-![image-20241121104036838](./figures/image-20241121104036838.png)
+![image-20241125155851070](./figures/image-20241125155851070.png)
 
 
 
@@ -128,6 +128,6 @@ l IAR：首先双击mklinks.bat，生成rt-thread与libraries 文件夹链接；
 
 ## 引用参考
 
-设备与驱动：[ADC 设备](#/rt-thread-version/rt-thread-standard/programming-manual/device/adc/adc)
+设备与驱动：[ADC 设备](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/adc/adc)
 
  

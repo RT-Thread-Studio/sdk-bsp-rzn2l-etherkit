@@ -30,7 +30,7 @@ void hal_entry(void)
 {
     rt_kprintf("\nHello RT-Thread!\n");
     rt_kprintf("==================================================\n");
-    rt_kprintf("This example project is an basic key routine!\n");
+    rt_kprintf("This example project is an driver rs485 routine!\n");
     rt_kprintf("==================================================\n");
     unsigned int count = 1;
      /* 设置 RGB 绿灯引脚的模式为输出模式 */

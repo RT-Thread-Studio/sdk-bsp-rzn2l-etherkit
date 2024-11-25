@@ -10,11 +10,11 @@
 
 ![img](./figures/wps31.jpg) 
 
-图2.1 LED电路原理图
+ LED电路原理图
 
 ![img](./figures/wps32.jpg) 
 
-图2.2 LED引脚示意图
+ LED引脚示意图
 
 ​	如上图所示，EtherKit提供三个用户LED，分别为LED0（RED）、LED1（BLUE）、LED2（GREEN），其中LED_RED对应引脚P14_3。单片机引脚输出低电平即可点亮LED ，输出高电平则会熄灭LED。
 
@@ -22,7 +22,7 @@
 
 ![img](./figures/wps33.jpg) 
 
-图2-3 LED位置
+ LED位置
 
 ## 软件说明
 
@@ -128,4 +128,4 @@ l IAR：首先双击mklinks.bat，生成rt-thread 与libraries 文件夹链接�
 
 ## 引用参考
 
- 设备与驱动：[PIN 设备](#/rt-thread-version/rt-thread-standard/programming-manual/device/pin/pin)
+ 设备与驱动：[PIN 设备](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/pin/pin)

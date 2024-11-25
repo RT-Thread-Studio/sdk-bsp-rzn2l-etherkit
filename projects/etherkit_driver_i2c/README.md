@@ -118,7 +118,7 @@ After compilation, connect the Jlink interface of the development board to the P
 
 Input the eeprom_test command in the serial port terminal:
 
- ![image-20241121103426430](./figures/image-20241121103426430.png)
+![image-20241125151408338](./figures/image-20241125151408338.png)
 
 ## Precautions
 
@@ -126,5 +126,5 @@ Input the eeprom_test command in the serial port terminal:
 
 ## Citation References
 
- 设备与驱动：[I2C Devices](#/rt-thread-version/rt-thread-standard/programming-manual/device/i2c/i2c)
+ 设备与驱动：[I2C Devices](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/i2c/i2c)：
 

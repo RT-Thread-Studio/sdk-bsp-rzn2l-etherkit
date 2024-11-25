@@ -4,9 +4,9 @@
 
 ## 简介
 
-本例程主要介绍了如何在EtherKit上使用GPT设备;
+在我们具体的应用场合中往往都离不开timer的使用，本例程主要介绍了如何在EtherKit上使用GPT设备;包括基本定时器的使用和PWM的使用；
 
- 
+
 
 ## 硬件说明
 
@@ -20,7 +20,7 @@ FSP 分别配置使能GPT0为基本定时器模式，GPT5为PWM 模式：
 
 ![img](./figures/wps18.jpg) 
 
-![img](./figures/wps19.jpg) 
+ ![image-20241125154339575](./figures/image-20241125154339575.png)
 
 并配置pins 使能GPT0 GPT5
 
@@ -133,7 +133,11 @@ MSH_CMD_EXPORT(hwtimer_sample, hwtimer sample);
 
 每隔1s触发回调函数并打印输出
 
-![img](./figures/wps22.jpg) 
+![image-20241125151611708](./figures/image-20241125151611708.png) 
+
+使用逻辑分析仪量取Pwm 输出波形如下所示：
+
+![image-20241125151623428](./figures/image-20241125151623428.png)
 
 ## 注意事项
 
@@ -141,5 +145,5 @@ MSH_CMD_EXPORT(hwtimer_sample, hwtimer sample);
 
 ## 引用参考
 
- 设备与驱动：[HWTIMER 设备](#/rt-thread-version/rt-thread-standard/programming-manual/device/hwtimer/hwtimer)
+ 设备与驱动：[HWTIMER 设备](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/hwtimer/hwtimer)
 

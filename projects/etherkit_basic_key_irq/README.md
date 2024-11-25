@@ -1,110 +1,134 @@
-# RZ EtherKit Development Board KEY Usage Instructions
+# RZ EtherKit Development Board KEY Usage Guide
 
-**English** | **[Chinese](./README_zh.md)**
+**English** | [**Chinese**](./README_zh.md)
 
 ## Introduction
 
-This example mainly demonstrates how to control the RGB-LED's RGB brightness using the onboard keys.
+This example demonstrates how the onboard KEY buttons control the RGB-LED by toggling the RGB lights.
 
 ## Hardware Description
 
-![img](./figures/wps23.jpg)
+![img](./figures/wps23.jpg) 
 
-Figure 3-1: Key Circuit Diagram
+Figure 3-1 Key Circuit Diagram
 
-![img](./figures/wps24.jpg)
+![img](./figures/wps24.jpg) 
 
-Figure 3-2: Key Pin Diagram
+Figure 3-2 Key Pinout Diagram
 
-As shown in the figure above, the KEY1 (LEFT) and KEY2 (RIGHT) pins are connected to the microcontroller pins P14_2 (LEFT) and P16_3 (RIGHT), respectively. When the key is pressed, the signal is high; when released, it is low.
+As shown above, the KEY1 (LEFT) and KEY2 (RIGHT) pins are connected to microcontroller pins P14_2 (LEFT) and P16_3 (RIGHT), respectively. When a KEY button is pressed, it outputs a high signal; when released, it outputs a low signal.
 
-The position of the keys on the development board is shown in the figure below:
+The position of the keys on the development board is shown below:
 
-![img](./figures/wps25.jpg)
+![img](./figures/wps25.jpg) 
 
-Figure 3-3: Key Position
+Figure 3-3 Key Location
 
 ## Software Description
 
-The source code for this example is located in `/projects/etherkit_basic_key`.
+### FSP Configuration
+
+First, download the official FSP code generation tool: [setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe). After installation, double-click `rasc.exe` under Eclipse, and open the project configuration file `configuration.xml` as shown below:
+
+![img](./figures/wps1.jpg) 
+
+Opening the configuration file.
+
+Next, add two stacks: `New Stack` -> `Input` -> `External IRQ (r_icu)`.
+
+![img](./figures/wps2.jpg) 
+
+Adding IRQ Stack.
+
+Then, enable IRQ functionality in the pin configuration. Select the two interrupt pins to enable as shown below: KEY1 (IRQ6) and KEY2 (IRQ7).
+
+![img](./figures/wps3.jpg) 
+
+Enabling IRQ.
+
+Return to the Stacks interface. Configure IRQ6 and IRQ7 with the corresponding interrupt names, channel numbers, and interrupt callback functions.
+
+![img](./figures/wps4.jpg) 
+
+IRQ Configuration.
+
+### Example Code Description
+
+The source code for this example is located in `/projects/etherkit_basic_key_irq`.
 
 The microcontroller pin definitions for KEY1 (LEFT) and KEY2 (RIGHT) are as follows:
 
 ```c
-/* Configure KEY input pins */
+/* Configure key IRQ pins */
+#define IRQ_TEST_PIN1 BSP_IO_PORT_14_PIN_2
+#define IRQ_TEST_PIN2 BSP_IO_PORT_16_PIN_3
 
-#define PIN_KEY1     BSP_IO_PORT_14_PIN_2    // P14_2 : KEY1
-#define PIN_KEY2     BSP_IO_PORT_16_PIN_3    // P16_3 : KEY2
+/* Configure LED pins */
+#define LED_PIN_B   BSP_IO_PORT_14_PIN_0 /* Onboard BLUE LED pin */
+#define LED_PIN_G   BSP_IO_PORT_14_PIN_1 /* Onboard GREEN LED pin */
 ```
-The source code for the key input is located in `/projects/etherkit_basic_key/src/hal_entry.c`. To make the experimental effect clear, the onboard RGB blue LED is used as the status indicator for KEY1 (LEFT), and the onboard RGB green LED is used for KEY2 (RIGHT). The mode of the RGB red LED pin is set to output, and the key pins are set to input mode. In the while loop, the state of the key is checked using `rt_pin_read(PIN_KEY)` with a 50ms debounce. If KEY1 is successfully detected as low (pressed), it prints "KEY1 pressed!" and turns on the indicator light; otherwise, the light is turned off.
+
+The interrupt source code for the buttons is located in `/projects/etherkit_basic_key_irq/src/hal_entry.c`. When the corresponding interrupt button is pressed, it triggers the related print messages.
 
 ```c
-unsigned int count = 1;
-
-/* Set RGB green LED pin mode to output */
-rt_pin_mode(LED_PIN_B, PIN_MODE_OUTPUT);
-rt_pin_mode(LED_PIN_G, PIN_MODE_OUTPUT);
-
-/* Set KEY pins mode to input pull-up */
-rt_pin_mode(PIN_KEY1, PIN_MODE_INPUT_PULLUP);
-rt_pin_mode(PIN_KEY2, PIN_MODE_INPUT_PULLUP);
-
-while (count > 0)
+static void irq_callback_test(void *args)
 {
-    /* Read the state of the KEY pin */
-    if (rt_pin_read(PIN_KEY1) == PIN_LOW)
-    {
-        rt_thread_mdelay(50);
-        if (rt_pin_read(PIN_KEY1) == PIN_LOW)
-        {
-            /* Key has been pressed, output log, turn on LED */
-            LOG_D("KEY1 pressed!");
-            rt_pin_write(LED_PIN_B, PIN_LOW);
-        }
-    }
-    else if(rt_pin_read(PIN_KEY2) == PIN_LOW)
-    {
-        rt_thread_mdelay(50);
-        if (rt_pin_read(PIN_KEY2) == PIN_LOW)
-        {
-            /* Key has been pressed, output log, turn on LED */
-            LOG_D("KEY2 pressed!");
-            rt_pin_write(LED_PIN_G, PIN_LOW);
-        }
-    }
-    else
-    {
-        /* Key not pressed, turn off LED */
-        rt_pin_write(LED_PIN_B, PIN_HIGH);
-        rt_pin_write(LED_PIN_G, PIN_HIGH);
-    }
-    rt_thread_mdelay(10);
-    count++;
+    rt_kprintf("\n IRQ:%d triggered \n", args);
 }
 
+void hal_entry(void)
+{
+    rt_kprintf("\nHello RT-Thread!\n");
+    rt_kprintf("==================================================\n");
+    rt_kprintf("This example project is a basic key IRQ routine!\n");
+    rt_kprintf("==================================================\n");
+
+    /* Initialize */
+    rt_err_t err = rt_pin_attach_irq(IRQ_TEST_PIN1, PIN_IRQ_MODE_RISING, irq_callback_test, (void *)1);
+    if (RT_EOK != err)
+    {
+        rt_kprintf("\n Attach IRQ failed. \n");
+    }
+
+    err = rt_pin_attach_irq(IRQ_TEST_PIN2, PIN_IRQ_MODE_RISING, irq_callback_test, (void *)2);
+    if (RT_EOK != err)
+    {
+        rt_kprintf("\n Attach IRQ failed. \n");
+    }
+
+    err = rt_pin_irq_enable(IRQ_TEST_PIN1, PIN_IRQ_ENABLE);
+    if (RT_EOK != err)
+    {
+        rt_kprintf("\n Enable IRQ failed. \n");
+    }
+
+    err = rt_pin_irq_enable(IRQ_TEST_PIN2, PIN_IRQ_ENABLE);
+    if (RT_EOK != err)
+    {
+        rt_kprintf("\n Enable IRQ failed. \n");
+    }
+}
 ```
 
-## Running
+## Execution
 
 ### Compilation & Download
 
-**RT-Thread Studio**: Download the EtherKit resource package in the RT-Thread Studio package manager, then create a new project and compile it.
+- **RT-Thread Studio**: Use the RT-Thread Studio package manager to download the EtherKit resource package. Then create a new project and compile it.  
+- **IAR**: First, run `mklinks.bat` to generate symbolic links for the `rt-thread` and `libraries` folders. Then use `Env` to generate the IAR project, and finally, double-click `project.eww` to open the IAR project and compile it.
 
-**IAR**: First, double-click `mklinks.bat` to generate links for the rt-thread and libraries folders; then use Env to generate the IAR project; finally, double-click `project.eww` to open the IAR project and compile it.
+After compilation, connect the development board's JLink interface to the PC and download the firmware to the board.
 
-After compilation, connect the Jlink interface of the development board to the PC, and download the firmware to the development board.
+### Operation Effect
 
-### Running Effects
+Press the reset button to restart the development board. Initially, LED1 and LED2 are off. Pressing KEY1 will light up LED1 (Blue), while pressing KEY2 will light up LED2 (Green).
 
-After pressing the reset button to restart the development board, the initial state of LED1 and LED2 is off. When KEY1 is pressed, LED1 (Blue) lights up; when KEY2 is pressed, LED2 (Green) lights up.
-
-![img](./figures/wps26.jpg)
+![img](./figures/wps26.jpg) 
 
 ## Notes
 
-None
+None at the moment.
 
 ## References
 
-Device and Driver: [PIN Device](#/rt-thread-version/rt-thread-standard/programming-manual/device/pin/pin)
-
+- Devices and Drivers: [PIN Device](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/pin/pin)

@@ -113,7 +113,7 @@ After compilation, connect the Jlink interface of the development board to the P
 
 The effect of collecting 1.8v voltage using channel 0 of adc0 is as follows:
 
-​                                                      ![image-20241121103743949](./figures/image-20241121103743949.png) 
+![image-20241125155900825](./figures/image-20241125155900825.png)
 
 ## Precautions
 
@@ -121,6 +121,6 @@ The effect of collecting 1.8v voltage using channel 0 of adc0 is as follows:
 
 ## Citation References
 
-Devices and Drivers：[ADC Device](#/rt-thread-version/rt-thread-standard/programming-manual/device/adc/adc)
+Devices and Drivers：[ADC Device](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/adc/adc)
 
  

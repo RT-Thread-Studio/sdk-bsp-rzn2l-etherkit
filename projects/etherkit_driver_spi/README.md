@@ -118,7 +118,7 @@ After compilation, connect the J-Link interface of the development board to the 
 
 ### Execution Results
 
-![img](./figures/wps17.jpg)
+![image-20241125151444619](./figures/image-20241125151444619.png)
 
 ---
 
@@ -130,4 +130,4 @@ No additional notes at this time.
 
 ## References
 
-- Device and Driver: [SPI Devices](#/rt-thread-version/rt-thread-standard/programming-manual/device/spi/spi)
+- Device and Driver: [SPI Devices](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/spi/spi)

@@ -18,7 +18,7 @@ Configure FSP to enable GPT0 in basic timer mode and GPT5 in PWM mode:
 
 ![img](./figures/wps18.jpg)
 
-![img](./figures/wps19.jpg)
+![image-20241125154332120](./figures/image-20241125154332120.png)
 
 And configure pins to enable GPT0 and GPT5.
 
@@ -97,7 +97,11 @@ After compilation, connect the Jlink interface of the development board to the P
 
 The callback function is triggered every second and prints output.
 
-![img](./figures/wps22.jpg)
+![image-20241125151517261](./figures/image-20241125151517261.png)
+
+The PWM output waveform measured using a logic analyzer is shown below:
+
+![image-20241125151558323](./figures/image-20241125151558323.png)
 
 ## Notes
 
@@ -105,4 +109,4 @@ None
 
 ## References
 
-Device and Driver: [HWTIMER Device](#/rt-thread-version/rt-thread-standard/programming-manual/device/hwtimer/hwtimer)
+Device and Driver: [HWTIMER Device](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/hwtimer/hwtimer)
