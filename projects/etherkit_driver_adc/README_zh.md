@@ -26,7 +26,6 @@
 
 ![image-20241121104129821](./figures/image-20241121104129821.png)
 
-本例程的源码位于/projects/etherkit_basic_key。
 
 ## env配置
 
