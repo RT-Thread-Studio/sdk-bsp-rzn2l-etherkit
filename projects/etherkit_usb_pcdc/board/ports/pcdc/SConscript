@@ -19,6 +19,6 @@ elif rtconfig.PLATFORM in ['armcc']:
 
 CPPDEFINES = ['BSP_CFG_RTOS=2']
 
-group = DefineGroup('usb_pcdc', src, depend = [], CPPPATH = path, LOCAL_CFLAGS = LOCAL_CFLAGS, CPPDEFINES=CPPDEFINES)
+group = DefineGroup('usb_pcdc', src, depend = [], CPPPATH = path, LOCAL_CFLAGS = LOCAL_CFLAGS, CPPDEFINES = CPPDEFINES)
 
 Return('group')

@@ -20,7 +20,7 @@ elif rtconfig.PLATFORM in GetGCCLikePLATFORM():
         src += Glob('./fsp/src/r_*/*.c')
         src += Glob('./fsp/src/r_usb_basic/src/driver/*.c')
         src += Glob('./fsp/src/r_usb_basic/src/hw/*.c')
-        src += Glob('./fsp/src/r_usb_pmsc/src/*.c')
+        src += Glob('./fsp/src/r_usb_pcdc/src/*.c')
         CPPPATH = [ cwd + '/arm/CMSIS_5/CMSIS/Core_R/Include',
                             cwd + '/fsp/inc',
                             cwd + '/fsp/src/inc',
@@ -28,7 +28,7 @@ elif rtconfig.PLATFORM in GetGCCLikePLATFORM():
                             cwd + '/fsp/inc/instances',
                             cwd + '/fsp/src/r_usb_basic/src/driver/inc',
                             cwd + '/fsp/src/r_usb_basic/src/hw/inc',
-                            cwd + '/fsp/src/r_usb_pmsc/src/inc',]
+                            cwd + '/fsp/src/r_usb_pcdc/src/inc',]
 
 group = DefineGroup('rzn', src, depend = [''], CPPPATH = CPPPATH)
 Return('group')
