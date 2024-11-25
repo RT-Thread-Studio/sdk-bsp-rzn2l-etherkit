@@ -65,6 +65,8 @@ jobs:
          - {RTT_BSP: "etherkit_component_mqtt"}
          - {RTT_BSP: "etherkit_modbus_tcpip"}
          - {RTT_BSP: "etherkit_modbus_uart"}
+         - {RTT_BSP: "etherkit_usb_pmsc"}
+         - {RTT_BSP: "etherkit_usb_pcdc"}
          - {RTT_BSP: "etherkit_ethercat_eoe"}
          - {RTT_BSP: "etherkit_factory"}
     steps:

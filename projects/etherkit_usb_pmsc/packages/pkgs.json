@@ -1,0 +1,7 @@
+[
+ {
+  "name": "FREERTOS_WRAPPER",
+  "path": "/packages/system/FreeRTOS_Wrapper",
+  "ver": "v1.0.0"
+ }
+]
