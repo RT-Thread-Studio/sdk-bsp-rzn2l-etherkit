@@ -138,7 +138,7 @@ fsp_err_t EOE_VETHER_Read(ether_ctrl_t * const p_ctrl, void * const p_buffer, ui
 	{
 		if(g_eoe_vether_ctrl.length != 0)
 		{ /* copy received data to buffer */
-			memcpy(p_buffer, g_eoe_vether_ctrl.pData, g_eoe_vether_ctrl.length);
+			rt_memcpy(p_buffer, g_eoe_vether_ctrl.pData, g_eoe_vether_ctrl.length);
 			*length_bytes = (uint32_t)g_eoe_vether_ctrl.length;
 			err = FSP_SUCCESS;
 		}

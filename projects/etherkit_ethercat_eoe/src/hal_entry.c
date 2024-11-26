@@ -19,9 +19,4 @@ void hal_entry(void)
     rt_kprintf("==================================================\n");
     rt_kprintf("This example project is an ethercat eoe routine!\n");
     rt_kprintf("==================================================\n");
-
-    while (1)
-    {
-        rt_thread_mdelay(1000);
-    }
 }

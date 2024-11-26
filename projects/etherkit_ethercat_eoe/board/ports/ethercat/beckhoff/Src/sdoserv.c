@@ -431,7 +431,7 @@ static UINT8 SdoUploadSegmentInd(TUPLOADSDOSEGREQMBX MBXMEM * pSdoInd)
 		pSdoSegRes->CoeHeader |= ((UINT16)COESERVICE_SDORESPONSE) << COEHEADER_COESERVICESHIFT;
 
 		/*Clear SDO header*/
-		pSdoSegRes->SdoHeader.SegHeader &= ~SEGHEADER_MASK;
+		pSdoSegRes->SdoHeader.SegHeader &= (UINT8)~SEGHEADER_MASK;
 		if (bSdoSegFollows)
 		{
 			pSdoSegRes->SdoHeader.SegHeader |= SWAPWORD(SDOSERVICE_UPLOADSEGMENTRES | bSdoSegLastToggle);
@@ -821,7 +821,8 @@ UINT8 SDOS_SdoInd(TINITSDOMBX MBXMEM *pSdoInd)
 								pSdoResStored = pSdoInd;
 
 								/*update command field*/
-								pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] &= ~SDOHEADER_COMMANDMASK;
+//								pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] &= ~SDOHEADER_COMMANDMASK;
+								pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] &= (UINT8)~SDOHEADER_COMMANDMASK;
 								pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] |= (sdoHeader & (SDOHEADER_COMPLETEACCESS | SDOHEADER_COMMAND));
 								nSdoSegService = SDOSERVICE_UPLOADSEGMENTREQ;
 								return 0;
@@ -868,7 +869,7 @@ UINT8 SDOS_SdoInd(TINITSDOMBX MBXMEM *pSdoInd)
 							pSdoResStored = pSdoInd;
 
 							/*update command field*/
-							pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] &= ~SDOHEADER_COMMANDMASK;
+							pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] &= (UINT8)~SDOHEADER_COMMANDMASK;
 							pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] |= (sdoHeader & (SDOHEADER_COMPLETEACCESS | SDOHEADER_COMMAND));
 							return 0;
 						}
@@ -893,7 +894,7 @@ UINT8 SDOS_SdoInd(TINITSDOMBX MBXMEM *pSdoInd)
 							pSdoResStored = pSdoInd;
 
 							/*update command field*/
-							pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] &= ~SDOHEADER_COMMANDMASK;
+							pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] &= (UINT8)~SDOHEADER_COMMANDMASK;
 							pSdoResStored->SdoHeader.Sdo[SDOHEADER_COMMANDOFFSET] |= (sdoHeader & (SDOHEADER_COMPLETEACCESS | SDOHEADER_COMMAND));
 							return 0;
 						}

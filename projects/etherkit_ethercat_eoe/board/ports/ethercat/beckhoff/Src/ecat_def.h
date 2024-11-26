@@ -536,21 +536,21 @@ does not support a huge type, HUGE shall be defined to nothing */
 HMEMSET: Should be defined to the memset function for huge memory, if the microcontroller<br>
 does not support a huge type, HMEMSET shall be defined to a 'normal' memset function */
 #ifndef HMEMSET
-#define HMEMSET                                   memset
+#define HMEMSET                                   rt_memset
 #endif
 
 /** 
 HMEMCPY: Should be defined to the memcpy function for huge memory, if the microcontroller<br>
 does not support a huge type, HMEMCPY shall be defined to a 'normal' memcpy function */
 #ifndef HMEMCPY
-#define HMEMCPY                                   memcpy
+#define HMEMCPY                                   rt_memcpy
 #endif
 
 /** 
 HMEMCMP: Should be defined to the memcmp function for huge memory, if the microcontroller<br>
 does not support a huge type, HMEMCMP shall be defined to a 'normal' memcmp function */
 #ifndef HMEMCMP
-#define HMEMCMP                                   memcmp
+#define HMEMCMP                                   rt_memcmp
 #endif
 
 /** 
@@ -564,21 +564,21 @@ does not support different memory types, ESCMEM shall be defined to nothing */
 ESCMEMCPY: Should be defined to the memcpy function for ESCMEM memory, if the microcontroller<br>
 does not support different memory types, ESCMEMCPY shall be defined to a 'normal' memcpy function */
 #ifndef ESCMEMCPY
-#define ESCMEMCPY                                 memcpy
+#define ESCMEMCPY                                 rt_memcpy
 #endif
 
 /** 
 ESCMEMSET: Should be defined to the memset function for ESCMEM memory, if the microcontroller<br>
 does not support different memory types, ESCMEMSET shall be defined to a 'normal' memset function */
 #ifndef ESCMEMSET
-#define ESCMEMSET                                 memset
+#define ESCMEMSET                                 rt_memset
 #endif
 
 /** 
 ESCMBXMEMCPY: Should be defined to the memcpy function for copying ESCMEM memory to or from MBXMEM memory, if the microcontroller<br>
 does not support different memory types, ESCMBXMEMCPY shall be defined to a 'normal' memcpy function */
 #ifndef ESCMBXMEMCPY
-#define ESCMBXMEMCPY                              memcpy
+#define ESCMBXMEMCPY                              rt_memcpy
 #endif
 
 /** 
@@ -592,21 +592,21 @@ if the microcontroller does not support different memory types, MBXMEM shall be 
 MBXMEMCPY: Should be defined to the memcpy function for MBXMEM memory, if the microcontroller<br>
 does not support different memory types, MBXMEMCPY shall be defined to a 'normal' memcpy function */
 #ifndef MBXMEMCPY
-#define MBXMEMCPY                                 memcpy
+#define MBXMEMCPY                                 rt_memcpy
 #endif
 
 /** 
 MBXMEMCMP: Should be defined to the memcmp function for MBXMEM memory, if the microcontroller<br>
 does not support different memory types, MBXMEMCMP shall be defined to a 'normal' memcmp function */
 #ifndef MBXMEMCMP
-#define MBXMEMCMP                                 memcmp
+#define MBXMEMCMP                                 rt_memcmp
 #endif
 
 /** 
 MBXMEMSET: Should be defined to the memcpy function for MBXMEM memory, if the microcontroller<br>
 does not support different memory types, MBXMEMSET shall be defined to a 'normal' memset function */
 #ifndef MBXMEMSET
-#define MBXMEMSET                                 memset
+#define MBXMEMSET                                 rt_memset
 #endif
 
 /** 
@@ -620,7 +620,7 @@ does not support different memory types, MBXSTRLEN shall be defined to a 'normal
 MBXSTRCPY: Should be defined to the strcpy function for MBXMEM memory, if the microcontroller<br>
 does not support different memory types, MBXSTRCPY shall be defined to a 'normal' strcpy function */
 #ifndef MBXSTRCPY
-#define MBXSTRCPY                                 memcpy
+#define MBXSTRCPY                                 rt_memcpy
 #endif
 
 /** 
@@ -654,42 +654,42 @@ if the microcontroller does not support different memory types, OBJMEM shall be 
 OBJTOMBXMEMCPY: Should be defined to the memcpy function for copying OBJMEM memory to MBXMEM memory, if the microcontroller<br>
 does not support different memory types, OBJTOMBXMEMCPY shall be defined to a 'normal' memcpy function */
 #ifndef OBJTOMBXMEMCPY
-#define OBJTOMBXMEMCPY                            memcpy
+#define OBJTOMBXMEMCPY                            rt_memcpy
 #endif
 
 /** 
 OBJTOMBXSTRCPY: Should be defined to the strcpy function for copying OBJMEM memory to MBXMEM memory, if the microcontroller<br>
 does not support different memory types, OBJTOMBXSTRCPY shall be defined to a 'normal' memcpy function */
 #ifndef OBJTOMBXSTRCPY
-#define OBJTOMBXSTRCPY                            memcpy
+#define OBJTOMBXSTRCPY                            rt_memcpy
 #endif
 
 /** 
 MBXTOOBJSTRCPY: Should be defined to the strcpy function for copying MBXMEM memory to OBJMEM memory, if the microcontroller<br>
 does not support different memory types, MBXTOOBJSTRCPY shall be defined to a 'normal' memcpy function */
 #ifndef MBXTOOBJSTRCPY
-#define MBXTOOBJSTRCPY                            memcpy
+#define MBXTOOBJSTRCPY                            rt_memcpy
 #endif
 
 /** 
 OBJMEMCPY: Should be defined to the memcpy function for OBJMEM memory, if the microcontroller<br>
 does not support different memory types, OBJMEMCPY shall be defined to a 'normal' memcpy function */
 #ifndef OBJMEMCPY
-#define OBJMEMCPY                                 memcpy
+#define OBJMEMCPY                                 rt_memcpy
 #endif
 
 /** 
 OBJSTRLEN: Should be defined to the strlen function for OBJMEM memory, if the microcontroller<br>
 does not support different memory types, OBJSTRLEN shall be defined to a 'normal' strlen function */
 #ifndef OBJSTRLEN
-#define OBJSTRLEN                                 strlen
+#define OBJSTRLEN                                 rt_strlen
 #endif
 
 /** 
 OBJSTRCPY: Should be defined to the strcpy function for OBJMEM memory, if the microcontroller<br>
 does not support different memory types, OBJSTRCPY shall be defined to a 'normal' strcpy function */
 #ifndef OBJSTRCPY
-#define OBJSTRCPY                                 memcpy
+#define OBJSTRCPY                                 rt_memcpy
 #endif
 
 /** 
@@ -708,14 +708,14 @@ MAKE_PTR_TO_ESC: Should be defined to the initialize the pointer to the ESC */
 EMCYMEMCPY: Should be defined to the memcpy function for EMCYMEM memory, if the microcontroller<br>
 does not support different memory types, EMCYMEMCPY shall be defined to a 'normal' memcpy function */
 #ifndef EMCYMEMCPY
-#define EMCYMEMCPY                                memcpy
+#define EMCYMEMCPY                                rt_memcpy
 #endif
 
 /** 
 EMCYMEMSET: Should be defined to the memset function for EMCYMEM memory, if the microcontroller<br>
 does not support different memory types, EMCYMEMSET shall be defined to a 'normal' memcset function */
 #ifndef EMCYMEMSET
-#define EMCYMEMSET                                memset
+#define EMCYMEMSET                                rt_memset
 #endif
 
 /** 
@@ -728,26 +728,26 @@ if the microcontroller does not support different memory types, EMCYMEM shall be
 /** 
 MEMCPY: Should be defined to copy data within local memory. */
 #ifndef MEMCPY
-#define MEMCPY                                    memcpy
+#define MEMCPY                                    rt_memcpy
 #endif
 
 /** 
 ALLOCMEM(size): Should be defined to the alloc function to get dynamic memory */
 #ifndef ALLOCMEM
-#define ALLOCMEM(size)                            malloc((size))
+#define ALLOCMEM(size)                            rt_malloc((size))
 #endif
 
 /** 
 FREEMEM(pointer): Should be defined to the free function to put back dynamic memory */
 #ifndef FREEMEM
-#define FREEMEM(pointer)                          free((pointer))
+#define FREEMEM(pointer)                          rt_free((pointer))
 #endif
 
 /** 
 VARMEMSET: Should be defined to the memset function for VARMEM memory, if the microcontroller<br>
 does not support different memory types, EMCYMEMSET shall be defined to a 'normal' memcset function */
 #ifndef VARMEMSET
-#define VARMEMSET                                 memset
+#define VARMEMSET                                 rt_memset
 #endif
 
 /** 
@@ -773,14 +773,14 @@ GET_MEM_SIZE(ByteSize): Round up the byte size to next matching memory boundary 
 APPL_AllocMailboxBuffer(size): Should be defined to a function to get a buffer for a mailbox service,<br>
 this is only used if the switch MAILBOX_QUEUE is set */
 #ifndef APPL_AllocMailboxBuffer
-#define APPL_AllocMailboxBuffer(size)             malloc((size))
+#define APPL_AllocMailboxBuffer(size)             rt_malloc((size))
 #endif
 
 /** 
 APPL_FreeMailboxBuffer(pointer): Should be defined to a function to put back a buffer for a mailbox service,<br>
 this is only used if the switch MAILBOX_QUEUE is set */
 #ifndef APPL_FreeMailboxBuffer
-#define APPL_FreeMailboxBuffer(pointer)           free((pointer))
+#define APPL_FreeMailboxBuffer(pointer)           rt_free((pointer))
 #endif
 
 /** 
