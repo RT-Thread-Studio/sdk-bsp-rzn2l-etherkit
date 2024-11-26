@@ -4,166 +4,189 @@
 
 ## Introduction
 
-This document provides the BSP (Board Support Package) documentation for the RT-Thread EtherKit development board. By following the Quick Start section, developers can quickly get started with this BSP and run RT-Thread on the development board.
+PROFINET is an industrial Ethernet standard developed and promoted by PI (PROFIBUS and PROFINET International) and is widely used in the industrial automation field.
 
-The main contents are as follows:
+P-Net is an open-source PROFINET implementation, specifically designed for real-time network communication in embedded devices. It is a lightweight PROFINET protocol stack aimed at providing developers with a quick and efficient way to integrate PROFINET functionality into embedded platforms.
 
-- Introduction to the Development Board
-- BSP Quick Start Guide
+In this example, we will use the P-Net software package to implement PROFINET master-slave communication.
 
-## Introduction to the Development Board
+## Prerequisites
 
-The EtherKit development board is based on the Renesas RZ/N2L and is designed to facilitate embedded system application development by offering flexible software package and IDE configurations.
+**Software Environment**:
 
-The front view of the development board is shown below:
+- [CODESYS](https://us.store.codesys.com/) (PROFINET master simulation)
+    - CODESYS
+    - CODESYS Gateway (Gateway device)
+    - CODESYS Control Win SysTray (PLC device)
 
-![image-20240314165241884](figures/big.png)
+**Hardware Environment**:
 
-Key **onboard resources** include:
+- EtherKit development board
 
-- MPU: R9A07G084M04GBG, maximum operating frequency of 400MHz, Arm Cortex®-R52 core, 128KB tightly coupled memory (with ECC), 1.5MB internal RAM (with ECC)
-- Debug Interface: Onboard J-Link interface
-- Expansion Interface: One PMOD connector
+## Software Package Configuration
 
-**More detailed information and tools**
-
-## Peripheral Support
-
-This BSP currently supports the following peripherals:
-
-Here is the translated text in English, keeping the markdown format:
-
-| **EtherCAT Solution** | **Support Status** | **EtherCAT Solution** | **Support Status** |
-| --------------------- | ------------------ | --------------------- | ------------------ |
-| EtherCAT_IO           | Supported          | EtherCAT_FOE          | Supported          |
-| EtherCAT_EOE          | Supported          | EtherCAT_COE          | Supported          |
-| **PROFINET Solution** | **Support Status** | **Ethernet/IP Solution** | **Support Status** |
-| P-Net (Open source evaluation package supporting ProfiNET slave protocol stack) | Supported | EIP | In progress... |
-| **On-chip Peripherals** | **Support Status** | **Components**        | **Support Status** |
-| UART                  | Supported          | LWIP                  | Supported          |
-| GPIO                  | Supported          | TCP/UDP               | Supported          |
-| HWIMER                | Supported          | MQTT                  | Supported          |
-| IIC                   | Supported          | TFTP                  | Supported          |
-| WDT                   | Supported          | Modbus Master/Slave Protocol | Supported |
-| RTC                   | Supported          |                       |                    |
-| ADC                   | Supported          |                       |                    |
-| DAC                   | Supported          |                       |                    |
-| SPI                   | Supported          |                       |                    |
-
-
-## Usage Instructions
-
-Usage instructions are divided into two sections:
-
-- **Quick Start**
-
-  This section is designed for beginners who are new to RT-Thread. By following simple steps, users can run the RT-Thread OS on the development board and observe the experimental results.
-
-- **Advanced Usage**
-
-  This section is for developers who need to use more of the development board's resources within the RT-Thread OS. By configuring the BSP using the ENV tool, additional onboard resources and advanced features can be enabled.
-
-### Quick Start
-
-This BSP currently provides GCC/IAR project support. Below is a guide using the [IAR Embedded Workbench for Arm](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/) development environment to run the system.
-
-**Hardware Connection**
-
-Connect the development board to the PC via a USB cable. Use the J-Link interface to download and debug the program.
-
-**Compilation and Download**
-
-- Navigate to the `bsp` directory and use the command `scons --target=iar` to generate the IAR project.
-- Compile: Double-click the `project.eww` file to open the IAR project and compile the program.
-- Debug: In the IAR navigation bar, click `Project -> Download and Debug` to download and start debugging.
-
-**Viewing the Run Results**
-
-After successfully downloading the program, the system will automatically run and print system information.
-
-Connect the corresponding serial port of the development board to the PC. Open the relevant serial port (115200-8-1-N) in the terminal tool. After resetting the device, you can view the RT-Thread output. Enter the `help` command to see the list of supported system commands.
-
-```bash
- \ | /  
-- RT -     Thread Operating System  
- / | \     5.1.0 build Mar 14 2024 18:26:01  
- 2006 - 2024 Copyright by RT-Thread team  
-
-Hello RT-Thread!  
-==================================================  
-This is an IAR project in RAM execution mode!  
-==================================================  
-msh > help  
-RT-Thread shell commands:  
-clear            - clear the terminal screen  
-version          - show RT-Thread version information  
-list             - list objects  
-backtrace        - print backtrace of a thread  
-help             - RT-Thread shell help  
-ps               - List threads in the system  
-free             - Show the memory usage in the system  
-pin              - pin [option]  
-
-msh >
-```
-
-**Application Entry Function**
-
-The entry function for the application layer is located in **src\hal_entry.c** within `void hal_entry(void)`. User source files can be placed directly in the `src` directory.
+Open the environment settings in `bsp` and go to **RT-Thread online packages** -> **IoT**, find **[\*] P-Net stack for Profinet device implementation --->** and enable it. The configuration options are provided to the user:
 
 ```c
-void hal_entry(void)
-{
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_kprintf("==================================================\n");
-    rt_kprintf("This is an IAR project in RAM execution mode!\n");
-    rt_kprintf("==================================================\n");
-
-    while (1)
-    {
-        rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
-    }
-}
+-*- Default netif name for P-NET  --->
+    -> (e00) default ethernet interface name for p-net app, default as 'e00'
+-*- Enable P-NET sample board config  ---> 
+    -> (0x0209) p-net user led pin
+    -> (0x0005) p-net user key pin
+-*- Default root filesystem path for P-NET  ---> 
+    -> [*] p-net using ramfs filesystem by default, or you can turn this off and choose another way to enable the filesystem
+    -> (8192)  default memory size for ramfs
+-*- P-NET sample slave network ip config  ---> 
+    -> (192.168.137.196) set static IP address for PROFINET slave
+    -> (192.168.137.1) set static gateway address for PROFINET slave
+    -> (255.255.255.0) set static mask address for PROFINET slave
+version (latest)  ---> 
 ```
 
-### Advanced Usage
+- **Default netif name for p-net**: p-net network interface name, default is `e00`;
+- **Enable pnet sample board config**: p-net app user LED and key configuration;
+- **Default root filesystem path for p-net**: p-net filesystem configuration, default uses ramfs with 8K memory allocation;
+- **P-NET sample slave network ip config**: Static IP configuration for the p-net slave device (**Make sure to disable RT_LWIP_DHCP and use static IP**).
 
-**Resources and Documentation**
+After configuring these settings, compile and download the program to the development board.
 
-- [Development Board Official Homepage](https://www.renesas.cn/zh/products/microcontrollers-microprocessors/rz-mpus/rzn2l-integrated-tsn-compliant-3-port-gigabit-ethernet-switch-enables-various-industrial-applications)
-- [Development Board Datasheet](https://www.renesas.cn/zh/document/dst/rzn2l-group-datasheet?r=1622651)
-- [Development Board Hardware Manual](https://www.renesas.cn/zh/document/mah/rzn2l-group-users-manual-hardware?r=1622651)
-- [RZ/N2L MCU Quick Start Guide](https://www.renesas.cn/zh/document/apn/rzt2-rzn2-device-setup-guide-flash-boot-application-note?r=1622651)
-- [RZ/N2L Easy Download Guide](https://www.renesas.cn/zh/document/gde/rzn2l-easy-download-guide?r=1622651)
-- [Renesas RZ/N2L Group](https://www.renesas.cn/zh/document/fly/renesas-rzn2l-group?r=1622651)
+## Network Configuration
 
-**FSP Configuration**
+Connect the development board to the PC using an Ethernet cable, and configure a static IP on the PC:
 
-To modify Renesas BSP peripheral configurations or add new peripheral ports, the Renesas [FSP](https://www2.renesas.cn/jp/zh/software-tool/flexible-software-package-fsp#document) configuration tool is required. Please follow the steps outlined below for configuration. For any questions regarding the configuration, please visit the [RT-Thread Community Forum](https://club.rt-thread.org/).
+![image-20241126114040869](figures/image-20241126114040869.png)
 
-1. [Download the Flexible Software Package (FSP) | Renesas](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe), use FSP version 2.0.0.
-2. To add the **"EtherKit Board Support Package"** to FSP, refer to the document [How to Import a BSP](https://www2.renesas.cn/document/ppt/1527171?language=zh&r=1527191).
-3. For guidance on configuring peripheral drivers using FSP, refer to the document: [Configuring Peripheral Drivers Using FSP for RA Series](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/make-bsp/renesas-ra/RA-series-using-FSP-configure-peripheral-drivers?id=ra-series-using-fsp-configure-peripheral-drivers).
+Check the IP information on the development board and test connectivity:
 
-**ENV Configuration**
+![image-20241126114049493](figures/image-20241126114049493.png)
 
-- To learn how to use the ENV tool, refer to the [RT-Thread ENV Tool User Manual](https://www.rt-thread.org/document/site/#/development-tools/env/env).
+## Soft PLC Startup
 
-By default, this BSP only enables the UART0 functionality. To use more advanced features such as components, software packages, and more, the ENV tool must be used for configuration.
+**CODESYS Overview**: CODESYS is a PLC software developed by 3S (Germany), integrating PLC logic, motion control, configuration, display, and other functions. CODESYS, short for **Controller Development System**, is an industrial automation programming tool based on the IEC 61131-3 standard. It supports various programming languages (e.g., Ladder Diagram, Structured Text, Function Block Diagram) and provides libraries and function modules, making it a widely used platform in industrial automation for developing and debugging PLCs and control systems.
 
-The steps are as follows:
-1. Open the ENV tool in the `bsp` directory.
-2. Use the `menuconfig` command to configure the project. Save and exit once the configuration is complete.
-3. Run the `pkgs --update` command to update the software packages.
-4. Run the `scons --target=iar` command to regenerate the project.
+### Creating a Standard Project in CODESYS
 
-## Contact Information
+Ensure that you have CODESYS installed. After installation, the following three software components are required:
 
-If you have any thoughts or suggestions during usage, please feel free to contact us via the [RT-Thread Community Forum](https://club.rt-thread.org/).
+- **CODESYS V3.5 SP20 Patch 3**: PROFINET master simulation
+- **CODESYS Gateway V3**: Gateway device
+- **CODESYS Control Win V3 -x64 SysTray**: Soft PLC device
 
-## Contribute Code
+First, open **CODESYS V3.5 SP20 Patch 3**, choose **New Project** -> **Projects** -> **Standard project**, configure the project name and location, and click **OK**:
 
-If you're interested in EtherKit and have some exciting projects you'd like to share, we welcome code contributions. Please refer to [How to Contribute to RT-Thread Code](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/development-guide/github/github).
+![image-20241126114127411](figures/image-20241126114127411.png)
+
+In the pop-up window, keep the default configuration and click **OK**:
+
+![image-20241126114137199](figures/image-20241126114137199.png)
+
+> **Note**: If you have purchased **CODESYS Control RTE SL**, select the device: **CODESYS Control RTE V3 (CODESYS) / x64 (CODESYS)**. For evaluation purposes, you can choose **CODESYS Control Win V3 (CODESYS) / x64** to create the project.
+
+After creation, you will see the main interface:
+
+![image-20241126114149792](figures/image-20241126114149792.png)
+
+### Starting Gateway and Soft PLC
+
+Open the following two software components:
+
+- **CODESYS Gateway V3** (right-click **Start Gateway**)
+- **CODESYS Control Win V3 -x64 SysTray** (right-click **Start PLC**)
+
+![image-20241126114204739](figures/image-20241126114204739.png)
+
+Back in CODESYS, double-click **Device(CODESYS Control Win V3 x64)** -> **Communication Settings** -> **Scan Network**:
+
+![image-20241126114216032](figures/image-20241126114216032.png)
+
+In the user login window, configure the username and password (customizable):
+
+![image-20241126114225267](figures/image-20241126114225267.png)
+
+Check if the gateway and soft PLC devices are online:
+
+![image-20241126114233871](figures/image-20241126114233871.png)
+
+### Adding PROFINET GSDML Files
+
+**GSD** (Generic Station Description) files are used for PROFIBUS DP and PROFINET IO communication, describing parameters, diagnostic data, and user-defined data between the PLC and I/O modules.
+
+The GSDML file for this project is located at:
+
+- `..\src\ports\rtthread\pn_dev`
+
+Install the GSDML file from the above path: **GSDML-V2.4-RT-Labs-P-Net-Sample-App-20220324.xml**.
+
+![image-20241126114247755](figures/image-20241126114247755.png)
+
+After installation, you should see the **P-Net slave description file**:
+
+![image-20241126114257110](figures/image-20241126114257110.png)
+
+### Adding Devices
+
+- **Adding Ethernet**: Right-click **Device** in the left navigation bar and select **Ethernet Adapter**:
+
+![image-20241126114309177](figures/image-20241126114309177.png)
+
+- **Adding PROFINET IO Master**: Right-click **Ethernet** in the left navigation bar and select **PN-Controller**:
+
+![image-20241126114338017](figures/image-20241126114338017.png)
+
+- **Adding PROFINET IO Slave**: Right-click **PN-Controller** in the left navigation bar and select **P-Net-multiple-module sample app**:
+
+![image-20241126114354826](figures/image-20241126114354826.png)
+
+### Configuring Tasks
+
+- **Main Tasks Configuration**: Select **Application** -> **Task Configuration** in the left navigation bar, double-click **MainTask (IEC-Tasks)**, set the priority to 1, type to **Cyclic**, and cycle time to 4ms:
+
+![image-20241126114416488](figures/image-20241126114416488.png)
+
+- **Profinet_CommunicationTask Configuration**: Double-click **Profinet_CommunicationTask (IEC-Tasks)**, set the priority to 14, type to **Cyclic**, and cycle time to 10ms:
+
+![image-20241126114430407](figures/image-20241126114430407.png)
+
+### Network Configuration
+
+- **Ethernet Configuration**: Double-click **Ethernet (Ethernet)** in the left navigation bar -> **General**, and modify the network interface to the one connected to the development board (ensure the correct master IP is selected if using multiple stations).
+
+![image-20241126114448562](figures/image-20241126114448562.png)
+
+- **PN_Controller Configuration**: Double-click **PN_Controller (PN-Controller)** -> **General**, and modify the default slave IP parameters as needed.
+
+- **P-Net Slave Network Configuration**: Double-click **P-Net-multiple-module sample app** -> **General**, and modify the IP parameters to match the development board’s IP:
+
+![image-20241126114459034](figures/image-20241126114459034.png)
+
+![image-20241126114512924](figures/image-20241126114512924.png)
+
+### Compile and Debug the Project
+
+- Step 1: From the navigation bar, select **Compile** -> **Generate Code**
+- Step 2: Select **Online** -> **Login**
+- Step 3: Click **Debug** -> **Start**
+
+You should see the PN master successfully online:
+
+![image-202411261145266
+
+57](figures/image-20241126114526657.png)
+
+## PROFINET Slave Application Startup
+
+Start the PROFINET slave on the development board by executing the command: `pnet_app`:
+
+![image-20241126114538916](figures/image-20241126114538916.png)
+
+![image-20241126114547482](figures/image-20241126114547482.png)
+
+## PN Protocol Stack Demo
+
+In CODESYS, test the master-slave interaction by selecting **PN_Controller** in the left navigation bar, right-clicking **Scan Devices**, selecting the device, and clicking **Blink LED**:
+
+![image-20241126114601251](figures/image-20241126114601251.png)
+
+The development board’s logs should display output and the onboard **User LED** will blink:
+
+![img](figures/clip_image050.jpg)
