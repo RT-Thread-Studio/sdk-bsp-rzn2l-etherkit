@@ -7,7 +7,7 @@ const external_irq_cfg_t g_external_irq7_cfg =
     .trigger             = EXTERNAL_IRQ_TRIG_BOTH_EDGE,
     .filter_enable       = true,
     .clock_source_div    = EXTERNAL_IRQ_CLOCK_SOURCE_DIV_1,
-    .p_callback          = key2_entry,
+    .p_callback          = irq_callback,
     /** If NULL then do not add & */
 #if defined(NULL)
     .p_context           = NULL,
@@ -36,7 +36,7 @@ const external_irq_cfg_t g_external_irq6_cfg =
     .trigger             = EXTERNAL_IRQ_TRIG_BOTH_EDGE,
     .filter_enable       = true,
     .clock_source_div    = EXTERNAL_IRQ_CLOCK_SOURCE_DIV_1,
-    .p_callback          = key1_entry,
+    .p_callback          = irq_callback,
     /** If NULL then do not add & */
 #if defined(NULL)
     .p_context           = NULL,

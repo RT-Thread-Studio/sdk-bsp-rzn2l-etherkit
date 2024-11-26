@@ -58,7 +58,7 @@ rt_adc_device_t dev_adc_1;
    rt_thread_t can1_thread;
 };
 extern struct commom_struct c_struct;
-rt_uint8_t adc_channel_test(rt_device_t dev,rt_uint8_t channel);
+rt_uint8_t adc_channel_test(rt_adc_device_t dev,rt_uint8_t channel);
 void adc_init(void);
  int uart_dma_sample();
  int can_sample_receive();

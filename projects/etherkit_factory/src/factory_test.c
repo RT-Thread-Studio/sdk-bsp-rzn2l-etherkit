@@ -214,7 +214,7 @@
         rt_kprintf("no adc device named %s\n", DEV_ADC);
     }
 }
-rt_uint8_t adc_channel_test(rt_device_t dev,rt_uint8_t channel)
+rt_uint8_t adc_channel_test(rt_adc_device_t dev,rt_uint8_t channel)
 {
        rt_uint32_t vol, value = 2048;
        c_struct.adc_flag=0;

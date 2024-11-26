@@ -37,11 +37,11 @@
 #define DIGITAL_OUT3   BSP_IO_PORT_17_PIN_4            
 static char ip_addr[]="180.163.146.100";
 static int rtc_sample(void);
-void key1_entry(external_irq_callback_args_t * p_args);
-void key2_entry(external_irq_callback_args_t * p_args);
+void key1_entry(void * args);
+void key2_entry(void * args);
 rt_uint8_t eth_test();
 void test_init(void);
-void  test_board_entry(void);
+int test_board_entry(void);
 void led_entry();
 rt_uint8_t flag_eth,flag_board=0;
 void hal_entry(void)
@@ -97,7 +97,7 @@ void test_init(void)
 * @param args
 * @return
 */
-void key1_entry(external_irq_callback_args_t * p_args)
+void key1_entry(void * p_args)
 {
     flag_board=1;
     if(rt_pin_read(LED_PIN_1))
@@ -122,7 +122,7 @@ void led_entry()
 }
 //   KEY2 按键中断服务函数  key2按下测试CAN通信与RS485是否正常
 
-void key2_entry(external_irq_callback_args_t * p_args)
+void key2_entry(void * p_args)
 {
     flag_eth=1;
     RS485_Send_Example(flag_eth);
@@ -135,7 +135,7 @@ void key2_entry(external_irq_callback_args_t * p_args)
         rt_pin_write(LED_PIN_1, PIN_HIGH);
     }
 }
-void  test_board_entry(void)
+int test_board_entry(void)
 {
          flag_board=0;
          rt_kprintf("=====================RTCTEST=============================\n");
@@ -298,7 +298,7 @@ rt_uint8_t eth_test()
     {
         rt_kprintf("erron\r\n");
     }
-    char * target_name=ip4addr_ntoa(&(netdev->gw));
+    char * target_name = (char *)(ip4addr_ntoa(&(netdev->gw)));
     netdev = netdev_get_first_by_flags(NETDEV_FLAG_LINK_UP);
     if(netdev_cmd_ping(target_name, RT_NULL, 2, 0)==RT_EOK)
     {

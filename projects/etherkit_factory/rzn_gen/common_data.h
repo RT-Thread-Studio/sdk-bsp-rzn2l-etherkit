@@ -15,8 +15,8 @@ extern const external_irq_instance_t g_external_irq7;
 extern icu_instance_ctrl_t g_external_irq7_ctrl;
 extern const external_irq_cfg_t g_external_irq7_cfg;
 
-#ifndef key2_entry
-void key2_entry(external_irq_callback_args_t * p_args);
+#ifndef irq_callback
+void irq_callback(external_irq_callback_args_t * p_args);
 #endif
 /** External IRQ on ICU Instance. */
 extern const external_irq_instance_t g_external_irq6;
@@ -25,8 +25,8 @@ extern const external_irq_instance_t g_external_irq6;
 extern icu_instance_ctrl_t g_external_irq6_ctrl;
 extern const external_irq_cfg_t g_external_irq6_cfg;
 
-#ifndef key1_entry
-void key1_entry(external_irq_callback_args_t * p_args);
+#ifndef irq_callback
+void irq_callback(external_irq_callback_args_t * p_args);
 #endif
 /* IOPORT Instance */
 extern const ioport_instance_t g_ioport;
