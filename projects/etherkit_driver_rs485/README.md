@@ -1,93 +1,73 @@
 # RZ EtherKit Development Board RS485 Usage Instructions
 
-**English** | **[Chinese](./README_zh.md)**
+**English** | [**中文**](./README_zh.md)
 
 ## Introduction
 
-This example mainly introduces how to use the RS485 device on the EtherKit.
+This example demonstrates how to use the RS485 device on the EtherKit.
 
 ## Hardware Description
 
-![img](./figures/wps41.jpg) 
+![image-20241126102525956](figures/image-20241126102525956.png)
 
-## Software Description
+## FSP Configuration Instructions
 
-### FSP Configuration Instructions
+Open the FSP tool, create a new stack, and select `r_sci_uart5` with the following configuration:
 
-Open the FSP tool and create a new stack, selecting `r_sci_uart5`.
+![image-20241126102608069](figures/image-20241126102608069.png)
 
-The specific configuration information is as follows:
+## Example Project Description
 
-![image-20241125111023841](./figures/image-20241125111023841.png)
+RS485 Send Function: The function sends data every 1 second, for a total of 10 times, with each transmission being 1 byte:
 
-### RT-Thread Settings Configuration
-
-None
-
-### Project Example Description
-
-The project is developed using FSP library functions.
-
-RS485 sending function: send data once every 1 second, for a total of 10 times, with each transmission being 1 byte.
-
-```
+```c
 int rs485_send_test(void)
 {
-   static uint8_t i;
+   static uint8_t i;
 
-   for(i =1; i <= 10; i++)
-   {
-       /*发送数据*/
-       RS485_Send_Example(i);
-       rt_thread_delay(1000);
-   }
-   return 0;
+   for(i =1; i <= 10; i++)
+   {
+      /* Send data */
+      RS485_Send_Example(i);
+      rt_thread_delay(1000);
+   }
+   return 0;
 }
 ```
 
-RS485 receive interrupt function (the receive interrupt name needs to be configured in FSP in advance):
+RS485 Receive Interrupt Function (Ensure to configure the receive interrupt name in FSP in advance):
 
-```
-/*RS485_1中断回调函数*/
+```c
+/* RS485_1 interrupt callback function */
 void rs485_callback(uart_callback_args_t * p_args)
 {
-    rt_interrupt_enter();
+    rt_interrupt_enter();
 
-    switch(p_args->event)
-    {
-        /*接收数据时将数据打印出来*/
-        case UART_EVENT_RX_CHAR:
-          {
-            rt_kprintf("%d\n", p_args->data);
-            break;
-          }
-        default:
-            break;
-    }
+    switch(p_args->event)
+    {
+        /* Print received data */
+        case UART_EVENT_RX_CHAR:
+          {
+            rt_kprintf("%d\n", p_args->data);
+            break;
+          }
+        default:
+            break;
+    }
+}
 ```
 
-## Running
+## Compilation & Download
 
-### Compilation & Download
+* **RT-Thread Studio**: In RT-Thread Studio’s package manager, download the EtherKit resource package, create a new project, and compile it.
+* **IAR**: First, double-click `mklinks.bat` to create symbolic links between RT-Thread and the libraries folder. Then, use the `Env` tool to generate the IAR project. Finally, double-click `project.eww` to open the IAR project and compile it.
 
-**RT-Thread Studio**: Download the EtherKit resource package in the RT-Thread Studio package manager, then create a new project and compile it.
+After compiling, connect the development board’s JLink interface to the PC and download the firmware to the development board.
 
-**IAR**: First, double-click `mklinks.bat` to generate links for the rt-thread and libraries folders; then use Env to generate the IAR project; finally, double-click `project.eww` to open the IAR project and compile it.
+### Run Effect
 
-After compilation, connect the Jlink interface of the development board to the PC, and download the firmware to the development board.
+After entering the `rs485_send` command in the serial terminal, open another serial terminal to observe the received data:
 
-### Running Effects
+![image-20241126102934625](figures/image-20241126102934625.png)
 
-Output the command `rs485_send` through the serial port and open another terminal on a different serial port to view the received data.
-
-![image-20241125151746760](./figures/image-20241125151746760.png)
-
-![image-20241122171605909](./figures/image-20241122171605909.png)
-
-## Notes
-
-None
-
-## References
-
-Device and Driver: [UART_V2 Device](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/uart/uart_v2/uart)
+![image-20241126102958240](figures/image-20241126102958240.png)

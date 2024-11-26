@@ -1,167 +1,137 @@
-# EtherKit 开发板 BSP 说明
+# EtherKit 开发板 MQTT例程
 
 **中文** | [**English**](./README.md)
 
 ## 简介
 
-本文档为 RT-Thread EtherKit 开发板提供的 BSP (板级支持包) 说明。通过阅读快速上手章节开发者可以快速地上手该 BSP，将 RT-Thread 运行在开发板上。
+本例程基于kawaii-mqtt软件包，展示了通过MQTTX软件向服务器订阅主题和向指定主题发布消息的功能。
 
-主要内容如下：
+## 硬件说明
 
-- 开发板介绍
-- BSP 快速上手指南
+本例程需要依赖EtherKit板卡上的以太网模块完成网络通信，因此请确保硬件平台上的以太网模组可以正常工作。
 
-## 开发板介绍
+## FSP配置说明
 
-基于瑞萨 RZ/N2L 开发的 EtherKit 开发板，通过灵活配置软件包和 IDE，对嵌入系统应用程序进行开发。
+打开工程配置文件configuration.xml，新增r_gamc Stack：
 
-开发板正面外观如下图：
+![image-20241126104408737](figures/image-20241126104408737.png)
 
-![image-20240314165241884](..\..\docs\figures\big.png)
+点击g_ether0 Ethernet，配置中断回调函数为user_ether0_callback：
 
-该开发板常用 **板载资源** 如下：
+![image-20241126104422910](figures/image-20241126104422910.png)
 
-- MPU：R9A07G084M04GBG，最大工作频率 400MHz，Arm Cortex®-R52 内核，紧密耦合内存 128KB（带 ECC），内部 RAM 1.5 MB（带 ECC）
-- 调试接口：板载 J-Link 接口
-- 扩展接口：一个 PMOD 连接器
+下面配置phy信息，选择g_ether_phy0，Common配置为User Own Target；修改PHY LSI地址为1（根据原理图查询具体地址）；设置phy初始化回调函数为ether_phy_targets_initialize_rtl8211_rgmii()；同时设置MDIO为GMAC。
 
-**更多详细资料及工具**
+![image-20241126104437432](figures/image-20241126104437432.png)
 
-## 外设支持
+配置g_ether_selector0，选择以太网模式为交换机模式，PHY link设置为默认active-low，PHY接口模式设置为RGMII。
 
-本 BSP 目前对外设的支持情况如下：
+![image-20241126104519290](figures/image-20241126104519290.png)
 
-| **EtherCAT方案** | **支持情况** | **EtherCAT方案** | **支持情况** |
-| ---------------- | ------------ | ---------------- | ------------ |
-| EtherCAT_IO      | 支持         | EtherCAT_FOE      | 支持   		|
-| EtherCAT_EOE     | 支持         | EtherCAT_COE | 支持 |
-| **PROFINET方案** | **支持情况** | **Ethernet/IP方案** | **支持情况** |
-| P-Net（支持ProfiNET从站协议栈的开源评估软件包） | 支持         | EIP   | 正在支持中... |
-| **片上外设**     | **支持情况** | **组件**         | **支持情况** |
-| UART             | 支持         | LWIP             | 支持         |
-| GPIO             | 支持         | TCP/UDP          | 支持         |
-| HWIMER           | 支持         | MQTT             | 支持         |
-| IIC              | 支持         | TFTP             | 支持         |
-| WDT              | 支持         | Modbus主从站协议 | 支持         |
-| RTC              | 支持         |                  |              |
-| ADC              | 支持         |                  |              |
-| DAC              | 支持         |                  |              |
-| SPI              | 支持         |                  |              |
+网卡引脚参数配置，选择操作模式为RGMII：
 
-## 使用说明
+![image-20241126104533098](figures/image-20241126104533098.png)
 
-使用说明分为如下两个章节：
+ETHER_GMAC配置：
 
-- 快速上手
+![image-20241126104603633](figures/image-20241126104603633.png)
 
-  本章节是为刚接触 RT-Thread 的新手准备的使用说明，遵循简单的步骤即可将 RT-Thread 操作系统运行在该开发板上，看到实验效果 。
-- 进阶使用
+## RT-Thread Studio配置
 
-  本章节是为需要在 RT-Thread 操作系统上使用更多开发板资源的开发者准备的。通过使用 ENV 工具对 BSP 进行配置，可以开启更多板载资源，实现更多高级功能。
+回到Studio工程，配置RT-Thread Settings，点击选择硬件选项，找到芯片设备驱动，使能以太网；
 
-### 快速上手
+![image-20241126105410584](figures/image-20241126105410584.png)
 
-本 BSP 目前提供 GCC/IAR 工程。下面以 [IAR Embedded Workbench for Arm](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/) 开发环境为例，介绍如何将系统运行起来。
+找到软件包界面，我们搜索kawaii-mqtt软件包，并使能SAL选项：
 
-**硬件连接**
+![image-20241126105422144](figures/image-20241126105422144.png)
 
-使用 USB 数据线连接开发板到 PC，使用 J-link 接口下载和 DEBUG 程序。
+## 示例代码说明
 
-**编译下载**
-
-- 进入 bsp 目录下，打开 ENV 使用命令 `scons --target=iar` 生成 IAR工程。
-- 编译：双击 project.eww 文件，打开 IAR 工程，编译程序。
-- 调试：IAR 左上方导航栏点击 `Project->Download and Debug`下载并启动调试。
-
-
-
-**查看运行结果**
-
-下载程序成功之后，系统会自动运行并打印系统信息。
-
-连接开发板对应串口到 PC , 在终端工具里打开相应的串口（115200-8-1-N），复位设备后，可以看到 RT-Thread 的输出信息。输入 help 命令可查看系统中支持的命令。
-
-```bash
- \ | /
-- RT -     Thread Operating System
- / | \     5.1.0 build Mar 14 2024 18:26:01
- 2006 - 2024 Copyright by RT-Thread team
-
-Hello RT-Thread!
-==================================================
-This is a iar project which mode is ram execution!
-==================================================
-msh >help
-RT-Thread shell commands:
-clear            - clear the terminal screen
-version          - show RT-Thread version information
-list             - list objects
-backtrace        - print backtrace of a thread
-help             - RT-Thread shell help
-ps               - List threads in the system
-free             - Show the memory usage in the system
-pin              - pin [option]
-
-msh >
-```
-
-**应用入口函数**
-
-应用层的入口函数在 **src\hal_entry.c** 中 的 `void hal_entry(void)` 。用户编写的源文件可直接放在 src 目录下。
+这段代码实现了一个基于Kawaii MQTT客户端库的MQTT通信演示程序，用于连接到MQTT代理服务器（broker），订阅主题，并周期性发布消息。
 
 ```c
-void hal_entry(void)
+static void sub_topic_handle1(void* client, message_data_t* msg)
 {
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_kprintf("==================================================\n");
-    rt_kprintf("This is a iar project which mode is ram execution!\n");
-    rt_kprintf("==================================================\n");
-
-    while (1)
-    {
-        rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
+    (void) client;
+    KAWAII_MQTT_LOG_I("-----------------------------------------------------------------------------------");
+    KAWAII_MQTT_LOG_I("%s:%d %s()...\ntopic: %s\nmessage:%s", __FILE__, __LINE__, __FUNCTION__, msg->topic_name, (char*)msg->message->payload);
+    KAWAII_MQTT_LOG_I("-----------------------------------------------------------------------------------");
+}
+static int mqtt_publish_handle1(mqtt_client_t *client)
+{
+    mqtt_message_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.qos = QOS0;
+    msg.payload = (void *)"this is a kawaii mqtt test ...";
+    return mqtt_publish(client, "pub5323", &msg);
+}
+static char cid[64] = { 0 };
+static void kawaii_mqtt_demo(void *parameter)
+{
+    mqtt_client_t *client = NULL;
+    rt_thread_delay(6000);
+    mqtt_log_init();
+    client = mqtt_lease();
+    rt_snprintf(cid, sizeof(cid), "rtthread-5323", rt_tick_get());
+    mqtt_set_host(client, "broker.emqx.io");
+    mqtt_set_port(client, "1883");
+    mqtt_set_user_name(client, "RT-Thread");
+    mqtt_set_password(client, "012345678");
+    mqtt_set_client_id(client, cid);
+    mqtt_set_clean_session(client, 1);
+    KAWAII_MQTT_LOG_I("The ID of the Kawaii client is: %s ",cid);
+    mqtt_connect(client);
+    mqtt_subscribe(client, "sub5323", QOS0, sub_topic_handle1);
+    while (1) {
+        mqtt_publish_handle1(client);
+        mqtt_sleep_ms(4 * 1000);
     }
 }
+int ka_mqtt(void)
+{
+    rt_thread_t tid_mqtt;
+    tid_mqtt = rt_thread_create("kawaii_demo", kawaii_mqtt_demo, RT_NULL, 2048, 17, 10);
+    if (tid_mqtt == RT_NULL) {
+        return -RT_ERROR;
+    }
+    rt_thread_startup(tid_mqtt);
+    return RT_EOK;
+}
+MSH_CMD_EXPORT(ka_mqtt, Kawaii MQTT client test program);
 ```
 
-### 进阶使用
+## 编译&下载
 
-**资料及文档**
+* RT-Thread Studio：在RT-Thread Studio 的包管理器中下载EtherKit 资源包，然后创建新工程，执行编译。
+* IAR：首先双击mklinks.bat，生成rt-thread与libraries 文件夹链接；再使用Env 生成IAR工程；最后双击project.eww打开IAR工程，执行编译。
 
-- [开发板官网主页](https://www.renesas.cn/zh/products/microcontrollers-microprocessors/rz-mpus/rzn2l-integrated-tsn-compliant-3-port-gigabit-ethernet-switch-enables-various-industrial-applications)
-- [开发板数据手册](https://www.renesas.cn/zh/document/dst/rzn2l-group-datasheet?r=1622651)
-- [开发板硬件手册](https://www.renesas.cn/zh/document/mah/rzn2l-group-users-manual-hardware?r=1622651)
-- [RZ/N2L MCU 快速入门指南](https://www.renesas.cn/zh/document/apn/rzt2-rzn2-device-setup-guide-flash-boot-application-note?r=1622651)
-- [RZ/N2L Easy Download Guide](https://www.renesas.cn/zh/document/gde/rzn2l-easy-download-guide?r=1622651)
-- [Renesas RZ/N2L Group](https://www.renesas.cn/zh/document/fly/renesas-rzn2l-group?r=1622651)
+编译完成后，将开发板的Jlink接口与PC 机连接，然后将固件下载至开发板。
 
-**FSP 配置**
+## MQTTX配置
 
-需要修改瑞萨的 BSP 外设配置或添加新的外设端口，需要用到瑞萨的 [FSP](https://www2.renesas.cn/jp/zh/software-tool/flexible-software-package-fsp#document) 配置工具。请务必按照如下步骤完成配置。配置中有任何问题可到[RT-Thread 社区论坛](https://club.rt-thread.org/)中提问。
+安装并运行MQTTX，来到主界面，我们点击New Connection新增一个新连接；
 
-1. [下载灵活配置软件包 (FSP) | Renesas](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe)，请使用 FSP 2.0.0 版本
-2. 如何将 **”EtherKit板级支持包“**添加到 FSP 中，请参考文档[如何导入板级支持包](https://www2.renesas.cn/document/ppt/1527171?language=zh&r=1527191)
-3. 请参考文档：[RA系列使用FSP配置外设驱动](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/make-bsp/renesas-ra/RA系列使用FSP配置外设驱动?id=ra系列使用-fsp-配置外设驱动)。
+![image-20241126105552964](figures/image-20241126105552964.png)
 
-**ENV 配置**
+配置MQTT客户端信息，注意Client ID不要和开发板端一致，点击后面的重置按钮随意生成一个id即可，其他配置参考下述说明，配置结束后，点击右上角的Connect；
 
-- 如何使用 ENV 工具：[RT-Thread env 工具用户手册](https://www.rt-thread.org/document/site/#/development-tools/env/env)
+![image-20241126105603507](figures/image-20241126105603507.png)
 
-此 BSP 默认只开启了 UART0 的功能，如果需使用更多高级功能例如组件、软件包等，需要利用 ENV 工具进行配置。
+点击 + New Subscription，修改Topic name为sub5323并确认；
 
-步骤如下：
-1. 在 bsp 下打开 env 工具。
-2. 输入`menuconfig`命令配置工程，配置好之后保存退出。
-3. 输入`pkgs --update`命令更新软件包。
-4. 输入`scons --target=iar` 命令重新生成工程。
+![image-20241126105613817](figures/image-20241126105613817.png)
 
-## 联系人信息
+在下方功能框中编写订阅主题名称为sub5323，订阅信息按自己需求配置；
 
-在使用过程中若您有任何的想法和建议，建议您通过以下方式来联系到我们  [RT-Thread 社区论坛](https://club.rt-thread.org/)
+![image-20241126105624549](figures/image-20241126105624549.png)
 
-## 贡献代码
+## 运行效果
 
-如果您对 EtherKit 感兴趣，并且有一些好玩的项目愿意与大家分享的话欢迎给我们贡献代码，您可以参考 [如何向 RT-Thread 代码贡献](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/development-guide/github/github)。
+打开串口工具，运行ka_mqtt命令后查看：
+
+![image-20241126105643040](figures/image-20241126105643040.png)
+
+## 其他说明
+
+> MQTTX下载链接：https://packages.emqx.net/MQTTX/v1.9.6/MQTTX-Setup-1.9.6-x64.exe

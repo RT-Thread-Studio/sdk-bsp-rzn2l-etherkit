@@ -1,169 +1,206 @@
-# EtherKit Development Board BSP Documentation
+# EtherKit EtherCAT-EOE Example
 
-**English** | **[Chinese](./README_zh.md)**
+**English** | [**中文**](./README_zh.md)
 
 ## Introduction
 
-This document provides the BSP (Board Support Package) documentation for the RT-Thread EtherKit development board. By following the Quick Start section, developers can quickly get started with this BSP and run RT-Thread on the development board.
+EtherCAT EoE (**Ethernet over EtherCAT**) is a communication protocol in the EtherCAT standard used for transmitting standard Ethernet frames over an EtherCAT network. It allows non-real-time Ethernet communication to coexist with real-time EtherCAT communication, providing flexible network integration capabilities for industrial automation systems.
 
-The main contents are as follows:
+Key features and functionalities of EoE include:
 
-- Introduction to the Development Board
-- BSP Quick Start Guide
+1. **Ethernet Tunnel Transmission**:
+   - EoE encapsulates standard Ethernet frames in EtherCAT communication frames, allowing protocols like TCP/IP, UDP, HTTP, etc., to be transmitted over an EtherCAT network.
 
-## Introduction to the Development Board
+2. **Extended Network Functionality**:
+   - Allows EtherCAT slaves to act as virtual Ethernet devices in a TCP/IP network.
+   - Enables remote access to standard Ethernet devices through the EtherCAT communication link.
 
-The EtherKit development board is based on the Renesas RZ/N2L and is designed to facilitate embedded system application development by offering flexible software package and IDE configurations.
+3. **Efficient Integration**:
+   - The implementation of EoE does not affect the real-time performance of EtherCAT.
+   - Non-real-time Ethernet communication and real-time EtherCAT data exchange can coexist, each handling its specific tasks.
 
-The front view of the development board is shown below:
+4. **Use Cases**:
+   - **Device Management**: Access EtherCAT slave devices via IP for remote configuration, diagnostics, and firmware updates.
+   - **Mixed Networks**: Integrate devices requiring standard Ethernet communication, such as cameras, sensors, or industrial PCs.
 
-![image-20240314165241884](figures/big.png)
+5. **Simplified Network Cabling**:
+   - EoE allows Ethernet devices to be accessed over the EtherCAT network, reducing the need for independent Ethernet cabling in industrial automation scenarios.
 
-Key **onboard resources** include:
+6. **Typical Applications**:
+   - Remote monitoring and diagnostics in factory automation systems.
+   - Communication bridge between industrial robots, production equipment, and external IT systems.
 
-- MPU: R9A07G084M04GBG, maximum operating frequency of 400MHz, Arm Cortex®-R52 core, 128KB tightly coupled memory (with ECC), 1.5MB internal RAM (with ECC)
-- Debug Interface: Onboard J-Link interface
-- Expansion Interface: One PMOD connector
+This section demonstrates how to implement EtherCAT EOE master-slave communication using Beckhoff TwinCAT3 and the EtherKit development board.
 
-**More detailed information and tools**
+## Prerequisites
 
-## Peripheral Support
+**Software Environment**:
+- [RT-Thread Studio](https://download-redirect.rt-thread.org/download/studio/RT-Thread Studio_2.2.8-setup-x86_64_202405200930.exe)
+- [RZN-FSP v2.0.0](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe)
+- [Beckhoff Automation TwinCAT3](https://www.beckhoff.com/en-us/support/download-finder/search-result/?c-1=26782567)
 
-This BSP currently supports the following peripherals:
+**Hardware Environment**:
+- EtherKit development board
+- Ethernet cable
+- Jlink debugger
 
-Here is the translated text in English, keeping the markdown format:
+## TwinCAT3 Configuration
 
-| **EtherCAT Solution** | **Support Status** | **EtherCAT Solution** | **Support Status** |
-| --------------------- | ------------------ | --------------------- | ------------------ |
-| EtherCAT_IO           | Supported          | EtherCAT_FOE          | Supported          |
-| EtherCAT_EOE          | Supported          | EtherCAT_COE          | Supported          |
-| **PROFINET Solution** | **Support Status** | **Ethernet/IP Solution** | **Support Status** |
-| P-Net (Open source evaluation package supporting ProfiNET slave protocol stack) | Supported | EIP | In progress... |
-| **On-chip Peripherals** | **Support Status** | **Components**        | **Support Status** |
-| UART                  | Supported          | LWIP                  | Supported          |
-| GPIO                  | Supported          | TCP/UDP               | Supported          |
-| HWIMER                | Supported          | MQTT                  | Supported          |
-| IIC                   | Supported          | TFTP                  | Supported          |
-| WDT                   | Supported          | Modbus Master/Slave Protocol | Supported |
-| RTC                   | Supported          |                       |                    |
-| ADC                   | Supported          |                       |                    |
-| DAC                   | Supported          |                       |                    |
-| SPI                   | Supported          |                       |                    |
+> Before launching TwinCAT3, a few configuration steps are required:
+
+### Installing the ESI File
+
+Before starting TwinCAT, copy the ESI file from the provided folder to the TwinCAT target location: `..\TwinCAT\3.x\Config\IO\EtherCAT`.
+
+> Note: The ESI file is located at: `..\board\ports\ethercat\ESI_File\Renesas EtherCAT RZT2 EoE.xml`
+
+![image-20241126112646602](figures/image-20241126112646602.png)
+
+### Adding TwinCAT Ethernet Driver
+
+Add the TwinCAT Ethernet driver (only required for first-time configuration). From the Start menu, select [TwinCAT] → [Show Realtime Ethernet Compatible Device...], select the connected Ethernet port from the communication port, and install it.
+
+![image-20241126112725124](figures/image-20241126112725124.png)
+
+Here, you can see all Ethernet adapters available on the PC. Select the port you will use for testing and click install:
+
+![image-20241126112735628](figures/image-20241126112735628.png)
+
+Check the network adapter to confirm installation was successful:
+
+![image-20241126112749511](figures/image-20241126112749511.png)
+
+## FSP Configuration Instructions
+
+Next, we configure the pin initialization. Open the installed RZN-FSP 2.0.0 and select the root directory of your project:
+
+![image-20241126112823675](figures/image-20241126112823675.png)
+
+Now configure the peripherals and pins. Click **New Stack** and add the `ethercat_ssc_port` peripheral:
+
+![image-20241126112834517](figures/image-20241126112834517.png)
+
+Configure `ethercat_ssc_port`: Change Reset Port to `P13_4` and set the EEPROM size to **Under 32Kbits**:
+
+![image-20241126112844255](figures/image-20241126112844255.png)
+
+Enable the Ethernet interface and configure the network parameters. Add two PHYs (`phy0` and `phy1`). Note that EtherKit uses the `rtl8211` Ethernet card, which is not supported by the Renesas FSP, but Renesas provides a user-defined Ethernet interface. Follow the settings below and set the MDIO type to **GMAC**. Set the network initialization callback function to `ether_phy_targets_initialize_rtl8211_rgmii()`:
+
+![image-20241126112854883](figures/image-20241126112854883.png)
+
+Configure the network card pin parameters to operate in **RGMII mode**:
+
+![image-20241126112913073](figures/image-20241126112913073.png)
+
+EtherCAT ESC Configuration:
+
+![image-20241126112923063](figures/image-20241126112923063.png)
+
+ETHER_GMAC Configuration:
+
+![image-20241126112932511](figures/image-20241126112932511.png)
+
+Add the CMT timer for `ethercat_ssc_port` and configure the interrupt priority:
+
+![image-20241126112944554](figures/image-20241126112944554.png)
+
+Add Ethernet peripherals:
+
+![image-20241126113004795](figures/image-20241126113004795.png)
+
+Set Ethernet interrupt callback to `user_ether0_callback`:
+
+![image-20241126113018619](figures/image-20241126113018619.png)
+
+Finally, click **Generate Project Content** to generate the low-level driver source code.
+
+## RT-Thread Studio Configuration
+
+After completing the FSP configuration, the pin and peripheral initialization is complete. Now enable the EtherCAT EOE example in Studio. Open RT-Thread Studio, click **RT-Thread Settings**, and enable the **EOE Example**:
+
+![image-20241126113041985](figures/image-20241126113041985.png)
+
+After enabling, save the settings, synchronize the `scons` configuration, compile the program, and download it. After resetting the development board, check the serial logs:
+
+![image-20241126113050786](figures/image-20241126113050786.png)
+
+## EtherCAT EOE Configuration
+
+### Create a New TwinCAT Project
+
+Open TwinCAT, click **File** → **New** → **New Project**, choose **TwinCAT Projects**, and create a **TwinCAT XAR Project (XML format)**:
+
+![image-20241126113126419](figures/image-20241126113126419.png)
+
+### Start EOE App on the Slave
+
+Once the EtherKit development board is powered on, open the serial device, and enter the `eoe_app` command to start the EtherCAT slave app. After the program runs, you can see the EtherCAT thread running:
+
+![image-20241126113153779](figures/image-20241126113153779.png)
+
+### Scan for Slave Devices
+
+After creating the project, find **Devices** in the left navigation bar, right-click, and choose **Scan Devices**. If the slave device is detected successfully, you should see **Device x[EtherCAT]**; if the scan fails, it will display **Device x[EtherCAT Automation Protocol]**, indicating a failure to initialize the slave.
+
+![image-20241126113227936](figures/image-20241126113227936.png)
+
+Click **OK**, and a window will pop up: **Scan for boxes**. Click **Confirm**, and another window will pop up: **Activate Free Run**. Since this is the first time using EOE, you need to update the EEPROM firmware, so don't activate it yet.
+
+### Update the EEPROM Firmware
+
+Back in TwinCAT, in the left navigation bar, you can see the master-slave configuration interface after successfully scanning the slave device:
+
+![image-20241126113252391](figures/image-20241126113252391.png)
+
+Click **Box 1** (it may show **Renesas EtherCAT RZ/N2 EOE 2port** if the ESI firmware has been updated before). If it's your first time, it may display **Box 1 (0xFFFF FFFF)**. Double-click **Box 1**, and in the upper navigation bar of the middle interface, click **EtherCAT** and select **Advanced Settings**:
+
+![image-20241126113301987](figures/image-20241126113301987.png)
+
+Click **Download from List** as shown in the diagram:
+
+![image-20241126113311855](figures/image-20241126113311855.png)
+
+Write the ESI firmware to the EEPROM. Since we configured dual Ethernet ports, select **Renesas EtherCAT RZ/N2 EOE 2port**. If you have three Ethernet ports, select the 3port version of the ESI file:
+
+![image-20241126113320716](figures/image-20241126113320716.png)
 
 
-## Usage Instructions
 
-Usage instructions are divided into two sections:
+After downloading, right-click **Device x(EtherCAT)** to remove the device, rescan, and add the device again. Then, activate it (refer to the steps above).
 
-- **Quick Start**
+## EtherCAT EOE Communication
 
-  This section is designed for beginners who are new to RT-Thread. By following simple steps, users can run the RT-Thread OS on the development board and observe the experimental results.
+After downloading the ESI firmware to the EEPROM and rescanning the device, you will observe two green LEDs lighting up on the board (indicating normal communication). One LED will blink rapidly, and the other will stay on continuously, indicating that the master-slave communication is established.
 
-- **Advanced Usage**
+![image-20241126113439879](figures/image-20241126113439879.png)
 
-  This section is for developers who need to use more of the development board's resources within the RT-Thread OS. By configuring the BSP using the ENV tool, additional onboard resources and advanced features can be enabled.
+### EIO Test
 
-### Quick Start
+The provided EOE example includes the EIO protocol, so you can perform EIO testing. In this example, three USER LEDs are used as EIO inputs. Go back to TwinCAT, click **Device x(EtherCAT)** → **Box 1 (Renesas EtherCAT RZ/N2 EOE 2port)** → **RxPD0-Map** → **OutputCounter**:
 
-This BSP currently provides GCC/IAR project support. Below is a guide using the [IAR Embedded Workbench for Arm](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/) development environment to run the system.
+![image-20241126113502350](figures/image-20241126113502350.png)
 
-**Hardware Connection**
+Initially, the three USER LEDs on the development board are off. Click **Online** and **Write Value: 1** in the top left corner:
 
-Connect the development board to the PC via a USB cable. Use the J-Link interface to download and debug the program.
+![image-20241126113512676](figures/image-20241126113512676.png)
 
-**Compilation and Download**
+You will see LED0 (red) light up on the slave board, indicating the EIO test is successful. You can try other value combinations for different LED behaviors.
 
-- Navigate to the `bsp` directory and use the command `scons --target=iar` to generate the IAR project.
-- Compile: Double-click the `project.eww` file to open the IAR project and compile the program.
-- Debug: In the IAR navigation bar, click `Project -> Download and Debug` to download and start debugging.
+![image-20241126113525837](figures/image-20241126113525837.png)
 
-**Viewing the Run Results**
+### EOE Test
 
-After successfully downloading the program, the system will automatically run and print system information.
+Open the Ethernet adapter and choose the adapter used by the master, then set a static IP:
 
-Connect the corresponding serial port of the development board to the PC. Open the relevant serial port (115200-8-1-N) in the terminal tool. After resetting the device, you can view the RT-Thread output. Enter the `help` command to see the list of supported system commands.
+![image-20241126113547286](figures/image-20241126113547286.png)
 
-```bash
- \ | /  
-- RT -     Thread Operating System  
- / | \     5.1.0 build Mar 14 2024 18:26:01  
- 2006 - 2024 Copyright by RT-Thread team  
+Go back to TwinCAT, click **Box 1**, select **EtherCAT** → **Advanced Settings** → **MailBox** → **EOE**, and set the slave IP information:
 
-Hello RT-Thread!  
-==================================================  
-This is an IAR project in RAM execution mode!  
-==================================================  
-msh > help  
-RT-Thread shell commands:  
-clear            - clear the terminal screen  
-version          - show RT-Thread version information  
-list             - list objects  
-backtrace        - print backtrace of a thread  
-help             - RT-Thread shell help  
-ps               - List threads in the system  
-free             - Show the memory usage in the system  
-pin              - pin [option]  
+![image-20241126113555578](figures/image-20241126113555578.png)
 
-msh >
-```
+After these configurations, you can test the EtherCAT EOE communication between the master and slave using a **ping** test:
 
-**Application Entry Function**
+- Master IP: `192.168.10.99`
+- Slave IP: `192.168.10.100`
 
-The entry function for the application layer is located in **src\hal_entry.c** within `void hal_entry(void)`. User source files can be placed directly in the `src` directory.
-
-```c
-void hal_entry(void)
-{
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_kprintf("==================================================\n");
-    rt_kprintf("This is an IAR project in RAM execution mode!\n");
-    rt_kprintf("==================================================\n");
-
-    while (1)
-    {
-        rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
-    }
-}
-```
-
-### Advanced Usage
-
-**Resources and Documentation**
-
-- [Development Board Official Homepage](https://www.renesas.cn/zh/products/microcontrollers-microprocessors/rz-mpus/rzn2l-integrated-tsn-compliant-3-port-gigabit-ethernet-switch-enables-various-industrial-applications)
-- [Development Board Datasheet](https://www.renesas.cn/zh/document/dst/rzn2l-group-datasheet?r=1622651)
-- [Development Board Hardware Manual](https://www.renesas.cn/zh/document/mah/rzn2l-group-users-manual-hardware?r=1622651)
-- [RZ/N2L MCU Quick Start Guide](https://www.renesas.cn/zh/document/apn/rzt2-rzn2-device-setup-guide-flash-boot-application-note?r=1622651)
-- [RZ/N2L Easy Download Guide](https://www.renesas.cn/zh/document/gde/rzn2l-easy-download-guide?r=1622651)
-- [Renesas RZ/N2L Group](https://www.renesas.cn/zh/document/fly/renesas-rzn2l-group?r=1622651)
-
-**FSP Configuration**
-
-To modify Renesas BSP peripheral configurations or add new peripheral ports, the Renesas [FSP](https://www2.renesas.cn/jp/zh/software-tool/flexible-software-package-fsp#document) configuration tool is required. Please follow the steps outlined below for configuration. For any questions regarding the configuration, please visit the [RT-Thread Community Forum](https://club.rt-thread.org/).
-
-1. [Download the Flexible Software Package (FSP) | Renesas](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe), use FSP version 2.0.0.
-2. To add the **"EtherKit Board Support Package"** to FSP, refer to the document [How to Import a BSP](https://www2.renesas.cn/document/ppt/1527171?language=zh&r=1527191).
-3. For guidance on configuring peripheral drivers using FSP, refer to the document: [Configuring Peripheral Drivers Using FSP for RA Series](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/make-bsp/renesas-ra/RA-series-using-FSP-configure-peripheral-drivers?id=ra-series-using-fsp-configure-peripheral-drivers).
-
-**ENV Configuration**
-
-- To learn how to use the ENV tool, refer to the [RT-Thread ENV Tool User Manual](https://www.rt-thread.org/document/site/#/development-tools/env/env).
-
-By default, this BSP only enables the UART0 functionality. To use more advanced features such as components, software packages, and more, the ENV tool must be used for configuration.
-
-The steps are as follows:
-1. Open the ENV tool in the `bsp` directory.
-2. Use the `menuconfig` command to configure the project. Save and exit once the configuration is complete.
-3. Run the `pkgs --update` command to update the software packages.
-4. Run the `scons --target=iar` command to regenerate the project.
-
-## Contact Information
-
-If you have any thoughts or suggestions during usage, please feel free to contact us via the [RT-Thread Community Forum](https://club.rt-thread.org/).
-
-## Contribute Code
-
-If you're interested in EtherKit and have some exciting projects you'd like to share, we welcome code contributions. Please refer to [How to Contribute to RT-Thread Code](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/development-guide/github/github).
+![image-20241126113612960](figures/image-20241126113612960.png)

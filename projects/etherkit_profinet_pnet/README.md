@@ -1,6 +1,6 @@
 # EtherKit Development Board BSP Documentation
 
-**English** | **[Chinese](./README_zh.md)**
+**English** | [**中文**](./README_zh.md)
 
 ## Introduction
 

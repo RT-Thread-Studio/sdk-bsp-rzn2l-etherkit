@@ -1,169 +1,76 @@
-# EtherKit Development Board BSP Documentation
+# EtherKit Modbus-TCP/IP Example
 
-**English** | **[Chinese](./README_zh.md)**
+**English** | [**中文**](./README_zh.md)
 
 ## Introduction
 
-This document provides the BSP (Board Support Package) documentation for the RT-Thread EtherKit development board. By following the Quick Start section, developers can quickly get started with this BSP and run RT-Thread on the development board.
+This example is based on the agile_modbus package and demonstrates Modbus protocol communication over TCP/IP.
 
-The main contents are as follows:
+## Hardware Requirements
 
-- Introduction to the Development Board
-- BSP Quick Start Guide
+![image-20241126110356394](figures/image-20241126110356394.png)
 
-## Introduction to the Development Board
+## FSP Configuration Instructions
 
-The EtherKit development board is based on the Renesas RZ/N2L and is designed to facilitate embedded system application development by offering flexible software package and IDE configurations.
+* Open the project configuration file `configuration.xml`:
 
-The front view of the development board is shown below:
+![image-20241126110921803](figures/image-20241126110921803.png)
 
-![image-20240314165241884](figures/big.png)
+* Add the `r_gamc` stack:
 
-Key **onboard resources** include:
+![image-20241126110942044](figures/image-20241126110942044.png)
 
-- MPU: R9A07G084M04GBG, maximum operating frequency of 400MHz, Arm Cortex®-R52 core, 128KB tightly coupled memory (with ECC), 1.5MB internal RAM (with ECC)
-- Debug Interface: Onboard J-Link interface
-- Expansion Interface: One PMOD connector
+* Click on `g_ether0` Ethernet and configure the interrupt callback function as `user_ether0_callback`:
 
-**More detailed information and tools**
+![image-20241126110959958](figures/image-20241126110959958.png)
 
-## Peripheral Support
+* Next, configure the PHY information. Select `g_ether_phy0`, set the Common configuration to "User Own Target," change the PHY LSI address to 1 (refer to the schematic for the exact address), and set the PHY initialization callback function to `ether_phy_targets_initialize_rtl8211_rgmii()`. Also, set MDIO to GMAC.
 
-This BSP currently supports the following peripherals:
+![image-20241126111030094](figures/image-20241126111030094.png)
 
-Here is the translated text in English, keeping the markdown format:
+* Configure `g_ether_selector0`, set the Ethernet mode to **Switch mode**, set the PHY link to default **active-low**, and configure the PHY interface mode to **RGMII**.
 
-| **EtherCAT Solution** | **Support Status** | **EtherCAT Solution** | **Support Status** |
-| --------------------- | ------------------ | --------------------- | ------------------ |
-| EtherCAT_IO           | Supported          | EtherCAT_FOE          | Supported          |
-| EtherCAT_EOE          | Supported          | EtherCAT_COE          | Supported          |
-| **PROFINET Solution** | **Support Status** | **Ethernet/IP Solution** | **Support Status** |
-| P-Net (Open source evaluation package supporting ProfiNET slave protocol stack) | Supported | EIP | In progress... |
-| **On-chip Peripherals** | **Support Status** | **Components**        | **Support Status** |
-| UART                  | Supported          | LWIP                  | Supported          |
-| GPIO                  | Supported          | TCP/UDP               | Supported          |
-| HWIMER                | Supported          | MQTT                  | Supported          |
-| IIC                   | Supported          | TFTP                  | Supported          |
-| WDT                   | Supported          | Modbus Master/Slave Protocol | Supported |
-| RTC                   | Supported          |                       |                    |
-| ADC                   | Supported          |                       |                    |
-| DAC                   | Supported          |                       |                    |
-| SPI                   | Supported          |                       |                    |
+![image-20241126111045618](figures/image-20241126111045618.png)
 
+Configure the network card pin parameters, setting the operation mode to RGMII:
 
-## Usage Instructions
+![image-20241126111056497](figures/image-20241126111056497.png)
 
-Usage instructions are divided into two sections:
+* ETHER_GMAC configuration:
 
-- **Quick Start**
+![image-20241126111108626](figures/image-20241126111108626.png)
 
-  This section is designed for beginners who are new to RT-Thread. By following simple steps, users can run the RT-Thread OS on the development board and observe the experimental results.
+## RT-Thread Settings Configuration
 
-- **Advanced Usage**
+Return to the Studio project, configure **RT-Thread Settings**, select hardware options, and enable Ethernet by finding the chip device driver:
 
-  This section is for developers who need to use more of the development board's resources within the RT-Thread OS. By configuring the BSP using the ENV tool, additional onboard resources and advanced features can be enabled.
+![image-20241126111138462](figures/image-20241126111138462.png)
 
-### Quick Start
+In the software package interface, search for "modbus," select the `agile_modbus` package, and enable it:
 
-This BSP currently provides GCC/IAR project support. Below is a guide using the [IAR Embedded Workbench for Arm](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/) development environment to run the system.
+![image-20241126111206558](figures/image-20241126111206558.png)
 
-**Hardware Connection**
+## Compilation & Download
 
-Connect the development board to the PC via a USB cable. Use the J-Link interface to download and debug the program.
+* **RT-Thread Studio**: Download the EtherKit resource package in the RT-Thread Studio package manager, create a new project, and compile it.
+* **IAR**: First, double-click `mklinks.bat` to create the link between the rt-thread and libraries folders. Then, use Env to generate the IAR project. Finally, double-click `project.eww` to open the IAR project and compile it.
 
-**Compilation and Download**
+Once the compilation is complete, connect the Jlink interface of the development board to the PC and download the firmware to the board.
 
-- Navigate to the `bsp` directory and use the command `scons --target=iar` to generate the IAR project.
-- Compile: Double-click the `project.eww` file to open the IAR project and compile the program.
-- Debug: In the IAR navigation bar, click `Project -> Download and Debug` to download and start debugging.
+## Running Results
 
-**Viewing the Run Results**
+First, use an Ethernet cable to connect the development board's network port to a switch (if your computer has an extra Ethernet port, you can also use a shared adapter). Then, enter the command `modbus_tcp_test` in the serial tool to start the Modbus-TCP example:
 
-After successfully downloading the program, the system will automatically run and print system information.
+![image-20241126111241084](figures/image-20241126111241084.png)
 
-Connect the corresponding serial port of the development board to the PC. Open the relevant serial port (115200-8-1-N) in the terminal tool. After resetting the device, you can view the RT-Thread output. Enter the `help` command to see the list of supported system commands.
+Open the **Modbus Poll** software, connect to the development board, set the mode to **Modbus TCP/IP**, set the IP to the development board's IP address, and the port number to 502:
 
-```bash
- \ | /  
-- RT -     Thread Operating System  
- / | \     5.1.0 build Mar 14 2024 18:26:01  
- 2006 - 2024 Copyright by RT-Thread team  
+![image-20241126111250484](figures/image-20241126111250484.png)
 
-Hello RT-Thread!  
-==================================================  
-This is an IAR project in RAM execution mode!  
-==================================================  
-msh > help  
-RT-Thread shell commands:  
-clear            - clear the terminal screen  
-version          - show RT-Thread version information  
-list             - list objects  
-backtrace        - print backtrace of a thread  
-help             - RT-Thread shell help  
-ps               - List threads in the system  
-free             - Show the memory usage in the system  
-pin              - pin [option]  
+After a successful connection, the development board's terminal will display that the Modbus client is connected:
 
-msh >
-```
+![image-20241126111259367](figures/image-20241126111259367.png)
 
-**Application Entry Function**
+Return to the **Modbus Poll** software, and you will see that the read and write coil functions are working correctly:
 
-The entry function for the application layer is located in **src\hal_entry.c** within `void hal_entry(void)`. User source files can be placed directly in the `src` directory.
-
-```c
-void hal_entry(void)
-{
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_kprintf("==================================================\n");
-    rt_kprintf("This is an IAR project in RAM execution mode!\n");
-    rt_kprintf("==================================================\n");
-
-    while (1)
-    {
-        rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
-    }
-}
-```
-
-### Advanced Usage
-
-**Resources and Documentation**
-
-- [Development Board Official Homepage](https://www.renesas.cn/zh/products/microcontrollers-microprocessors/rz-mpus/rzn2l-integrated-tsn-compliant-3-port-gigabit-ethernet-switch-enables-various-industrial-applications)
-- [Development Board Datasheet](https://www.renesas.cn/zh/document/dst/rzn2l-group-datasheet?r=1622651)
-- [Development Board Hardware Manual](https://www.renesas.cn/zh/document/mah/rzn2l-group-users-manual-hardware?r=1622651)
-- [RZ/N2L MCU Quick Start Guide](https://www.renesas.cn/zh/document/apn/rzt2-rzn2-device-setup-guide-flash-boot-application-note?r=1622651)
-- [RZ/N2L Easy Download Guide](https://www.renesas.cn/zh/document/gde/rzn2l-easy-download-guide?r=1622651)
-- [Renesas RZ/N2L Group](https://www.renesas.cn/zh/document/fly/renesas-rzn2l-group?r=1622651)
-
-**FSP Configuration**
-
-To modify Renesas BSP peripheral configurations or add new peripheral ports, the Renesas [FSP](https://www2.renesas.cn/jp/zh/software-tool/flexible-software-package-fsp#document) configuration tool is required. Please follow the steps outlined below for configuration. For any questions regarding the configuration, please visit the [RT-Thread Community Forum](https://club.rt-thread.org/).
-
-1. [Download the Flexible Software Package (FSP) | Renesas](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe), use FSP version 2.0.0.
-2. To add the **"EtherKit Board Support Package"** to FSP, refer to the document [How to Import a BSP](https://www2.renesas.cn/document/ppt/1527171?language=zh&r=1527191).
-3. For guidance on configuring peripheral drivers using FSP, refer to the document: [Configuring Peripheral Drivers Using FSP for RA Series](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/make-bsp/renesas-ra/RA-series-using-FSP-configure-peripheral-drivers?id=ra-series-using-fsp-configure-peripheral-drivers).
-
-**ENV Configuration**
-
-- To learn how to use the ENV tool, refer to the [RT-Thread ENV Tool User Manual](https://www.rt-thread.org/document/site/#/development-tools/env/env).
-
-By default, this BSP only enables the UART0 functionality. To use more advanced features such as components, software packages, and more, the ENV tool must be used for configuration.
-
-The steps are as follows:
-1. Open the ENV tool in the `bsp` directory.
-2. Use the `menuconfig` command to configure the project. Save and exit once the configuration is complete.
-3. Run the `pkgs --update` command to update the software packages.
-4. Run the `scons --target=iar` command to regenerate the project.
-
-## Contact Information
-
-If you have any thoughts or suggestions during usage, please feel free to contact us via the [RT-Thread Community Forum](https://club.rt-thread.org/).
-
-## Contribute Code
-
-If you're interested in EtherKit and have some exciting projects you'd like to share, we welcome code contributions. Please refer to [How to Contribute to RT-Thread Code](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/development-guide/github/github).
+![image-20241126111311175](figures/image-20241126111311175.png)

@@ -1,167 +1,214 @@
-# EtherKit 开发板 BSP 说明
+# EtherKit EtherCAT-EOE例程
 
 **中文** | [**English**](./README.md)
 
 ## 简介
 
-本文档为 RT-Thread EtherKit 开发板提供的 BSP (板级支持包) 说明。通过阅读快速上手章节开发者可以快速地上手该 BSP，将 RT-Thread 运行在开发板上。
+EtherCAT EoE（**Ethernet over EtherCAT**）是 EtherCAT 协议中的一种通信协议，用于在 EtherCAT 网络上传输标准以太网数据包。它允许非实时的以太网通信与实时的 EtherCAT 通信共存，为工业自动化系统提供了灵活的网络集成能力。
 
-主要内容如下：
+以下是 EoE 的主要特点和功能：
 
-- 开发板介绍
-- BSP 快速上手指南
+1. **以太网隧道传输**：
 
-## 开发板介绍
+2. - EoE 在 EtherCAT 通信帧中封装标准的以太网数据包，使标准以太网通信协议（如 TCP/IP、UDP、HTTP      等）可以通过 EtherCAT 网络传输。
 
-基于瑞萨 RZ/N2L 开发的 EtherKit 开发板，通过灵活配置软件包和 IDE，对嵌入系统应用程序进行开发。
+3. **扩展网络功能**：
 
-开发板正面外观如下图：
+4. - 支持将 EtherCAT 从站作为虚拟以太网设备加入到 TCP/IP 网络中。
+   - 允许通过 EtherCAT 通信链路访问远程的标准以太网设备。
 
-![image-20240314165241884](..\..\docs\figures\big.png)
+5. **高效整合**：
 
-该开发板常用 **板载资源** 如下：
+6. - EoE 的实现不会影响 EtherCAT 的实时性能。
+   - 非实时的以太网通信与实时的 EtherCAT 数据交换能够共存，各司其职。
 
-- MPU：R9A07G084M04GBG，最大工作频率 400MHz，Arm Cortex®-R52 内核，紧密耦合内存 128KB（带 ECC），内部 RAM 1.5 MB（带 ECC）
-- 调试接口：板载 J-Link 接口
-- 扩展接口：一个 PMOD 连接器
+7. **使用场景**：
 
-**更多详细资料及工具**
+8. - **设备管理**：通过 IP 协议访问 EtherCAT 从站设备（如远程配置、诊断和固件更新）。
+   - **混合网络**：集成需要标准以太网通信的设备（如摄像头、传感器或工控机）。
 
-## 外设支持
+9. **简化网络布线**：
 
-本 BSP 目前对外设的支持情况如下：
+10. - 在工业自动化场景中，EoE 允许通过 EtherCAT 网络访问以太网设备，从而减少了独立以太网布线的需求。
 
-| **EtherCAT方案** | **支持情况** | **EtherCAT方案** | **支持情况** |
-| ---------------- | ------------ | ---------------- | ------------ |
-| EtherCAT_IO      | 支持         | EtherCAT_FOE      | 支持   		|
-| EtherCAT_EOE     | 支持         | EtherCAT_COE | 支持 |
-| **PROFINET方案** | **支持情况** | **Ethernet/IP方案** | **支持情况** |
-| P-Net（支持ProfiNET从站协议栈的开源评估软件包） | 支持         | EIP   | 正在支持中... |
-| **片上外设**     | **支持情况** | **组件**         | **支持情况** |
-| UART             | 支持         | LWIP             | 支持         |
-| GPIO             | 支持         | TCP/UDP          | 支持         |
-| HWIMER           | 支持         | MQTT             | 支持         |
-| IIC              | 支持         | TFTP             | 支持         |
-| WDT              | 支持         | Modbus主从站协议 | 支持         |
-| RTC              | 支持         |                  |              |
-| ADC              | 支持         |                  |              |
-| DAC              | 支持         |                  |              |
-| SPI              | 支持         |                  |              |
+11. **典型应用**：
 
-## 使用说明
+12. - 工厂自动化系统中的远程监控和诊断。
+    - 工业机器人或生产设备与外部 IT 系统的通信桥接。
 
-使用说明分为如下两个章节：
+本节将演示如何使用Beckhoff TwinCAT3和EtherKit开发板实现EtherCAT EOE主从站通信。
 
-- 快速上手
+## 前期准备
 
-  本章节是为刚接触 RT-Thread 的新手准备的使用说明，遵循简单的步骤即可将 RT-Thread 操作系统运行在该开发板上，看到实验效果 。
-- 进阶使用
+软件环境：
 
-  本章节是为需要在 RT-Thread 操作系统上使用更多开发板资源的开发者准备的。通过使用 ENV 工具对 BSP 进行配置，可以开启更多板载资源，实现更多高级功能。
+- [RT-Thread Studio](https://download-redirect.rt-thread.org/download/studio/RT-Thread Studio_2.2.8-setup-x86_64_202405200930.exe)
+- [RZN-FSP v2.0.0](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe)
+- [Beckhoff Automation TwinCAT3](https://www.beckhoff.com/en-us/support/download-finder/search-result/?c-1=26782567)
 
-### 快速上手
+硬件环境：
 
-本 BSP 目前提供 GCC/IAR 工程。下面以 [IAR Embedded Workbench for Arm](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/) 开发环境为例，介绍如何将系统运行起来。
+- EtherKit开发板
+- 网线一根
+- Jlink调试器
 
-**硬件连接**
+## TwinCAT3配置
 
-使用 USB 数据线连接开发板到 PC，使用 J-link 接口下载和 DEBUG 程序。
+> 在启动TwinCAT3之前，我们还需要做一些配置操作：
 
-**编译下载**
+### 安装ESI文件
 
-- 进入 bsp 目录下，打开 ENV 使用命令 `scons --target=iar` 生成 IAR工程。
-- 编译：双击 project.eww 文件，打开 IAR 工程，编译程序。
-- 调试：IAR 左上方导航栏点击 `Project->Download and Debug`下载并启动调试。
+启动TwinCAT之前，将发布文件夹中包含的ESI文件复制到TwinCAT目标位置：“..\TwinCAT\3.x\Config\IO\EtherCAT”
 
+> 注意：当前版本的 ESI 文件位于：..\board\ports\ethercat\ESI_File\Renesas EtherCAT RZT2 EoE.xml”
 
+![image-20241126112646602](figures/image-20241126112646602.png)
 
-**查看运行结果**
+### 添加TwinCAT网卡驱动
 
-下载程序成功之后，系统会自动运行并打印系统信息。
+添加 TwinCAT 的以太网驱动程序（仅限首次使用配置即可）；从开始菜单中，选择 [TwinCAT] → [Show Realtime Ethernet Compatible Devise…]，从通信端口中选择连接的以太网端口并安装。
 
-连接开发板对应串口到 PC , 在终端工具里打开相应的串口（115200-8-1-N），复位设备后，可以看到 RT-Thread 的输出信息。输入 help 命令可查看系统中支持的命令。
+![image-20241126112725124](figures/image-20241126112725124.png)
 
-```bash
- \ | /
-- RT -     Thread Operating System
- / | \     5.1.0 build Mar 14 2024 18:26:01
- 2006 - 2024 Copyright by RT-Thread team
+在这里我们能看到目前PC端的所有以太网适配器信息，选择我们测试要用的端口后，点击安装：
 
-Hello RT-Thread!
-==================================================
-This is a iar project which mode is ram execution!
-==================================================
-msh >help
-RT-Thread shell commands:
-clear            - clear the terminal screen
-version          - show RT-Thread version information
-list             - list objects
-backtrace        - print backtrace of a thread
-help             - RT-Thread shell help
-ps               - List threads in the system
-free             - Show the memory usage in the system
-pin              - pin [option]
+![image-20241126112735628](figures/image-20241126112735628.png)
 
-msh >
-```
+检查网络适配器，可以看到已经成功安装了：
 
-**应用入口函数**
+![image-20241126112749511](figures/image-20241126112749511.png)
 
-应用层的入口函数在 **src\hal_entry.c** 中 的 `void hal_entry(void)` 。用户编写的源文件可直接放在 src 目录下。
+## FSP配置说明
 
-```c
-void hal_entry(void)
-{
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_kprintf("==================================================\n");
-    rt_kprintf("This is a iar project which mode is ram execution!\n");
-    rt_kprintf("==================================================\n");
+接下来就是引脚初始化配置了，打开安装的RZN-FSP 2.0.0，选择我们工程的根目录：
 
-    while (1)
-    {
-        rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
-    }
-}
-```
+![image-20241126112823675](figures/image-20241126112823675.png)
 
-### 进阶使用
+我们进行以下外设及引脚的配置：点击New Stack，并添加 ethercat_ssc_port 外设：
 
-**资料及文档**
+![image-20241126112834517](figures/image-20241126112834517.png)
 
-- [开发板官网主页](https://www.renesas.cn/zh/products/microcontrollers-microprocessors/rz-mpus/rzn2l-integrated-tsn-compliant-3-port-gigabit-ethernet-switch-enables-various-industrial-applications)
-- [开发板数据手册](https://www.renesas.cn/zh/document/dst/rzn2l-group-datasheet?r=1622651)
-- [开发板硬件手册](https://www.renesas.cn/zh/document/mah/rzn2l-group-users-manual-hardware?r=1622651)
-- [RZ/N2L MCU 快速入门指南](https://www.renesas.cn/zh/document/apn/rzt2-rzn2-device-setup-guide-flash-boot-application-note?r=1622651)
-- [RZ/N2L Easy Download Guide](https://www.renesas.cn/zh/document/gde/rzn2l-easy-download-guide?r=1622651)
-- [Renesas RZ/N2L Group](https://www.renesas.cn/zh/document/fly/renesas-rzn2l-group?r=1622651)
+配置ethercat_ssc_port：修改Reset Port为P13_4，同时EEPROM_Size大小设置为Under 32Kbits；
 
-**FSP 配置**
+![image-20241126112844255](figures/image-20241126112844255.png)
 
-需要修改瑞萨的 BSP 外设配置或添加新的外设端口，需要用到瑞萨的 [FSP](https://www2.renesas.cn/jp/zh/software-tool/flexible-software-package-fsp#document) 配置工具。请务必按照如下步骤完成配置。配置中有任何问题可到[RT-Thread 社区论坛](https://club.rt-thread.org/)中提问。
+使能网卡类型、配置网卡设备参数，这里我们添加两个phy（phy0和phy1），其中需要注意的是，EtherKit使用的是rtl8211网卡，并不在瑞萨FSP的支持范围内，但好在瑞萨预留了用户自定义网卡接口，因此按照如下设置来配置网卡，同时设置MDIO类型为GMAC，设置网卡初始化回调函数ether_phy_targets_initialize_rtl8211_rgmii()；
 
-1. [下载灵活配置软件包 (FSP) | Renesas](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe)，请使用 FSP 2.0.0 版本
-2. 如何将 **”EtherKit板级支持包“**添加到 FSP 中，请参考文档[如何导入板级支持包](https://www2.renesas.cn/document/ppt/1527171?language=zh&r=1527191)
-3. 请参考文档：[RA系列使用FSP配置外设驱动](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/make-bsp/renesas-ra/RA系列使用FSP配置外设驱动?id=ra系列使用-fsp-配置外设驱动)。
+![image-20241126112854883](figures/image-20241126112854883.png)
 
-**ENV 配置**
+网卡引脚参数配置，选择操作模式为RGMII：
 
-- 如何使用 ENV 工具：[RT-Thread env 工具用户手册](https://www.rt-thread.org/document/site/#/development-tools/env/env)
+![image-20241126112913073](figures/image-20241126112913073.png)
 
-此 BSP 默认只开启了 UART0 的功能，如果需使用更多高级功能例如组件、软件包等，需要利用 ENV 工具进行配置。
+ETHER_ESC设置：
 
-步骤如下：
-1. 在 bsp 下打开 env 工具。
-2. 输入`menuconfig`命令配置工程，配置好之后保存退出。
-3. 输入`pkgs --update`命令更新软件包。
-4. 输入`scons --target=iar` 命令重新生成工程。
+![image-20241126112923063](figures/image-20241126112923063.png)
 
-## 联系人信息
+ETHER_GMAC配置：
 
-在使用过程中若您有任何的想法和建议，建议您通过以下方式来联系到我们  [RT-Thread 社区论坛](https://club.rt-thread.org/)
+![image-20241126112932511](figures/image-20241126112932511.png)
 
-## 贡献代码
+为ethercat_ssc_port添加cmt定时器并配置中断优先级：
 
-如果您对 EtherKit 感兴趣，并且有一些好玩的项目愿意与大家分享的话欢迎给我们贡献代码，您可以参考 [如何向 RT-Thread 代码贡献](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/development-guide/github/github)。
+![image-20241126112944554](figures/image-20241126112944554.png)
+
+添加Ethernet外设：
+
+![image-20241126113004795](figures/image-20241126113004795.png)
+
+ethernet中断触发回调设置为：user_ether0_callback
+
+![image-20241126113018619](figures/image-20241126113018619.png)
+
+最后点击Generate Project Content生成底层驱动源码。
+
+## RT-Thread Studio配置
+
+完成FSP配置之后，引脚及外设的初始化就暂告一段落了，接下来需要我们使能EtherCAT EOE示例，打开Studio，点击 RT-Thread Settings，使能EOE示例：
+
+![image-20241126113041985](figures/image-20241126113041985.png)
+
+使能完毕后我们保存settings配置并同步scons配置，同时编译并下载程序，复位开发板后观察串口日志：
+
+![image-20241126113050786](figures/image-20241126113050786.png)
+
+## EtherCAT EOE配置
+
+### 新建TwinCAT工程
+
+打开TwinCAT软件，点击文件->新建->新建项目，选择TwinCAT Projects，创建TwinCAT XAR Project(XML format)工程：
+
+![image-20241126113126419](figures/image-20241126113126419.png)
+
+### 从站启动EOE App
+
+将EtherKit开发板上电后，打开串口设备，输入 eoe_app 指令来启动EtherCAT从站app，程序运行后可以看到ethercat线程正在运行。
+
+![image-20241126113153779](figures/image-20241126113153779.png)
+
+### 从站设备扫描
+
+新建工程之后，在左侧导航栏找到Devices，右键选择扫描设备。正常来说如果扫描从站设备成功的话是会显示：Device x[EtherCAT]；而扫描失败则显示的是：Device x[EtherCAT Automation Protocol]，此时就代表从站初始化失败。
+
+![image-20241126113227936](figures/image-20241126113227936.png)
+
+点击Ok后会弹出一个窗口：Scan for boxes，点击确认后，会再次弹出窗口：Activate Free Run，由于我们首次使用EOE还需要更新EEPROM固件，所以暂时先不激活。
+
+### 更新EEPROM固件
+
+回到TwinCAT，在左侧导航栏中，由于我们已经成功扫描到从站设备，因此可以看到主从站的配置界面：
+
+![image-20241126113252391](figures/image-20241126113252391.png)
+
+我们点击Box 1(由于此处我已经刷过一次EOE的ESI固件，所以显示的是Renesas EtherCAT RZ/N2 EOE 2port)，正常第一次显示的应该是Box 1(0xFFFF FFFF)，无需在意，我们双击Box 1，在中间界面的上方导航栏中单击EtherCAT，并点击Advanced Settings…：
+
+![image-20241126113301987](figures/image-20241126113301987.png)
+
+这里按图示点击Download from List…：
+
+![image-20241126113311855](figures/image-20241126113311855.png)
+
+我们写入ESI固件到EEPROM中，这里由于我们配置的是双网口，所以选择Renesas EtherCAT RZ/N2 EOE 2port，如果你配置的是三网口的话则选择3port后缀的ESI文件进行下载。
+
+![image-20241126113320716](figures/image-20241126113320716.png)
+
+下载完成之后，我们右键Device x(EtherCAT)移除设备后重新扫描并添加设备，并完成激活工作（参考上文）。
+
+![image-20241126113331379](figures/image-20241126113331379.png)
+
+## EtherCAT EOE通信
+
+在完成EEPROM下载ESI固件并重新扫描添加设备后，激活Device我们可以观察到，板载有两颗绿色LED亮起（通信正常），并且其中一颗保持高频率闪烁一颗保持常亮，此时主从站就可以建立起正常的通信了。
+
+![image-20241126113439879](figures/image-20241126113439879.png)
+
+### EIO测试
+
+由于我们提供的EOE工程集成了EIO协议，因此可直接进行EIO测试，在本例程中，我们提供三个USER LED作为EIO的输入，回到TwinCAT，依次点击Device x(EtherCAT)->Box 1(Renesas EtherCAT RZ/N2 EOE 2port)->RxPD0-Map->OutputCounter：
+
+![image-20241126113502350](figures/image-20241126113502350.png)
+
+此时的开发板默认的三颗USER LED还处于灭灯状态，这里我们点击左上角的Online，并且 Write Value：1
+
+![image-20241126113512676](figures/image-20241126113512676.png)
+
+此时可以发现从站开发板同时亮起LED0（红灯），EIO测试正常，当然也可以随意尝试其他value组合，会有不同的LED阵列亮暗行为。
+
+![image-20241126113525837](figures/image-20241126113525837.png)
+
+### EOE测试
+
+打开以太网适配器，选择主站所使用的适配器并设置静态IP：
+
+![image-20241126113547286](figures/image-20241126113547286.png)
+
+回到TwinCAT，我们点击Box 1，选择EtherCAT->Advanced Settings…->MailBox->EOE->设置IP Port，设置从站IP信息：
+
+![image-20241126113555578](figures/image-20241126113555578.png)
+
+完成这些配置后，我们就能测试使用EtherCAT EOE对主从站进行ping测试了：
+
+* 主站IP：192.168.10.99
+* 从站IP：192.168.10.100
+
+![image-20241126113612960](figures/image-20241126113612960.png)

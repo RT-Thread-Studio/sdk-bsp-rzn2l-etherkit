@@ -1,74 +1,67 @@
-# RZ EtherKit Development Board KEY Usage Guide
+# EtherKit Button Interrupt Usage Instructions
 
-**English** | [**Chinese**](./README_zh.md)
+**English** | [**中文**](./README_zh.md)
 
 ## Introduction
 
-This example demonstrates how the onboard KEY buttons control the RGB-LED by toggling the RGB lights.
+This example demonstrates how to use the onboard button (KEY) to trigger an external interrupt. When a specified KEY is pressed, related information is printed, and the corresponding LED is activated.
 
 ## Hardware Description
 
-![img](./figures/wps23.jpg) 
+![image-20241126094443103](figures/image-20241126094443103.png)
 
-Figure 3-1 Key Circuit Diagram
+![image-20241126094447614](figures/image-20241126094447614.png)
 
-![img](./figures/wps24.jpg) 
+As shown in the diagram above, KEY1 (LEFT) and KEY2 (RIGHT) are connected to MCU pins P14_2 (LEFT) and P16_3 (RIGHT), respectively. Pressing the KEY button generates a high signal, and releasing it generates a low signal.
 
-Figure 3-2 Key Pinout Diagram
+The positions of the keys on the development board are shown in the following diagram:
 
-As shown above, the KEY1 (LEFT) and KEY2 (RIGHT) pins are connected to microcontroller pins P14_2 (LEFT) and P16_3 (RIGHT), respectively. When a KEY button is pressed, it outputs a high signal; when released, it outputs a low signal.
+![image-20241126094515711](figures/image-20241126094515711.png)
 
-The position of the keys on the development board is shown below:
+## FSP Configuration
 
-![img](./figures/wps25.jpg) 
+First, download the official FSP code generation tool:
 
-Figure 3-3 Key Location
+* https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe
 
-## Software Description
+Once installed, double-click `rasc.exe` in Eclipse and open the project configuration file `configuration.xml` as shown in the following image:
 
-### FSP Configuration
+![image-20241126094646266](figures/image-20241126094646266.png)
 
-First, download the official FSP code generation tool: [setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe). After installation, double-click `rasc.exe` under Eclipse, and open the project configuration file `configuration.xml` as shown below:
+Next, add two stacks: New Stack -> Input -> External IRQ (r_icu):
 
-![img](./figures/wps1.jpg) 
+![image-20241126094700406](figures/image-20241126094700406.png)
 
-Opening the configuration file.
+Now, enable the IRQ functionality in the pin configuration. Select the two interrupt pins to be enabled: KEY1 (IRQ6) and KEY2 (IRQ7):
 
-Next, add two stacks: `New Stack` -> `Input` -> `External IRQ (r_icu)`.
+![image-20241126094712016](figures/image-20241126094712016.png)
 
-![img](./figures/wps2.jpg) 
+Return to the Stacks interface and configure IRQ6 and IRQ7 by specifying the interrupt names, channel numbers, and callback functions:
 
-Adding IRQ Stack.
+![image-20241126094728330](figures/image-20241126094728330.png)
 
-Then, enable IRQ functionality in the pin configuration. Select the two interrupt pins to enable as shown below: KEY1 (IRQ6) and KEY2 (IRQ7).
+## Example Code Description
 
-![img](./figures/wps3.jpg) 
+The source code for this example is located at `/projects/etherkit_basic_key_irq`.
 
-Enabling IRQ.
-
-Return to the Stacks interface. Configure IRQ6 and IRQ7 with the corresponding interrupt names, channel numbers, and interrupt callback functions.
-
-![img](./figures/wps4.jpg) 
-
-IRQ Configuration.
-
-### Example Code Description
-
-The source code for this example is located in `/projects/etherkit_basic_key_irq`.
-
-The microcontroller pin definitions for KEY1 (LEFT) and KEY2 (RIGHT) are as follows:
+The MCU pin definitions for KEY1 (LEFT) and KEY2 (RIGHT) are as follows:
 
 ```c
 /* Configure key IRQ pins */
+
 #define IRQ_TEST_PIN1 BSP_IO_PORT_14_PIN_2
 #define IRQ_TEST_PIN2 BSP_IO_PORT_16_PIN_3
-
-/* Configure LED pins */
-#define LED_PIN_B   BSP_IO_PORT_14_PIN_0 /* Onboard BLUE LED pin */
-#define LED_PIN_G   BSP_IO_PORT_14_PIN_1 /* Onboard GREEN LED pin */
 ```
 
-The interrupt source code for the buttons is located in `/projects/etherkit_basic_key_irq/src/hal_entry.c`. When the corresponding interrupt button is pressed, it triggers the related print messages.
+The MCU pin definitions for the LED are as follows:
+
+```c
+/* Configure LED pins */
+#define LED_PIN_B    BSP_IO_PORT_14_PIN_0 /* Onboard BLUE LED pins */
+#define LED_PIN_G    BSP_IO_PORT_14_PIN_1 /* Onboard GREEN LED pins */
+```
+
+The source code for the button interrupt is located at `/projects/etherkit_basic_key_irq/src/hal_entry.c`. When the corresponding interrupt button is pressed, it triggers the printing of related information.
 
 ```c
 static void irq_callback_test(void *args)
@@ -83,52 +76,41 @@ void hal_entry(void)
     rt_kprintf("This example project is a basic key IRQ routine!\n");
     rt_kprintf("==================================================\n");
 
-    /* Initialize */
+    /* init */
     rt_err_t err = rt_pin_attach_irq(IRQ_TEST_PIN1, PIN_IRQ_MODE_RISING, irq_callback_test, (void *)1);
     if (RT_EOK != err)
     {
-        rt_kprintf("\n Attach IRQ failed. \n");
+        rt_kprintf("\n attach irq failed. \n");
     }
-
     err = rt_pin_attach_irq(IRQ_TEST_PIN2, PIN_IRQ_MODE_RISING, irq_callback_test, (void *)2);
     if (RT_EOK != err)
     {
-        rt_kprintf("\n Attach IRQ failed. \n");
+        rt_kprintf("\n attach irq failed. \n");
     }
 
     err = rt_pin_irq_enable(IRQ_TEST_PIN1, PIN_IRQ_ENABLE);
     if (RT_EOK != err)
     {
-        rt_kprintf("\n Enable IRQ failed. \n");
+        rt_kprintf("\n enable irq failed. \n");
     }
-
     err = rt_pin_irq_enable(IRQ_TEST_PIN2, PIN_IRQ_ENABLE);
     if (RT_EOK != err)
     {
-        rt_kprintf("\n Enable IRQ failed. \n");
+        rt_kprintf("\n enable irq failed. \n");
     }
 }
 ```
 
-## Execution
+## Compilation & Download
 
-### Compilation & Download
+* **RT-Thread Studio**: In RT-Thread Studio's package manager, download the EtherKit resource package, create a new project, and compile it.
 
-- **RT-Thread Studio**: Use the RT-Thread Studio package manager to download the EtherKit resource package. Then create a new project and compile it.  
-- **IAR**: First, run `mklinks.bat` to generate symbolic links for the `rt-thread` and `libraries` folders. Then use `Env` to generate the IAR project, and finally, double-click `project.eww` to open the IAR project and compile it.
+* **IAR**: First, double-click `mklinks.bat` to create symbolic links between RT-Thread and the libraries folder. Then, use the `Env` tool to generate the IAR project. Finally, double-click `project.eww` to open the IAR project and compile it.
 
-After compilation, connect the development board's JLink interface to the PC and download the firmware to the board.
+After compiling, connect the development board's JLink interface to the PC and download the firmware to the development board.
 
-### Operation Effect
+## Run Effect
 
-Press the reset button to restart the development board. Initially, LED1 and LED2 are off. Pressing KEY1 will light up LED1 (Blue), while pressing KEY2 will light up LED2 (Green).
+After pressing the reset button to restart the development board, the initial state has both LED1 and LED2 turned off. When KEY1 is pressed, LED1 (Blue) will light up; when KEY2 is pressed, LED2 (Green) will light up.
 
-![img](./figures/wps26.jpg) 
-
-## Notes
-
-None at the moment.
-
-## References
-
-- Devices and Drivers: [PIN Device](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/pin/pin)
+![image-20241126095034441](figures/image-20241126095034441.png)

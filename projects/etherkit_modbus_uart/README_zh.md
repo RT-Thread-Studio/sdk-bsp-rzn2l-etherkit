@@ -1,167 +1,71 @@
-# EtherKit 开发板 BSP 说明
+# EtherKit Modbus-UART例程
 
 **中文** | [**English**](./README.md)
 
 ## 简介
 
-本文档为 RT-Thread EtherKit 开发板提供的 BSP (板级支持包) 说明。通过阅读快速上手章节开发者可以快速地上手该 BSP，将 RT-Thread 运行在开发板上。
+本例程基于agile_modbus软件包，展示了通过串口方式实现modbus协议通信的示例。Modbus UART 是一种通过串口通信实现的 Modbus 协议版本，广泛应用于工业自动化和控制系统中。Modbus 是一种开放的通信协议，用于在控制设备之间传输数据，支持多种物理层，如 UART、TCP/IP 和 RS-485/232。
 
-主要内容如下：
+## 硬件说明
 
-- 开发板介绍
-- BSP 快速上手指南
+![image-20241126105924215](figures/image-20241126105924215.png)
 
-## 开发板介绍
+如上图所示，我们本次要使用到的外设为SCI，其中复用SCI3为串口模式，因对应的TX引脚为P18_0，RX引脚为P17_7。
 
-基于瑞萨 RZ/N2L 开发的 EtherKit 开发板，通过灵活配置软件包和 IDE，对嵌入系统应用程序进行开发。
+## FSP配置
 
-开发板正面外观如下图：
+打开工程下的configuration.xml文件，我们添加一个新的stack：
 
-![image-20240314165241884](..\..\docs\figures\big.png)
+![image-20241126105954365](figures/image-20241126105954365.png)
 
-该开发板常用 **板载资源** 如下：
+打开r_sci_uart配置，使能FIFO支持，同时设置通道数为3；
 
-- MPU：R9A07G084M04GBG，最大工作频率 400MHz，Arm Cortex®-R52 内核，紧密耦合内存 128KB（带 ECC），内部 RAM 1.5 MB（带 ECC）
-- 调试接口：板载 J-Link 接口
-- 扩展接口：一个 PMOD 连接器
+![image-20241126110007987](figures/image-20241126110007987.png)
 
-**更多详细资料及工具**
+点击选择Pins，设置SCI3，将SCI mode修改为Asynchronous mode，同时可以对应看到相关引脚被使能；
 
-## 外设支持
+![image-20241126110018927](figures/image-20241126110018927.png)
 
-本 BSP 目前对外设的支持情况如下：
+回到stack界面，展开并设置中断回调函数为user_uart3_callback，同时在下方可以知道对应的串口引脚信息；
 
-| **EtherCAT方案** | **支持情况** | **EtherCAT方案** | **支持情况** |
-| ---------------- | ------------ | ---------------- | ------------ |
-| EtherCAT_IO      | 支持         | EtherCAT_FOE      | 支持   		|
-| EtherCAT_EOE     | 支持         | EtherCAT_COE | 支持 |
-| **PROFINET方案** | **支持情况** | **Ethernet/IP方案** | **支持情况** |
-| P-Net（支持ProfiNET从站协议栈的开源评估软件包） | 支持         | EIP   | 正在支持中... |
-| **片上外设**     | **支持情况** | **组件**         | **支持情况** |
-| UART             | 支持         | LWIP             | 支持         |
-| GPIO             | 支持         | TCP/UDP          | 支持         |
-| HWIMER           | 支持         | MQTT             | 支持         |
-| IIC              | 支持         | TFTP             | 支持         |
-| WDT              | 支持         | Modbus主从站协议 | 支持         |
-| RTC              | 支持         |                  |              |
-| ADC              | 支持         |                  |              |
-| DAC              | 支持         |                  |              |
-| SPI              | 支持         |                  |              |
+![image-20241126110028462](figures/image-20241126110028462.png)
 
-## 使用说明
+## RT-Thread Settings配置
 
-使用说明分为如下两个章节：
+回到studio，点击RT-Thread Settings，先配置串口，使能UART3；
 
-- 快速上手
+![image-20241126110052239](figures/image-20241126110052239.png)
 
-  本章节是为刚接触 RT-Thread 的新手准备的使用说明，遵循简单的步骤即可将 RT-Thread 操作系统运行在该开发板上，看到实验效果 。
-- 进阶使用
+找到软件包界面，在搜索框搜索modbus，并选择agile_modbus软件包后使能；
 
-  本章节是为需要在 RT-Thread 操作系统上使用更多开发板资源的开发者准备的。通过使用 ENV 工具对 BSP 进行配置，可以开启更多板载资源，实现更多高级功能。
+![image-20241126110101998](figures/image-20241126110101998.png)
 
-### 快速上手
+## 编译&下载
 
-本 BSP 目前提供 GCC/IAR 工程。下面以 [IAR Embedded Workbench for Arm](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/) 开发环境为例，介绍如何将系统运行起来。
+* RT-Thread Studio：在RT-Thread Studio 的包管理器中下载EtherKit 资源包，然后创建新工程，执行编译。
+* IAR：首先双击mklinks.bat，生成rt-thread与libraries 文件夹链接；再使用Env 生成IAR工程；最后双击project.eww打开IAR工程，执行编译。
 
-**硬件连接**
+编译完成后，将开发板的Jlink接口与PC 机连接，然后将固件下载至开发板。
 
-使用 USB 数据线连接开发板到 PC，使用 J-link 接口下载和 DEBUG 程序。
+## 运行效果
 
-**编译下载**
+首先我们需要使用一个USB转TTL模块，将其收发引脚与开发板串口3的收发引脚反接（RX-TX(P18_0)，TX-RX(P17_7)），如下图所示：
 
-- 进入 bsp 目录下，打开 ENV 使用命令 `scons --target=iar` 生成 IAR工程。
-- 编译：双击 project.eww 文件，打开 IAR 工程，编译程序。
-- 调试：IAR 左上方导航栏点击 `Project->Download and Debug`下载并启动调试。
+![image-20241126110136703](figures/image-20241126110136703.png)
 
+接着我们打开modbus slaver软件，点击连接：
 
+![image-20241126110148129](figures/image-20241126110148129.png)
 
-**查看运行结果**
+配置modbus slaver信息，首先选择连接为串口模式，串口设备为连接到开发板的USB转TTL模块，并设置None Parity；
 
-下载程序成功之后，系统会自动运行并打印系统信息。
+![image-20241126110158100](figures/image-20241126110158100.png)
 
-连接开发板对应串口到 PC , 在终端工具里打开相应的串口（115200-8-1-N），复位设备后，可以看到 RT-Thread 的输出信息。输入 help 命令可查看系统中支持的命令。
+接着我们回到串口工具，输入命令modbus_master_uart_sample开启modbus 主站示例；
 
-```bash
- \ | /
-- RT -     Thread Operating System
- / | \     5.1.0 build Mar 14 2024 18:26:01
- 2006 - 2024 Copyright by RT-Thread team
+![image-20241126110208170](figures/image-20241126110208170.png)
 
-Hello RT-Thread!
-==================================================
-This is a iar project which mode is ram execution!
-==================================================
-msh >help
-RT-Thread shell commands:
-clear            - clear the terminal screen
-version          - show RT-Thread version information
-list             - list objects
-backtrace        - print backtrace of a thread
-help             - RT-Thread shell help
-ps               - List threads in the system
-free             - Show the memory usage in the system
-pin              - pin [option]
+开发板的串口3作为主机，电脑作为从机，向站号写线圈，串口终端会同步显示寄存器的修改；
 
-msh >
-```
+![image-20241126110221649](figures/image-20241126110221649.png)
 
-**应用入口函数**
-
-应用层的入口函数在 **src\hal_entry.c** 中 的 `void hal_entry(void)` 。用户编写的源文件可直接放在 src 目录下。
-
-```c
-void hal_entry(void)
-{
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_kprintf("==================================================\n");
-    rt_kprintf("This is a iar project which mode is ram execution!\n");
-    rt_kprintf("==================================================\n");
-
-    while (1)
-    {
-        rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
-    }
-}
-```
-
-### 进阶使用
-
-**资料及文档**
-
-- [开发板官网主页](https://www.renesas.cn/zh/products/microcontrollers-microprocessors/rz-mpus/rzn2l-integrated-tsn-compliant-3-port-gigabit-ethernet-switch-enables-various-industrial-applications)
-- [开发板数据手册](https://www.renesas.cn/zh/document/dst/rzn2l-group-datasheet?r=1622651)
-- [开发板硬件手册](https://www.renesas.cn/zh/document/mah/rzn2l-group-users-manual-hardware?r=1622651)
-- [RZ/N2L MCU 快速入门指南](https://www.renesas.cn/zh/document/apn/rzt2-rzn2-device-setup-guide-flash-boot-application-note?r=1622651)
-- [RZ/N2L Easy Download Guide](https://www.renesas.cn/zh/document/gde/rzn2l-easy-download-guide?r=1622651)
-- [Renesas RZ/N2L Group](https://www.renesas.cn/zh/document/fly/renesas-rzn2l-group?r=1622651)
-
-**FSP 配置**
-
-需要修改瑞萨的 BSP 外设配置或添加新的外设端口，需要用到瑞萨的 [FSP](https://www2.renesas.cn/jp/zh/software-tool/flexible-software-package-fsp#document) 配置工具。请务必按照如下步骤完成配置。配置中有任何问题可到[RT-Thread 社区论坛](https://club.rt-thread.org/)中提问。
-
-1. [下载灵活配置软件包 (FSP) | Renesas](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe)，请使用 FSP 2.0.0 版本
-2. 如何将 **”EtherKit板级支持包“**添加到 FSP 中，请参考文档[如何导入板级支持包](https://www2.renesas.cn/document/ppt/1527171?language=zh&r=1527191)
-3. 请参考文档：[RA系列使用FSP配置外设驱动](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/make-bsp/renesas-ra/RA系列使用FSP配置外设驱动?id=ra系列使用-fsp-配置外设驱动)。
-
-**ENV 配置**
-
-- 如何使用 ENV 工具：[RT-Thread env 工具用户手册](https://www.rt-thread.org/document/site/#/development-tools/env/env)
-
-此 BSP 默认只开启了 UART0 的功能，如果需使用更多高级功能例如组件、软件包等，需要利用 ENV 工具进行配置。
-
-步骤如下：
-1. 在 bsp 下打开 env 工具。
-2. 输入`menuconfig`命令配置工程，配置好之后保存退出。
-3. 输入`pkgs --update`命令更新软件包。
-4. 输入`scons --target=iar` 命令重新生成工程。
-
-## 联系人信息
-
-在使用过程中若您有任何的想法和建议，建议您通过以下方式来联系到我们  [RT-Thread 社区论坛](https://club.rt-thread.org/)
-
-## 贡献代码
-
-如果您对 EtherKit 感兴趣，并且有一些好玩的项目愿意与大家分享的话欢迎给我们贡献代码，您可以参考 [如何向 RT-Thread 代码贡献](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/development-guide/github/github)。

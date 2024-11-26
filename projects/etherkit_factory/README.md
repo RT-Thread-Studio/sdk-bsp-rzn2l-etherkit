@@ -1,6 +1,6 @@
 # EtherKit Development Board BSP Documentation
 
-**English** | **[Chinese](./README_zh.md)**
+**English** | [**中文**](./README_zh.md)
 
 ## Introduction
 
@@ -17,7 +17,7 @@ The EtherKit development board is based on the Renesas RZ/N2L and is designed to
 
 The front view of the development board is shown below:
 
-![image-20240314165241884](.\docs\figures\big.jpg)
+![image-20240314165241884](figures/big.png)
 
 Key **onboard resources** include:
 

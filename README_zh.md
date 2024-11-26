@@ -21,7 +21,8 @@ $ sdk-bsp-rzn2l-etherkit
 ├── documents
 │   ├── rzn2l-group-datasheet.pdf
 │   ├── EtherKit_Board_Schematic.pdf
-│   └── User’s Manual Hardware.pdf
+│   ├── User’s Manual Hardware.pdf
+│   └── EtherKit用户手册_V0.1.0.pdf
 ├── libraries
 │   ├── HAL_Drivers
 ├── projects

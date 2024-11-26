@@ -1,169 +1,137 @@
-# EtherKit Development Board BSP Documentation
+# EtherKit Development Board MQTT Example
 
-**English** | **[Chinese](./README_zh.md)**
+**English** | [**中文**](./README_zh.md)
 
 ## Introduction
 
-This document provides the BSP (Board Support Package) documentation for the RT-Thread EtherKit development board. By following the Quick Start section, developers can quickly get started with this BSP and run RT-Thread on the development board.
+This example is based on the kawaii-mqtt package and demonstrates the functionality of subscribing to topics and publishing messages to specific topics using the MQTTX software.
 
-The main contents are as follows:
+## Hardware Requirements
 
-- Introduction to the Development Board
-- BSP Quick Start Guide
+This example requires the Ethernet module on the EtherKit board for network communication, so please ensure that the Ethernet module on the hardware platform is functioning properly.
 
-## Introduction to the Development Board
+## FSP Configuration Instructions
 
-The EtherKit development board is based on the Renesas RZ/N2L and is designed to facilitate embedded system application development by offering flexible software package and IDE configurations.
+Open the project configuration file `configuration.xml` and add the `r_gamc` stack:
 
-The front view of the development board is shown below:
+![image-20241126104408737](figures/image-20241126104408737.png)
 
-![image-20240314165241884](figures/big.png)
+Click on `g_ether0` Ethernet and configure the interrupt callback function as `user_ether0_callback`:
 
-Key **onboard resources** include:
+![image-20241126104422910](figures/image-20241126104422910.png)
 
-- MPU: R9A07G084M04GBG, maximum operating frequency of 400MHz, Arm Cortex®-R52 core, 128KB tightly coupled memory (with ECC), 1.5MB internal RAM (with ECC)
-- Debug Interface: Onboard J-Link interface
-- Expansion Interface: One PMOD connector
+Next, configure the PHY information. Select `g_ether_phy0`, set the Common configuration to "User Own Target", change the PHY LSI address to 1 (refer to the schematic for the specific address), and set the PHY initialization callback function to `ether_phy_targets_initialize_rtl8211_rgmii()`. Also, set MDIO to GMAC.
 
-**More detailed information and tools**
+![image-20241126104437432](figures/image-20241126104437432.png)
 
-## Peripheral Support
+Configure `g_ether_selector0`, set the Ethernet mode to switch mode, configure PHY link as default active-low, and set the PHY interface mode to RGMII.
 
-This BSP currently supports the following peripherals:
+![image-20241126104519290](figures/image-20241126104519290.png)
 
-Here is the translated text in English, keeping the markdown format:
+Configure the network card pin parameters, selecting the operation mode as RGMII:
 
-| **EtherCAT Solution** | **Support Status** | **EtherCAT Solution** | **Support Status** |
-| --------------------- | ------------------ | --------------------- | ------------------ |
-| EtherCAT_IO           | Supported          | EtherCAT_FOE          | Supported          |
-| EtherCAT_EOE          | Supported          | EtherCAT_COE          | Supported          |
-| **PROFINET Solution** | **Support Status** | **Ethernet/IP Solution** | **Support Status** |
-| P-Net (Open source evaluation package supporting ProfiNET slave protocol stack) | Supported | EIP | In progress... |
-| **On-chip Peripherals** | **Support Status** | **Components**        | **Support Status** |
-| UART                  | Supported          | LWIP                  | Supported          |
-| GPIO                  | Supported          | TCP/UDP               | Supported          |
-| HWIMER                | Supported          | MQTT                  | Supported          |
-| IIC                   | Supported          | TFTP                  | Supported          |
-| WDT                   | Supported          | Modbus Master/Slave Protocol | Supported |
-| RTC                   | Supported          |                       |                    |
-| ADC                   | Supported          |                       |                    |
-| DAC                   | Supported          |                       |                    |
-| SPI                   | Supported          |                       |                    |
+![image-20241126104533098](figures/image-20241126104533098.png)
 
+Configure `ETHER_GMAC`:
 
-## Usage Instructions
+![image-20241126104603633](figures/image-20241126104603633.png)
 
-Usage instructions are divided into two sections:
+## RT-Thread Studio Configuration
 
-- **Quick Start**
+Return to the Studio project, configure RT-Thread Settings, select hardware options, and enable Ethernet:
 
-  This section is designed for beginners who are new to RT-Thread. By following simple steps, users can run the RT-Thread OS on the development board and observe the experimental results.
+![image-20241126105410584](figures/image-20241126105410584.png)
 
-- **Advanced Usage**
+In the software package interface, search for the kawaii-mqtt package and enable the SAL option:
 
-  This section is for developers who need to use more of the development board's resources within the RT-Thread OS. By configuring the BSP using the ENV tool, additional onboard resources and advanced features can be enabled.
+![image-20241126105422144](figures/image-20241126105422144.png)
 
-### Quick Start
+## Example Code Explanation
 
-This BSP currently provides GCC/IAR project support. Below is a guide using the [IAR Embedded Workbench for Arm](https://www.iar.com/products/architectures/arm/iar-embedded-workbench-for-arm/) development environment to run the system.
-
-**Hardware Connection**
-
-Connect the development board to the PC via a USB cable. Use the J-Link interface to download and debug the program.
-
-**Compilation and Download**
-
-- Navigate to the `bsp` directory and use the command `scons --target=iar` to generate the IAR project.
-- Compile: Double-click the `project.eww` file to open the IAR project and compile the program.
-- Debug: In the IAR navigation bar, click `Project -> Download and Debug` to download and start debugging.
-
-**Viewing the Run Results**
-
-After successfully downloading the program, the system will automatically run and print system information.
-
-Connect the corresponding serial port of the development board to the PC. Open the relevant serial port (115200-8-1-N) in the terminal tool. After resetting the device, you can view the RT-Thread output. Enter the `help` command to see the list of supported system commands.
-
-```bash
- \ | /  
-- RT -     Thread Operating System  
- / | \     5.1.0 build Mar 14 2024 18:26:01  
- 2006 - 2024 Copyright by RT-Thread team  
-
-Hello RT-Thread!  
-==================================================  
-This is an IAR project in RAM execution mode!  
-==================================================  
-msh > help  
-RT-Thread shell commands:  
-clear            - clear the terminal screen  
-version          - show RT-Thread version information  
-list             - list objects  
-backtrace        - print backtrace of a thread  
-help             - RT-Thread shell help  
-ps               - List threads in the system  
-free             - Show the memory usage in the system  
-pin              - pin [option]  
-
-msh >
-```
-
-**Application Entry Function**
-
-The entry function for the application layer is located in **src\hal_entry.c** within `void hal_entry(void)`. User source files can be placed directly in the `src` directory.
+This code implements an MQTT communication demonstration program based on the Kawaii MQTT client library. It connects to an MQTT broker, subscribes to topics, and periodically publishes messages.
 
 ```c
-void hal_entry(void)
+static void sub_topic_handle1(void* client, message_data_t* msg)
 {
-    rt_kprintf("\nHello RT-Thread!\n");
-    rt_kprintf("==================================================\n");
-    rt_kprintf("This is an IAR project in RAM execution mode!\n");
-    rt_kprintf("==================================================\n");
-
-    while (1)
-    {
-        rt_pin_write(LED_PIN, PIN_HIGH);
-        rt_thread_mdelay(500);
-        rt_pin_write(LED_PIN, PIN_LOW);
-        rt_thread_mdelay(500);
+    (void) client;
+    KAWAII_MQTT_LOG_I("-----------------------------------------------------------------------------------");
+    KAWAII_MQTT_LOG_I("%s:%d %s()...\ntopic: %s\nmessage:%s", __FILE__, __LINE__, __FUNCTION__, msg->topic_name, (char*)msg->message->payload);
+    KAWAII_MQTT_LOG_I("-----------------------------------------------------------------------------------");
+}
+static int mqtt_publish_handle1(mqtt_client_t *client)
+{
+    mqtt_message_t msg;
+    memset(&msg, 0, sizeof(msg));
+    msg.qos = QOS0;
+    msg.payload = (void *)"this is a kawaii mqtt test ...";
+    return mqtt_publish(client, "pub5323", &msg);
+}
+static char cid[64] = { 0 };
+static void kawaii_mqtt_demo(void *parameter)
+{
+    mqtt_client_t *client = NULL;
+    rt_thread_delay(6000);
+    mqtt_log_init();
+    client = mqtt_lease();
+    rt_snprintf(cid, sizeof(cid), "rtthread-5323", rt_tick_get());
+    mqtt_set_host(client, "broker.emqx.io");
+    mqtt_set_port(client, "1883");
+    mqtt_set_user_name(client, "RT-Thread");
+    mqtt_set_password(client, "012345678");
+    mqtt_set_client_id(client, cid);
+    mqtt_set_clean_session(client, 1);
+    KAWAII_MQTT_LOG_I("The ID of the Kawaii client is: %s ",cid);
+    mqtt_connect(client);
+    mqtt_subscribe(client, "sub5323", QOS0, sub_topic_handle1);
+    while (1) {
+        mqtt_publish_handle1(client);
+        mqtt_sleep_ms(4 * 1000);
     }
 }
+int ka_mqtt(void)
+{
+    rt_thread_t tid_mqtt;
+    tid_mqtt = rt_thread_create("kawaii_demo", kawaii_mqtt_demo, RT_NULL, 2048, 17, 10);
+    if (tid_mqtt == RT_NULL) {
+        return -RT_ERROR;
+    }
+    rt_thread_startup(tid_mqtt);
+    return RT_EOK;
+}
+MSH_CMD_EXPORT(ka_mqtt, Kawaii MQTT client test program);
 ```
 
-### Advanced Usage
+## Compilation & Download
 
-**Resources and Documentation**
+* **RT-Thread Studio**: Download the EtherKit resource package in RT-Thread Studio's package manager, create a new project, and then compile it.
+* **IAR**: First, double-click `mklinks.bat` to create the link between rt-thread and libraries folders. Then, use Env to generate the IAR project. Finally, double-click `project.eww` to open the IAR project and compile it.
 
-- [Development Board Official Homepage](https://www.renesas.cn/zh/products/microcontrollers-microprocessors/rz-mpus/rzn2l-integrated-tsn-compliant-3-port-gigabit-ethernet-switch-enables-various-industrial-applications)
-- [Development Board Datasheet](https://www.renesas.cn/zh/document/dst/rzn2l-group-datasheet?r=1622651)
-- [Development Board Hardware Manual](https://www.renesas.cn/zh/document/mah/rzn2l-group-users-manual-hardware?r=1622651)
-- [RZ/N2L MCU Quick Start Guide](https://www.renesas.cn/zh/document/apn/rzt2-rzn2-device-setup-guide-flash-boot-application-note?r=1622651)
-- [RZ/N2L Easy Download Guide](https://www.renesas.cn/zh/document/gde/rzn2l-easy-download-guide?r=1622651)
-- [Renesas RZ/N2L Group](https://www.renesas.cn/zh/document/fly/renesas-rzn2l-group?r=1622651)
+Once compilation is complete, connect the development board's Jlink interface to the PC, and download the firmware to the board.
 
-**FSP Configuration**
+## MQTTX Configuration
 
-To modify Renesas BSP peripheral configurations or add new peripheral ports, the Renesas [FSP](https://www2.renesas.cn/jp/zh/software-tool/flexible-software-package-fsp#document) configuration tool is required. Please follow the steps outlined below for configuration. For any questions regarding the configuration, please visit the [RT-Thread Community Forum](https://club.rt-thread.org/).
+Install and run MQTTX. On the main interface, click **New Connection** to create a new connection:
 
-1. [Download the Flexible Software Package (FSP) | Renesas](https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe), use FSP version 2.0.0.
-2. To add the **"EtherKit Board Support Package"** to FSP, refer to the document [How to Import a BSP](https://www2.renesas.cn/document/ppt/1527171?language=zh&r=1527191).
-3. For guidance on configuring peripheral drivers using FSP, refer to the document: [Configuring Peripheral Drivers Using FSP for RA Series](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/tutorial/make-bsp/renesas-ra/RA-series-using-FSP-configure-peripheral-drivers?id=ra-series-using-fsp-configure-peripheral-drivers).
+![image-20241126105552964](figures/image-20241126105552964.png)
 
-**ENV Configuration**
+Configure the MQTT client information. Note that the Client ID should not be the same as the one on the development board. You can generate a random ID by clicking the reset button. After configuring the settings, click **Connect** in the top right corner:
 
-- To learn how to use the ENV tool, refer to the [RT-Thread ENV Tool User Manual](https://www.rt-thread.org/document/site/#/development-tools/env/env).
+![image-20241126105603507](figures/image-20241126105603507.png)
 
-By default, this BSP only enables the UART0 functionality. To use more advanced features such as components, software packages, and more, the ENV tool must be used for configuration.
+Click **+ New Subscription**, change the Topic name to `sub5323`, and confirm:
 
-The steps are as follows:
-1. Open the ENV tool in the `bsp` directory.
-2. Use the `menuconfig` command to configure the project. Save and exit once the configuration is complete.
-3. Run the `pkgs --update` command to update the software packages.
-4. Run the `scons --target=iar` command to regenerate the project.
+![image-20241126105613817](figures/image-20241126105613817.png)
 
-## Contact Information
+In the function box below, set the subscription topic name to `sub5323` and configure the subscription settings as needed:
 
-If you have any thoughts or suggestions during usage, please feel free to contact us via the [RT-Thread Community Forum](https://club.rt-thread.org/).
+![image-20241126105624549](figures/image-20241126105624549.png)
 
-## Contribute Code
+## Running Results
 
-If you're interested in EtherKit and have some exciting projects you'd like to share, we welcome code contributions. Please refer to [How to Contribute to RT-Thread Code](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/development-guide/github/github).
+Open a serial tool and run the `ka_mqtt` command to check the output:
+
+![image-20241126105643040](figures/image-20241126105643040.png)
+
+## Additional Notes
+
+> MQTTX download link: [https://packages.emqx.net/MQTTX/v1.9.6/MQTTX-Setup-1.9.6-x64.exe](https://packages.emqx.net/MQTTX/v1.9.6/MQTTX-Setup-1.9.6-x64.exe)
