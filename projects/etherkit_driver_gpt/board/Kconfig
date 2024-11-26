@@ -507,6 +507,16 @@ menu "Hardware Drivers Config"
 	                default n
 	        endif
 
+        menuconfig BSP_USING_PWM
+            bool "Enable PWM"
+            default n
+            select RT_USING_PWM
+            if BSP_USING_PWM
+                config BSP_USING_PWM5
+                    bool "Enable GPT5 (32-Bits) output PWM"
+                    default n
+            endif
+
         config BSP_USING_ETH
             bool "Enable Ethernet"
             select RT_USING_SAL

@@ -18,9 +18,13 @@ FSP 分别配置使能GPT0为基本定时器模式，GPT5为PWM 模式：
 
 ### RT-Thread Settings配置
 
-在配置中打开timer0使能：
+在配置中打开timer0使能与PWM使能：
 
 ![image-20241126102203077](figures/image-20241126102203077.png)
+
+
+
+![image-20241126131544356](./figures/image-20241126131544356.png)
 
 ### 示例工程说明
 
@@ -72,13 +76,78 @@ MSH_CMD_EXPORT(hwtimer_sample, hwtimer sample);
 ```
 每隔1s 中触发一次中断回调函数打印输出，下面是PWM 配置使能：
 
+PWM相关宏定义：
+
+当前版本的 PWM 驱动将每个通道都看做一个单独的 PWM 设备，每个设备都只有一个通道0。使用PWM5设备，注意此处通道选择为0通道；
+
 ```c
-void GPT_PWM_Init(void)
+static int pwm_sample(int argc, char *argv[])
 {
-    R_GPT_Open(&g_timer5_ctrl, &g_timer5_cfg);
-    R_GPT_Start(&g_timer5_ctrl);
+    rt_uint32_t period, pulse, dir;
+    period = 500000;    /* 周期为0.5ms，单位为纳秒ns */
+    dir = 1;            /* PWM脉冲宽度值的增减方向 */
+    pulse = 100000;          /* PWM脉冲宽度值，单位为纳秒ns */
+    /* 查找设备 */
+    pwm_dev = (struct rt_device_pwm *)rt_device_find(PWM_DEV_NAME);
+    if (pwm_dev == RT_NULL)
+    {
+        rt_kprintf("pwm sample run failed! can't find %s device!\n", PWM_DEV_NAME);
+        return RT_ERROR;
+    }
+    /* 设置PWM周期和脉冲宽度默认值 */
+    rt_pwm_set(pwm_dev, PWM_DEV_CHANNEL, period, pulse);
+    /* 使能设备 */
+    rt_pwm_enable(pwm_dev, PWM_DEV_CHANNEL);
 }
+/* 导出到 msh 命令列表中 */
+MSH_CMD_EXPORT(pwm_sample, pwm sample);
 ```
+
+配置PWM周期以及占空比：
+
+```
+static int pwm_sample(int argc, char *argv[])
+
+{
+
+  rt_uint32_t period, pulse, dir;
+
+  period = 500000;   /* 周期为0.5ms，单位为纳秒ns */
+
+  dir = 1;       /* PWM脉冲宽度值的增减方向 */
+
+  pulse = 100000;      /* PWM脉冲宽度值，单位为纳秒ns */
+
+  /* 查找设备 */
+
+  pwm_dev = (struct rt_device_pwm *)rt_device_find(PWM_DEV_NAME);
+
+  if (pwm_dev == RT_NULL)
+
+  {
+
+​    rt_kprintf("pwm sample run failed! can't find %s device!\n", PWM_DEV_NAME);
+
+​    return RT_ERROR;
+
+  }
+
+  /* 设置PWM周期和脉冲宽度默认值 */
+
+  rt_pwm_set(pwm_dev, PWM_DEV_CHANNEL, period, pulse);
+
+  /* 使能设备 */
+
+  rt_pwm_enable(pwm_dev, PWM_DEV_CHANNEL);
+
+}
+
+/* 导出到 msh 命令列表中 */
+
+MSH_CMD_EXPORT(pwm_sample, pwm sample);
+```
+
+
 
 ##  编译&下载
 
@@ -90,10 +159,12 @@ void GPT_PWM_Init(void)
 
 ## 运行效果
 
+在串口终端分别输入pwm_sample、hwtimer_sample查看具体效果；
+
 每隔1s触发回调函数并打印输出：
 
 ![image-20241126102330524](figures/image-20241126102330524.png)
 
 使用逻辑分析仪量取Pwm 输出波形如下所示：
 
-![image-20241126102347419](figures/image-20241126102347419.png)
+![image-20241126131735797](./figures/image-20241126131735797.png)

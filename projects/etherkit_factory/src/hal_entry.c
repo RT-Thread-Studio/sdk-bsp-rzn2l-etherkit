@@ -92,11 +92,11 @@ void test_init(void)
       rt_pin_attach_irq(KEY_2, PIN_IRQ_MODE_RISING_FALLING, key2_entry,NULL);
       rt_pin_irq_enable(KEY_2, PIN_IRQ_ENABLE);
 }
-///**
-// * @brief  KEY1 按键中断服务函数 key按下触发ETH发送ping www.baidu.com
-// * @param args
-// * @return
-// */
+/**
+* @brief  KEY1 按键中断服务函数 key按下触发ETH发送ping www.baidu.com
+* @param args
+* @return
+*/
 void key1_entry(external_irq_callback_args_t * p_args)
 {
     flag_board=1;

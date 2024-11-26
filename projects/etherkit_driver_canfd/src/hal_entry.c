@@ -13,7 +13,7 @@
 #include <rtdevice.h>
 #include <board.h>
 
-#define DBG_TAG "can"
+#define DBG_TAG "canfd"
 #define DBG_LVL DBG_LOG
 #include <rtdbg.h>
 

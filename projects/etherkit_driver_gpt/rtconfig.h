@@ -86,6 +86,7 @@
 #define RT_USING_SERIAL
 #define RT_USING_SERIAL_V2
 #define RT_SERIAL_USING_DMA
+#define RT_USING_PWM
 #define RT_USING_PIN
 #define RT_USING_HWTIMER
 
@@ -100,10 +101,6 @@
 
 /* Timezone and Daylight Saving Time */
 
-#define RT_LIBC_USING_LIGHT_TZ_DST
-#define RT_LIBC_TZ_DEFAULT_HOUR 8
-#define RT_LIBC_TZ_DEFAULT_MIN 0
-#define RT_LIBC_TZ_DEFAULT_SEC 0
 /* end of Timezone and Daylight Saving Time */
 /* end of ISO-ANSI C layer */
 
@@ -330,6 +327,8 @@
 #define BSP_UART0_TX_BUFSIZE 0
 #define BSP_USING_TIM
 #define BSP_USING_TIM0
+#define BSP_USING_PWM
+#define BSP_USING_PWM5
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */
