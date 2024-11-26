@@ -62,13 +62,6 @@ MSH_CMD_EXPORT(hwtimer_sample, hwtimer sample);
 Trigger an interrupt callback function to print output every 1s, below is the PWM configuration enable:
 PWM related macro definitions:
 In the current version of the PWM driver, each channel is regarded as a separate PWM device, each device has only one channel 0. Use PWM5 device, note that the channel selection here is channel 0;
-```c
-void GPT_PWM_Init(void)
-{
-R_GPT_Open(&g_timer5_ctrl, &g_timer5_cfg);
-R_GPT_Start(&g_timer5_ctrl);
-}
-```
 Configure PWM period and duty cycle:
 ```
 static int pwm_sample(int argc, char *argv[])
