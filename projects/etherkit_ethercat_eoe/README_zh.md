@@ -130,7 +130,7 @@ ethernet中断触发回调设置为：user_ether0_callback
 
 使能完毕后我们保存settings配置并同步scons配置，同时编译并下载程序，复位开发板后观察串口日志：
 
-![image-20241126113050786](figures/image-20241126113050786.png)
+![image-20241126175253263](figures/image-20241126175253263.png)
 
 ## EtherCAT EOE配置
 

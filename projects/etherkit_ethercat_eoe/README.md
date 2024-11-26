@@ -130,7 +130,7 @@ After completing the FSP configuration, pin and peripheral initialization is don
 
 Once enabled, save the settings and synchronize the scons configuration. Then compile and download the program. After resetting the development board, observe the serial log:
 
-![image-20241126113050786](figures/image-20241126113050786.png)
+![image-20241126175253263](figures/image-20241126175253263.png)
 
 ## EtherCAT EOE Configuration
 
