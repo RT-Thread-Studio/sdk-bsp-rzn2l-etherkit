@@ -8,7 +8,7 @@
 
 sdk-bsp-rzn2l-etherkit 是 RT-Thread 团队对 `EtherKit`  开发板所作的支持包，也可作为用户开发使用的软件SDK，让用户可以更简单方便的开发自己的应用程序。
 
-EtherKit  开发板是 RT-Thread 推出基于 Arm Cortex®-R52 架构 R9A07G084M04GBG 芯片，为工程师们提供了一个灵活、全面的开发平台，助力开发者在机器视觉领域获得更深层次的体验。
+EtherKit 开发板是 RT-Thread 推出基于瑞萨 Arm Cortex®-R52 架构 R9A07G084M04GBG  芯片，为工程师们提供了一个灵活、全面的开发平台，助力开发者在EtherCAT工业以太网领域获得更深层次的体验。
 
 ![](docs/figures/big.png)
 
