@@ -381,23 +381,28 @@
           <state>$PROJ_DIR$\src\tcpip\renesas\oss_deps\lwip</state>
           <state>$PROJ_DIR$\src\tcpip\oss\amazon-freertos\libraries\3rdparty\lwip_osal\include</state>
           <state>$PROJ_DIR$\src\tcpip\oss\lwip\src\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
+          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
+          <state>$PROJ_DIR$\packages\agile_modbus-v1.1.2\inc</state>
+          <state>$PROJ_DIR$\board\ports\modbus</state>
+          <state>$PROJ_DIR$\board\ports</state>
+          <state>$PROJ_DIR$\rt-thread\include</state>
+          <state>$PROJ_DIR$\.</state>
+          <state>$PROJ_DIR$\board\ports\modbus\uart_master</state>
+          <state>$PROJ_DIR$\board</state>
+          <state>$PROJ_DIR$\packages\agile_modbus-v1.1.2\util</state>
+          <state>$PROJ_DIR$\board\ports\modbus\uart_slave</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
+          <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
+          <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
+          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
           <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
           <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
-          <state>$PROJ_DIR$\board</state>
-          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
           <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
-          <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
-          <state>$PROJ_DIR$\rt-thread\include</state>
-          <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
-          <state>$PROJ_DIR$\.</state>
-          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
-          <state>$PROJ_DIR$\board\ports</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1520,23 +1525,28 @@
           <state>$PROJ_DIR$/rzn_gen</state>
           <state>$PROJ_DIR$/src</state>
           <state>$PROJ_DIR$</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
+          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
+          <state>$PROJ_DIR$\packages\agile_modbus-v1.1.2\inc</state>
+          <state>$PROJ_DIR$\board\ports\modbus</state>
+          <state>$PROJ_DIR$\board\ports</state>
+          <state>$PROJ_DIR$\rt-thread\include</state>
+          <state>$PROJ_DIR$\.</state>
+          <state>$PROJ_DIR$\board\ports\modbus\uart_master</state>
+          <state>$PROJ_DIR$\board</state>
+          <state>$PROJ_DIR$\packages\agile_modbus-v1.1.2\util</state>
+          <state>$PROJ_DIR$\board\ports\modbus\uart_slave</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
+          <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
+          <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
+          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
           <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
           <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
-          <state>$PROJ_DIR$\board</state>
-          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
           <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
-          <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
-          <state>$PROJ_DIR$\rt-thread\include</state>
-          <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
-          <state>$PROJ_DIR$\.</state>
-          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
-          <state>$PROJ_DIR$\board\ports</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2664,6 +2674,21 @@
     <name />
   </group>
   <group>
+    <name>agile_modbus</name>
+    <file>
+      <name>$PROJ_DIR$\packages\agile_modbus-v1.1.2\src\agile_modbus_tcp.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\agile_modbus-v1.1.2\util\agile_modbus_slave_util.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\agile_modbus-v1.1.2\src\agile_modbus_rtu.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\agile_modbus-v1.1.2\src\agile_modbus.c</name>
+    </file>
+  </group>
+  <group>
     <name>Applications</name>
   </group>
   <group>
@@ -2717,22 +2742,13 @@
   <group>
     <name>CPU</name>
     <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\interrupt.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\context_iar.S</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\cpuport.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\trap.c</name>
-    </file>
-    <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\gicv3.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\start_iar.S</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\context_iar.S</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\backtrace.c</name>
@@ -2741,7 +2757,16 @@
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\stack.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\interrupt.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\trap.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\vector_iar.S</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\cpuport.c</name>
     </file>
   </group>
   <group>
@@ -2795,13 +2820,13 @@
   <group>
     <name>Finsh</name>
     <file>
-      <name>$PROJ_DIR$\rt-thread\components\finsh\shell.c</name>
+      <name>$PROJ_DIR$\rt-thread\components\finsh\msh.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\components\finsh\cmd.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\components\finsh\msh.c</name>
+      <name>$PROJ_DIR$\rt-thread\components\finsh\shell.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\components\finsh\msh_parse.c</name>
@@ -2861,10 +2886,37 @@
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\common\atomic_arm.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\common\showmem.c</name>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\common\div0.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\common\div0.c</name>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\common\showmem.c</name>
+    </file>
+  </group>
+  <group>
+    <name>modbus_define</name>
+    <file>
+      <name>$PROJ_DIR$\board\ports\modbus\modbus_define\registers.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\board\ports\modbus\modbus_define\input_registers.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\board\ports\modbus\modbus_define\bits.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\board\ports\modbus\modbus_define\input_bits.c</name>
+    </file>
+  </group>
+  <group>
+    <name>modbus_uart</name>
+    <file>
+      <name>$PROJ_DIR$\board\ports\modbus\uart_master\rs485.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\board\ports\modbus\uart_master\modbus_master.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\board\ports\modbus\uart_slave\modbus_slave.c</name>
     </file>
   </group>
   <group>
