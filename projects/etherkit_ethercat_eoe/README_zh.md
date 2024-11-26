@@ -142,9 +142,9 @@ ethernet中断触发回调设置为：user_ether0_callback
 
 ### 从站启动EOE App
 
-将EtherKit开发板上电后，打开串口设备，输入 eoe_app 指令来启动EtherCAT从站app，程序运行后可以看到ethercat线程正在运行。
+将EtherKit开发板上电后，需要使用网线连接ETH0网口，ethercat会默认运行。
 
-![image-20241126113153779](figures/image-20241126113153779.png)
+![image-20241126171141421](figures/image-20241126171141421.png)
 
 ### 从站设备扫描
 
@@ -158,11 +158,11 @@ ethernet中断触发回调设置为：user_ether0_callback
 
 回到TwinCAT，在左侧导航栏中，由于我们已经成功扫描到从站设备，因此可以看到主从站的配置界面：
 
-![image-20241126113252391](figures/image-20241126113252391.png)
+![image-20241126171212280](figures/image-20241126171212280.png)
 
-我们点击Box 1(由于此处我已经刷过一次EOE的ESI固件，所以显示的是Renesas EtherCAT RZ/N2 EOE 2port)，正常第一次显示的应该是Box 1(0xFFFF FFFF)，无需在意，我们双击Box 1，在中间界面的上方导航栏中单击EtherCAT，并点击Advanced Settings…：
+我们双击Box 1，在中间界面的上方导航栏中单击EtherCAT，并点击Advanced Settings…：
 
-![image-20241126113301987](figures/image-20241126113301987.png)
+![image-20241126171232413](figures/image-20241126171232413.png)
 
 这里按图示点击Download from List…：
 
@@ -170,7 +170,7 @@ ethernet中断触发回调设置为：user_ether0_callback
 
 我们写入ESI固件到EEPROM中，这里由于我们配置的是双网口，所以选择Renesas EtherCAT RZ/N2 EOE 2port，如果你配置的是三网口的话则选择3port后缀的ESI文件进行下载。
 
-![image-20241126113320716](figures/image-20241126113320716.png)
+![image-20241126171300206](figures/image-20241126171300206.png)
 
 下载完成之后，我们右键Device x(EtherCAT)移除设备后重新扫描并添加设备，并完成激活工作（参考上文）。
 
