@@ -448,6 +448,8 @@ void user_ether0_callback(ether_callback_args_t *p_args)
         break;
 
     case ETHER_EVENT_WAKEON_LAN:    ///< Magic packet detection event
+    /* If EDMAC FR (Frame Receive Event) or FDE (Receive Descriptor Empty Event)
+         * interrupt occurs, send rx mailbox. */
     case ETHER_EVENT_SBD_INTERRUPT: ///< BSD Interrupt event
     {
         rt_err_t result;
