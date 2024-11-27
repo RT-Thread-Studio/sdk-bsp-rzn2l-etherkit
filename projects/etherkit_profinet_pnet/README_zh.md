@@ -26,7 +26,7 @@ P-Net协议是一个开源的PROFINET实现，专门用于嵌入式设备的实�
 
 ## 软件包配置
 
-打开 bsp 下的 env界面，进入 **->RT-Thread online packages->IoT**，找到 **[\*] P-Net stack for Profinet device implementation --->** 使能，同时留出配置提供给用户：
+双击打开 RT-Thread Settings，进入 **->RT-Thread online packages->IoT**，找到 **[\*] P-Net stack for Profinet device implementation --->** 使能，下面是相关用户配置信息说明：
 
 ```c
 -*- Default netif name for P-NET  --->

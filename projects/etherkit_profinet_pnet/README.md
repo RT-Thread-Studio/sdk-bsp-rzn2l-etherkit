@@ -25,7 +25,7 @@ In this example, we will use the P-Net software package to implement PROFINET ma
 
 ## Software Package Configuration
 
-Open the environment settings in `bsp` and go to **RT-Thread online packages** -> **IoT**, find **[\*] P-Net stack for Profinet device implementation --->** and enable it. The configuration options are provided to the user:
+Double-click to open RT-Thread Settings, go to **-> RT-Thread online packages -> IoT**, find **[\*] P-Net stack for Profinet device implementation --->** and enable it. Below is the related user configuration information explanation:
 
 ```c
 -*- Default netif name for P-NET  --->
