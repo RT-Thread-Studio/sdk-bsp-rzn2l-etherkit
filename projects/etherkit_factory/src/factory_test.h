@@ -1,19 +1,20 @@
 #ifndef __TEST__
 #define __TEST__
+
 #include <rtthread.h>
 #include <rtdevice.h>
-#define SAMPLE_UART_NAME       "uart5"      /* 串口设备名称 */
-#define ADC_DEV_NAME        "adc1"      /* ADC 设备名称 */
-#define ADC_DEV_CHANNEL     5           /* ADC 通道 */
-#define REFER_VOLTAGE       330         /* 参考电压 3.3V,数据精度乘以100保留2位小数*/
-#define CONVERT_BITS        (1 << 12)   /* 转换位数为12位 */
- #define CAN_DEV_NAME            "canfd0"      /* CAN 设备名称 */
- #define CAN_DEV_NAME_1            "canfd1"      /* CAN 设备名称 */
-#define DEV_ADC                 "adc0"
-#define DEV_ADC1                 "adc1"
+#define SAMPLE_UART_NAME       "uart5"       /* 串口设备名称 */
+#define ADC_DEV_NAME           "adc1"        /* ADC 设备名称 */
+#define ADC_DEV_CHANNEL        5             /* ADC 通道 */
+#define REFER_VOLTAGE          330           /* 参考电压 3.3V,数据精度乘以100保留2位小数*/
+#define CONVERT_BITS           (1 << 12)     /* 转换位数为12位 */
+ #define CAN_DEV_NAME          "canfd0"      /* CAN 设备名称 */
+ #define CAN_DEV_NAME_1        "canfd1"      /* CAN 设备名称 */
+#define DEV_ADC                "adc0"
+#define DEV_ADC1               "adc1"
+
 /***
  * LED CODE  PIN
- * 
  */
 #define ETH_LED_PIN_0    BSP_IO_PORT_20_PIN_2 /* Onboard LED pins */
 #define ETH_LED_PIN_1    BSP_IO_PORT_22_PIN_3 /* Onboard LED pins */

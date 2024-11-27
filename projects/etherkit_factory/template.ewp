@@ -834,7 +834,7 @@
                 </option>
                 <option>
                     <name>IlinkIcfFile</name>
-                    <state>$PROJ_DIR$/script/fsp_xspi0_boot_SystemRAM.icf</state>
+                    <state>$PROJ_DIR$/script/fsp_xspi0_boot_systemRAM.icf</state>
                 </option>
                 <option>
                     <name>IlinkIcfFileSlave</name>
@@ -1949,7 +1949,7 @@
                 </option>
                 <option>
                     <name>IlinkIcfFile</name>
-                    <state>$PROJ_DIR$/script/fsp_xspi0_boot_SystemRAM.icf</state>
+                    <state>$PROJ_DIR$/script/fsp_xspi0_boot_systemRAM.icf</state>
                 </option>
                 <option>
                     <name>IlinkIcfFileSlave</name>
@@ -2293,7 +2293,10 @@
                 <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\bsp\bsp_pin_cfg.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_cmt_cfg.h</name>
+                <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_adc_cfg.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_canfd_cfg.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_ether_cfg.h</name>
@@ -2308,13 +2311,28 @@
                 <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_ether_switch_cfg.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_gpt_cfg.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_icu_cfg.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_iic_master_cfg.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_ioport_cfg.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_rtc_cfg.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_sci_uart_cfg.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\rm_ethercat_ssc_port_cfg.h</name>
+                <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_xspi_hyper_cfg.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn_cfg\SConscript</name>
             </file>
         </group>
         <group>
@@ -2476,10 +2494,25 @@
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Include\R9A07G084.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\r_cmt\r_cmt.c</name>
+                <name>$PROJ_DIR$\rzn\fsp\src\r_adc\r_adc.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_cmt.h</name>
+                <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_adc.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\api\r_adc_api.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\api\r_can_api.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\src\r_canfd\r_canfd.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_canfd.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\api\r_elc_api.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\inc\api\r_ether_api.h</name>
@@ -2512,10 +2545,37 @@
                 <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_ethsw.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\api\r_external_irq_api.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\r_gmac\r_gmac.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_gmac.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\src\r_gpt\r_gpt.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_gpt.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\api\r_hyperbus_api.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\api\r_i2c_master_api.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\src\r_icu\r_icu.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_icu.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\src\r_iic_master\r_iic_master.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_iic_master.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\r_ioport\r_ioport.c</name>
@@ -2525,6 +2585,15 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\inc\api\r_ioport_api.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\src\r_rtc\r_rtc.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_rtc.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\api\r_rtc_api.h</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\r_sci_uart\r_sci_uart.c</name>
@@ -2542,19 +2611,16 @@
                 <name>$PROJ_DIR$\rzn\fsp\inc\api\r_uart_api.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\rzn\fsp\src\r_xspi_hyper\r_xspi_hyper.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_xspi_hyper.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Include\renesas.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\rm_ethercat_ssc_port\renesashw.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\rm_ethercat_ssc_port\rm_ethercat_ssc_port.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\inc\instances\rm_ethercat_ssc_port.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\inc\api\rm_ethercat_ssc_port_api.h</name>
+                <name>$PROJ_DIR$\rzn\SConscript</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\startup.c</name>
@@ -2594,6 +2660,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn_gen\pin_data.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn_gen\SConscript</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn_gen\vector_data.c</name>

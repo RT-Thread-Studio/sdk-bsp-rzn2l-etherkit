@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2006-2023, RT-Thread Development Team
+ * Copyright (c) 2006-2024 RT-Thread Development Team
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -26,16 +26,15 @@
 #define DIGITAL_IN0  BSP_IO_PORT_04_PIN_1
 #define DIGITAL_IN1  BSP_IO_PORT_16_PIN_7
 #define DIGITAL_IN2   BSP_IO_PORT_17_PIN_3
-#define DIGITAL_IN3   BSP_IO_PORT_18_PIN_6        
+#define DIGITAL_IN3   BSP_IO_PORT_18_PIN_6
 
-#define DIGITAL_OUT0  BSP_IO_PORT_12_PIN_4          
+#define DIGITAL_OUT0  BSP_IO_PORT_12_PIN_4
+#define DIGITAL_OUT1   BSP_IO_PORT_22_PIN_3
+#define DIGITAL_OUT2   BSP_IO_PORT_22_PIN_2
+#define DIGITAL_OUT3   BSP_IO_PORT_17_PIN_4
 
-#define DIGITAL_OUT1   BSP_IO_PORT_22_PIN_3             
+static char ip_addr[] = "180.163.146.100";
 
-#define DIGITAL_OUT2   BSP_IO_PORT_22_PIN_2         
-
-#define DIGITAL_OUT3   BSP_IO_PORT_17_PIN_4            
-static char ip_addr[]="180.163.146.100";
 static int rtc_sample(void);
 void key1_entry(void * args);
 void key2_entry(void * args);
@@ -43,7 +42,9 @@ rt_uint8_t eth_test();
 void test_init(void);
 int test_board_entry(void);
 void led_entry();
+
 rt_uint8_t flag_eth,flag_board=0;
+
 void hal_entry(void)
 {
     rt_kprintf("\nHello RT-Thread!\n");
@@ -72,6 +73,7 @@ void hal_entry(void)
         rt_thread_mdelay(500);
     }
 }
+
 void input0_entry(void *args)
 {
     rt_uint8_t pin_value;
@@ -79,6 +81,7 @@ void input0_entry(void *args)
     pin_value = *(rt_uint8_t *)args;
     rt_kprintf("input%d_entry\n",pin_value);
 }
+
 void test_init(void)
 {
       rt_pin_write(LED_PIN_2, PIN_HIGH);
@@ -92,6 +95,7 @@ void test_init(void)
       rt_pin_attach_irq(KEY_2, PIN_IRQ_MODE_RISING_FALLING, key2_entry,NULL);
       rt_pin_irq_enable(KEY_2, PIN_IRQ_ENABLE);
 }
+
 /**
 * @brief  KEY1 按键中断服务函数 key按下触发ETH发送ping www.baidu.com
 * @param args
@@ -109,6 +113,7 @@ void key1_entry(void * p_args)
         rt_pin_write(LED_PIN_1, PIN_HIGH);
     }
 }
+
 void led_entry()
 {
     if(rt_pin_read(LED_PIN_0))
@@ -119,8 +124,7 @@ void led_entry()
         //同时蓝灯LED1常亮
         rt_pin_write(LED_PIN_0, PIN_HIGH);
     }
-}
-//   KEY2 按键中断服务函数  key2按下测试CAN通信与RS485是否正常
+}//   KEY2 按键中断服务函数  key2按下测试CAN通信与RS485是否正常
 
 void key2_entry(void * p_args)
 {
@@ -135,6 +139,7 @@ void key2_entry(void * p_args)
         rt_pin_write(LED_PIN_1, PIN_HIGH);
     }
 }
+
 int test_board_entry(void)
 {
          flag_board=0;
@@ -286,8 +291,9 @@ int test_board_entry(void)
         error_print:
            printf("TEST ERROR.\n");
            c_struct.led_flag=1;
-    
+
 }
+
 rt_uint8_t eth_test()
 {
     flag_eth=0;
@@ -312,6 +318,7 @@ rt_uint8_t eth_test()
     return RT_ERROR;
    }
 }
+
 #define RTC_NAME       "rtc"
 
 static int rtc_sample(void)
@@ -352,4 +359,3 @@ static int rtc_sample(void)
 
     return ret;
 }
-

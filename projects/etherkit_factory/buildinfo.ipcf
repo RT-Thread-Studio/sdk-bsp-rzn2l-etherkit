@@ -198,7 +198,6 @@
             <path>src/factory_test.c</path>
             <path>src/factory_test.h</path>
             <path>src/hal_entry.c</path>
-            <path>src/SConscript</path>
         </group>
     </files>
 </iarProjectConnection>

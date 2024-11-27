@@ -8,6 +8,7 @@
 /rt-thread
 /libraries
 /project.custom_argvars
+/template.custom_argvars
 /.vscode
 /__pycache
 /settings
