@@ -1,9 +1,9 @@
 #Fri Nov 22 09:52:17 CST 2024
-com.renesas.cdt.ddsc.content/com.renesas.cdt.ddsc.content.defaultlinkerscript=script/fsp_xspi0_boot_systemRAM.icf
+com.renesas.cdt.ddsc.content/com.renesas.cdt.ddsc.content.defaultlinkerscript=script/fsp_xspi0_boot.icf
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#BSP\#\#Board\#\#rzn2l_rsk\#\#xspi0_x1_boot\#\#2.0.0/libraries=
 com.renesas.cdt.ddsc.packs.componentfiles/Arm\#\#CMSIS\#\#CMSIS5\#\#Core\#\#\#\#5.7.0+renesas.1.fsp.2.0.0/all=1441545198,rzn/arm/CMSIS_5/LICENSE.txt|4247764709,rzn/arm/CMSIS_5/CMSIS/Core_R/Include/cmsis_gcc.h|1135074086,rzn/arm/CMSIS_5/CMSIS/Core_R/Include/core_cr52.h|510668081,rzn/arm/CMSIS_5/CMSIS/Core_R/Include/cmsis_iccarm.h|4245531541,rzn/arm/CMSIS_5/CMSIS/Core_R/Include/cmsis_compiler.h|1887099957,rzn/arm/CMSIS_5/CMSIS/Core_R/Include/cmsis_cp15.h|3334069041,rzn/arm/CMSIS_5/CMSIS/Core_R/Include/cmsis_version.h
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#BSP\#\#rzn2l\#\#device\#\#R9A07G084M04GBG\#\#2.0.0/all=
-com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#BSP\#\#Board\#\#rzn2l_rsk\#\#xspi0_x1_boot\#\#2.0.0/all=907937621,script/fsp_xspi0_boot_systemRAM.icf|3822962514,rzn/board/rzn2l_rsk/board_leds.c|358444977,rzn/board/rzn2l_rsk/board_init.c|2067006575,rzn/board/rzn2l_rsk/board.h|736691883,rzn/board/rzn2l_rsk/board_ethernet_phy.h|1631979823,rzn/board/rzn2l_rsk/board_leds.h|1430483072,rzn/board/rzn2l_rsk/board_init.h
+com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#BSP\#\#Board\#\#rzn2l_rsk\#\#xspi0_x1_boot\#\#2.0.0/all=907937621,script/fsp_xspi0_boot.icf|3822962514,rzn/board/rzn2l_rsk/board_leds.c|358444977,rzn/board/rzn2l_rsk/board_init.c|2067006575,rzn/board/rzn2l_rsk/board.h|736691883,rzn/board/rzn2l_rsk/board_ethernet_phy.h|1631979823,rzn/board/rzn2l_rsk/board_leds.h|1430483072,rzn/board/rzn2l_rsk/board_init.h
 com.renesas.cdt.ddsc.contentgen.options/options/suppresswarningspaths=
 com.renesas.cdt.ddsc.packs.componentfiles/Renesas\#\#HAL\ Drivers\#\#all\#\#r_ioport\#\#\#\#2.0.0/libraries=
 com.renesas.cdt.ddsc.threads.configurator/collapse/module.driver.uart_on_sci_uart.86814920=false

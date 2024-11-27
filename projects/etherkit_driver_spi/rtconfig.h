@@ -100,10 +100,6 @@
 
 /* Timezone and Daylight Saving Time */
 
-#define RT_LIBC_USING_LIGHT_TZ_DST
-#define RT_LIBC_TZ_DEFAULT_HOUR 8
-#define RT_LIBC_TZ_DEFAULT_MIN 0
-#define RT_LIBC_TZ_DEFAULT_SEC 0
 /* end of Timezone and Daylight Saving Time */
 /* end of ISO-ANSI C layer */
 
@@ -320,8 +316,6 @@
 #define SOC_R9A07G084
 
 /* Onboard Peripheral Drivers */
-
-/* end of Onboard Peripheral Drivers */
 
 /* On-chip Peripheral Drivers */
 
