@@ -10,3 +10,5 @@
 /project.custom_argvars
 /.vscode
 /__pycache
+/settings
+/rtconfig_preinc.h

@@ -57,7 +57,7 @@ static bool app_status = 0;
 
 static void pnet_app(void);
 
-static void netdev_status_callback(struct netdev *netdev, rt_bool_t up)
+static void netdev_status_callback(struct netdev *netdev, enum netdev_cb_type up)
 {
     if (up)
     {
@@ -69,7 +69,7 @@ static void netdev_status_callback(struct netdev *netdev, rt_bool_t up)
     }
 }
 
-void netdev_monitor_init(void *param)
+int netdev_monitor_init(void)
 {
     struct netdev *netdev = netdev_get_by_name("e0");
     if (netdev == RT_NULL)
@@ -78,10 +78,11 @@ void netdev_monitor_init(void *param)
     }
 
     netdev_set_status_callback(netdev, netdev_status_callback);
+    return RT_EOK;
 }
 INIT_APP_EXPORT(netdev_monitor_init);
 
-void pnet_main ()
+static void pnet_main (void *parameter)
 {
    int ret;
    app_utils_netif_namelist_t netif_name_list;

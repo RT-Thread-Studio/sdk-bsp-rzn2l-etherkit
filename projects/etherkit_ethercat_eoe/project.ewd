@@ -883,7 +883,7 @@
                 </option>
                 <option>
                     <name>CCJLinkHWResetDelay</name>
-                    <state>300</state>
+                    <state>0</state>
                 </option>
                 <option>
                     <name>OCDriverInfo</name>

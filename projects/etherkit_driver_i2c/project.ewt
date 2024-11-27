@@ -2918,6 +2918,12 @@
         </settings>
     </configuration>
     <group>
+        <name>at24cxx</name>
+        <file>
+            <name>$PROJ_DIR$\packages\at24cxx-latest\at24cxx.c</name>
+        </file>
+    </group>
+    <group>
         <name>Compiler</name>
         <file>
             <name>$PROJ_DIR$\rt-thread\components\libc\compilers\common\cctype.c</name>
@@ -2966,15 +2972,6 @@
         </file>
     </group>
     <group>
-        <name>CPP</name>
-        <file>
-            <name>$PROJ_DIR$\rt-thread\components\libc\cplusplus\cxx_crt.cpp</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\rt-thread\components\libc\cplusplus\cxx_crt_init.c</name>
-        </file>
-    </group>
-    <group>
         <name>CPU</name>
         <file>
             <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\backtrace.c</name>
@@ -3019,6 +3016,15 @@
             <name>$PROJ_DIR$\rt-thread\components\drivers\core\device.c</name>
         </file>
         <file>
+            <name>$PROJ_DIR$\rt-thread\components\drivers\i2c\i2c-bit-ops.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\rt-thread\components\drivers\i2c\i2c_core.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\rt-thread\components\drivers\i2c\i2c_dev.c</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\rt-thread\components\drivers\pin\pin.c</name>
         </file>
         <file>
@@ -3047,6 +3053,9 @@
         </file>
         <file>
             <name>$PROJ_DIR$\libraries\HAL_Drivers\drv_gpio.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\libraries\HAL_Drivers\drv_i2c.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\libraries\HAL_Drivers\drv_usart_v2.c</name>
@@ -3096,6 +3105,9 @@
                 <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\bsp\bsp_pin_cfg.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_iic_master_cfg.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\rzn_cfg\fsp_cfg\r_ioport_cfg.h</name>
             </file>
             <file>
@@ -3135,16 +3147,10 @@
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_cache.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_cache.o</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_cache_core.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_cache_core.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_cache_core.o</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_clocks.c</name>
@@ -3153,16 +3159,10 @@
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_clocks.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_clocks.o</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_common.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_common.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_common.o</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_compiler_support.h</name>
@@ -3174,16 +3174,10 @@
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_delay.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_delay.o</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_delay_core.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_delay_core.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_delay_core.o</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\rzn2l\bsp_elc.h</name>
@@ -3201,16 +3195,10 @@
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_io.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_io.o</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_irq.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_irq.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_irq.o</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_irq_core.c</name>
@@ -3219,19 +3207,10 @@
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_irq_core.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_irq_core.o</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\rzn2l\bsp_irq_sense.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\rzn2l\bsp_irq_sense.o</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\rzn2l\bsp_loader_param.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\rzn2l\bsp_loader_param.o</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_mcu_api.h</name>
@@ -3252,22 +3231,13 @@
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_register_protection.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_register_protection.o</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_reset.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_reset.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_reset.o</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_sbrk.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_sbrk.o</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_tfu.h</name>
@@ -3306,13 +3276,19 @@
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Include\R9A07G084.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\api\r_i2c_master_api.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\src\r_iic_master\r_iic_master.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_iic_master.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\r_ioport\r_ioport.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_ioport.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\r_ioport\r_ioport.o</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\inc\api\r_ioport_api.h</name>
@@ -3322,9 +3298,6 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\inc\instances\r_sci_uart.h</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\r_sci_uart\r_sci_uart.o</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\inc\api\r_transfer_api.h</name>
@@ -3342,13 +3315,7 @@
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\startup.c</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\startup.o</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\cr\startup_core.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\cr\startup_core.o</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\system.c</name>
@@ -3357,13 +3324,7 @@
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Include\system.h</name>
             </file>
             <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\system.o</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\cr\system_core.c</name>
-            </file>
-            <file>
-                <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\cr\system_core.o</name>
             </file>
         </group>
         <group>

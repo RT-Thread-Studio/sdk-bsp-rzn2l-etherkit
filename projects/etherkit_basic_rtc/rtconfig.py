@@ -105,7 +105,7 @@ elif PLATFORM == 'iccarm':
     else:
         CFLAGS += ' -Oh'
 
-    LFLAGS = ' --config "script/fsp_xspi0_boot.icf"'
+    LFLAGS = ' --config "script/fsp_xspi0_boot_systemRAM.icf"'
     LFLAGS += ' --entry Reset_Handler'
 
     CXXFLAGS = CFLAGS

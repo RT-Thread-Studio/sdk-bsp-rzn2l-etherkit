@@ -25,7 +25,7 @@ if not "%~1" == "" goto debugFile
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 9.2\common\bin\cspybat" -f "D:\manufacture_apps\RT-ThreadStudio\repo\Local\Board_Support_Packages\Renesas\EtherKit\1.0.0\projects\etherkit_component_mqtt\settings\project.Debug.general.xcl" --backend -f "D:\manufacture_apps\RT-ThreadStudio\repo\Local\Board_Support_Packages\Renesas\EtherKit\1.0.0\projects\etherkit_component_mqtt\settings\project.Debug.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 9.2\common\bin\cspybat" -f "D:\Desktop\sdk-bsp-rzn2l-etherkit\projects\etherkit_component_mqtt\settings\project.Debug.general.xcl" --backend -f "D:\Desktop\sdk-bsp-rzn2l-etherkit\projects\etherkit_component_mqtt\settings\project.Debug.driver.xcl" 
 
 @echo off 
 goto end 
@@ -34,7 +34,7 @@ goto end
 
 @echo on 
 
-"C:\Program Files\IAR Systems\Embedded Workbench 9.2\common\bin\cspybat" -f "D:\manufacture_apps\RT-ThreadStudio\repo\Local\Board_Support_Packages\Renesas\EtherKit\1.0.0\projects\etherkit_component_mqtt\settings\project.Debug.general.xcl" "--debug_file=%~1" --backend -f "D:\manufacture_apps\RT-ThreadStudio\repo\Local\Board_Support_Packages\Renesas\EtherKit\1.0.0\projects\etherkit_component_mqtt\settings\project.Debug.driver.xcl" 
+"C:\Program Files\IAR Systems\Embedded Workbench 9.2\common\bin\cspybat" -f "D:\Desktop\sdk-bsp-rzn2l-etherkit\projects\etherkit_component_mqtt\settings\project.Debug.general.xcl" "--debug_file=%~1" --backend -f "D:\Desktop\sdk-bsp-rzn2l-etherkit\projects\etherkit_component_mqtt\settings\project.Debug.driver.xcl" 
 
 @echo off 
 :end

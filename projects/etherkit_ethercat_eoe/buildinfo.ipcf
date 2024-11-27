@@ -41,7 +41,7 @@
     </asmDefines>
     <linkerFile>
         <override>true</override>
-        <path>$PROJ_DIR$/script/fsp_xspi0_boot.icf</path>
+        <path>$PROJ_DIR$/script/fsp_xspi0_boot_systemRAM.icf</path>
     </linkerFile>
     <linkerExtraOptions>
         <arg>--config_search "$PROJ_DIR$"</arg>

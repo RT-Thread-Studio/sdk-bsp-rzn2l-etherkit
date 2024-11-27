@@ -2918,9 +2918,6 @@
         </settings>
     </configuration>
     <group>
-        <name>Applications</name>
-    </group>
-    <group>
         <name>Compiler</name>
         <file>
             <name>$PROJ_DIR$\rt-thread\components\libc\compilers\common\cctype.c</name>
