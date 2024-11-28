@@ -69,7 +69,7 @@
         <group name="RA Smart Configurator">
             <argVar>
                 <name>RASC_EXE_PATH</name>
-                <value>D:\manufacture_apps\Renesas\fsp\rzn_v2.0.0\eclipse\rasc.exe</value>
+                <value>C:\Renesas\rzn\sc_v2024-01.1_fsp_v2.0.0\eclipse\rasc.exe</value>
             </argVar>
         </group>
     </customArgVars>

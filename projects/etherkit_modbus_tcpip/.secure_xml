@@ -61,12 +61,46 @@
     <node id="board.clock.pclkl.display" option="board.clock.pclkl.display.value"/>
     <node id="board.clock.pclkadc.display" option="board.clock.pclkadc.display.value"/>
     <node id="board.clock.pclkcan.freq" option="board.clock.pclkcan.freq.40m"/>
-    <node id="board.clock.xspi.clk0.freq" option="board.clock.xspi.clk0.freq.12m"/>
+    <node id="board.clock.xspi.clk0.freq" option="board.clock.xspi.clk0.freq.133m"/>
     <node id="board.clock.xspi.clk1.freq" option="board.clock.xspi.clk1.freq.12m"/>
     <node id="board.clock.tclk.freq" option="board.clock.tclk.freq.100m"/>
   </raClockConfiguration>
   <raPinConfiguration>
     <pincfg active="true" name="" symbol="">
+      <configSetting altId="canfd0.canrx0.p01_7" configurationId="canfd0.canrx0"/>
+      <configSetting altId="canfd0.cantx0.p02_2" configurationId="canfd0.cantx0"/>
+      <configSetting altId="ether_eth0.eth0_refclk.p09_1" configurationId="ether_eth0.eth0_refclk"/>
+      <configSetting altId="ether_eth0.eth0_rxclk_ref_clk_rxc.p08_6" configurationId="ether_eth0.eth0_rxclk_ref_clk_rxc"/>
+      <configSetting altId="ether_eth0.eth0_rxd0.p10_1" configurationId="ether_eth0.eth0_rxd0"/>
+      <configSetting altId="ether_eth0.eth0_rxd1.p10_2" configurationId="ether_eth0.eth0_rxd1"/>
+      <configSetting altId="ether_eth0.eth0_rxd2.p10_3" configurationId="ether_eth0.eth0_rxd2"/>
+      <configSetting altId="ether_eth0.eth0_rxd3.p08_4" configurationId="ether_eth0.eth0_rxd3"/>
+      <configSetting altId="ether_eth0.eth0_rxdv_crsdv_rxctl.p08_5" configurationId="ether_eth0.eth0_rxdv_crsdv_rxctl"/>
+      <configSetting altId="ether_eth0.eth0_txclk_txc.p09_7" configurationId="ether_eth0.eth0_txclk_txc"/>
+      <configSetting altId="ether_eth0.eth0_txd0.p09_6" configurationId="ether_eth0.eth0_txd0"/>
+      <configSetting altId="ether_eth0.eth0_txd1.p09_5" configurationId="ether_eth0.eth0_txd1"/>
+      <configSetting altId="ether_eth0.eth0_txd2.p09_4" configurationId="ether_eth0.eth0_txd2"/>
+      <configSetting altId="ether_eth0.eth0_txd3.p09_3" configurationId="ether_eth0.eth0_txd3"/>
+      <configSetting altId="ether_eth0.eth0_txen_txctl.p10_0" configurationId="ether_eth0.eth0_txen_txctl"/>
+      <configSetting altId="ether_eth1.eth1_refclk.p06_1" configurationId="ether_eth1.eth1_refclk"/>
+      <configSetting altId="ether_eth1.eth1_rxclk_ref_clk_rxc.p07_3" configurationId="ether_eth1.eth1_rxclk_ref_clk_rxc"/>
+      <configSetting altId="ether_eth1.eth1_rxd0.p06_6" configurationId="ether_eth1.eth1_rxd0"/>
+      <configSetting altId="ether_eth1.eth1_rxd1.p06_7" configurationId="ether_eth1.eth1_rxd1"/>
+      <configSetting altId="ether_eth1.eth1_rxd2.p07_0" configurationId="ether_eth1.eth1_rxd2"/>
+      <configSetting altId="ether_eth1.eth1_rxd3.p07_1" configurationId="ether_eth1.eth1_rxd3"/>
+      <configSetting altId="ether_eth1.eth1_rxdv_crsdv_rxctl.p07_2" configurationId="ether_eth1.eth1_rxdv_crsdv_rxctl"/>
+      <configSetting altId="ether_eth1.eth1_txclk_txc.p06_4" configurationId="ether_eth1.eth1_txclk_txc"/>
+      <configSetting altId="ether_eth1.eth1_txd0.p06_3" configurationId="ether_eth1.eth1_txd0"/>
+      <configSetting altId="ether_eth1.eth1_txd1.p06_2" configurationId="ether_eth1.eth1_txd1"/>
+      <configSetting altId="ether_eth1.eth1_txd2.p05_7" configurationId="ether_eth1.eth1_txd2"/>
+      <configSetting altId="ether_eth1.eth1_txd3.p06_0" configurationId="ether_eth1.eth1_txd3"/>
+      <configSetting altId="ether_eth1.eth1_txen_txctl.p06_5" configurationId="ether_eth1.eth1_txen_txctl"/>
+      <configSetting altId="ether_gmac.gmac_mdc.p08_7" configurationId="ether_gmac.gmac_mdc"/>
+      <configSetting altId="ether_gmac.gmac_mdio.p09_0" configurationId="ether_gmac.gmac_mdio"/>
+      <configSetting altId="iic0.iic_scl0.p13_2" configurationId="iic0.iic_scl0"/>
+      <configSetting altId="iic0.iic_sda0.p13_3" configurationId="iic0.iic_sda0"/>
+      <configSetting altId="iic1.iic_scl1.p05_2" configurationId="iic1.iic_scl1"/>
+      <configSetting altId="iic1.iic_sda1.p05_3" configurationId="iic1.iic_sda1"/>
       <configSetting altId="jtag_fslash_swd.tck_swclk.p02_7" configurationId="jtag_fslash_swd.tck_swclk" isUsedByDriver="true"/>
       <configSetting altId="jtag_fslash_swd.tdi.p02_5" configurationId="jtag_fslash_swd.tdi" isUsedByDriver="true"/>
       <configSetting altId="jtag_fslash_swd.tdo.p02_4" configurationId="jtag_fslash_swd.tdo" isUsedByDriver="true"/>
@@ -90,8 +124,15 @@
       <configSetting altId="p22_3.output.low" configurationId="p22_3"/>
       <configSetting altId="sci0.rxd_miso0.p16_6" configurationId="sci0.rxd_miso0" isUsedByDriver="true"/>
       <configSetting altId="sci0.txd_mosi0.p16_5" configurationId="sci0.txd_mosi0" isUsedByDriver="true"/>
-      <configSetting altId="sci3.rxd_miso3.p17_7" configurationId="sci3.rxd_miso3" isUsedByDriver="true"/>
-      <configSetting altId="sci3.txd_mosi3.p18_0" configurationId="sci3.txd_mosi3" isUsedByDriver="true"/>
+      <configSetting altId="sci3.rxd_miso3.p17_7" configurationId="sci3.rxd_miso3"/>
+      <configSetting altId="sci3.txd_mosi3.p18_0" configurationId="sci3.txd_mosi3"/>
+      <configSetting altId="spi2.spi_miso2.p18_6" configurationId="spi2.spi_miso2"/>
+      <configSetting altId="spi2.spi_mosi2.p18_5" configurationId="spi2.spi_mosi2"/>
+      <configSetting altId="spi2.spi_rspck2.p18_4" configurationId="spi2.spi_rspck2"/>
+      <configSetting altId="spi2.spi_ssl20.p21_1" configurationId="spi2.spi_ssl20"/>
+      <configSetting altId="usb_hs.usb_ovrcur.p17_5" configurationId="usb_hs.usb_ovrcur"/>
+      <configSetting altId="usb_hs.usb_vbusen.p19_0" configurationId="usb_hs.usb_vbusen"/>
+      <configSetting altId="usb_hs.usb_vbusin.p07_4" configurationId="usb_hs.usb_vbusin"/>
       <configSetting altId="xspi0.xspi0_ckn.p14_5" configurationId="xspi0.xspi0_ckn"/>
       <configSetting altId="xspi0.xspi0_ckp.p14_6" configurationId="xspi0.xspi0_ckp"/>
       <configSetting altId="xspi0.xspi0_cs0_hash.p15_7" configurationId="xspi0.xspi0_cs0_hash"/>
