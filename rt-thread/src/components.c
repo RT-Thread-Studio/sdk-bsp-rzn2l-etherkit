@@ -242,18 +242,9 @@ int rtthread_startup(void)
 #ifdef RT_USING_SMP
     rt_hw_spin_lock_init(&_cpus_lock);
 #endif
-//    __asm volatile("B .");
     
     rt_hw_local_irq_disable();
 
-    // __asm volatile (
-    //     "MRS r0, cpsr\n"    // 将 CPSR 寄存器的值读入 r0
-    //     "CPSID IF\n"        // 禁用中断
-    // );
-
-    /* board level initialization
-     * NOTE: please initialize heap inside board initialization.
-     */
     rt_hw_board_init();
 
     /* show RT-Thread version */
