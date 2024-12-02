@@ -45,7 +45,7 @@ if PLATFORM == 'gcc':
     DEVICE = ' -mcpu=cortex-r52 -marm -mfloat-abi=hard -mfpu=neon-fp-armv8 -fdiagnostics-parseable-fixits -Og -fmessage-length=0 -fsigned-char -fdata-sections -funwind-tables -ffunction-sections -fno-strict-aliasing -g -gdwarf-4'
     CFLAGS = DEVICE + ' -Dgcc'
     AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp'
-    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,Reset_Handler -lgcc -lrdimon -T script/fsp_xspi0_boot_cmake.ld -L script/'
+    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,Reset_Handler -lgcc -lrdimon -T script/fsp_xspi0_boot.ld -L script/'
     CPATH = ''
     LPATH = ''
 

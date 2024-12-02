@@ -1,11 +1,46 @@
 /*
                   Linker File for Renesas RZ/N2L FSP
 */
-
-INCLUDE memory_regions.ld
-
 /* The memory information for each device is done in memory regions file.
  * The starting address and length of memory not defined in memory regions file are defined as 0. */
+
+/* generated memory regions file - do not edit */
+ATCM_START  = 0x00000000;
+ATCM_LENGTH = 0x20000;
+BTCM_START  = 0x00100000;
+BTCM_LENGTH = 0x20000;
+SYSTEM_RAM_START  = 0x10000000;
+SYSTEM_RAM_LENGTH = 0x180000;
+SYSTEM_RAM_MIRROR_START  = 0x30000000;
+SYSTEM_RAM_MIRROR_LENGTH = 0x180000;
+xSPI0_CS0_SPACE_MIRROR_START  = 0x40000000;
+xSPI0_CS0_SPACE_MIRROR_LENGTH = 0x4000000;
+xSPI0_CS1_SPACE_MIRROR_START  = 0x44000000;
+xSPI0_CS1_SPACE_MIRROR_LENGTH = 0x4000000;
+xSPI1_CS0_SPACE_MIRROR_START  = 0x48000000;
+xSPI1_CS0_SPACE_MIRROR_LENGTH = 0x4000000;
+CS0_SPACE_MIRROR_START  = 0x50000000;
+CS0_SPACE_MIRROR_LENGTH = 0x4000000;
+CS2_SPACE_MIRROR_START  = 0x54000000;
+CS2_SPACE_MIRROR_LENGTH = 0x4000000;
+CS3_SPACE_MIRROR_START  = 0x58000000;
+CS3_SPACE_MIRROR_LENGTH = 0x4000000;
+CS5_SPACE_MIRROR_START  = 0x5C000000;
+CS5_SPACE_MIRROR_LENGTH = 0x4000000;
+xSPI0_CS0_SPACE_START  = 0x60000000;
+xSPI0_CS0_SPACE_LENGTH = 0x4000000;
+xSPI0_CS1_SPACE_START  = 0x64000000;
+xSPI0_CS1_SPACE_LENGTH = 0x4000000;
+xSPI1_CS0_SPACE_START  = 0x68000000;
+xSPI1_CS0_SPACE_LENGTH = 0x4000000;
+CS0_SPACE_START  = 0x70000000;
+CS0_SPACE_LENGTH = 0x4000000;
+CS2_SPACE_START  = 0x74000000;
+CS2_SPACE_LENGTH = 0x4000000;
+CS3_SPACE_START  = 0x78000000;
+CS3_SPACE_LENGTH = 0x4000000;
+CS5_SPACE_START  = 0x7C000000;
+CS5_SPACE_LENGTH = 0x4000000;
 
 ATCM_PRV_START = DEFINED(ATCM_START) ? ATCM_START : 0;
 ATCM_PRV_LENGTH = DEFINED(ATCM_LENGTH) ? ATCM_LENGTH : 0;
@@ -48,21 +83,6 @@ CS3_SPACE_PRV_LENGTH = DEFINED(CS3_SPACE_LENGTH) ? CS3_SPACE_LENGTH : 0;
 CS5_SPACE_PRV_START = DEFINED(CS5_SPACE_START) ? CS5_SPACE_START : 0;
 CS5_SPACE_PRV_LENGTH = DEFINED(CS5_SPACE_LENGTH) ? CS5_SPACE_LENGTH : 0;
 
-/*
-LOADER_PARAM_ADDRESS       = xSPI0_CS0_SPACE_PRV_START;
-FLASH_CONTENTS_ADDRESS     = LOADER_PARAM_ADDRESS + 0x0000004C;
-LOADER_TEXT_ADDRESS        = 0x00102000;
-INTVEC_ADDRESS             = 0x00000000;
-TEXT_ADDRESS               = 0x00000100;
-NONCACHE_BUFFER_OFFSET     = 0x00020000;
-DMAC_LINK_MODE_OFFSET      = 0x00044000;
-DATA_NONCACHE_OFFSET       = 0x00048000;
-RAM_START                  = ATCM_PRV_START;
-RAM_LENGTH                 = ATCM_PRV_LENGTH;
-LOADER_START               = BTCM_PRV_START;
-LOADER_LENGTH              = BTCM_PRV_LENGTH;
-*/
-/* Change ADDRESS for EtherCAT Sample */
 LOADER_PARAM_ADDRESS       = xSPI0_CS0_SPACE_PRV_START;
 FLASH_CONTENTS_ADDRESS     = LOADER_PARAM_ADDRESS + 0x0000004C;
 LOADER_TEXT_ADDRESS        = 0x00102000;
@@ -75,7 +95,6 @@ RAM_START                  = SYSTEM_RAM_PRV_START;
 RAM_LENGTH                 = SYSTEM_RAM_PRV_LENGTH;
 LOADER_START               = BTCM_PRV_START;
 LOADER_LENGTH              = BTCM_PRV_LENGTH;
-/**************************************/
 
 /* Define starting addresses and length for data_noncache, DMAC link mode data, CPU-shared non-cache, and CPU-specific non-cache areas. */
 DATA_NONCACHE_START = DEFINED(SYSTEM_RAM_MIRROR_START) ? SYSTEM_RAM_MIRROR_START + SYSTEM_RAM_MIRROR_LENGTH - DATA_NONCACHE_OFFSET : 0;
@@ -146,16 +165,13 @@ SECTIONS
     {
         _loader_text_start = .;
         *(.loader_text)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/cr/startup_core.o(.text*)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/cr/system_core.o(.text*)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/startup.o(.text*)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/system.o(.text*)
-        build/rzn/fsp/src/bsp/mcu/all/cr/bsp_irq_core.o(.text*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_clocks.o(.text*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_irq.o(.text*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_register_protection.o(.text*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_cache.o(.text*)
-        build/rzn/fsp/src/r_ioport/r_ioport.o(.text*)
+        */fsp/src/bsp/cmsis/Device/RENESAS/Source/*.o(.text*)
+        */fsp/src/bsp/mcu/all/*/bsp_irq_core.o(.text*)
+        */fsp/src/bsp/mcu/all/bsp_clocks.o(.text*)
+        */fsp/src/bsp/mcu/all/bsp_irq.o(.text*)
+        */fsp/src/bsp/mcu/all/bsp_register_protection.o(.text*)
+        */fsp/src/bsp/mcu/all/bsp_cache.o(.text*)
+        */fsp/src/r_ioport/r_ioport.o(.text*)
         KEEP(*(.warm_start))
         . = . + (512 - ((. - _loader_text_start) % 512));
         _loader_text_end = .;
@@ -164,36 +180,31 @@ SECTIONS
     {
         _loader_data_start = .;
         __loader_data_start = .;
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/cr/startup_core.o(.data*)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/cr/system_core.o(.rodata*)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/startup.o(.data*)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/system.o(.data*)
-        build/rzn/fsp/src/bsp/mcu/all/cr/bsp_irq_core.o(.data*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_clocks.o(.data*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_irq.o(.data*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_register_protection.o(.data*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_cache.o(.data*)
-        build/rzn/fsp/src/r_ioport/r_ioport.o(.data*)
+        */fsp/src/bsp/cmsis/Device/RENESAS/Source/*.o(.data*)
+        */fsp/src/bsp/cmsis/Device/RENESAS/Source/*/system_core.o(.rodata*)
+        */fsp/src/bsp/mcu/all/*/bsp_irq_core.o(.data*)
+        */fsp/src/bsp/mcu/all/bsp_clocks.o(.data*)
+        */fsp/src/bsp/mcu/all/bsp_irq.o(.data*)
+        */fsp/src/bsp/mcu/all/bsp_register_protection.o(.data*)
+        */fsp/src/bsp/mcu/all/bsp_cache.o(.data*)
+        */fsp/src/r_ioport/r_ioport.o(.data*)
         . = ALIGN(4);
         __loader_data_end = .;
         __loader_bss_start = .;
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/cr/startup_core.o(.bss*)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/cr/system_core.o(.bss*)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/startup.o(.bss*)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/system.o(.bss*)
-        build/rzn/fsp/src/bsp/mcu/all/cr/bsp_irq_core.o(.bss*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_clocks.o(.bss*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_irq.o(.bss*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_register_protection.o(.bss*)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_cache.o(.bss*)
-        build/rzn/fsp/src/r_ioport/r_ioport.o(.bss*)
-        build/rzn/fsp/src/bsp/cmsis/Device/RENESAS/Source/*.o(COMMON)
-        build/rzn/fsp/src/bsp/mcu/all/cr/bsp_irq_core.o(COMMON)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_clocks.o(COMMON)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_irq.o(COMMON)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_register_protection.o(.COMMON)
-        build/rzn/fsp/src/bsp/mcu/all/bsp_cache.o(COMMON)
-        build/rzn/fsp/src/r_ioport/r_ioport.o(.COMMON)
+        */fsp/src/bsp/cmsis/Device/RENESAS/Source/*.o(.bss*)
+        */fsp/src/bsp/mcu/all/*/bsp_irq_core.o(.bss*)
+        */fsp/src/bsp/mcu/all/bsp_clocks.o(.bss*)
+        */fsp/src/bsp/mcu/all/bsp_irq.o(.bss*)
+        */fsp/src/bsp/mcu/all/bsp_register_protection.o(.bss*)
+        */fsp/src/bsp/mcu/all/bsp_cache.o(.bss*)
+        */fsp/src/r_ioport/r_ioport.o(.bss*)
+        */fsp/src/bsp/cmsis/Device/RENESAS/Source/*.o(COMMON)
+        */fsp/src/bsp/mcu/all/*/bsp_irq_core.o(COMMON)
+        */fsp/src/bsp/mcu/all/bsp_clocks.o(COMMON)
+        */fsp/src/bsp/mcu/all/bsp_irq.o(COMMON)
+        */fsp/src/bsp/mcu/all/bsp_register_protection.o(.COMMON)
+        */fsp/src/bsp/mcu/all/bsp_cache.o(COMMON)
+        */fsp/src/r_ioport/r_ioport.o(.COMMON)
         . = ALIGN(4);
         __loader_bss_end = . ;
         _loader_data_end = .;
