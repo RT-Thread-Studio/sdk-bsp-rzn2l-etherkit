@@ -29,14 +29,14 @@ chip:
   uart_name: UART0
 docs:
 - category: Hardware Manual
-  file: docs/User’s Manual Hardware.pdf
-  title: User’s Manual Hardware
+  file: docs/User-Manual-Hardware.pdf
+  title: User-Manual-Hardware
 - category: Datasheet
   file: docs/rzn2l-group-datasheet.pdf
   title: rzn2l-group-datasheet
 - category: User Manual
-  file: docs/EtherKit用户手册_V0.1.0.pdf
-  title: EtherKit用户手册_V0.1.0
+  file: docs/EtherKit_User_Manual.pdf
+  title: EtherKit_User_Manual
 - category: Board Schematic
   file: docs/EtherKit_Board_Schematic.pdf
   title: EtherKit_Board_Schematic
