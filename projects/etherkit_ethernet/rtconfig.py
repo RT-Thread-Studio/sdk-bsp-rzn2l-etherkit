@@ -26,8 +26,8 @@ elif CROSS_TOOL == 'iar':
 if os.getenv('RTT_EXEC_PATH'):
     EXEC_PATH = os.getenv('RTT_EXEC_PATH')
 
-BUILD = 'debug' 
-# BUILD = 'release' 
+BUILD = 'debug'
+# BUILD = 'release'
 
 if PLATFORM == 'gcc':
     # toolchains
@@ -45,7 +45,7 @@ if PLATFORM == 'gcc':
     DEVICE = ' -mcpu=cortex-r52 -marm -mfloat-abi=hard -mfpu=neon-fp-armv8 -fdiagnostics-parseable-fixits -Og -fmessage-length=0 -fsigned-char -fdata-sections -funwind-tables -ffunction-sections -fno-strict-aliasing -g -gdwarf-4'
     CFLAGS = DEVICE + ' -Dgcc'
     AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp'
-    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,Reset_Handler -lgcc -lrdimon -T script/fsp_xspi0_boot.ld -L script/'
+    LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,system_init -lgcc -lrdimon -T script/fsp_xspi0_boot_scons.ld -L script/'
     CPATH = ''
     LPATH = ''
 
@@ -109,7 +109,7 @@ elif PLATFORM == 'iccarm':
     LFLAGS += ' --entry Reset_Handler'
 
     CXXFLAGS = CFLAGS
-    
+
     EXEC_PATH = EXEC_PATH + '/arm/bin/'
     POST_ACTION = 'ielftool --bin $TARGET rtthread.bin'
 
