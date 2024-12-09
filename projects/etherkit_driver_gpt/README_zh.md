@@ -83,6 +83,14 @@ PWM相关宏定义：
 当前版本的 PWM 驱动将每个通道都看做一个单独的 PWM 设备，每个设备都只有一个通道0。使用PWM5设备，注意此处通道选择为0通道；
 
 ```c
+#define PWM_DEV_NAME        "pwm5"  /* PWM设备名称 */
+#define PWM_DEV_CHANNEL      0      /* PWM通道 */
+struct rt_device_pwm *pwm_dev;      /* PWM设备句柄 */
+```
+
+配置PWM周期以及占空比：
+
+```
 static int pwm_sample(int argc, char *argv[])
 {
     rt_uint32_t period, pulse, dir;
@@ -102,50 +110,6 @@ static int pwm_sample(int argc, char *argv[])
     rt_pwm_enable(pwm_dev, PWM_DEV_CHANNEL);
 }
 /* 导出到 msh 命令列表中 */
-MSH_CMD_EXPORT(pwm_sample, pwm sample);
-```
-
-配置PWM周期以及占空比：
-
-```
-static int pwm_sample(int argc, char *argv[])
-
-{
-
-  rt_uint32_t period, pulse, dir;
-
-  period = 500000;   /* 周期为0.5ms，单位为纳秒ns */
-
-  dir = 1;       /* PWM脉冲宽度值的增减方向 */
-
-  pulse = 100000;      /* PWM脉冲宽度值，单位为纳秒ns */
-
-  /* 查找设备 */
-
-  pwm_dev = (struct rt_device_pwm *)rt_device_find(PWM_DEV_NAME);
-
-  if (pwm_dev == RT_NULL)
-
-  {
-
-​    rt_kprintf("pwm sample run failed! can't find %s device!\n", PWM_DEV_NAME);
-
-​    return RT_ERROR;
-
-  }
-
-  /* 设置PWM周期和脉冲宽度默认值 */
-
-  rt_pwm_set(pwm_dev, PWM_DEV_CHANNEL, period, pulse);
-
-  /* 使能设备 */
-
-  rt_pwm_enable(pwm_dev, PWM_DEV_CHANNEL);
-
-}
-
-/* 导出到 msh 命令列表中 */
-
 MSH_CMD_EXPORT(pwm_sample, pwm sample);
 ```
 
