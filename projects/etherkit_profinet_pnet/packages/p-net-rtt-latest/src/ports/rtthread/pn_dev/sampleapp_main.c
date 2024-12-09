@@ -42,7 +42,7 @@
 
 #define APP_LOG_LEVEL                  APP_LOG_LEVEL_DEBUG
 
-#define APP_BG_WORKER_THREAD_PRIORITY  26
+#define APP_BG_WORKER_THREAD_PRIORITY  19
 #define APP_BG_WORKER_THREAD_STACKSIZE 4096 /* bytes */
 
 /********************************** Globals ***********************************/
@@ -166,7 +166,7 @@ static void pnet_app(void)
        }
 #endif
 
-        rt_thread_t pnet_thread = rt_thread_create("pnet", pnet_main, RT_NULL, 5124, 25, 10);
+        rt_thread_t pnet_thread = rt_thread_create("pnet", pnet_main, RT_NULL, 5124, 19, 10);
         rt_thread_startup(pnet_thread);
         app_status = 1;
         return;

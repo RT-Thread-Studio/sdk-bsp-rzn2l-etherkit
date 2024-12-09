@@ -94,7 +94,7 @@
 
 #if !defined (PNET_MAX_AR)
 /** Number of connections. Must be > 0. "Automated RT Tester" uses 2 */
-#define PNET_MAX_AR               1
+#define PNET_MAX_AR               2
 #endif
 
 #if !defined (PNET_MAX_API)
@@ -196,7 +196,7 @@
  */
 
 #ifndef LOG_LEVEL
-#define LOG_LEVEL               (LOG_LEVEL_WARNING)
+#define LOG_LEVEL               (LOG_LEVEL_FATAL)
 #endif
 
 #ifndef PF_ETH_LOG
