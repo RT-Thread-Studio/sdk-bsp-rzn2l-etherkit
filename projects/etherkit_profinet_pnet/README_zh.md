@@ -187,6 +187,8 @@ GSD(Generic Station Description file)：即通用站点描述文件，主要用�
 
 这里我们使用 CODESYS软件来测试 PN 的主从站交互。
 
+### LED闪烁
+
 回到 CODESYS 软件，左侧导航栏选择 PN_Controller，右键点击扫描设备，单击设备名后点击闪烁LED：
 
 ![image-20241126114601251](figures/image-20241126114601251.png)
@@ -194,3 +196,15 @@ GSD(Generic Station Description file)：即通用站点描述文件，主要用�
 此时的开发板端（PN从站IO）可以看到日志输出，并伴随板载User LED闪烁：
 
 ![img](figures/clip_image050.jpg)
+
+### 从站 I&M(标识和维护) 数据修改
+
+依然是扫描设备界面，我们点击左下角的 I&M，修改信息并写入 I&M：
+
+![image-20241209165958786](figures/image-20241209165958786.png)
+
+同时 PNIO 会更新从站配置信息：
+
+![image-20241209170011069](figures/image-20241209170011069.png)
+
+我们再次点击查看 I&M，即可发现 I&M 修改成功！

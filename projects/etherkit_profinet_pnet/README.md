@@ -175,18 +175,26 @@ You should see the PN master successfully online:
 
 ## PROFINET Slave Application Startup
 
-Start the PROFINET slave on the development board by executing the command: `pnet_app`:
+Here we use the CODESYS software to test the interaction between the PN master and slave stations.
 
-![image-20241126114538916](figures/image-20241126114538916.png)
+### LED Blinking
 
-![image-20241126114547482](figures/image-20241126114547482.png)
-
-## PN Protocol Stack Demo
-
-In CODESYS, test the master-slave interaction by selecting **PN_Controller** in the left navigation bar, right-clicking **Scan Devices**, selecting the device, and clicking **Blink LED**:
+Back in the CODESYS software, in the left navigation panel, select `PN_Controller`, right-click and scan the devices. After clicking on the device name, click on "Blink LED":
 
 ![image-20241126114601251](figures/image-20241126114601251.png)
 
-The development board’s logs should display output and the onboard **User LED** will blink:
+At this point, the development board (PN slave I/O) will display log outputs, accompanied by the onboard User LED blinking:
 
 ![img](figures/clip_image050.jpg)
+
+### Modifying Slave I&M (Identification and Maintenance) Data
+
+In the same device scanning interface, click on the I&M section in the lower left corner, modify the information, and write it to the I&M:
+
+![image-20241209165958786](figures/image-20241209165958786.png)
+
+At the same time, PNIO will update the slave station configuration:
+
+![image-20241209170011069](figures/image-20241209170011069.png)
+
+We can click to view the I&M again, and we will see that the I&M data has been successfully modified!
