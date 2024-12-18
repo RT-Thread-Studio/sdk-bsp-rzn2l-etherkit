@@ -122,11 +122,85 @@ Set the Ethernet interrupt callback to: `user_ether0_callback`
 
 Finally, click Generate Project Content to generate the underlying driver source code.
 
+## Build Configuration
+
+1. **Modify SConscript**: Navigate to the project and locate the file at the specified path: `.\rzn\SConscript`. Replace the file content with the following:
+
+```python
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+from gcc import *
+
+cwd = GetCurrentDir()
+src = []
+group = []
+CPPPATH = []
+
+if rtconfig.PLATFORM in ['iccarm']:
+    Return('group')
+elif rtconfig.PLATFORM in GetGCCLikePLATFORM():
+    if GetOption('target') != 'mdk5':
+        src += Glob('./fsp/src/bsp/mcu/all/*.c')
+        src += Glob('./fsp/src/bsp/mcu/all/cr/*.c')
+        src += Glob('./fsp/src/bsp/mcu/r*/*.c')
+        src += Glob('./fsp/src/bsp/cmsis/Device/RENESAS/Source/*.c')
+        src += Glob('./fsp/src/bsp/cmsis/Device/RENESAS/Source/cr/*.c')
+        src += Glob('./fsp/src/r_*/*.c')
+        CPPPATH = [ cwd + '/arm/CMSIS_5/CMSIS/Core_R/Include',
+                    cwd + '/fsp/inc',
+                    cwd + '/fsp/inc/api',
+                    cwd + '/fsp/inc/instances',]
+
+if GetDepend('BSP_USING_ETHERCAT_EOE'):
+    src += Glob('./fsp/src/rm_ethercat_ssc_port/*.c')
+    CPPPATH += [cwd + '/fsp/src/rm_ethercat_ssc_port']
+
+group = DefineGroup('rzn', src, depend = [''], CPPPATH = CPPPATH)
+Return('group')
+```
+
+2. **Modify Kconfig**: Open the file located at `projects\etherkit_ethercat_eoe\board\Kconfig`. Add the EOE configuration under the *Onboard Peripheral Drivers* section:
+
+```c
+        config BSP_USING_ETHERCAT_EOE
+            bool "Enable EtherCAT EOE example"
+            select BSP_USING_ETH
+            default n
+            if BSP_USING_ETHERCAT_EOE
+                config RT_LWIP_IPADDR
+                    string "set static ip address for eoe slaver"
+                    default "192.168.10.100"
+                config RT_LWIP_GWADDR
+                    string "set static gateway address for eoe slaver"
+                    default "192.168.10.1"
+                config RT_LWIP_MSKADDR
+                    string "set static mask address for eoe slaver"
+                    default "255.255.255.0"
+            endif
+```
+
+As shown in the following figure:
+
+![image-20241216133719165](figures/image-20241216133719165.png)
+
+3. **Development Environment**:  
+   - If you are using Studio for development, right-click the project and select **Sync SCons Configuration to Project**.  
+   - If you are using IAR for development, right-click in the current project directory to open the environment and execute:  
+     ```bash
+     scons --target=iar
+     ```
+     to regenerate the configuration.
+
 ## RT-Thread Studio Configuration
 
 After completing the FSP configuration, pin and peripheral initialization is done. Now, we need to enable the EtherCAT EOE example. Open Studio, click RT-Thread Settings, and enable the EOE example:
 
 ![image-20241126113041985](figures/image-20241126113041985.png)
+
+Next, we need to configure the system to disable DHCP and use a static IP. Click on the component -> enable the lwip stack, and select to disable DHCP:
+
+![image-20241213114404172](figures/image-20241213114404172.png)
 
 Once enabled, save the settings and synchronize the scons configuration. Then compile and download the program. After resetting the development board, observe the serial log:
 
@@ -191,3 +265,43 @@ At this point, you can use DHCP to configure an automatic IP or manually assign 
 ![image-20241126113612960](figures/image-20241126113612960.png)
 
 Once configured, the EOE App will work, allowing communication over EtherCAT!
+
+## Extension Explanation: 3-Port Ethernet EOE Communication
+
+The example project currently defaults to a 2-port Ethernet EOE configuration. If you need to use a 3-port EOE communication setup, please follow the instructions in this chapter for configuration.
+
+### FSP Configuration
+
+First, open the FSP configuration file in the project. We will add a third PHY for the SSC stack.
+
+![image-20241217181157005](figures/image-20241217181157005.png)
+
+Next, configure the channel count for PHY2 to 2, and set the PHY address to 3 (as referenced from the schematic manual). Also, configure the network card model as user-defined and set the Ethernet initialization callback function.
+
+![image-20241217181209037](figures/image-20241217181209037.png)
+
+Then, configure the pins to enable ETH2.
+
+![image-20241217181218646](figures/image-20241217181218646.png)
+
+Next, configure the ESC corresponding to the ETH2 LINK pins, setting ESC_LINKACT2 (P22_1) and ESC_PHYLINK2 (P00_5). Note: **If P22_1 is already in use, you must first manually disable its multiplexing function before enabling this option**.
+
+![image-20241217181235776](figures/image-20241217181235776.png)
+
+After completing the above configurations, you can click to generate the source code, return to the project, compile it, and download the program to the development board.
+
+### ESI Firmware Update
+
+Similarly, we need to wait for the development board's EOE slave to successfully run. Then, open the TwinCAT 3 software to scan for devices. Once the EtherCAT device is found, do not activate it immediately. In the pop-up window, click "No."
+
+![image-20241217181259080](figures/image-20241217181259080.png)
+
+Refer to the **"Update EEPROM Firmware"** section. Follow the same steps, but this time, select the firmware to be updated as: Renesas EtherCAT RZ/N2 EoE 3port [2308 / 768], and click to flash the firmware.
+
+![image-20241217181338720](figures/image-20241217181338720.png)
+
+Once the flashing is complete, we need to delete the device again and scan it once more. You should see that the slave device description has been updated to "Box 1 (Renesas EtherCAT RZ/N2 EoE 3port)."
+
+![image-20241217181350020](figures/image-20241217181350020.png)
+
+For further EOE development, please refer to the previous chapters.

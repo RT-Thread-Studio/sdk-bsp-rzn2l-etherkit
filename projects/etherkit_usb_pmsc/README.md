@@ -32,6 +32,49 @@ EtherKit provides a USB-Device peripheral, located on the development board as s
 
 ![image-20241126111620891](figures/image-20241126111620891.png)
 
+## Build Configuration
+
+Locate the file at the specified path in the project: `.\rzn\SConscript` and replace its content with the following:
+
+```c
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+from gcc import *
+
+cwd = GetCurrentDir()
+src = []
+group = []
+CPPPATH = []
+
+if rtconfig.PLATFORM in ['iccarm']:
+    Return('group')
+elif rtconfig.PLATFORM in GetGCCLikePLATFORM():
+    if GetOption('target') != 'mdk5':
+        src += Glob('./fsp/src/bsp/mcu/all/*.c')
+        src += Glob('./fsp/src/bsp/mcu/all/cr/*.c')
+        src += Glob('./fsp/src/bsp/mcu/r*/*.c')
+        src += Glob('./fsp/src/bsp/cmsis/Device/RENESAS/Source/*.c')
+        src += Glob('./fsp/src/bsp/cmsis/Device/RENESAS/Source/cr/*.c')
+        src += Glob('./fsp/src/r_*/*.c')
+        src += Glob('./fsp/src/r_usb_basic/src/driver/*.c')
+        src += Glob('./fsp/src/r_usb_basic/src/hw/*.c')
+        src += Glob('./fsp/src/r_usb_pmsc/src/*.c')
+        CPPPATH = [ cwd + '/arm/CMSIS_5/CMSIS/Core_R/Include',
+                            cwd + '/fsp/inc',
+                            cwd + '/fsp/src/inc',
+                            cwd + '/fsp/inc/api',
+                            cwd + '/fsp/inc/instances',
+                            cwd + '/fsp/src/r_usb_basic/src/driver/inc',
+                            cwd + '/fsp/src/r_usb_basic/src/hw/inc',
+                            cwd + '/fsp/src/r_usb_pmsc/src/inc',]
+
+group = DefineGroup('rzn', src, depend = [''], CPPPATH = CPPPATH)
+Return('group')
+```
+
+If you are using Studio for development, right-click the project and select **Sync SCons Configuration to Project**. For IAR development, right-click within the current project to open the environment, and run the command:`scons --target=iar` to regenerate the configuration.
+
 ## RT-Thread Settings Configuration
 
 The USB example currently uses the FreeRTOS interface driver, so we also need to enable the FreeRTOS compatibility layer package:

@@ -17,48 +17,65 @@ In this example, we will use the P-Net software package to implement PROFINET ma
 - [CODESYS](https://us.store.codesys.com/) (PROFINET master simulation)
     - CODESYS
     - CODESYS Gateway (Gateway device)
-    - CODESYS Control Win SysTray (PLC device)
+    - CODESYS Control Win SysTray (Soft PLC device)
+- [Npcap](https://npcap.com/dist/npcap-1.80.exe)(The software is running CODESYS must, need installed in advance!)
 
 **Hardware Environment**:
 
 - EtherKit development board
 
-## Software Package Configuration
+## FSP Configuration Instructions
 
-Double-click to open RT-Thread Settings, go to **-> RT-Thread online packages -> IoT**, find **[\*] P-Net stack for Profinet device implementation --->** and enable it. Below is the related user configuration information explanation:
+Open the project configuration file `configuration.xml` and add the `r_gamc` stack:
 
-```c
--*- Default netif name for P-NET  --->
-    -> (e00) default ethernet interface name for p-net app, default as 'e00'
--*- Enable P-NET sample board config  ---> 
-    -> (0x0209) p-net user led pin
-    -> (0x0005) p-net user key pin
--*- Default root filesystem path for P-NET  ---> 
-    -> [*] p-net using ramfs filesystem by default, or you can turn this off and choose another way to enable the filesystem
-    -> (8192)  default memory size for ramfs
--*- P-NET sample slave network ip config  ---> 
-    -> (192.168.137.196) set static IP address for PROFINET slave
-    -> (192.168.137.1) set static gateway address for PROFINET slave
-    -> (255.255.255.0) set static mask address for PROFINET slave
-version (latest)  ---> 
-```
+![image-20241126104408737](figures/image-20241126104408737-17340606619556.png)
 
-- **Default netif name for p-net**: p-net network interface name, default is `e00`;
-- **Enable pnet sample board config**: p-net app user LED and key configuration;
-- **Default root filesystem path for p-net**: p-net filesystem configuration, default uses ramfs with 8K memory allocation;
-- **P-NET sample slave network ip config**: Static IP configuration for the p-net slave device (**Make sure to disable RT_LWIP_DHCP and use static IP**).
+Next, click on `g_ether0 Ethernet`, and configure the interrupt callback function to `user_ether0_callback`:
 
-After configuring these settings, compile and download the program to the development board.
+![image-20241126104422910](figures/image-20241126104422910-17340606619557.png)
+
+Now configure the PHY settings. Select `g_ether_phy0`, set the common configuration to "User Own Target", change the PHY LSI address to `1` (refer to the schematic for the exact address), and set the PHY initialization callback function to `ether_phy_targets_initialize_rtl8211_rgmii()`. Also, set the MDIO to GMAC.
+
+![image-20241126104437432](figures/image-20241126104437432-17340606619558.png)
+
+Next, configure `g_ether_selector0`, set the Ethernet mode to "Switch Mode", set the PHY link to "Default Active-Low", and choose "RGMII" for the PHY interface mode.
+
+![image-20241126104519290](figures/image-20241126104519290-17340606619569.png)
+
+Configure the Ethernet pin parameters and select the operating mode to RGMII:
+
+![image-20241126104533098](figures/image-20241126104533098-173406066195610.png)
+
+Finally, configure `ETHER_GMAC`:
+
+![image-20241213113648018](figures/image-20241213113648018.png)
+
+## RT-Thread Settings Configuration
+
+Double-click to open RT-Thread Settings, search for the p-net package in the search bar and enable it. Below are the related user configuration details:
+
+![image-20241217153316489](figures/image-20241217153316489.png)
+
+- **Default netif name for p-net**: The interface name for the p-net network card device, default is e00.
+- **Enable pnet sample board config**: Configuration for user LED and button on the p-net application.
+- **Default root filesystem path for p-net**: Configuration for the p-net filesystem, default is using ramfs, with 8K of memory space allocated by default.
+- **P-NET sample slave network ip config**: Static IP configuration for the p-net slave device (**Please disable RT_LWIP_DHCP functionality and use static IP**).
+
+Next, we need to configure the system to disable DHCP and use a static IP. Click on the component -> enable the lwip stack, and select to disable DHCP:
+
+![image-20241213113246597](figures/image-20241213113246597.png)
+
+After completing the above configurations, compile the program and download it to the development board.
 
 ## Network Configuration
 
 Connect the development board to the PC using an Ethernet cable, and configure a static IP on the PC:
 
-![image-20241126114040869](figures/image-20241126114040869.png)
+![image-20241217145852034](figures/image-20241217145852034.png)
 
 Check the IP information on the development board and test connectivity:
 
-![image-20241126114049493](figures/image-20241126114049493.png)
+![image-20241217153547501](figures/image-20241217153547501.png)
 
 ## Soft PLC Startup
 
@@ -76,7 +93,7 @@ First, open **CODESYS V3.5 SP20 Patch 3**, choose **New Project** -> **Projects*
 
 ![image-20241126114127411](figures/image-20241126114127411.png)
 
-In the pop-up window, keep the default configuration and click **OK**:
+After the following popup, keep the default Settings (CODESYS Control Win V3 (CODESYS)/x64 (CODESYS)) and click OK:
 
 ![image-20241126114137199](figures/image-20241126114137199.png)
 
@@ -149,17 +166,17 @@ After installation, you should see the **P-Net slave description file**:
 
 ### Network Configuration
 
-- **Ethernet Configuration**: Double-click **Ethernet (Ethernet)** in the left navigation bar -> **General**, and modify the network interface to the one connected to the development board (ensure the correct master IP is selected if using multiple stations).
+- **Ethernet Configuration**: Double-click **Ethernet (Ethernet)** in the left navigation bar -> **General**, and modify the network interface to the one connected to the development board.
 
-![image-20241126114448562](figures/image-20241126114448562.png)
+![image-20241217150217077](figures/image-20241217150217077.png)
 
 - **PN_Controller Configuration**: Double-click **PN_Controller (PN-Controller)** -> **General**, and modify the default slave IP parameters as needed.
 
 - **P-Net Slave Network Configuration**: Double-click **P-Net-multiple-module sample app** -> **General**, and modify the IP parameters to match the development board’s IP:
 
-![image-20241126114459034](figures/image-20241126114459034.png)
+![image-20241217150534826](figures/image-20241217150534826.png)
 
-![image-20241126114512924](figures/image-20241126114512924.png)
+![image-20241217150820978](figures/image-20241217150820978.png)
 
 ### Compile and Debug the Project
 
@@ -169,9 +186,15 @@ After installation, you should see the **P-Net slave description file**:
 
 You should see the PN master successfully online:
 
-![image-202411261145266
+![image-20241126114526657](figures/image-20241126114526657.png)
 
-57](figures/image-20241126114526657.png)
+## profinet starts from the station application
+
+After the development board is powered on, once the NIC link up is detected, the secondary PN station is automatically started:
+
+![image-20241217152754556](figures/image-20241217152754556.png)
+
+![image-20241217153012620](figures/image-20241217153012620.png)
 
 ## PROFINET Slave Application Startup
 
@@ -198,3 +221,66 @@ At the same time, PNIO will update the slave station configuration:
 ![image-20241209170011069](figures/image-20241209170011069.png)
 
 We can click to view the I&M again, and we will see that the I&M data has been successfully modified!
+
+### PLC Programming and PNIO Control
+
+First, we click on the left panel under Device -> PLC Logic -> Application -> PLC_PRG (PRG), and use ST language to program the variable and program code:
+
+* **Variable Definition**: These variables define the input state of the button (in_pin_button_LED), the output state of the LED (out_pin_LED), and the state variable controlling whether the LED should blink (flashing). The oscillator state (oscillator_state) and oscillator cycle counter (oscillator_cycles) are used to achieve a timed blinking effect.
+
+```st
+PROGRAM PLC_PRG
+VAR
+    in_pin_button_LED: BOOL;
+    out_pin_LED: BOOL;
+    in_pin_button_LED_previous: BOOL;
+    flashing: BOOL := TRUE;
+    oscillator_state: BOOL := FALSE;
+    oscillator_cycles: UINT := 0;
+END_VAR
+```
+
+* **Program Definition**:
+  1. First, in each cycle, the `oscillator_cycles` increases by 1. When the counter exceeds 200, the counter is reset, and the `oscillator_state` is toggled (TRUE or FALSE), achieving a periodic change.
+  2. If the button is pressed (in_pin_button_LED is TRUE), and the button state in the previous cycle was FALSE, the `flashing` state is toggled. That is, every time the button is pressed, the LED blinking state is toggled.
+  3. If `flashing` is TRUE, the LED will blink according to the oscillator state (`oscillator_state`). If `flashing` is FALSE, the LED will turn off directly.
+  4. At the end of each cycle, the current button state is saved in `in_pin_button_LED_previous` to check the button press event in the next cycle.
+
+```st
+oscillator_cycles := oscillator_cycles + 1;
+IF oscillator_cycles > 200 THEN 
+    oscillator_cycles := 0;
+    oscillator_state := NOT oscillator_state;
+END_IF
+IF in_pin_button_LED = TRUE THEN 
+    IF in_pin_button_LED_previous = FALSE THEN 
+        flashing := NOT flashing; 
+    END_IF
+    out_pin_LED := TRUE;
+ELSIF flashing = TRUE THEN 
+    out_pin_LED := oscillator_state;
+ELSE 
+    out_pin_LED := FALSE;
+END_IF
+in_pin_button_LED_previous := in_pin_button_LED;
+```
+
+The configuration in the project is shown in the image below:
+
+![image-20241217154402755](figures/image-20241217154402755.png)
+
+Next, we need to add a built-in IO module. Right-click on `P_Net_multi_module_sample_app` and add an IO module (DIO 8xLogicLevel), as shown in the image below:
+
+![image-20241217154411140](figures/image-20241217154411140.png)
+
+Then, double-click on the `DIO_8xLogicLevel` node, select the `PNIO Module I/O Mapping`, edit Input Bit 7 and Output Bit 7, and bind the PLC variables:
+
+![image-20241217154418088](figures/image-20241217154418088.png)
+
+Next, click on the **Build -> Generate Code** in the navigation bar, then select **Online -> Login**, and run to observe the behavior:
+
+![image-20241217154427784](figures/image-20241217154427784.png)
+
+Next, go back to CODESYS, double-click **Device -> PLC Logic -> Application** and open the `PLC_PRG (PRG)`. At this point, you can dynamically observe the program's running state. For example, if you press and hold the KEY0 on the EtherKit development board, you will find that both `in_pin_button_LED` and `in_pin_button_LED_previous` are FALSE. When you release KEY0, you will see that the `flashing` value toggles once.
+
+![image-20241217154439788](figures/image-20241217154439788.png)

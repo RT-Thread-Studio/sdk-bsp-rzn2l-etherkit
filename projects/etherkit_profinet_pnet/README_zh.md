@@ -15,39 +15,55 @@ P-Net协议是一个开源的PROFINET实现，专门用于嵌入式设备的实�
 软件环境：
 
 - [CODESYS](https://us.store.codesys.com/)（profinet主站模拟）
-
 - - CODESYS
   - CODESYS Gateway（网关设备）
-  - CODESYS Control Win SysTray（PLC设备）
+  - CODESYS Control Win SysTray（软PLC设备）
+- [Npcap](https://npcap.com/dist/npcap-1.80.exe)（该软件是运行CODESYS必须的，需要提前安装好！）
 
 硬件环境：
 
 - EtherKit开发板
 
-## 软件包配置
+## FSP配置
 
-双击打开 RT-Thread Settings，进入 **->RT-Thread online packages->IoT**，找到 **[\*] P-Net stack for Profinet device implementation --->** 使能，下面是相关用户配置信息说明：
+打开工程配置文件configuration.xml，新增r_gamc Stack：
 
-```c
--*- Default netif name for P-NET  --->
-    -> (e00) default ethernet interface name for p-net app, default as 'e00
--*- Enable P-NET sample board config  --->
-    -> (0x0209) p-ent user led pin
-    -> (0x0005) p-net user key pin
--*- Default root filesystem path for P-NET  --->
-    -> [*] p-net using ramfs filesystem by default, or you can turn this off and choose another way to enable the filesystem
-    -> (8192)  default memory size for ramfs
--*- P-NET sample slave network ip config  --->
-    -> (192.168.137.196) set static ip address for profinet slaver
-    -> (192.168.137.1) set static gateway address for profinet slaver
-    -> (255.255.255.0) set static mask address for profinet slaver
-    version (latest)  --->
-```
+![image-20241126104408737](figures/image-20241126104408737.png)
+
+点击g_ether0 Ethernet，配置中断回调函数为user_ether0_callback：
+
+![image-20241126104422910](figures/image-20241126104422910.png)
+
+下面配置phy信息，选择g_ether_phy0，Common配置为User Own Target；修改PHY LSI地址为1（根据原理图查询具体地址）；设置phy初始化回调函数为ether_phy_targets_initialize_rtl8211_rgmii()；同时设置MDIO为GMAC。
+
+![image-20241126104437432](figures/image-20241126104437432.png)
+
+配置g_ether_selector0，选择以太网模式为交换机模式，PHY link设置为默认active-low，PHY接口模式设置为RGMII。
+
+![image-20241126104519290](figures/image-20241126104519290.png)
+
+网卡引脚参数配置，选择操作模式为RGMII：
+
+![image-20241126104533098](figures/image-20241126104533098.png)
+
+ETHER_GMAC配置：
+
+![image-20241213113637153](figures/image-20241213113637153.png)
+
+## RT-Thread Settings 配置
+
+双击打开 RT-Thread Settings，在搜索栏检索p-net软件包并使能，下面是相关用户配置信息说明；
+
+![image-20241217153300229](figures/image-20241217153300229.png)
 
 - **Default netif name for p-net**：p-net 网卡设备接口名称，默认为 e00 ；
 - **Enable pnet sample board config**：p-net app 用户LED及按键配置；
 - **Default root filesystem path for p-net**：p-net 文件系统配置，默认使用 ramfs ，默认分配 8K 内存空间；
 - **P-NET sample slave network ip config**：p-net 从站设备静态IP配置（**请关闭 RT_LWIP_DHCP 功能，使用静态IP**）
+
+下面我们还需要配置禁用dhcp功能并使用静态IP，点击组件->使能lwip堆栈，选择禁用DHCP；
+
+![image-20241213113246597](figures/image-20241213113246597.png)
 
 完成上述配置后，将程序编译下载至开发板。
 
@@ -55,11 +71,11 @@ P-Net协议是一个开源的PROFINET实现，专门用于嵌入式设备的实�
 
 我们使用一根网线连接开发板与PC，同时在PC端配置静态IP：
 
-![image-20241126114040869](figures/image-20241126114040869.png)
+![image-20241217145852034](figures/image-20241217145852034.png)
 
 检查开发板端的 IP 信息，并测试联通性：
 
-![image-20241126114049493](figures/image-20241126114049493.png)
+![image-20241217153606384](figures/image-20241217153606384.png)
 
 ## 软PLC启动
 
@@ -79,7 +95,7 @@ CODESYS简介：CODESYS是德国3S公司开发的PLC软件，集成了PLC逻辑�
 
 ![image-20241126114127411](figures/image-20241126114127411.png)
 
-弹出下面这个弹窗后保持默认配置点击确定：
+弹出下面这个弹窗后保持默认配置(CODESYS Control Win V3 (CODESYS) / x64 (CODESYS))点击确定：
 
 ![image-20241126114137199](figures/image-20241126114137199.png)
 
@@ -126,7 +142,7 @@ GSD(Generic Station Description file)：即通用站点描述文件，主要用�
 
 ![image-20241126114257110](figures/image-20241126114257110.png)
 
-### 20.5.4 设备添
+### 设备添加
 
 - Ethernet添加：左侧导航栏点击Device并右键添加设备，选择以太网适配器；
 
@@ -142,7 +158,7 @@ GSD(Generic Station Description file)：即通用站点描述文件，主要用�
 
 ![image-20241126114354826](figures/image-20241126114354826.png)
 
-### 20.5.5 任务响应
+### 任务响应
 
 - Main Tasks 配置：左侧导航栏选择 Application -> 任务配置 -> 双击MainTask(IEC-Tasks)，优先级设置为1，类型选择循环，周期选择 4ms；
 
@@ -154,16 +170,16 @@ GSD(Generic Station Description file)：即通用站点描述文件，主要用�
 
 ### 网络配置
 
-- Ethernet 配置：双击左侧导航栏中的Ethernet(Ethernet) -> 通用，修改网络接口为连接到开发板的以太网端口（这里由于我开启了PRONETA，所以在同一网段下分配了两个主站IP，这里需要注意选择正确的那一个）
+- Ethernet 配置：双击左侧导航栏中的Ethernet(Ethernet) -> 通用，修改网络接口为连接到开发板的以太网端口；
 
-![image-20241126114448562](figures/image-20241126114448562.png)
+![image-20241217150217077](figures/image-20241217150217077.png)
 
 - PN_Controller 配置：双击左侧导航栏     PN_Controller(PN-Controller) -> 通用，并正确修改默认从站IP参数的区间，根据提示修改即可。
-- P-Net 从站网络配置：双击左侧导航栏 P-Net-multiple-module sample app ->     通用， 修改IP参数为开发板IP
+- P-Net 从站网络配置：双击左侧导航栏 P-Net-multiple-module sample app -> 通用， 修改IP参数为开发板IP
 
-![image-20241126114459034](figures/image-20241126114459034.png)
+![image-20241217150604096](figures/image-20241217150604096.png)
 
-![image-20241126114512924](figures/image-20241126114512924.png)
+![image-20241217150820978](figures/image-20241217150820978.png)
 
 ### 工程编译并启动调试
 
@@ -177,11 +193,11 @@ GSD(Generic Station Description file)：即通用站点描述文件，主要用�
 
 ## profinet 从站应用启动
 
-开发板端启动 PN 从站，执行命令：pnet_app：
+开发板端上电后，一旦检测到网卡 link up，则会自动启动 PN 从站：
 
-![image-20241126114538916](figures/image-20241126114538916.png)
+![image-20241217152733493](figures/image-20241217152733493.png)
 
-![image-20241126114547482](figures/image-20241126114547482.png)
+![image-20241217153026315](figures/image-20241217153026315.png)
 
 ## PN协议栈运行demo
 
@@ -208,3 +224,66 @@ GSD(Generic Station Description file)：即通用站点描述文件，主要用�
 ![image-20241209170011069](figures/image-20241209170011069.png)
 
 我们再次点击查看 I&M，即可发现 I&M 修改成功！
+
+### PLC编程及PNIO控制
+
+首先我们点击左侧面板的Device->PLC逻辑->Application->PLC_PRG(PRG)，使用ST语言编程，编写变量及程序代码：
+
+* 变量定义：这些变量定义了按钮的输入状态（in_pin_button_LED），LED 的输出状态（out_pin_LED）以及控制 LED 是否闪烁的状态变量（flashing）。振荡器状态（oscillator_state）和振荡器周期计数器（oscillator_cycles）用来实现定时闪烁效果。
+
+```st
+PROGRAM PLC_PRG
+VAR
+    in_pin_button_LED: BOOL;
+    out_pin_LED: BOOL;
+    in_pin_button_LED_previous: BOOL;
+    flashing: BOOL := TRUE;
+    oscillator_state: BOOL := FALSE;
+    oscillator_cycles: UINT := 0;
+END_VAR
+```
+
+* 程序定义：
+  1. 首先在每次循环中，oscillator_cycles 增加 1。当计数器超过 200 时，重置计数器并切换 oscillator_state 的状态（TRUE 或 FALSE），实现周期性变化；
+  1. 如果按钮被按下（in_pin_button_LED 为 TRUE），并且在上一周期按钮状态是 FALSE，则切换 flashing 状态。即每次按钮按下时，切换 LED 是否闪烁的状态。
+  1. 如果 flashing 为 TRUE，则 LED 会根据振荡器状态 (oscillator_state) 闪烁；如果 flashing 为 FALSE，LED 直接关闭。
+  1. 在每次循环结束时，将当前按钮的状态保存在 in_pin_button_LED_previous 中，以便在下次判断按钮按下的事件。
+
+```st
+oscillator_cycles := oscillator_cycles + 1;
+IF oscillator_cycles > 200 THEN 
+    oscillator_cycles := 0;
+    oscillator_state := NOT oscillator_state;
+END_IF
+IF in_pin_button_LED = TRUE THEN 
+    IF in_pin_button_LED_previous = FALSE THEN 
+        flashing := NOT flashing; 
+    END_IF
+    out_pin_LED := TRUE;
+ELSIF flashing = TRUE THEN 
+    out_pin_LED := oscillator_state;
+ELSE 
+    out_pin_LED := FALSE;
+END_IF
+in_pin_button_LED_previous := in_pin_button_LED;
+```
+
+工程中的配置位置如下图所示：
+
+![image-20241217154402755](figures/image-20241217154402755.png)
+
+接下来我们还需要添加一个内置的IO模块，右键点击P_Net_multi_module_sample_app然后添加一个IO模块（DIO 8xLogicLevel），如下图所示：
+
+![image-20241217154411140](figures/image-20241217154411140.png)
+
+接下来双击DIO_8xLogicLevel节点，选择PNIO Module I/O映射，编辑Input Bit 7和Output Bit 7并绑定PLC变量：
+
+![image-20241217154418088](figures/image-20241217154418088.png)
+
+接着我们点击上方导航栏的编译->生成代码，然后选择在线->登录，运行查看现象；
+
+![image-20241217154427784](figures/image-20241217154427784.png)
+
+接下来回到CODESYS，再次双击Device->PLC逻辑->Application下的PLC_PRG(PRG)，此时便可动态观察程序运行状态，例如我们按住etherkit开发板上的KEY0，可以发现in_pin_button_LED及in_pin_button_LED_previous 这两个变量值为FALSE，此时再松开KEY0，可以发现flashing值反转一次。
+
+![image-20241217154439788](figures/image-20241217154439788.png)

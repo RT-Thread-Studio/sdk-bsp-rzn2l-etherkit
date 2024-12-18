@@ -122,11 +122,79 @@ ethernet中断触发回调设置为：user_ether0_callback
 
 最后点击Generate Project Content生成底层驱动源码。
 
+## 构建配置
+
+1. 修改sconscript：进入工程找到指定路径下的文件：.\rzn\SConscript，替换该文件为如下内容：
+
+```c
+Import('RTT_ROOT')
+Import('rtconfig')
+from building import *
+from gcc import *
+
+cwd = GetCurrentDir()
+src = []
+group = []
+CPPPATH = []
+
+if rtconfig.PLATFORM in ['iccarm']:
+    Return('group')
+elif rtconfig.PLATFORM in GetGCCLikePLATFORM():
+    if GetOption('target') != 'mdk5':
+        src += Glob('./fsp/src/bsp/mcu/all/*.c')
+        src += Glob('./fsp/src/bsp/mcu/all/cr/*.c')
+        src += Glob('./fsp/src/bsp/mcu/r*/*.c')
+        src += Glob('./fsp/src/bsp/cmsis/Device/RENESAS/Source/*.c')
+        src += Glob('./fsp/src/bsp/cmsis/Device/RENESAS/Source/cr/*.c')
+        src += Glob('./fsp/src/r_*/*.c')
+        CPPPATH = [ cwd + '/arm/CMSIS_5/CMSIS/Core_R/Include',
+                            cwd + '/fsp/inc',
+                            cwd + '/fsp/inc/api',
+                            cwd + '/fsp/inc/instances',]
+
+if GetDepend('BSP_USING_ETHERCAT_EOE'):
+    src += Glob('./fsp/src/rm_ethercat_ssc_port/*.c')
+    CPPPATH += [cwd + '/fsp/src/rm_ethercat_ssc_port']
+
+group = DefineGroup('rzn', src, depend = [''], CPPPATH = CPPPATH)
+Return('group')
+```
+
+2. Kconfig修改：打开工程下的文件（projects\etherkit_ethercat_eoe\board\Kconfig），在Onboard Peripheral Drivers选项中加入EOE配置：
+
+```c
+        config BSP_USING_ETHERCAT_EOE
+            bool "Enable EtherCAT EOE example"
+            select BSP_USING_ETH
+            default n
+            if BSP_USING_ETHERCAT_EOE
+                config RT_LWIP_IPADDR
+                    string "set static ip address for eoe slaver"
+                    default "192.168.10.100"
+                config RT_LWIP_GWADDR
+                    string "set static gateway address for eoe slaver"
+                    default "192.168.10.1"
+                config RT_LWIP_MSKADDR
+                    string "set static mask address for eoe slaver"
+                    default "255.255.255.0"
+            endif
+```
+
+如下图所示：
+
+![image-20241216133719165](figures/image-20241216133719165.png)
+
+3. 使用studio开发的话需要右键工程点击 **同步scons配置至项目**；如果是使用IAR开发请在当前工程下右键打开env，执行：scons –target=iar 重新生成配置。
+
 ## RT-Thread Studio配置
 
 完成FSP配置之后，引脚及外设的初始化就暂告一段落了，接下来需要我们使能EtherCAT EOE示例，打开Studio，点击 RT-Thread Settings，使能EOE示例：
 
 ![image-20241126113041985](figures/image-20241126113041985.png)
+
+下面我们还需要配置禁用dhcp功能并使用静态IP，点击组件->使能lwip堆栈，选择禁用DHCP；
+
+![image-20241213114304739](figures/image-20241213114304739.png)
 
 使能完毕后我们保存settings配置并同步scons配置，同时编译并下载程序，复位开发板后观察串口日志：
 
@@ -212,3 +280,43 @@ ethernet中断触发回调设置为：user_ether0_callback
 * 从站IP：192.168.10.100
 
 ![image-20241126113612960](figures/image-20241126113612960.png)
+
+## 拓展说明：3端口以太网EOE通信
+
+目前示例工程默认为2端口以太网EOE，如需使用三网口EOE通信请遵循本章说明进行配置；
+
+### FSP配置
+
+首先仍然是打开工程下的FSP配置文件，我们为SSC stack添加第三个phy；
+
+![image-20241217181157005](figures/image-20241217181157005.png)
+
+然后配置phy2的通道数为2，phy address为3（根据原理图手册查询可知），同时配置网卡型号为用户自定义，并且设置以太网初始化回调函数；
+
+![image-20241217181209037](figures/image-20241217181209037.png)
+
+接下来配置引脚，使能ETH2；
+
+![image-20241217181218646](figures/image-20241217181218646.png)
+
+接着我们配置ESC对应ETH2的LINK引脚，分别配置ESC_LINKACT2(P22_1)和ESC_PHYLINK2(P00_5)；此处需要注意：**此处如果P22_1被占用，需要先手动将该引脚复用功能禁用后，再使能此项**；
+
+![image-20241217181235776](figures/image-20241217181235776.png)
+
+完成上述配置后就可以点击生成源码了，回到工程编译并将程序下载开发板中；
+
+### ESI固件更新
+
+同样首先我们需要等待开发板EOE从站成功运行，接着我们打开TwinCAT 3软件扫描设备，扫描到EtherCAT设备后先暂时不激活，弹窗点击否即可；
+
+![image-20241217181259080](figures/image-20241217181259080.png)
+
+参考**“更新EEPROM固件”**一节，一样的步骤，只不过这次需要选择更新的固件为：Renesas EtherCAT RZ/N2 EoE 3port [2308 / 768]，点击烧录固件；
+
+![image-20241217181338720](figures/image-20241217181338720.png)
+
+烧录完成后我们需要重新删除设备并再次扫描，可以看到从站设备描述已经更新为Box 1 (Renesas EtherCAT RZ/N2 EoE 3port)；
+
+![image-20241217181350020](figures/image-20241217181350020.png)
+
+后续EOE开发请参考前几章节。
