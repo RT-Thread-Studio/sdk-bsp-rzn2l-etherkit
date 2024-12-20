@@ -263,8 +263,6 @@ static int rt_soft_rtc_init(void)
 
     rt_device_register(&soft_rtc_dev, "rtc", RT_DEVICE_FLAG_RDWR);
 
-    source_device = &soft_rtc_dev;
-
     init_ok = RT_TRUE;
 
     return 0;
@@ -322,7 +320,7 @@ static void cmd_rtc_sync(int argc, char **argv)
     rt_kprintf("local time: %.*s", 25, ctime(&now));
     rt_kprintf("timestamps: %ld\n", (long)tv.tv_sec);
 }
-MSH_CMD_EXPORT_ALIAS(cmd_rtc_sync, rtc_sync, Update time by soft rtc);
+MSH_CMD_EXPORT_ALIAS(cmd_rtc_sync, rtc_sync, Update time by rtc);
 #endif
 
 #endif /* RT_USING_SYSTEM_WORKQUEUE */
