@@ -169,6 +169,17 @@ void Default_Handler (void)
  **********************************************************************************************************************/
 BSP_TARGET_ARM BSP_ATTRIBUTE_STACKLESS void system_init (void)
 {
+#if 1
+    __asm volatile (
+        "    mov   r0, #0                               \n"
+        "    movw  r1, #0xf07f                    \n"
+        "    movt  r1, #0x2fa                        \n"
+        "software_loop:                              \n"
+        "    adds  r0, #1                                 \n"
+        "    cmp   r0, r1                                 \n"
+        "    bne   software_loop                  \n"
+        ::: "memory");
+#endif
     __asm volatile (
         "set_hactlr:                              \n"
         "    MOVW  r0, %[bsp_hactlr_bit_l]        \n" /* Set HACTLR bits(L) */

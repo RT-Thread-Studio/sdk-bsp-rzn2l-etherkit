@@ -106,6 +106,10 @@ menu "Hardware Drivers Config"
                     default n
             endif
 
+        config BSP_USING_HYPERRAM
+            bool "Enable XSPI0 CS1 Winbond octal hyperRAM"
+            default n
+
         menuconfig BSP_USING_SCI
             bool "Enable SCI Controller"
             default n
