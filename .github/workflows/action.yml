@@ -68,6 +68,7 @@ jobs:
          - {RTT_BSP: "etherkit_usb_pmsc"}
          - {RTT_BSP: "etherkit_usb_pcdc"}
          - {RTT_BSP: "etherkit_ethercat_eoe"}
+         - {RTT_BSP: "etherkit_ethercat_coe"}
          - {RTT_BSP: "etherkit_factory"}
     steps:
       - uses: actions/checkout@v2

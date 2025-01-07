@@ -1,0 +1,6 @@
+/* generated configuration header file - do not edit */
+#ifndef RM_ETHERCAT_SSC_PORT_CFG_H_
+#define RM_ETHERCAT_SSC_PORT_CFG_H_
+#define RM_ETHERCAT_SSC_PORT_CFG_PARAM_CHECKING_ENABLE (BSP_CFG_PARAM_CHECKING_ENABLE)
+            #define ETHERCAT_SSC_PORT_CFG_ESC_RESET_PORT (BSP_IO_PORT_13_PIN_4)
+#endif /* RM_ETHERCAT_SSC_PORT_CFG_H_ */

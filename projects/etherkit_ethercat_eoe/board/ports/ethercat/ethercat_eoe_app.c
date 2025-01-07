@@ -5,7 +5,7 @@
  *
  * Change Logs:
  * Date           Author        Notes
- * 2024-08-30    Wangyuqiang   first version
+ * 2024-08-30     Wangyuqiang   first version
  */
 
 #include <rtthread.h>

@@ -1,0 +1,28 @@
+
+from building import *
+import rtconfig
+
+cwd = GetCurrentDir()
+
+src = []
+
+src += Glob('beckhoff/Src/*.c')
+src += Glob('renesas/*.c')
+src += Glob('*.c')
+
+path    = [cwd]
+path   += [cwd + '/beckhoff/Src']
+path   += [cwd + '/renesas']
+
+LOCAL_CFLAGS = ''
+
+if rtconfig.PLATFORM in ['gcc', 'armclang']:
+    LOCAL_CFLAGS += ' -std=c99'
+elif rtconfig.PLATFORM in ['armcc']:
+    LOCAL_CFLAGS += ' --c99'
+
+CPPDEFINES = ['ETHERCAT_SSC_PORT_GMAC_MDIO_SUPPORT=1']
+
+group = DefineGroup('Ethercat', src, depend = ['BSP_USING_COE_IO'], CPPPATH = path, LOCAL_CFLAGS = LOCAL_CFLAGS, CPPDEFINES=CPPDEFINES)
+
+Return('group')
