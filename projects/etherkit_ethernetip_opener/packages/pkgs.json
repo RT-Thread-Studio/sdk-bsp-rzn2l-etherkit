@@ -1,0 +1,12 @@
+[
+ {
+  "name": "OPENER",
+  "path": "/packages/iot/OpENer",
+  "ver": "latest"
+ },
+ {
+  "name": "OPENER_PORT",
+  "path": "/packages/iot/OpENer/OpENer_port",
+  "ver": "latest"
+ }
+]

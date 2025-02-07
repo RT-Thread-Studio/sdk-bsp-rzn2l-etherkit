@@ -69,6 +69,8 @@ jobs:
          - {RTT_BSP: "etherkit_usb_pcdc"}
          - {RTT_BSP: "etherkit_ethercat_eoe"}
          - {RTT_BSP: "etherkit_ethercat_coe"}
+         - {RTT_BSP: "etherkit_profinet_pnet"}
+         - {RTT_BSP: "etherkit_ethernetip_opener"}
          - {RTT_BSP: "etherkit_factory"}
     steps:
       - uses: actions/checkout@v2

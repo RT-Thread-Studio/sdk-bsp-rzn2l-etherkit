@@ -118,7 +118,7 @@ static int serial_fops_ioctl(struct dfs_file *fd, int cmd, void *args)
     return rt_device_control(device, cmd, args);
 }
 
-static int serial_fops_read(struct dfs_file *fd, void *buf, size_t count)
+static ssize_t serial_fops_read(struct dfs_file *fd, void *buf, size_t count)
 {
     int size = 0;
     rt_device_t device;
@@ -143,7 +143,7 @@ static int serial_fops_read(struct dfs_file *fd, void *buf, size_t count)
     return size;
 }
 
-static int serial_fops_write(struct dfs_file *fd, const void *buf, size_t count)
+static ssize_t serial_fops_write(struct dfs_file *fd, const void *buf, size_t count)
 {
     rt_device_t device;
 
