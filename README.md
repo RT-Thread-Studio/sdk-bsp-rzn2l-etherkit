@@ -17,10 +17,10 @@ $ sdk-bsp-rzn2l-etherkit
 ├── README.md
 ├── sdk-bsp-rzn2l-etherkit.yaml
 ├── documents
-│   ├── rzn2l-group-datasheet.pdf
 │   ├── EtherKit_Board_Schematic.pdf
+│   └── EtherKit_User_Manual.pdf
+│   ├── rzn2l-group-datasheet.pdf
 │   ├── User’s Manual Hardware.pdf
-│   └── EtherKit用户手册_V0.1.0.pdf
 ├── libraries
 │   ├── HAL_Drivers
 ├── projects
@@ -34,9 +34,11 @@ $ sdk-bsp-rzn2l-etherkit
 │   ├── etherkit_driver_rs485
 │   ├── etherkit_driver_spi
 │   ├── etherkit_driver_wdt
+│   ├── etherkit_driver_hyperram
 │   ├── etherkit_ethernet
 │   ├── etherkit_usb_pcdc
 │   ├── etherkit_usb_pmsc
+│   ├── etherkit_component_netutils
 │   ├── etherkit_component_mqtt
 │   ├── etherkit_modbus_tcpip
 │   ├── etherkit_modbus_uart
