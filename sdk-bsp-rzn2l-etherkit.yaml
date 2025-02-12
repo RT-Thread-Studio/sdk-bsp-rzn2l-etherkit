@@ -14,7 +14,7 @@ board:
   sale_contact_global: https://www.rt-thread.org/
   small_image: docs/figures/small.png
   vendor: Renesas
-  version: 2.0.0
+  version: 1.2.0
 chip:
   chip_name: R9A07G084
   clock_source: HSE
@@ -78,7 +78,7 @@ features_zh:
 - 电压：核心 1.1V，I/O 3.3V，1.8V
 pkg_type: Board_Support_Packages
 pkg_vendor: RealThread
-pkg_version: 2.0.0
+pkg_version: 1.2.0
 example_projects:
 - project_name: etherkit_blink_led
   project_description: LED闪烁示例
@@ -164,11 +164,11 @@ example_projects:
     source_path_offset: ''
     target_path_offset: ''
     files_and_folders: []
-- project_name: etherkit_drive_adc
+- project_name: etherkit_driver_adc
   project_description: adc 示例
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
-  - source_path_offset: projects/etherkit_drive_adc
+  - source_path_offset: projects/etherkit_driver_adc
     target_path_offset: ''
     files_and_folders:
     - "*"
