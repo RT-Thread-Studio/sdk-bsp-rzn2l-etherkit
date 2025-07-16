@@ -8,10 +8,8 @@ src = []
 group = []
 CPPPATH = []
 
-if rtconfig.PLATFORM in ['iccarm']:
-    Return('group')
-elif rtconfig.PLATFORM in GetGCCLikePLATFORM():
-    if GetOption('target') != 'mdk5':
+if rtconfig.PLATFORM in ['iccarm'] + GetGCCLikePLATFORM():
+    if rtconfig.PLATFORM == 'iccarm' or GetOption('target') != 'mdk5':
         src += Glob('./fsp/src/bsp/mcu/all/*.c')
         src += Glob('./fsp/src/bsp/mcu/all/cr/*.c')
         src += Glob('./fsp/src/bsp/mcu/r*/*.c')
@@ -30,5 +28,5 @@ elif rtconfig.PLATFORM in GetGCCLikePLATFORM():
                             cwd + '/fsp/src/r_usb_basic/src/hw/inc',
                             cwd + '/fsp/src/r_usb_pmsc/src/inc',]
 
-group = DefineGroup('rzn', src, depend = [''], CPPPATH = CPPPATH)
+group = DefineGroup('RZN', src, depend = [''], CPPPATH = CPPPATH)
 Return('group')

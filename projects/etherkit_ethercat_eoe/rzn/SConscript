@@ -8,10 +8,8 @@ src = []
 group = []
 CPPPATH = []
 
-if rtconfig.PLATFORM in ['iccarm']:
-    Return('group')
-elif rtconfig.PLATFORM in GetGCCLikePLATFORM():
-    if GetOption('target') != 'mdk5':
+if rtconfig.PLATFORM in ['iccarm'] + GetGCCLikePLATFORM():
+    if rtconfig.PLATFORM == 'iccarm' or GetOption('target') != 'mdk5':
         src += Glob('./fsp/src/bsp/mcu/all/*.c')
         src += Glob('./fsp/src/bsp/mcu/all/cr/*.c')
         src += Glob('./fsp/src/bsp/mcu/r*/*.c')
@@ -27,5 +25,5 @@ if GetDepend('BSP_USING_ETHERCAT_EOE'):
     src += Glob('./fsp/src/rm_ethercat_ssc_port/*.c')
     CPPPATH += [cwd + '/fsp/src/rm_ethercat_ssc_port']
 
-group = DefineGroup('rzn', src, depend = [''], CPPPATH = CPPPATH)
+group = DefineGroup('RZN', src, depend = [''], CPPPATH = CPPPATH)
 Return('group')

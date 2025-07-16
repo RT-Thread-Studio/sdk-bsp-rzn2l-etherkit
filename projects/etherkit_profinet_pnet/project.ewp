@@ -231,6 +231,7 @@
           <state>_RZN_ORDINAL=1</state>
           <state>_RZN_CORE=CR52_0</state>
           <state>_RENESAS_RZN_</state>
+          <state>_RZN_ORDINAL=1</state>
           <state>CLOCKS_PER_SEC=RT_TICK_PER_SECOND</state>
           <state>RT_USING_DLIBC</state>
           <state>RT_USING_LIBC</state>
@@ -382,48 +383,56 @@
           <state>$PROJ_DIR$\src\tcpip\renesas\oss_deps\lwip</state>
           <state>$PROJ_DIR$\src\tcpip\oss\amazon-freertos\libraries\3rdparty\lwip_osal\include</state>
           <state>$PROJ_DIR$\src\tcpip\oss\lwip\src\include</state>
-          <state>$PROJ_DIR$\board</state>
           <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
-          <state>$PROJ_DIR$\rt-thread\components\drivers\ktime\inc</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\sal\include</state>
-          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
-          <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\netdev\include</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\include\ipv4</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
           <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\osal\src\rtthread</state>
+          <state>$PROJ_DIR$\rt-thread\components\drivers\ktime</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pnal</state>
+          <state>$PROJ_DIR$\board\ports</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc\instances</state>
+          <state>$PROJ_DIR$\rt-thread\include</state>
+          <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
+          <state>$PROJ_DIR$\.</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
+          <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\apps\snmp</state>
+          <state>$PROJ_DIR$\rzn_cfg\fsp_cfg\bsp</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\sal\include</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread</state>
+          <state>$PROJ_DIR$\board</state>
+          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
+          <state>$PROJ_DIR$\rt-thread\components\dfs\dfs_v1\filesystems\devfs</state>
+          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\netdev\include</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\common</state>
+          <state>$PROJ_DIR$\rt-thread\components\drivers\ktime\inc</state>
+          <state>$PROJ_DIR$\rzn_gen</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc</state>
+          <state>$PROJ_DIR$\rzn_cfg\fsp_cfg</state>
+          <state>$PROJ_DIR$\rt-thread\components\dfs\dfs_v1\filesystems\ramfs</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\sal\impl</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\lwip\port</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\device</state>
+          <state>$PROJ_DIR$\rzn\arm\CMSIS_5\CMSIS\Core_R\Include</state>
+          <state>$PROJ_DIR$\src</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\socket\sys_socket</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\dfs_net</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\osal\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\socket</state>
           <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\include\netif</state>
           <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev</state>
-          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\dfs_net</state>
-          <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\common</state>
-          <state>$PROJ_DIR$\rt-thread\components\drivers\ktime</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\osal\src\rtthread</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pnal</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\socket</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\osal\include</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\lwip\port</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\socket\sys_socket</state>
-          <state>$PROJ_DIR$\rt-thread\include</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\sal\impl</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\apps\snmp</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
-          <state>$PROJ_DIR$\board\ports</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc\api</state>
           <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\include\ipv4</state>
           <state>$PROJ_DIR$\packages\p-net-rtt-latest\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\include</state>
           <state>$PROJ_DIR$\rt-thread\components\dfs\dfs_v1\include</state>
-          <state>$PROJ_DIR$\rt-thread\components\dfs\dfs_v1\filesystems\devfs</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\device</state>
-          <state>$PROJ_DIR$\rt-thread\components\dfs\dfs_v1\filesystems\ramfs</state>
-          <state>$PROJ_DIR$\.</state>
-          <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1405,6 +1414,7 @@
           <state>_RZN_ORDINAL=1</state>
           <state>_RZN_CORE=CR52_0</state>
           <state>_RENESAS_RZN_</state>
+          <state>_RZN_ORDINAL=1</state>
           <state>CLOCKS_PER_SEC=RT_TICK_PER_SECOND</state>
           <state>RT_USING_DLIBC</state>
           <state>RT_USING_LIBC</state>
@@ -1547,48 +1557,56 @@
           <state>$PROJ_DIR$/rzn_gen</state>
           <state>$PROJ_DIR$/src</state>
           <state>$PROJ_DIR$</state>
-          <state>$PROJ_DIR$\board</state>
           <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
-          <state>$PROJ_DIR$\rt-thread\components\drivers\ktime\inc</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\sal\include</state>
-          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
-          <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\netdev\include</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\include\ipv4</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
           <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\osal\src\rtthread</state>
+          <state>$PROJ_DIR$\rt-thread\components\drivers\ktime</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pnal</state>
+          <state>$PROJ_DIR$\board\ports</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc\instances</state>
+          <state>$PROJ_DIR$\rt-thread\include</state>
+          <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
+          <state>$PROJ_DIR$\.</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
+          <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\apps\snmp</state>
+          <state>$PROJ_DIR$\rzn_cfg\fsp_cfg\bsp</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\sal\include</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread</state>
+          <state>$PROJ_DIR$\board</state>
+          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
+          <state>$PROJ_DIR$\rt-thread\components\dfs\dfs_v1\filesystems\devfs</state>
+          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\netdev\include</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\common</state>
+          <state>$PROJ_DIR$\rt-thread\components\drivers\ktime\inc</state>
+          <state>$PROJ_DIR$\rzn_gen</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc</state>
+          <state>$PROJ_DIR$\rzn_cfg\fsp_cfg</state>
+          <state>$PROJ_DIR$\rt-thread\components\dfs\dfs_v1\filesystems\ramfs</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\sal\impl</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\lwip\port</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\device</state>
+          <state>$PROJ_DIR$\rzn\arm\CMSIS_5\CMSIS\Core_R\Include</state>
+          <state>$PROJ_DIR$\src</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\socket\sys_socket</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\dfs_net</state>
+          <state>$PROJ_DIR$\packages\p-net-rtt-latest\osal\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\socket</state>
           <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\include\netif</state>
           <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev</state>
-          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\dfs_net</state>
-          <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\common</state>
-          <state>$PROJ_DIR$\rt-thread\components\drivers\ktime</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\osal\src\rtthread</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pnal</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\socket</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\osal\include</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\lwip\port</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\sal\include\socket\sys_socket</state>
-          <state>$PROJ_DIR$\rt-thread\include</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\sal\impl</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
-          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\apps\snmp</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
-          <state>$PROJ_DIR$\board\ports</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc\api</state>
           <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\include\ipv4</state>
           <state>$PROJ_DIR$\packages\p-net-rtt-latest\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\net\lwip\lwip-2.0.3\src\include</state>
           <state>$PROJ_DIR$\rt-thread\components\dfs\dfs_v1\include</state>
-          <state>$PROJ_DIR$\rt-thread\components\dfs\dfs_v1\filesystems\devfs</state>
-          <state>$PROJ_DIR$\packages\p-net-rtt-latest\src\device</state>
-          <state>$PROJ_DIR$\rt-thread\components\dfs\dfs_v1\filesystems\ramfs</state>
-          <state>$PROJ_DIR$\.</state>
-          <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2713,7 +2731,10 @@
     <tag>IAR.ControlFile</tag>
   </file>
   <group>
-    <name />
+    <name>Applications</name>
+    <file>
+      <name>$PROJ_DIR$\src\hal_entry.c</name>
+    </file>
   </group>
   <group>
     <name>Compiler</name>
@@ -2766,31 +2787,31 @@
   <group>
     <name>CPU</name>
     <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\interrupt.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\cpuport.c</name>
-    </file>
-    <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\context_iar.S</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\trap.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\stack.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\start_iar.S</name>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\interrupt.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\vector_iar.S</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\backtrace.c</name>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\stack.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\trap.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\gicv3.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\cpuport.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\start_iar.S</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\backtrace.c</name>
     </file>
   </group>
   <group>
@@ -2868,10 +2889,7 @@
   <group>
     <name>Finsh</name>
     <file>
-      <name>$PROJ_DIR$\rt-thread\components\finsh\cmd.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\rt-thread\components\finsh\shell.c</name>
+      <name>$PROJ_DIR$\rt-thread\components\finsh\msh_file.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\components\finsh\msh.c</name>
@@ -2880,7 +2898,10 @@
       <name>$PROJ_DIR$\rt-thread\components\finsh\msh_parse.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\components\finsh\msh_file.c</name>
+      <name>$PROJ_DIR$\rt-thread\components\finsh\shell.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rt-thread\components\finsh\cmd.c</name>
     </file>
   </group>
   <group>
@@ -2949,13 +2970,13 @@
   <group>
     <name>libcpu</name>
     <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\common\showmem.c</name>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\common\atomic_arm.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\common\div0.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\common\atomic_arm.c</name>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\common\showmem.c</name>
     </file>
   </group>
   <group>
@@ -3138,13 +3159,16 @@
   <group>
     <name>p-net/common</name>
     <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_lldp.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_udp.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_cpm_driver_sw.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_file.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_ptcp.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_ppm_driver_sw.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_bg_worker.c</name>
@@ -3153,94 +3177,91 @@
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_eth.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_dcp.c</name>
-    </file>
-    <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_ppm.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_cpm.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_dcp.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_lldp.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_ppm_driver_sw.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_alarm.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_ptcp.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_scheduler.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_udp.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_alarm.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_cpm.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\common\pf_file.c</name>
     </file>
   </group>
   <group>
     <name>p-net/device</name>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmwrr.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmrpc_helpers.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmina.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmrpc_epm.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pnet_api.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_block_writer.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmrpc.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmsu.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmpbe.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_fspm.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmwrr.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmdev.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmina.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmrdr.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmio.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmdmc.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_block_reader.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_plugsm.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmrs.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_diag.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmio.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_port.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmsu.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_pdport.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmrpc.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmrpc_helpers.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_diag.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_block_writer.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_fspm.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmrpc_epm.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_block_reader.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmsm.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_plugsm.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmdev.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_pdport.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pnet_api.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\device\pf_cmdmc.c</name>
     </file>
   </group>
   <group>
@@ -3258,10 +3279,10 @@
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\osal\src\rtthread\osal.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pnal\pnal_udp.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\osal\src\rtthread\osal_log.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\osal\src\rtthread\osal_log.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pnal\pnal_udp.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pnal\pnal.c</name>
@@ -3273,29 +3294,143 @@
   <group>
     <name>p-net/sample</name>
     <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\app_data.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\app_log.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\sampleapp_main.c</name>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\app_gsdml.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\sampleapp_common.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\sampleapp_main.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\sampleapp_board.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\app_log.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\app_data.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\app_utils.c</name>
     </file>
-    <file>
-      <name>$PROJ_DIR$\packages\p-net-rtt-latest\src\ports\rtthread\pn_dev\app_gsdml.c</name>
-    </file>
   </group>
   <group>
     <name>POSIX</name>
+  </group>
+  <group>
+    <name>RZN</name>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_cache_core.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_sbrk.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\cr\startup_core.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\rzn2l\bsp_loader_param.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_address_expander.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_delay.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\rzn2l\bsp_irq_sense.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_clocks.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\r_ioport\r_ioport.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_common.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\system.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_tzc400.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\r_sci_uart\r_sci_uart.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_cache.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_register_protection.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\r_ethsw\r_ethsw.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\r_ether_phy\r_ether_phy.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_ddr_fw_param.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\startup.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_irq.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\r_ether_selector\r_ether_selector.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_reset.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_delay_core.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_ddr.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_irq_core.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_slave_stop.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\r_gmac\r_gmac.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_semaphore.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_io.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\cr\system_core.c</name>
+    </file>
+  </group>
+  <group>
+    <name>RZN_cfg</name>
+  </group>
+  <group>
+    <name>RZN_gen</name>
+    <file>
+      <name>$PROJ_DIR$\rzn_gen\common_data.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn_gen\main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn_gen\pin_data.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn_gen\vector_data.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn_gen\hal_data.c</name>
+    </file>
   </group>
   <group>
     <name>SAL</name>

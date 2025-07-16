@@ -13,14 +13,9 @@ list = os.listdir(cwd)
 
 CPPDEFINES = ['_RZN_ORDINAL=1']
 
-if rtconfig.PLATFORM in ['iccarm']:
-    group = DefineGroup('', src, depend = [''], CPPPATH = CPPPATH, CPPDEFINES=CPPDEFINES)
-elif rtconfig.PLATFORM in GetGCCLikePLATFORM():
-    if GetOption('target') != 'mdk5':
-        CPPPATH = [
-          cwd,
-          cwd + '/src/'
-        ]
+if rtconfig.PLATFORM in ['iccarm'] + GetGCCLikePLATFORM():
+    if rtconfig.PLATFORM == 'iccarm' or GetOption('target') != 'mdk5':
+        CPPPATH = [cwd + '/src']
         src = Glob('./src/*.c')
         group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH, CPPDEFINES=CPPDEFINES)
 

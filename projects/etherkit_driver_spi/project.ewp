@@ -231,6 +231,7 @@
           <state>_RZN_ORDINAL=1</state>
           <state>_RZN_CORE=CR52_0</state>
           <state>_RENESAS_RZN_</state>
+          <state>_RZN_ORDINAL=1</state>
           <state>CLOCKS_PER_SEC=RT_TICK_PER_SECOND</state>
           <state>RT_USING_DLIBC</state>
           <state>RT_USING_LIBC</state>
@@ -381,23 +382,32 @@
           <state>$PROJ_DIR$\src\tcpip\renesas\oss_deps\lwip</state>
           <state>$PROJ_DIR$\src\tcpip\oss\amazon-freertos\libraries\3rdparty\lwip_osal\include</state>
           <state>$PROJ_DIR$\src\tcpip\oss\lwip\src\include</state>
-          <state>$PROJ_DIR$\.</state>
-          <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
-          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc</state>
           <state>$PROJ_DIR$\rt-thread\include</state>
-          <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
+          <state>$PROJ_DIR$\rzn_cfg\fsp_cfg</state>
+          <state>$PROJ_DIR$\src</state>
+          <state>$PROJ_DIR$\board</state>
+          <state>$PROJ_DIR$\rzn_cfg\fsp_cfg\bsp</state>
+          <state>$PROJ_DIR$\rzn_gen</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
           <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
+          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
+          <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
+          <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
+          <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
+          <state>$PROJ_DIR$\rzn\arm\CMSIS_5\CMSIS\Core_R\Include</state>
+          <state>$PROJ_DIR$\.</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
           <state>$PROJ_DIR$\board\ports</state>
           <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
-          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc\instances</state>
+          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc\api</state>
+          <state>$PROJ_DIR$\rt-thread\components\drivers\spi</state>
           <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
-          <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
-          <state>$PROJ_DIR$\board</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1379,6 +1389,7 @@
           <state>_RZN_ORDINAL=1</state>
           <state>_RZN_CORE=CR52_0</state>
           <state>_RENESAS_RZN_</state>
+          <state>_RZN_ORDINAL=1</state>
           <state>CLOCKS_PER_SEC=RT_TICK_PER_SECOND</state>
           <state>RT_USING_DLIBC</state>
           <state>RT_USING_LIBC</state>
@@ -1520,23 +1531,32 @@
           <state>$PROJ_DIR$/rzn_gen</state>
           <state>$PROJ_DIR$/src</state>
           <state>$PROJ_DIR$</state>
-          <state>$PROJ_DIR$\.</state>
-          <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
-          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc</state>
           <state>$PROJ_DIR$\rt-thread\include</state>
-          <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
+          <state>$PROJ_DIR$\rzn_cfg\fsp_cfg</state>
+          <state>$PROJ_DIR$\src</state>
+          <state>$PROJ_DIR$\board</state>
+          <state>$PROJ_DIR$\rzn_cfg\fsp_cfg\bsp</state>
+          <state>$PROJ_DIR$\rzn_gen</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
           <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
+          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
+          <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
+          <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
+          <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
+          <state>$PROJ_DIR$\rzn\arm\CMSIS_5\CMSIS\Core_R\Include</state>
+          <state>$PROJ_DIR$\.</state>
+          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
           <state>$PROJ_DIR$\board\ports</state>
           <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
-          <state>$PROJ_DIR$\rt-thread\components\finsh</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc\instances</state>
+          <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
+          <state>$PROJ_DIR$\rzn\fsp\inc\api</state>
+          <state>$PROJ_DIR$\rt-thread\components\drivers\spi</state>
           <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
-          <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
-          <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
-          <state>$PROJ_DIR$\board</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2288,24 +2308,34 @@
       <data>
         <buildActions>
           <buildAction>
-            <cmdline>cmd /c ""$RASC_EXE_PATH$" -nosplash --launcher.suppressErrors --generate --compiler IAR --devicefamily rzn "$PROJ_DIR$\configuration.xml" 2&gt; "%TEMP%\rasc_stderr.out""</cmdline>
+            <cmdline>cmd /c ""$PROJ_DIR$\rasc_launcher.bat" "$PROJ_DIR$\rasc_version.txt" -nosplash --launcher.suppressErrors --generate --compiler IAR --devicefamily $RASC_DEVICE_FAMILY$ "$PROJ_DIR$\configuration.xml" 2&gt; "$BUILD_FILES_DIR$\.rasc_stderr.txt" &amp;&amp; echo. &gt; "$BUILD_FILES_DIR$\$TARGET_BNAME$.rasc""</cmdline>
             <workingDirectory>$PROJ_DIR$</workingDirectory>
             <buildSequence>preCompile</buildSequence>
             <outputs>
               <file>
-                <name>$BUILD_FILES_DIR$/.prebuild</name>
+                <name>$BUILD_FILES_DIR$/$TARGET_BNAME$.rasc</name>
               </file>
             </outputs>
+            <dependencies>
+              <file>
+                <name>configuration.xml</name>
+              </file>
+            </dependencies>
           </buildAction>
           <buildAction>
-            <cmdline>cmd /c ""$RASC_EXE_PATH$" -nosplash --launcher.suppressErrors --gensmartbundle --compiler IAR --devicefamily rzn "$PROJ_DIR$\configuration.xml" "$TARGET_PATH$" 2&gt; "%TEMP%\rasc_stderr.out"" &amp;&amp; echo &gt; "$BUILD_FILES_DIR$/.postbuild"</cmdline>
+            <cmdline>cmd /c ""$PROJ_DIR$\rasc_launcher.bat" "$PROJ_DIR$\rasc_version.txt" -nosplash --launcher.suppressErrors --gensmartbundle --compiler IAR --devicefamily $RASC_DEVICE_FAMILY$ "$PROJ_DIR$\configuration.xml" "$TARGET_PATH$" 2&gt; "$BUILD_FILES_DIR$\.rasc_stderr.txt""</cmdline>
             <workingDirectory>$PROJ_DIR$</workingDirectory>
             <buildSequence>postLink</buildSequence>
             <outputs>
               <file>
-                <name>$BUILD_FILES_DIR$/.postbuild</name>
+                <name>$TARGET_BPATH$.sbd</name>
               </file>
             </outputs>
+            <dependencies>
+              <file>
+                <name>$TARGET_PATH$</name>
+              </file>
+            </dependencies>
           </buildAction>
         </buildActions>
       </data>
@@ -2661,7 +2691,10 @@
     <tag>IAR.ControlFile</tag>
   </file>
   <group>
-    <name />
+    <name>Applications</name>
+    <file>
+      <name>$PROJ_DIR$\src\hal_entry.c</name>
+    </file>
   </group>
   <group>
     <name>Compiler</name>
@@ -2714,10 +2747,13 @@
   <group>
     <name>CPU</name>
     <file>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\vector_iar.S</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\gicv3.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\vector_iar.S</name>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\trap.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\context_iar.S</name>
@@ -2726,19 +2762,16 @@
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\cpuport.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\stack.c</name>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\start_iar.S</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\interrupt.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\stack.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\backtrace.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\trap.c</name>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52\start_iar.S</name>
     </file>
   </group>
   <group>
@@ -2776,6 +2809,12 @@
     <file>
       <name>$PROJ_DIR$\rt-thread\components\drivers\serial\serial_v2.c</name>
     </file>
+    <file>
+      <name>$PROJ_DIR$\rt-thread\components\drivers\spi\spi_core.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rt-thread\components\drivers\spi\spi_dev.c</name>
+    </file>
   </group>
   <group>
     <name>Drivers</name>
@@ -2786,22 +2825,25 @@
       <name>$PROJ_DIR$\libraries\HAL_Drivers\drv_gpio.c</name>
     </file>
     <file>
+      <name>$PROJ_DIR$\libraries\HAL_Drivers\drv_sci.c</name>
+    </file>
+    <file>
       <name>$PROJ_DIR$\libraries\HAL_Drivers\drv_usart_v2.c</name>
     </file>
   </group>
   <group>
     <name>Finsh</name>
     <file>
-      <name>$PROJ_DIR$\rt-thread\components\finsh\cmd.c</name>
+      <name>$PROJ_DIR$\rt-thread\components\finsh\msh.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\components\finsh\msh.c</name>
+      <name>$PROJ_DIR$\rt-thread\components\finsh\shell.c</name>
     </file>
     <file>
       <name>$PROJ_DIR$\rt-thread\components\finsh\msh_parse.c</name>
     </file>
     <file>
-      <name>$PROJ_DIR$\rt-thread\components\finsh\shell.c</name>
+      <name>$PROJ_DIR$\rt-thread\components\finsh\cmd.c</name>
     </file>
   </group>
   <group>
@@ -2866,5 +2908,110 @@
   </group>
   <group>
     <name>POSIX</name>
+  </group>
+  <group>
+    <name>RZN</name>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_irq.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_sbrk.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_semaphore.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_cache.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_delay.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\system.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_ddr.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_address_expander.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\cr\system_core.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\r_sci_spi\r_sci_spi.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_common.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_reset.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_io.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\rzn2l\bsp_loader_param.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_ddr_fw_param.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_irq_core.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\r_ioport\r_ioport.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\startup.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_tzc400.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\rzn2l\bsp_irq_sense.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_slave_stop.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_cache_core.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\cmsis\Device\RENESAS\Source\cr\startup_core.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_clocks.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\bsp_register_protection.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\r_sci_uart\r_sci_uart.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn\fsp\src\bsp\mcu\all\cr\bsp_delay_core.c</name>
+    </file>
+  </group>
+  <group>
+    <name>RZN_cfg</name>
+  </group>
+  <group>
+    <name>RZN_gen</name>
+    <file>
+      <name>$PROJ_DIR$\rzn_gen\vector_data.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn_gen\main.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn_gen\hal_data.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn_gen\common_data.c</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\rzn_gen\pin_data.c</name>
+    </file>
   </group>
 </project>

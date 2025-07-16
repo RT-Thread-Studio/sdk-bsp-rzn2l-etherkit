@@ -131,10 +131,8 @@ src = []
 group = []
 CPPPATH = []
 
-if rtconfig.PLATFORM in ['iccarm']:
-    Return('group')
-elif rtconfig.PLATFORM in GetGCCLikePLATFORM():
-    if GetOption('target') != 'mdk5':
+if rtconfig.PLATFORM in ['iccarm'] + GetGCCLikePLATFORM():
+    if rtconfig.PLATFORM == 'iccarm' or GetOption('target') != 'mdk5':
         src += Glob('./fsp/src/bsp/mcu/all/*.c')
         src += Glob('./fsp/src/bsp/mcu/all/cr/*.c')
         src += Glob('./fsp/src/bsp/mcu/r*/*.c')
