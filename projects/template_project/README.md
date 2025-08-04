@@ -38,7 +38,7 @@ Here is the translated text in English, keeping the markdown format:
 | EtherCAT_IO           | Supported          | EtherCAT_FOE          | Supported          |
 | EtherCAT_EOE          | Supported          | EtherCAT_COE          | Supported          |
 | **PROFINET Solution** | **Support Status** | **Ethernet/IP Solution** | **Support Status** |
-| P-Net (Open source evaluation package supporting ProfiNET slave protocol stack) | Supported | EIP | In progress... |
+| P-Net (Open source evaluation package supporting ProfiNET slave protocol stack) | Supported | EIP | Supported |
 | **On-chip Peripherals** | **Support Status** | **Components**        | **Support Status** |
 | UART                  | Supported          | LWIP                  | Supported          |
 | GPIO                  | Supported          | TCP/UDP               | Supported          |

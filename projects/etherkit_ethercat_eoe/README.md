@@ -1,4 +1,4 @@
-# EtherKit EtherCAT-EOE Example
+# EtherCAT EOE Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

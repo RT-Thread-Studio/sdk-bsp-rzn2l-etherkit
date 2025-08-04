@@ -1,4 +1,4 @@
-# RZ EtherKit Development Board HyperRAM Usage Guide
+# Filesystem Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

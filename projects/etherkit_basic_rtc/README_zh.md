@@ -1,4 +1,4 @@
-# RZ EtherKit 开发板 RTC及alarm使用例程说明
+# RTC及Alarm 使用说明
 
 **中文** | [**English**](./README.md)
 

@@ -1,4 +1,4 @@
-# EtherKit Modbus-UART Example
+# Modbus-UART Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

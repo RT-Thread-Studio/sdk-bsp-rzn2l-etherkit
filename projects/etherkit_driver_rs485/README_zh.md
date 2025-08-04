@@ -1,4 +1,4 @@
-# RZ EtherKit 开发板 RS485使用 说明
+# RS485 驱动例程
 
 **中文** | [**English**](./README.md)
 

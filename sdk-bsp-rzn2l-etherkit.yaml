@@ -311,11 +311,11 @@ example_projects:
     source_path_offset: '.'
     target_path_offset: '.'
     files_and_folders: []
-- project_name: etherkit_ethernet
+- project_name: etherkit_driver_ethernet
   project_description: 以太网示例
   project_type: rt-thread|@full|@5.1.0
   builtin_files:
-  - source_path_offset: projects/etherkit_ethernet
+  - source_path_offset: projects/etherkit_driver_ethernet
     target_path_offset: ''
     files_and_folders:
     - "*"

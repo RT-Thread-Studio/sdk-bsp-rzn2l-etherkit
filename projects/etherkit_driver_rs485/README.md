@@ -1,4 +1,4 @@
-# RZ EtherKit Development Board RS485 Usage Instructions
+# RS485 Driver Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

@@ -1,4 +1,4 @@
-# Etherkit  ADC应用示例说明
+# ADC 驱动例程
 
 **中文** | [**English**](./README.md)
 

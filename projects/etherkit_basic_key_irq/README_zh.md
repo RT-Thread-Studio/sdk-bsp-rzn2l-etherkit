@@ -1,4 +1,4 @@
-# EtherKit 按键中断使用说明
+# 按键中断使用说明
 
 **中文** | [**English**](./README.md)
 

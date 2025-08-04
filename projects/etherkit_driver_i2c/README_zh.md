@@ -1,4 +1,4 @@
-# RZ EtherKit 开发板  EEROM  示例说明
+# IIC EEROM 驱动例程
 
 **中文** | [**English**](./README.md)
 

@@ -1,4 +1,4 @@
-# RZ EtherKit Development Board GPT Usage Guide
+# GPT Driver Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

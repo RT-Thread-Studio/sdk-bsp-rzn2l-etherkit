@@ -1,4 +1,4 @@
-# EtherKit ADC Application Example Usage Instructions
+# ADC Driver Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

@@ -1,4 +1,4 @@
-# EtherKit Development Board BSP Documentation
+# PROFINET Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

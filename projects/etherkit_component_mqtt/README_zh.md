@@ -1,4 +1,4 @@
-# EtherKit 开发板 MQTT例程
+# MQTT 例程
 
 **中文** | [**English**](./README.md)
 

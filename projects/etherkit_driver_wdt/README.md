@@ -1,4 +1,4 @@
-# RZ EtherKit Development Board WDT Usage Instructions
+# WDT Driver Usage Instructions
 
 **English** | **[Chinese](./README_zh.md)**
 

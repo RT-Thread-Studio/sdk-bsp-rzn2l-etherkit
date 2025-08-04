@@ -1,4 +1,4 @@
-# EtherKit EtherCAT-EOE例程
+# EtherCAT EOE 例程
 
 **中文** | [**English**](./README.md)
 

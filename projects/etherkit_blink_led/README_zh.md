@@ -1,4 +1,4 @@
-# RZ EtherKit 开发板 RGB使用 说明
+# RGB 使用说明
 
 **中文** | [**English**](./README.md)
 

@@ -1,4 +1,4 @@
-# EtherKit USB-PMSC Example
+# USB-PMSC Driver Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

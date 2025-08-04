@@ -1,4 +1,4 @@
-# EtherKit Ethernet/IP 例程
+# Ethernet/IP 例程
 
 **中文** | [**English**](./README.md)
 

@@ -1,4 +1,4 @@
-# EtherKit EtherCAT-CoE例程
+# EtherCAT CoE 例程
 
 **中文** | [**English**](./README.md)
 

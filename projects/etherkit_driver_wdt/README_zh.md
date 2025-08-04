@@ -1,4 +1,4 @@
-# RZ EtherKit 开发板 使用 WDT 说明
+# WDT 驱动例程
 
 **中文** | [**English**](./README.md)
 

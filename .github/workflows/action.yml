@@ -28,6 +28,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     name: check-yaml-format
+    if: github.repository_owner == 'RT-Thread-Studio'
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -62,7 +63,7 @@ jobs:
          - {RTT_BSP: "etherkit_driver_gpt"}
          - {RTT_BSP: "etherkit_driver_canfd"}
          - {RTT_BSP: "etherkit_driver_hyperram"}
-         - {RTT_BSP: "etherkit_ethernet"}
+         - {RTT_BSP: "etherkit_driver_ethernet"}
          - {RTT_BSP: "etherkit_component_netutils"}
          - {RTT_BSP: "etherkit_component_mqtt"}
          - {RTT_BSP: "etherkit_component_flash_fs"}

@@ -1,4 +1,4 @@
-# EtherKit 开发板 BSP 说明
+# Netutils 例程
 
 **中文** | [**English**](./README.md)
 

@@ -1,4 +1,4 @@
-# RZ EtherKit Development Board RGB Usage Instructions
+# RGB Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

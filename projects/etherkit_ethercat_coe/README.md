@@ -1,4 +1,4 @@
-# EtherKit EtherCAT-CoE Example
+# EtherCAT CoE Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

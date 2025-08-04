@@ -1,4 +1,4 @@
-# EtherKit Ethernet/IP Example
+# Ethernet/IP Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

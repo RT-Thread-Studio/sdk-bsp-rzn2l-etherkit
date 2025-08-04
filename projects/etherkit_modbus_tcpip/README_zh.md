@@ -1,4 +1,4 @@
-# EtherKit Modbus-TCP/IP例程
+# Modbus-TCP/IP 例程
 
 **中文** | [**English**](./README.md)
 

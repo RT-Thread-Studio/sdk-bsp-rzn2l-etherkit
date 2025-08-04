@@ -1,4 +1,4 @@
-# RZ EtherKit 开发板 SCI_SPI 使用说明
+# SCI_SPI 驱动例程
 
 **中文** | [**English**](./README.md)
 

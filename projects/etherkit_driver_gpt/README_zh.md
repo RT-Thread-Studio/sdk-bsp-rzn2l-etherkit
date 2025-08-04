@@ -1,4 +1,4 @@
-# RZ EtherKit 开发板 GPT使用 说明
+# GPT 驱动例程
 
 **中文** | [**English**](./README.md)
 

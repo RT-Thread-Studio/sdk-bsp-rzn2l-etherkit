@@ -1,4 +1,4 @@
-# EtherKit Development Board MQTT Example
+# MQTT Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

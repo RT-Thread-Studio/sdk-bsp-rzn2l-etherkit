@@ -26,7 +26,7 @@ config ENV_DIR
 config PLATFORM_DIR
     string
     option env="PLATFORM_DIR"
-    default  "C:/Softwares/RT-ThreadStudio/workspace/EtherKit/etherkit_ethernet/platform"
+    default  "C:/Softwares/RT-ThreadStudio/workspace/EtherKit/etherkit_driver_ethernet/platform"
 
 source "$RTT_DIR/Kconfig"
 source "$PKGS_DIR/Kconfig"

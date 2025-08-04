@@ -1,4 +1,4 @@
-# RZ EtherKit Development Board EEPROM Example Usage Instructions
+# IIC EEPROM Driver Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

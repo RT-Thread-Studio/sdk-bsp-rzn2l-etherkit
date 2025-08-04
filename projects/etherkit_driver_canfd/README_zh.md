@@ -1,4 +1,4 @@
-# RZ EtherKit 开发板 CANFD使用说明
+# CANFD 驱动例程
 
 **中文** | [**English**](./README.md)
 

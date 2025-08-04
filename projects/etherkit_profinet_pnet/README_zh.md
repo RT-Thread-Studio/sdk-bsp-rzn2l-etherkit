@@ -1,4 +1,4 @@
-# EtherKit PROFINET例程
+# PROFINET 例程
 
 **中文** | [**English**](./README.md)
 

@@ -1,4 +1,4 @@
-# EtherKit USB-PMSC例程
+# USB-PMSC 驱动例程
 
 **中文** | [**English**](./README.md)
 

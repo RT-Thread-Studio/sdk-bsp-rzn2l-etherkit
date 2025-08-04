@@ -1,4 +1,4 @@
-# EtherKit USB-PCDC例程
+# USB-PCDC 驱动例程
 
 **中文** | [**English**](./README.md)
 

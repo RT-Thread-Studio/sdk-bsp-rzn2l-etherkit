@@ -17,7 +17,7 @@
 
 开发板正面外观如下图：
 
-![image-20240314165241884](..\..\docs\figures\big.png)
+![image-20240314165241884](figures/big.png)
 
 该开发板常用 **板载资源** 如下：
 
@@ -36,7 +36,7 @@
 | EtherCAT_IO      | 支持         | EtherCAT_FOE      | 支持   		|
 | EtherCAT_EOE     | 支持         | EtherCAT_COE | 支持 |
 | **PROFINET方案** | **支持情况** | **Ethernet/IP方案** | **支持情况** |
-| P-Net（支持ProfiNET从站协议栈的开源评估软件包） | 支持         | EIP   | 正在支持中... |
+| P-Net（支持ProfiNET从站协议栈的开源评估软件包） | 支持         | EIP   | 支持 |
 | **片上外设**     | **支持情况** | **组件**         | **支持情况** |
 | UART             | 支持         | LWIP             | 支持         |
 | GPIO             | 支持         | TCP/UDP          | 支持         |

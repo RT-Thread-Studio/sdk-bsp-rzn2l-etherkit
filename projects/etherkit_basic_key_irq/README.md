@@ -1,4 +1,4 @@
-# EtherKit Button Interrupt Usage Instructions
+# Button Interrupt Usage Instructions
 
 **English** | [**中文**](./README_zh.md)
 

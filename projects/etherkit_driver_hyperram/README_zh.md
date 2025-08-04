@@ -1,4 +1,4 @@
-# RZ EtherKit 开发板 Hyperram 使用说明
+# HyperRAM 驱动例程
 
 **中文** | [**English**](./README.md)
 

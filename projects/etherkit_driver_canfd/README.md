@@ -1,4 +1,4 @@
-# RZ EtherKit Development Board CANFD Usage Guide
+# CANFD Driver Usage Instructions
 
 **English** | **[Chinese](./README_zh.md)**
 
