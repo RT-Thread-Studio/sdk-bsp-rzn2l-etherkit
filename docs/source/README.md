@@ -173,7 +173,7 @@ generation:
 - [ ] `config.yaml` - 项目配置
 - [ ] `.github/workflows/gh-pages.yml` - GitHub Actions
 - [ ] `.readthedocs.yaml` - Read the Docs配置
-- [ ] `.github/versions.list` - 版本列表
+- [ ] `.github/versions.json` - 版本配置
 
 ### 可选修改的文件
 - [ ] `conf.py` - Sphinx配置 (高级用户)

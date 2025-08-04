@@ -57,12 +57,15 @@ jobs:
       - name: Load version configuration
         run: |
           echo "=== 加载版本配置 ==="
-          cat .github/versions.list
+          cat .github/versions.json
           echo "=== 版本列表 ==="
-          grep -v '^#' .github/versions.list | grep -v '^$' | while read line; do
-            version=$(echo "$line" | cut -d'#' -f1 | xargs)
-            echo "  - $version"
-          done
+          python -c "
+import json
+with open('.github/versions.json', 'r') as f:
+    config = json.load(f)
+for version in config['versions']:
+    print(f'  - {version[\"name\"]} ({version[\"display_name\"]})')
+"
 
       - name: Check branch version mapping
         run: |
@@ -71,13 +74,19 @@ jobs:
           echo "当前分支: $current_branch"
           
           # 检查当前分支是否在版本列表中
-          if grep -q "^$current_branch" .github/versions.list; then
-            echo "✓ 当前分支 $current_branch 在版本列表中"
-          else
-            echo "⚠️  当前分支 $current_branch 不在版本列表中"
-            echo "可用的版本分支:"
-            grep -v '^#' .github/versions.list | grep -v '^$' | cut -d'#' -f1 | xargs
-          fi
+          python -c "
+import json
+with open('.github/versions.json', 'r') as f:
+    config = json.load(f)
+branches = [v['branch'] for v in config['versions']]
+if '$current_branch' in branches:
+    print(f'✓ 当前分支 $current_branch 在版本列表中')
+else:
+    print(f'⚠️  当前分支 $current_branch 不在版本列表中')
+    print('可用的版本分支:')
+    for branch in branches:
+        print(f'  - {branch}')
+"
 
       - name: Generate multi-version documentation
         run: |

@@ -251,27 +251,36 @@ python:
     print(f"✓ Read the Docs配置文件已创建: {rtd_path}")
 
 def create_versions_list():
-    """创建版本列表文件"""
-    versions_content = """# 版本列表
-# 每行一个版本，以#开头的行为注释
-# 支持以下格式:
-# - master (最新版本)
-# - v1.0 (具体版本)
-# - v1.1
-# - v2.0
-
-master
-v1.0
-"""
+    """创建版本配置文件"""
+    versions_content = """{
+  "versions": [
+    {
+      "name": "master",
+      "display_name": "最新版本",
+      "branch": "master",
+      "url_path": "latest",
+      "description": "最新开发版本"
+    },
+    {
+      "name": "v1.0",
+      "display_name": "v1.0",
+      "branch": "v1.0",
+      "url_path": "v1.0",
+      "description": "稳定版本v1.0"
+    }
+  ],
+  "default_version": "master",
+  "latest_version": "master"
+}"""
     
     versions_dir = Path("../.github")
     versions_dir.mkdir(parents=True, exist_ok=True)
     
-    versions_path = versions_dir / "versions.list"
+    versions_path = versions_dir / "versions.json"
     with open(versions_path, 'w', encoding='utf-8') as f:
         f.write(versions_content)
     
-    print(f"✓ 版本列表文件已创建: {versions_path}")
+    print(f"✓ 版本配置文件已创建: {versions_path}")
 
 def main():
     """主函数"""

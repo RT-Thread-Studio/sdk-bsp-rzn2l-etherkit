@@ -35,22 +35,39 @@ def get_all_branches():
         return []
 
 def load_versions():
-    """从 versions.list 文件加载版本列表"""
-    versions_file = Path("../.github/versions.list")
-    if not versions_file.exists():
-        print(f"错误: 版本文件不存在: {versions_file}")
+    """从 versions.json 文件加载版本列表"""
+    # 尝试多个可能的路径
+    possible_paths = [
+        Path("../.github/versions.json"),  # 从根目录运行
+        Path("../../.github/versions.json"),  # 从docs/source运行
+        Path(".github/versions.json"),  # 从项目根目录运行
+    ]
+    
+    versions_file = None
+    for path in possible_paths:
+        if path.exists():
+            versions_file = path
+            break
+    
+    if not versions_file:
+        print(f"错误: 版本文件不存在，尝试的路径:")
+        for path in possible_paths:
+            print(f"  - {path.absolute()}")
         return []
         
-    versions = []
-    with open(versions_file, 'r', encoding='utf-8') as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith('#'):
-                version = line.split('#')[0].strip()
-                if version:
-                    versions.append(version)
-    
-    return versions
+    try:
+        import json
+        with open(versions_file, 'r', encoding='utf-8') as f:
+            config = json.load(f)
+        
+        versions = []
+        for version_config in config.get('versions', []):
+            versions.append(version_config['name'])
+        
+        return versions
+    except Exception as e:
+        print(f"错误: 无法解析版本配置文件: {e}")
+        return []
 
 def check_branch_version_mapping():
     """检查分支版本映射关系"""
@@ -101,7 +118,7 @@ def check_branch_version_mapping():
     else:
         print(f"⚠️  当前分支 '{current_branch}' 不在版本列表中")
         print("建议:")
-        print(f"  1. 将分支 '{current_branch}' 添加到 .github/versions.list")
+        print(f"  1. 将分支 '{current_branch}' 添加到 .github/versions.json")
         print(f"  2. 或者切换到版本列表中的分支")
         return False
 
@@ -114,7 +131,7 @@ def check_github_actions_ready():
     # 检查必要文件
     required_files = [
         ".github/workflows/gh-pages.yml",
-        ".github/versions.list",
+        ".github/versions.json",
         "source/version_generator.py",
         "source/config.yaml"
     ]
