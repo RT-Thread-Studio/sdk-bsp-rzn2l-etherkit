@@ -1,0 +1,87 @@
+# SDK 文档构建配置文件
+project:
+  name: "EtherKit_SDK_Docs"
+  title: "EtherKit SDK 文档"
+  description: "EtherKit SDK 提供了丰富的示例项目，包括基础功能、驱动示例和组件示例。"
+  version: "0.0.1"
+  author: "kurisaw"
+  copyright: "2025, apache"
+  language: "zh_CN"
+
+# 仓库配置
+repository:
+  name: "sdk-bsp-rzn2l-etherkit"
+  projects_dir: "../../projects"
+  docs_dir: "."
+
+# 文档分类配置
+categories:
+  start:
+    name: "快速上手篇"
+    description: "快速上手"
+    patterns:
+      - "template_*"
+
+  basic:
+    name: "基础篇"
+    description: "基础功能示例"
+    patterns:
+      - "etherkit_basic_*"
+      - "etherkit_blink_led"
+  
+  driver:
+    name: "驱动篇"
+    description: "外设驱动示例"
+    patterns:
+      - "etherkit_driver_*"
+      - "etherkit_usb_*"
+  
+  component:
+    name: "组件篇"
+    description: "网络组件示例"
+    patterns:
+      - "etherkit_component_*"
+  
+  protocol:
+    name: "工业协议篇"
+    description: "工业协议示例"
+    patterns:
+      - "etherkit_ethercat_*"
+      - "etherkit_modbus_*"
+      - "etherkit_profinet_*"
+      - "etherkit_ethernetip_*"
+      - "etherkit_ethernet"
+
+# 文档生成配置
+generation:
+  copy_files:
+    - "README.md"
+    - "README_zh.md"
+  copy_dirs:
+    - "figures"
+  output_structure:
+    - "start"
+    - "basic"
+    - "driver"
+    - "component"
+    - "protocol"
+
+# Sphinx 配置
+sphinx:
+  theme: "sphinx_rtd_theme"
+  extensions:
+    - "myst_parser"
+  source_suffix:
+    ".rst": "restructuredtext"
+    ".md": "markdown"
+  myst_extensions:
+    - "colon_fence"
+    - "deflist"
+    - "dollarmath"
+    - "html_image"
+    - "html_admonition"
+    - "replacements"
+    - "smartquotes"
+    - "strikethrough"
+    - "substitution"
+    - "tasklist" 

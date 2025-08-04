@@ -1,0 +1,134 @@
+# SDK 文档构建模板配置文件
+# 复制此文件为 config.yaml 并根据项目需求修改
+
+# ============================================================================
+# 项目基本信息配置
+# ============================================================================
+project:
+  name: "Your_SDK_Docs"                    # 修改为你的SDK文档名称
+  title: "Your SDK 文档"                    # 修改为你的SDK文档标题
+  description: "Your SDK 提供了丰富的示例项目，包括基础功能、驱动示例和组件示例。"  # 修改描述
+  version: "0.0.1"                         # 修改版本号
+  author: "your_name"                      # 修改作者
+  copyright: "2025, your_company"          # 修改版权信息
+  language: "zh_CN"                        # 支持的语言 (zh_CN/en)
+
+# ============================================================================
+# 仓库配置
+# ============================================================================
+repository:
+  name: "your-sdk-repo"                    # 修改为你的GitHub仓库名称
+  projects_dir: "../projects"               # 项目目录路径 (相对于source目录)
+  docs_dir: "."                            # 文档输出目录 (通常保持为".")
+
+# ============================================================================
+# 文档分类配置 - 根据你的项目调整分类和模式
+# ============================================================================
+categories:
+  # 基础功能示例
+  start:
+    name: "快速上手篇"
+    description: "快速上手示例"
+    patterns:
+      - "your_template_*"                     # 修改为你的基础项目命名模式
+
+  basic:
+    name: "基础篇"
+    description: "基础功能示例"
+    patterns:
+      - "your_basic_*"                     # 修改为你的基础项目命名模式
+      - "your_blink_led"                   # 例如: my_sdk_basic_*, my_sdk_blink_led
+      - "your_factory"                     # 例如: my_sdk_factory
+  
+  # 驱动示例
+  driver:
+    name: "驱动篇"
+    description: "外设驱动示例"
+    patterns:
+      - "your_driver_*"                    # 修改为你的驱动项目命名模式
+      - "your_usb_*"                       # 例如: my_sdk_driver_*, my_sdk_usb_*
+  
+  # 组件示例
+  component:
+    name: "组件篇"
+    description: "网络组件示例"
+    patterns:
+      - "your_component_*"                 # 修改为你的组件项目命名模式
+      # 例如: my_sdk_component_*
+  
+  # 工业协议示例
+  protocol:
+    name: "工业协议篇"
+    description: "工业协议示例"
+    patterns:
+      - "your_ethercat_*"                  # 修改为你的协议项目命名模式
+      - "your_modbus_*"                    # 例如: my_sdk_ethercat_*, my_sdk_modbus_*
+      - "your_profinet_*"                  # 例如: my_sdk_profinet_*
+      - "your_ethernetip_*"                # 例如: my_sdk_ethernetip_*
+      - "your_ethernet"                    # 例如: my_sdk_ethernet
+
+# ============================================================================
+# 文档生成配置
+# ============================================================================
+generation:
+  # 要复制的文件列表
+  copy_files:
+    - "README.md"                          # 英文README
+    - "README_zh.md"                       # 中文README
+    # 可以根据需要添加其他文件
+    # - "LICENSE"
+    # - "CHANGELOG.md"
+  
+  # 要复制的目录列表
+  copy_dirs:
+    - "figures"                            # 图片目录
+    # 可以根据需要添加其他目录
+    # - "docs"
+    # - "examples"
+  
+  # 输出目录结构 (必须与categories中的键名一致)
+  output_structure:
+    - "start"
+    - "basic"
+    - "driver"
+    - "component"
+    - "protocol"
+
+# ============================================================================
+# Sphinx 配置
+# ============================================================================
+sphinx:
+  theme: "sphinx_rtd_theme"               # 文档主题
+  extensions:
+    - "myst_parser"                        # Markdown支持
+    # 可以根据需要添加其他扩展
+    # - "sphinx.ext.autodoc"
+    # - "sphinx.ext.viewcode"
+  
+  # 支持的文件格式
+  source_suffix:
+    ".rst": "restructuredtext"
+    ".md": "markdown"
+  
+  # MyST扩展配置
+  myst_extensions:
+    - "colon_fence"                        # 代码块支持
+    - "deflist"                           # 定义列表
+    - "dollarmath"                        # 数学公式
+    - "html_image"                        # HTML图片
+    - "html_admonition"                   # HTML警告框
+    - "replacements"                      # 替换
+    - "smartquotes"                       # 智能引号
+    - "strikethrough"                     # 删除线
+    - "substitution"                      # 替换
+    - "tasklist"                          # 任务列表
+
+# ============================================================================
+# 快速迁移指南
+# ============================================================================
+# 1. 复制此文件为 config.yaml
+# 2. 修改 project 部分的所有字段
+# 3. 修改 repository.name 为你的仓库名
+# 4. 根据你的项目命名规则修改 categories 中的 patterns
+# 5. 根据需要调整 copy_files 和 copy_dirs
+# 6. 运行 python version_generator.py 生成文档 

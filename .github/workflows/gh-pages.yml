@@ -1,0 +1,126 @@
+name: Deploy Sphinx docs to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master  # 如主分支为 master 可改为 master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Set up environment
+        run: |
+          export LANG=C.UTF-8
+          export LC_ALL=C.UTF-8
+          
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+      - name: Fetch all branches
+        run: |
+          echo "=== 获取所有分支 ==="
+          git fetch --all
+          echo "可用分支:"
+          git branch -r
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('source/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r source/requirements.txt
+
+      - name: Load version configuration
+        run: |
+          echo "=== 加载版本配置 ==="
+          cat .github/versions.list
+          echo "=== 版本列表 ==="
+          grep -v '^#' .github/versions.list | grep -v '^$' | while read line; do
+            version=$(echo "$line" | cut -d'#' -f1 | xargs)
+            echo "  - $version"
+          done
+
+      - name: Check branch version mapping
+        run: |
+          echo "=== 检查分支版本映射 ==="
+          current_branch="${{ github.ref_name }}"
+          echo "当前分支: $current_branch"
+          
+          # 检查当前分支是否在版本列表中
+          if grep -q "^$current_branch" .github/versions.list; then
+            echo "✓ 当前分支 $current_branch 在版本列表中"
+          else
+            echo "⚠️  当前分支 $current_branch 不在版本列表中"
+            echo "可用的版本分支:"
+            grep -v '^#' .github/versions.list | grep -v '^$' | cut -d'#' -f1 | xargs
+          fi
+
+      - name: Generate multi-version documentation
+        run: |
+          echo "=== 开始生成多版本文档 ==="
+          cd source
+          python version_generator.py
+          
+      - name: Debug generated structure
+        run: |
+          echo "=== 生成的目录结构 ==="
+          find source/_build/html -type d -name "latest" -o -name "v*" | head -10
+          echo "=== 检查版本目录内容 ==="
+          for dir in source/_build/html/latest source/_build/html/v*; do
+            if [ -d "$dir" ]; then
+              echo "目录: $dir"
+              ls -la "$dir" | head -5
+            fi
+          done
+          
+      - name: Check generated documentation
+        run: |
+          echo "=== 检查生成的文档 ==="
+          if [ -f "source/_build/html/index.html" ]; then
+            echo "✓ 根目录重定向页面已生成"
+          else
+            echo "✗ 根目录重定向页面未生成"
+            exit 1
+          fi
+          
+          # 检查是否有至少一个版本目录
+          version_dirs=$(find source/_build/html -maxdepth 1 -type d -name "latest" -o -name "v*" | wc -l)
+          if [ "$version_dirs" -gt 0 ]; then
+            echo "✓ 找到 $version_dirs 个版本目录"
+          else
+            echo "✗ 没有找到版本目录"
+            exit 1
+          fi
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: source/_build/html
+          force_orphan: true
+          user_name: 'github-actions[bot]'
+          user_email: '41898282+github-actions[bot]@users.noreply.github.com' 
