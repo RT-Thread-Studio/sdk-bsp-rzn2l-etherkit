@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>新文档构建系统 &mdash; EtherKit_SDK_Docs 0.0.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/version_menu.css?v=ad0e61b7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=069e4772"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=beaddf03"></script>
+      <script src="_static/version_menu.js?v=462dce53"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EtherKit_SDK_Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="start/index.html">快速上手篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="start/template_project/README_zh.html">EtherKit 开发板 BSP 说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="start/template_project/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="start/template_project/README_zh.html#id2">开发板介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="start/template_project/README_zh.html#id3">外设支持</a></li>
+<li class="toctree-l3"><a class="reference internal" href="start/template_project/README_zh.html#id4">使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="start/template_project/README_zh.html#id5">快速上手</a></li>
+<li class="toctree-l4"><a class="reference internal" href="start/template_project/README_zh.html#id6">进阶使用</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="start/template_project/README_zh.html#id7">联系人信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="start/template_project/README_zh.html#id8">贡献代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="basic/index.html">基础篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="basic/etherkit_basic_rtc/README_zh.html">RTC及Alarm 使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_rtc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_rtc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_rtc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_rtc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_rtc/README_zh.html#id3">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_rtc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_rtc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic/etherkit_blink_led/README_zh.html">RGB 使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_blink_led/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_blink_led/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_blink_led/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_blink_led/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_blink_led/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="basic/etherkit_basic_key_irq/README_zh.html">按键中断使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_key_irq/README_zh.html#id2">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_key_irq/README_zh.html#id3">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_key_irq/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_key_irq/README_zh.html#id4">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_key_irq/README_zh.html#id5">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic/etherkit_basic_key_irq/README_zh.html#id6">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="driver/index.html">驱动篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_driver_gpt/README_zh.html">GPT 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_gpt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_gpt/README_zh.html#fsp">FSP配置说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_gpt/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_gpt/README_zh.html#id2">示例工程说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_gpt/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_gpt/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_driver_i2c/README_zh.html">IIC EEROM 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_i2c/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_i2c/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_i2c/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_i2c/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_i2c/README_zh.html#id3">示例工程说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_i2c/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_i2c/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_usb_pmsc/README_zh.html">USB-PMSC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pmsc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pmsc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pmsc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pmsc/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pmsc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pmsc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pmsc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_driver_ethernet/README_zh.html">Ethernet 驱动示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_ethernet/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_ethernet/README_zh.html#id2">硬件连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_ethernet/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_ethernet/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_ethernet/README_zh.html#ip">以太网IP实验现象</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html">WDT 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#id3">软件说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#id4">示例工程说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#id5">运行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#id6">编译&amp;下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#id7">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#id8">注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_wdt/README_zh.html#id9">引用参考</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_driver_adc/README_zh.html">ADC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_adc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_adc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_adc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_adc/README_zh.html#env">env配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_adc/README_zh.html#id3">工程实例说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_adc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_adc/README_zh.html#id5">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_adc/README_zh.html#id6">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_driver_canfd/README_zh.html">CANFD 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_canfd/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_canfd/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_canfd/README_zh.html#id3">软件说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_canfd/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_canfd/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_canfd/README_zh.html#id4">工程示例说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_canfd/README_zh.html#id5">运行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_canfd/README_zh.html#id6">编译&amp;下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_canfd/README_zh.html#id7">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_driver_rs485/README_zh.html">RS485 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_rs485/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_rs485/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_rs485/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_rs485/README_zh.html#id3">工程示例说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_rs485/README_zh.html#id4">编译&amp;下载</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="driver/etherkit_driver_rs485/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_usb_pcdc/README_zh.html">USB-PCDC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pcdc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pcdc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pcdc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pcdc/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pcdc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pcdc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_usb_pcdc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_driver_spi/README_zh.html">SCI_SPI 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_spi/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_spi/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_spi/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_spi/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_spi/README_zh.html#id3">示例工程介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_spi/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_spi/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="driver/etherkit_driver_hyperram/README_zh.html">HyperRAM 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_hyperram/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_hyperram/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_hyperram/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_hyperram/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="driver/etherkit_driver_hyperram/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="component/index.html">组件篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="component/etherkit_component_netutils/README_zh.html">Netutils 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_netutils/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_netutils/README_zh.html#id2">硬件连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_netutils/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_netutils/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_netutils/README_zh.html#ip">以太网IP实验现象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_netutils/README_zh.html#tftp-server"><strong>TFTP Server 发送测试</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_netutils/README_zh.html#tftp"><strong>TFTP接收测试</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_netutils/README_zh.html#ntp">NTP联网校时</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="component/etherkit_component_netutils/README_zh.html#id3">NTP实验现象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="component/etherkit_component_flash_fs/README_zh.html">Filesystem 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_flash_fs/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_flash_fs/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_flash_fs/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_flash_fs/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_flash_fs/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="component/etherkit_component_mqtt/README_zh.html">MQTT 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_mqtt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_mqtt/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_mqtt/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_mqtt/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_mqtt/README_zh.html#id3">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_mqtt/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_mqtt/README_zh.html#mqttx">MQTTX配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_mqtt/README_zh.html#id5">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="component/etherkit_component_mqtt/README_zh.html#id6">其他说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="protocol/index.html">工业协议篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html">EtherCAT EOE 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#twincat3">TwinCAT3配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#esi">安装ESI文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#twincat">添加TwinCAT网卡驱动</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#id4">EtherCAT EOE配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#id5">新建TwinCAT工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#eoe-app">从站启动EOE App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#id6">从站设备扫描</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#eeprom">更新EEPROM固件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#id7">EtherCAT EOE通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#eio">EIO测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#eoe">EOE测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#id8">拓展说明：3端口以太网EOE通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#id9">FSP配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_eoe/README_zh.html#id10">ESI固件更新</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="protocol/etherkit_modbus_tcpip/README_zh.html">Modbus-TCP/IP 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_tcpip/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_tcpip/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_tcpip/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_tcpip/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_tcpip/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_tcpip/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html">Ethernet/IP 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#id3">网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#plc">软PLC启动</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#codesys">CODESYS创建标准工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#gateway-plc">Gateway 及 软PLC 启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#ethernet-ip-eds">Ethernet/IP EDS文件添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#id4">设备添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#id5">任务响应</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#id6">网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#id7">EtherNet/IP线程应用启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#id8">工程编译并启动调试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethernetip_opener/README_zh.html#plccip-io">PLC编程及CIP IO控制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html">PROFINET 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#id3">网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#plc">软PLC启动</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#codesys">CODESYS创建标准工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#gateway-plc">Gateway 及 软PLC 启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#profinet-gsdml">profinet GSDML文件添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#id4">设备添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#id5">任务响应</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#id6">网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#id7">工程编译并启动调试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#id8">profinet 从站应用启动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#pndemo">PN协议栈运行demo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#led">LED闪烁</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#i-m">从站 I&amp;M(标识和维护) 数据修改</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_profinet_pnet/README_zh.html#plcpnio">PLC编程及PNIO控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html">EtherCAT CoE 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#twincat3">TwinCAT3配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#esi">安装ESI文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#twincat">添加TwinCAT网卡驱动</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#id4">EtherCAT CoE配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#id5">新建TwinCAT工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#coe-app">从站启动CoE App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#id6">从站设备扫描</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#eeprom">更新EEPROM固件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#cia402">CiA402伺服使用说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#id7">CiA402对象字典定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#id8">EtherCAT COE测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#csp">csp位置模式控制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="protocol/etherkit_ethercat_coe/README_zh.html#csv">csv速度模式控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="protocol/etherkit_modbus_uart/README_zh.html">Modbus-UART 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_uart/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_uart/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_uart/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_uart/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_uart/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="protocol/etherkit_modbus_uart/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EtherKit_SDK_Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">新文档构建系统</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>新文档构建系统<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="id2">
+<h2>概述<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
+<p>新的文档构建系统完全基于 <code class="docutils literal notranslate"><span class="pre">.github/versions.json</span></code> 配置文件，支持动态多版本构建，避免了分支切换导致的问题。</p>
+</section>
+<section id="id3">
+<h2>核心特性<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
+<section id="git-worktree">
+<h3>1. 基于 Git Worktree 的隔离构建<a class="headerlink" href="#git-worktree" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>为每个版本创建独立的 Git worktree</p></li>
+<li><p>避免在主工作目录中切换分支</p></li>
+<li><p>确保构建过程不会相互影响</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>2. 完全动态的版本管理<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>所有版本信息从 <code class="docutils literal notranslate"><span class="pre">.github/versions.json</span></code> 动态读取</p></li>
+<li><p>无需修改脚本即可添加新版本</p></li>
+<li><p>支持自动版本发现和构建</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>3. 简化的使用方式<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>统一的构建入口：<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">build.py</span></code></p></li>
+<li><p>自动处理所有版本的构建</p></li>
+<li><p>支持本地预览和验证</p></li>
+</ul>
+</section>
+</section>
+<section id="id6">
+<h2>配置文件<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
+<section id="github-versions-json">
+<h3>.github/versions.json<a class="headerlink" href="#github-versions-json" title="Link to this heading"></a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;versions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;master&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;最新版本&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;branch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;master&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;url_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;latest&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;最新开发版本&quot;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v1.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v1.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;branch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v1.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;url_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v1.0&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v1.0 稳定版本&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;default_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;master&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;latest_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;master&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h2>使用方法<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
+<section id="id8">
+<h3>本地构建<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 构建所有版本</span>
+<span class="nb">cd</span><span class="w"> </span>docs/source
+python<span class="w"> </span>build.py
+
+<span class="c1"># 清理构建目录后构建</span>
+python<span class="w"> </span>build.py<span class="w"> </span>--clean
+
+<span class="c1"># 构建并启动本地服务器</span>
+python<span class="w"> </span>build.py<span class="w"> </span>--serve
+
+<span class="c1"># 验证版本配置</span>
+python<span class="w"> </span>build.py<span class="w"> </span>--validate
+
+<span class="c1"># 列出所有版本</span>
+python<span class="w"> </span>build.py<span class="w"> </span>--list-versions
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>添加新版本<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>创建新分支：<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">v2.0</span></code></p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">.github/versions.json</span></code> 中添加版本配置：</p></li>
+</ol>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;display_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;branch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;url_path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;v2.0 版本&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>提交更改：<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-am</span> <span class="pre">&quot;Add</span> <span class="pre">v2.0</span> <span class="pre">version&quot;</span></code></p></li>
+<li><p>推送分支：<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">v2.0</span></code></p></li>
+</ol>
+</section>
+<section id="github-actions">
+<h3>GitHub Actions<a class="headerlink" href="#github-actions" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>自动检测 <code class="docutils literal notranslate"><span class="pre">.github/versions.json</span></code> 的变化</p></li>
+<li><p>动态构建所有配置的版本</p></li>
+<li><p>自动部署到 GitHub Pages</p></li>
+</ul>
+</section>
+</section>
+<section id="id10">
+<h2>目录结构<a class="headerlink" href="#id10" title="Link to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>docs/source/
+├── build_manager.py          # 中央构建管理器
+├── build.py                  # 简化构建入口
+├── utils/
+│   └── version_utils.py     # 版本工具
+├── _build/
+│   ├── worktrees/           # 临时工作树
+│   │   ├── v1.0/
+│   │   └── latest/
+│   ├── versions/            # 最终版本文档
+│   │   ├── v1.0/
+│   │   └── latest/
+│   └── html/                # 统一入口
+└── README_NEW_BUILD_SYSTEM.md
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h2>优势<a class="headerlink" href="#id11" title="Link to this heading"></a></h2>
+<section id="id12">
+<h3>1. 避免分支切换问题<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>使用 Git worktree 为每个版本创建独立工作目录</p></li>
+<li><p>不会影响当前分支的状态</p></li>
+<li><p>构建过程更加稳定可靠</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3>2. 完全动态配置<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>只需修改 <code class="docutils literal notranslate"><span class="pre">.github/versions.json</span></code> 即可添加新版本</p></li>
+<li><p>无需修改任何脚本代码</p></li>
+<li><p>支持任意数量的版本</p></li>
+</ul>
+</section>
+<section id="id14">
+<h3>3. 更好的隔离性<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>每个版本的构建完全独立</p></li>
+<li><p>不会出现版本间的冲突</p></li>
+<li><p>支持并行构建（如果资源允许）</p></li>
+</ul>
+</section>
+<section id="id15">
+<h3>4. 简化的维护<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>统一的构建入口</p></li>
+<li><p>自动化的版本管理</p></li>
+<li><p>清晰的错误处理和日志</p></li>
+</ul>
+</section>
+</section>
+<section id="id16">
+<h2>迁移指南<a class="headerlink" href="#id16" title="Link to this heading"></a></h2>
+<section id="id17">
+<h3>从旧系统迁移<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>备份当前的构建脚本</p></li>
+<li><p>确保 <code class="docutils literal notranslate"><span class="pre">.github/versions.json</span></code> 配置正确</p></li>
+<li><p>运行 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">build.py</span> <span class="pre">--validate</span></code> 验证配置</p></li>
+<li><p>运行 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">build.py</span> <span class="pre">--clean</span></code> 构建所有版本</p></li>
+<li><p>测试构建结果</p></li>
+</ol>
+</section>
+<section id="id18">
+<h3>清理旧文件<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<p>可以安全删除以下旧文件：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">version_generator.py</span></code> (替换为 <code class="docutils literal notranslate"><span class="pre">build_manager.py</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">check_branch_versions.py</span></code> (功能集成到 <code class="docutils literal notranslate"><span class="pre">version_utils.py</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">build_local.py</span></code> (替换为 <code class="docutils literal notranslate"><span class="pre">build.py</span></code>)</p></li>
+</ul>
+</section>
+</section>
+<section id="id19">
+<h2>故障排除<a class="headerlink" href="#id19" title="Link to this heading"></a></h2>
+<section id="id20">
+<h3>常见问题<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Git worktree 创建失败</strong></p>
+<ul class="simple">
+<li><p>确保分支存在：<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-a</span></code></p></li>
+<li><p>检查 Git 版本：<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">--version</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>版本配置验证失败</strong></p>
+<ul class="simple">
+<li><p>检查 <code class="docutils literal notranslate"><span class="pre">.github/versions.json</span></code> 格式</p></li>
+<li><p>确保所有必需字段都存在</p></li>
+<li><p>验证分支是否存在</p></li>
+</ul>
+</li>
+<li><p><strong>构建失败</strong></p>
+<ul class="simple">
+<li><p>检查 Python 依赖：<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">requirements.txt</span></code></p></li>
+<li><p>查看详细错误日志</p></li>
+<li><p>尝试 <code class="docutils literal notranslate"><span class="pre">--clean</span></code> 参数重新构建</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id21">
+<h3>调试命令<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 检查版本配置</span>
+python<span class="w"> </span>utils/version_utils.py<span class="w"> </span>--validate
+
+<span class="c1"># 列出所有版本</span>
+python<span class="w"> </span>utils/version_utils.py<span class="w"> </span>--list
+
+<span class="c1"># 获取当前分支</span>
+python<span class="w"> </span>utils/version_utils.py<span class="w"> </span>--current-branch
+
+<span class="c1"># 根据分支获取版本</span>
+python<span class="w"> </span>utils/version_utils.py<span class="w"> </span>--version-for-branch<span class="w"> </span>master
+
+<span class="c1"># 根据版本获取分支</span>
+python<span class="w"> </span>utils/version_utils.py<span class="w"> </span>--branch-for-version<span class="w"> </span>master
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id22">
+<h2>贡献指南<a class="headerlink" href="#id22" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>修改版本配置时，请先运行验证命令</p></li>
+<li><p>添加新版本时，确保分支已创建并推送</p></li>
+<li><p>提交更改前，请测试构建是否成功</p></li>
+<li><p>更新文档时，请同步更新此说明文件</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

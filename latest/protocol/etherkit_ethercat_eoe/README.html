@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EtherCAT EOE Usage Instructions &mdash; EtherKit_SDK_Docs 0.0.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=069e4772"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/version_menu.js?v=462dce53"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            EtherKit_SDK_Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速上手篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/template_project/README_zh.html">EtherKit 开发板 BSP 说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id2">开发板介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id3">外设支持</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id4">使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../start/template_project/README_zh.html#id5">快速上手</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../start/template_project/README_zh.html#id6">进阶使用</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id7">联系人信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id8">贡献代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">基础篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html">RTC及Alarm 使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id3">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html">RGB 使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html">按键中断使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id2">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id3">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id4">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id5">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id6">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../driver/index.html">驱动篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html">GPT 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#fsp">FSP配置说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id2">示例工程说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html">IIC EEROM 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id3">示例工程说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html">USB-PMSC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html">Ethernet 驱动示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#id2">硬件连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#ip">以太网IP实验现象</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html">WDT 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id3">软件说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id4">示例工程说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id5">运行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id6">编译&amp;下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id7">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id8">注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id9">引用参考</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html">ADC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#env">env配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id3">工程实例说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id5">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id6">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html">CANFD 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id3">软件说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id4">工程示例说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id5">运行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id6">编译&amp;下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id7">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html">RS485 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id3">工程示例说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id4">编译&amp;下载</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html">USB-PCDC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html">SCI_SPI 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id3">示例工程介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html">HyperRAM 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../component/index.html">组件篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html">Netutils 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#id2">硬件连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#ip">以太网IP实验现象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#tftp-server"><strong>TFTP Server 发送测试</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#tftp"><strong>TFTP接收测试</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#ntp">NTP联网校时</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#id3">NTP实验现象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html">Filesystem 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html">MQTT 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id3">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#mqttx">MQTTX配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id5">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id6">其他说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">工业协议篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README_zh.html">EtherCAT EOE 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#twincat3">TwinCAT3配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#esi">安装ESI文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#twincat">添加TwinCAT网卡驱动</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id4">EtherCAT EOE配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id5">新建TwinCAT工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#eoe-app">从站启动EOE App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id6">从站设备扫描</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#eeprom">更新EEPROM固件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id7">EtherCAT EOE通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#eio">EIO测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#eoe">EOE测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id8">拓展说明：3端口以太网EOE通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id9">FSP配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id10">ESI固件更新</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html">Modbus-TCP/IP 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html">Ethernet/IP 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id3">网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#plc">软PLC启动</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#codesys">CODESYS创建标准工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#gateway-plc">Gateway 及 软PLC 启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#ethernet-ip-eds">Ethernet/IP EDS文件添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id4">设备添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id5">任务响应</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id6">网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id7">EtherNet/IP线程应用启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id8">工程编译并启动调试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#plccip-io">PLC编程及CIP IO控制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html">PROFINET 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#id3">网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#plc">软PLC启动</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#codesys">CODESYS创建标准工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#gateway-plc">Gateway 及 软PLC 启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#profinet-gsdml">profinet GSDML文件添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#id4">设备添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#id5">任务响应</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#id6">网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#id7">工程编译并启动调试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#id8">profinet 从站应用启动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#pndemo">PN协议栈运行demo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#led">LED闪烁</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#i-m">从站 I&amp;M(标识和维护) 数据修改</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_profinet_pnet/README_zh.html#plcpnio">PLC编程及PNIO控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html">EtherCAT CoE 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#twincat3">TwinCAT3配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#esi">安装ESI文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#twincat">添加TwinCAT网卡驱动</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id4">EtherCAT CoE配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id5">新建TwinCAT工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#coe-app">从站启动CoE App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id6">从站设备扫描</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#eeprom">更新EEPROM固件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#cia402">CiA402伺服使用说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id7">CiA402对象字典定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id8">EtherCAT COE测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#csp">csp位置模式控制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#csv">csv速度模式控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html">Modbus-UART 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EtherKit_SDK_Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">EtherCAT EOE Usage Instructions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="ethercat-eoe-usage-instructions">
+<h1>EtherCAT EOE Usage Instructions<a class="headerlink" href="#ethercat-eoe-usage-instructions" title="Link to this heading"></a></h1>
+<p><strong>English</strong> | <a class="reference internal" href="README_zh.html"><span class="std std-doc"><strong>中文</strong></span></a></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>EtherCAT EoE (<strong>Ethernet over EtherCAT</strong>) is a communication protocol in the EtherCAT standard, designed to transfer standard Ethernet packets over an EtherCAT network. It allows non-real-time Ethernet communication to coexist with real-time EtherCAT communication, providing flexible network integration for industrial automation systems.</p>
+<p>The main features and functions of EoE are as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Ethernet Tunnel Transmission</strong>:</p>
+<ul class="simple">
+<li><p>EoE encapsulates standard Ethernet packets within EtherCAT communication frames, enabling standard Ethernet protocols (such as TCP/IP, UDP, HTTP, etc.) to be transmitted over an EtherCAT network.</p></li>
+</ul>
+</li>
+<li><p><strong>Extended Network Functionality</strong>:</p>
+<ul class="simple">
+<li><p>EoE allows EtherCAT slaves to function as virtual Ethernet devices within a TCP/IP network.</p></li>
+<li><p>It enables remote standard Ethernet devices to be accessed via the EtherCAT communication link.</p></li>
+</ul>
+</li>
+<li><p><strong>Efficient Integration</strong>:</p>
+<ul class="simple">
+<li><p>The implementation of EoE does not affect the real-time performance of EtherCAT.</p></li>
+<li><p>Non-real-time Ethernet communication and real-time EtherCAT data exchange can coexist, each serving its respective purpose.</p></li>
+</ul>
+</li>
+<li><p><strong>Usage Scenarios</strong>:</p>
+<ul class="simple">
+<li><p><strong>Device Management</strong>: Access EtherCAT slave devices via IP for remote configuration, diagnostics, and firmware updates.</p></li>
+<li><p><strong>Hybrid Networks</strong>: Integrate devices that require standard Ethernet communication (such as cameras, sensors, or industrial PCs).</p></li>
+</ul>
+</li>
+<li><p><strong>Simplified Network Wiring</strong>:</p>
+<ul class="simple">
+<li><p>In industrial automation scenarios, EoE allows Ethernet devices to be accessed over the EtherCAT network, reducing the need for separate Ethernet cabling.</p></li>
+</ul>
+</li>
+<li><p><strong>Typical Applications</strong>:</p>
+<ul class="simple">
+<li><p>Remote monitoring and diagnostics in factory automation systems.</p></li>
+<li><p>Communication bridging between industrial robots or production equipment and external IT systems.</p></li>
+</ul>
+</li>
+</ol>
+<p>This section demonstrates how to implement EtherCAT EoE master-slave communication using Beckhoff TwinCAT3 and the EtherKit development board.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<section id="software-environment">
+<h3>Software Environment:<a class="headerlink" href="#software-environment" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>[RT-Thread Studio](https://download-redirect.rt-thread.org/download/studio/RT-Thread Studio_2.2.8-setup-x86_64_202405200930.exe)</p></li>
+<li><p><a class="reference external" href="https://github.com/renesas/rzn-fsp/releases/download/v2.0.0/setup_rznfsp_v2_0_0_rzsc_v2024-01.1.exe">RZN-FSP v2.0.0</a></p></li>
+<li><p><a class="reference external" href="https://www.beckhoff.com/en-us/support/download-finder/search-result/?c-1=26782567">Beckhoff Automation TwinCAT3</a></p></li>
+</ul>
+</section>
+<section id="hardware-environment">
+<h3>Hardware Environment:<a class="headerlink" href="#hardware-environment" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>EtherKit development board</p></li>
+<li><p>One Ethernet cable</p></li>
+<li><p>Jlink debugger</p></li>
+</ul>
+</section>
+</section>
+<section id="twincat3-configuration">
+<h2>TwinCAT3 Configuration<a class="headerlink" href="#twincat3-configuration" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>Before launching TwinCAT3, some configuration steps are necessary:</p>
+</div></blockquote>
+<section id="install-the-esi-file">
+<h3>Install the ESI File<a class="headerlink" href="#install-the-esi-file" title="Link to this heading"></a></h3>
+<p>Before launching TwinCAT, copy the ESI file included in the release folder to the TwinCAT target directory: <code class="docutils literal notranslate"><span class="pre">..\TwinCAT\3.x\Config\IO\EtherCAT</span></code></p>
+<blockquote>
+<div><p>Note: The current version of the ESI file is located at: <code class="docutils literal notranslate"><span class="pre">..\board\ports\ethercat\ESI_File\Renesas</span> <span class="pre">EtherCAT</span> <span class="pre">RZT2</span> <span class="pre">EoE.xml</span></code></p>
+</div></blockquote>
+<p><img alt="image-20241126112646602" src="../../_images/image-20241126112646602.png" /></p>
+</section>
+<section id="add-twincat-ethernet-driver">
+<h3>Add TwinCAT Ethernet Driver<a class="headerlink" href="#add-twincat-ethernet-driver" title="Link to this heading"></a></h3>
+<p>Add the TwinCAT Ethernet driver (only required for initial configuration). From the Start menu, select [TwinCAT] → [Show Realtime Ethernet Compatible Device…], choose the connected Ethernet port from the communication ports and install it.</p>
+<p><img alt="image-20241126112725124" src="../../_images/image-20241126112725124.png" /></p>
+<p>Here, we can see all the Ethernet adapters on the PC. After selecting the port we are testing, click Install:</p>
+<p><img alt="image-20241126112735628" src="../../_images/image-20241126112735628.png" /></p>
+<p>Check the network adapter to see that it has been successfully installed:</p>
+<p><img alt="image-20241126112749511" src="../../_images/image-20241126112749511.png" /></p>
+</section>
+</section>
+<section id="fsp-configuration-instructions">
+<h2>FSP Configuration Instructions<a class="headerlink" href="#fsp-configuration-instructions" title="Link to this heading"></a></h2>
+<p>Next, configure the pin initialization. Open the installed RZN-FSP 2.0.0 and select the root directory of your project:</p>
+<p><img alt="image-20241126112823675" src="../../_images/image-20241126112823675.png" /></p>
+<p>We will configure the following peripherals and pins: Click New Stack and add the <code class="docutils literal notranslate"><span class="pre">ethercat_ssc_port</span></code> peripheral:</p>
+<p><img alt="image-20241126112834517" src="../../_images/image-20241126112834517.png" /></p>
+<p>Configure <code class="docutils literal notranslate"><span class="pre">ethercat_ssc_port</span></code>: Change the Reset Port to <code class="docutils literal notranslate"><span class="pre">P13_4</span></code> and set the EEPROM size to “Under 32Kbits”:</p>
+<p><img alt="image-20241126112844255" src="../../_images/image-20241126112844255.png" /></p>
+<p>Enable the Ethernet card type and configure the network card device parameters. Here we add two PHYs (<code class="docutils literal notranslate"><span class="pre">phy0</span></code> and <code class="docutils literal notranslate"><span class="pre">phy1</span></code>). Note that EtherKit uses the RTL8211 Ethernet card, which is not supported by Renesas FSP. However, Renesas provides an interface for user-defined network cards, so we configure the card accordingly, setting the MDIO type to GMAC and the network card initialization callback function to <code class="docutils literal notranslate"><span class="pre">ether_phy_targets_initialize_rtl8211_rgmii()</span></code>:</p>
+<p><img alt="image-20241126112854883" src="../../_images/image-20241126112854883.png" /></p>
+<p>Configure the Ethernet pin parameters, setting the operation mode to RGMII:</p>
+<p><img alt="image-20241126112913073" src="../../_images/image-20241126112913073.png" /></p>
+<p>ETHER_ESC Settings:</p>
+<p><img alt="image-20241126112923063" src="../../_images/image-20241126112923063.png" /></p>
+<p>ETHER_GMAC Configuration:</p>
+<p><img alt="image-20241126112932511" src="../../_images/image-20241126112932511.png" /></p>
+<p>Add a CMT timer to <code class="docutils literal notranslate"><span class="pre">ethercat_ssc_port</span></code> and configure the interrupt priority:</p>
+<p><img alt="image-20241126112944554" src="../../_images/image-20241126112944554.png" /></p>
+<p>Add the Ethernet peripheral:</p>
+<p><img alt="image-20241126113004795" src="../../_images/image-20241126113004795.png" /></p>
+<p>Set the Ethernet interrupt callback to: <code class="docutils literal notranslate"><span class="pre">user_ether0_callback</span></code></p>
+<p><img alt="image-20241126113018619" src="../../_images/image-20241126113018619.png" /></p>
+<p>Finally, click Generate Project Content to generate the underlying driver source code.</p>
+</section>
+<section id="build-configuration">
+<h2>Build Configuration<a class="headerlink" href="#build-configuration" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><strong>Modify SConscript</strong>: Navigate to the project and locate the file at the specified path: <code class="docutils literal notranslate"><span class="pre">.\rzn\SConscript</span></code>. Replace the file content with the following:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Import</span><span class="p">(</span><span class="s1">&#39;RTT_ROOT&#39;</span><span class="p">)</span>
+<span class="n">Import</span><span class="p">(</span><span class="s1">&#39;rtconfig&#39;</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">building</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">gcc</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">cwd</span> <span class="o">=</span> <span class="n">GetCurrentDir</span><span class="p">()</span>
+<span class="n">src</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">group</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">CPPPATH</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">if</span> <span class="n">rtconfig</span><span class="o">.</span><span class="n">PLATFORM</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;iccarm&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">GetGCCLikePLATFORM</span><span class="p">():</span>
+    <span class="k">if</span> <span class="n">rtconfig</span><span class="o">.</span><span class="n">PLATFORM</span> <span class="o">==</span> <span class="s1">&#39;iccarm&#39;</span> <span class="ow">or</span> <span class="n">GetOption</span><span class="p">(</span><span class="s1">&#39;target&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;mdk5&#39;</span><span class="p">:</span>
+        <span class="n">src</span> <span class="o">+=</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;./fsp/src/bsp/mcu/all/*.c&#39;</span><span class="p">)</span>
+        <span class="n">src</span> <span class="o">+=</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;./fsp/src/bsp/mcu/all/cr/*.c&#39;</span><span class="p">)</span>
+        <span class="n">src</span> <span class="o">+=</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;./fsp/src/bsp/mcu/r*/*.c&#39;</span><span class="p">)</span>
+        <span class="n">src</span> <span class="o">+=</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;./fsp/src/bsp/cmsis/Device/RENESAS/Source/*.c&#39;</span><span class="p">)</span>
+        <span class="n">src</span> <span class="o">+=</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;./fsp/src/bsp/cmsis/Device/RENESAS/Source/cr/*.c&#39;</span><span class="p">)</span>
+        <span class="n">src</span> <span class="o">+=</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;./fsp/src/r_*/*.c&#39;</span><span class="p">)</span>
+        <span class="n">CPPPATH</span> <span class="o">=</span> <span class="p">[</span> <span class="n">cwd</span> <span class="o">+</span> <span class="s1">&#39;/arm/CMSIS_5/CMSIS/Core_R/Include&#39;</span><span class="p">,</span>
+                    <span class="n">cwd</span> <span class="o">+</span> <span class="s1">&#39;/fsp/inc&#39;</span><span class="p">,</span>
+                    <span class="n">cwd</span> <span class="o">+</span> <span class="s1">&#39;/fsp/inc/api&#39;</span><span class="p">,</span>
+                    <span class="n">cwd</span> <span class="o">+</span> <span class="s1">&#39;/fsp/inc/instances&#39;</span><span class="p">,]</span>
+
+<span class="k">if</span> <span class="n">GetDepend</span><span class="p">(</span><span class="s1">&#39;BSP_USING_ETHERCAT_EOE&#39;</span><span class="p">):</span>
+    <span class="n">src</span> <span class="o">+=</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;./fsp/src/rm_ethercat_ssc_port/*.c&#39;</span><span class="p">)</span>
+    <span class="n">CPPPATH</span> <span class="o">+=</span> <span class="p">[</span><span class="n">cwd</span> <span class="o">+</span> <span class="s1">&#39;/fsp/src/rm_ethercat_ssc_port&#39;</span><span class="p">]</span>
+
+<span class="n">group</span> <span class="o">=</span> <span class="n">DefineGroup</span><span class="p">(</span><span class="s1">&#39;rzn&#39;</span><span class="p">,</span> <span class="n">src</span><span class="p">,</span> <span class="n">depend</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">],</span> <span class="n">CPPPATH</span> <span class="o">=</span> <span class="n">CPPPATH</span><span class="p">)</span>
+<span class="n">Return</span><span class="p">(</span><span class="s1">&#39;group&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p><strong>Modify Kconfig</strong>: Open the file located at <code class="docutils literal notranslate"><span class="pre">projects\etherkit_ethercat_eoe\board\Kconfig</span></code>. Add the EOE configuration under the <em>Onboard Peripheral Drivers</em> section:</p></li>
+</ol>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="w">        </span><span class="n">config</span><span class="w"> </span><span class="n">BSP_USING_ETHERCAT_EOE</span>
+<span class="w">            </span><span class="kt">bool</span><span class="w"> </span><span class="s">&quot;Enable EtherCAT EOE example&quot;</span>
+<span class="w">            </span><span class="n">select</span><span class="w"> </span><span class="n">BSP_USING_ETH</span>
+<span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="n">n</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">BSP_USING_ETHERCAT_EOE</span>
+<span class="w">                </span><span class="n">config</span><span class="w"> </span><span class="n">RT_LWIP_IPADDR</span>
+<span class="w">                    </span><span class="n">string</span><span class="w"> </span><span class="s">&quot;set static ip address for eoe slaver&quot;</span>
+<span class="w">                    </span><span class="k">default</span><span class="w"> </span><span class="s">&quot;192.168.10.100&quot;</span>
+<span class="w">                </span><span class="n">config</span><span class="w"> </span><span class="n">RT_LWIP_GWADDR</span>
+<span class="w">                    </span><span class="n">string</span><span class="w"> </span><span class="s">&quot;set static gateway address for eoe slaver&quot;</span>
+<span class="w">                    </span><span class="k">default</span><span class="w"> </span><span class="s">&quot;192.168.10.1&quot;</span>
+<span class="w">                </span><span class="n">config</span><span class="w"> </span><span class="n">RT_LWIP_MSKADDR</span>
+<span class="w">                    </span><span class="n">string</span><span class="w"> </span><span class="s">&quot;set static mask address for eoe slaver&quot;</span>
+<span class="w">                    </span><span class="k">default</span><span class="w"> </span><span class="s">&quot;255.255.255.0&quot;</span>
+<span class="w">            </span><span class="n">endif</span>
+</pre></div>
+</div>
+<p>As shown in the following figure:</p>
+<p><img alt="image-20241216133719165" src="../../_images/image-20241216133719165.png" /></p>
+<ol class="arabic" start="3">
+<li><p><strong>Development Environment</strong>:</p>
+<ul>
+<li><p>If you are using Studio for development, right-click the project and select <strong>Sync SCons Configuration to Project</strong>.</p></li>
+<li><p>If you are using IAR for development, right-click in the current project directory to open the environment and execute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scons<span class="w"> </span>--target<span class="o">=</span>iar
+</pre></div>
+</div>
+<p>to regenerate the configuration.</p>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="rt-thread-studio-configuration">
+<h2>RT-Thread Studio Configuration<a class="headerlink" href="#rt-thread-studio-configuration" title="Link to this heading"></a></h2>
+<p>After completing the FSP configuration, pin and peripheral initialization is done. Now, we need to enable the EtherCAT EOE example. Open Studio, click RT-Thread Settings, and enable the EOE example:</p>
+<p><img alt="image-20241126113041985" src="../../_images/image-20241126113041985.png" /></p>
+<p>Next, we need to configure the system to disable DHCP and use a static IP. Click on the component -&gt; enable the lwip stack, and select to disable DHCP:</p>
+<p><img alt="image-20241213114404172" src="../../_images/image-20241213114404172.png" /></p>
+<p>Once enabled, save the settings and synchronize the scons configuration. Then compile and download the program. After resetting the development board, observe the serial log:</p>
+<p><img alt="image-20241126175253263" src="../../_images/image-20241126175253263.png" /></p>
+</section>
+<section id="ethercat-eoe-configuration">
+<h2>EtherCAT EOE Configuration<a class="headerlink" href="#ethercat-eoe-configuration" title="Link to this heading"></a></h2>
+<section id="create-a-new-twincat-project">
+<h3>Create a New TwinCAT Project<a class="headerlink" href="#create-a-new-twincat-project" title="Link to this heading"></a></h3>
+<p>Open TwinCAT software, click File → New → New Project, select TwinCAT Projects, and create a TwinCAT XAR Project (XML format):</p>
+<p><img alt="image-20241126113126419" src="../../_images/image-20241126113126419.png" /></p>
+</section>
+<section id="start-the-eoe-app-on-the-slave">
+<h3>Start the EOE App on the Slave<a class="headerlink" href="#start-the-eoe-app-on-the-slave" title="Link to this heading"></a></h3>
+<p>After powering on the EtherKit development board, connect the Ethernet cable to the ETH0 port. EtherCAT will run by default.</p>
+<p><img alt="image-20241126171141421" src="../../_images/image-20241126171141421.png" /></p>
+</section>
+<section id="scan-for-slave-devices">
+<h3>Scan for Slave Devices<a class="headerlink" href="#scan-for-slave-devices" title="Link to this heading"></a></h3>
+<p>After creating the project, find Devices in the left sidebar, right-click, and select Scan Devices. Normally, if the slave device is scanned successfully, it will display: Device x [EtherCAT]. If the scan fails, it will show: Device x [EtherCAT Automation Protocol], indicating that the slave initialization failed.</p>
+<p><img alt="image-20241126113227936" src="../../_images/image-20241126113227936.png" /></p>
+<p>Click OK, and a window will appear: Scan for Boxes. Click Confirm, and another window will pop up: Activate Free Run. Since we are using EOE for the first time and need to update the EEPROM firmware, do not activate it yet.</p>
+</section>
+<section id="update-eeprom-firmware">
+<h3>Update EEPROM Firmware<a class="headerlink" href="#update-eeprom-firmware" title="Link to this heading"></a></h3>
+<p>Back in TwinCAT, in the left sidebar, we can see the slave device after successfully scanning it, so we can access the master-slave configuration interface:</p>
+<p><img alt="image-20241126171212280" src="../../_images/image-20241126171212280.png" /></p>
+<p>Double-click Box 1, then click EtherCAT in the top navigation bar and select Advanced Settings…:</p>
+<p><img alt="image-20241126171232413" src="../../_images/image-20241126171232413.png" /></p>
+<p>Click Download from List… as shown:</p>
+<p><img alt="image-20241126113311855" src="../../_images/image-20241126113311855.png" /></p>
+<p>Write the ESI firmware to the EEPROM. Since we are configuring a dual-port setup, select <code class="docutils literal notranslate"><span class="pre">Renesas</span> <span class="pre">EtherCAT</span> <span class="pre">RZ/N2</span> <span class="pre">EOE</span> <span class="pre">2port</span></code>. If you are configuring a three-port setup, select the ESI file with the <code class="docutils literal notranslate"><span class="pre">3port</span></code> suffix.</p>
+<p><img alt="image-20241126171300206" src="../../_images/image-20241126171300206.png" /></p>
+<p>After downloading, right-click Device x (EtherCAT), remove the device, re-scan, add the device again, and activate it (as described above).</p>
+<p><img alt="image-20241126113331379" src="../../_images/image-20241126113331379.png" /></p>
+</section>
+</section>
+<section id="ethercat-eoe-communication">
+<h2>EtherCAT EOE Communication<a class="headerlink" href="#ethercat-eoe-communication" title="Link to this heading"></a></h2>
+<p>After downloading the EEPROM ESI firmware and re-scanning and adding the device, we can activate the device. We will observe two green LEDs on the board (indicating normal communication). One LED flashes at a high frequency, while the other stays steady. At</p>
+<p>this point, double-click the EOE tab on the TwinCAT device page to access the EOE communication configuration.</p>
+<p><img alt="image-20241126113555578" src="../../_images/image-20241126113555578.png" /></p>
+<section id="enable-dhcp-or-assign-an-ip-address">
+<h3>Enable DHCP or Assign an IP Address<a class="headerlink" href="#enable-dhcp-or-assign-an-ip-address" title="Link to this heading"></a></h3>
+<p>At this point, you can use DHCP to configure an automatic IP or manually assign a static IP address to the EtherCAT slave node.</p>
+<p><img alt="image-20241126113612960" src="../../_images/image-20241126113612960.png" /></p>
+<p>Once configured, the EOE App will work, allowing communication over EtherCAT!</p>
+</section>
+</section>
+<section id="extension-explanation-3-port-ethernet-eoe-communication">
+<h2>Extension Explanation: 3-Port Ethernet EOE Communication<a class="headerlink" href="#extension-explanation-3-port-ethernet-eoe-communication" title="Link to this heading"></a></h2>
+<p>The example project currently defaults to a 2-port Ethernet EOE configuration. If you need to use a 3-port EOE communication setup, please follow the instructions in this chapter for configuration.</p>
+<section id="fsp-configuration">
+<h3>FSP Configuration<a class="headerlink" href="#fsp-configuration" title="Link to this heading"></a></h3>
+<p>First, open the FSP configuration file in the project. We will add a third PHY for the SSC stack.</p>
+<p><img alt="image-20241217181157005" src="../../_images/image-20241217181157005.png" /></p>
+<p>Next, configure the channel count for PHY2 to 2, and set the PHY address to 3 (as referenced from the schematic manual). Also, configure the network card model as user-defined and set the Ethernet initialization callback function.</p>
+<p><img alt="image-20241217181209037" src="../../_images/image-20241217181209037.png" /></p>
+<p>Then, configure the pins to enable ETH2.</p>
+<p><img alt="image-20241217181218646" src="../../_images/image-20241217181218646.png" /></p>
+<p>Next, configure the ESC corresponding to the ETH2 LINK pins, setting ESC_LINKACT2 (P22_1) and ESC_PHYLINK2 (P00_5). Note: <strong>If P22_1 is already in use, you must first manually disable its multiplexing function before enabling this option</strong>.</p>
+<p><img alt="image-20241217181235776" src="../../_images/image-20241217181235776.png" /></p>
+<p>After completing the above configurations, you can click to generate the source code, return to the project, compile it, and download the program to the development board.</p>
+</section>
+<section id="esi-firmware-update">
+<h3>ESI Firmware Update<a class="headerlink" href="#esi-firmware-update" title="Link to this heading"></a></h3>
+<p>Similarly, we need to wait for the development board’s EOE slave to successfully run. Then, open the TwinCAT 3 software to scan for devices. Once the EtherCAT device is found, do not activate it immediately. In the pop-up window, click “No.”</p>
+<p><img alt="image-20241217181259080" src="../../_images/image-20241217181259080.png" /></p>
+<p>Refer to the <strong>“Update EEPROM Firmware”</strong> section. Follow the same steps, but this time, select the firmware to be updated as: Renesas EtherCAT RZ/N2 EoE 3port [2308 / 768], and click to flash the firmware.</p>
+<p><img alt="image-20241217181338720" src="../../_images/image-20241217181338720.png" /></p>
+<p>Once the flashing is complete, we need to delete the device again and scan it once more. You should see that the slave device description has been updated to “Box 1 (Renesas EtherCAT RZ/N2 EoE 3port).”</p>
+<p><img alt="image-20241217181350020" src="../../_images/image-20241217181350020.png" /></p>
+<p>For further EOE development, please refer to the previous chapters.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,543 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Netutils Usage Instructions &mdash; EtherKit_SDK_Docs 0.0.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=069e4772"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/version_menu.js?v=462dce53"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            EtherKit_SDK_Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速上手篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/template_project/README_zh.html">EtherKit 开发板 BSP 说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id2">开发板介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id3">外设支持</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id4">使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../start/template_project/README_zh.html#id5">快速上手</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../start/template_project/README_zh.html#id6">进阶使用</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id7">联系人信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id8">贡献代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">基础篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html">RTC及Alarm 使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id3">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html">RGB 使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html">按键中断使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id2">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id3">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id4">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id5">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id6">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../driver/index.html">驱动篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html">GPT 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#fsp">FSP配置说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id2">示例工程说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html">IIC EEROM 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id3">示例工程说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html">USB-PMSC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html">Ethernet 驱动示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#id2">硬件连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#ip">以太网IP实验现象</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html">WDT 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id3">软件说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id4">示例工程说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id5">运行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id6">编译&amp;下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id7">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id8">注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id9">引用参考</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html">ADC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#env">env配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id3">工程实例说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id5">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id6">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html">CANFD 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id3">软件说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id4">工程示例说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id5">运行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id6">编译&amp;下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id7">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html">RS485 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id3">工程示例说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id4">编译&amp;下载</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html">USB-PCDC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html">SCI_SPI 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id3">示例工程介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html">HyperRAM 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">组件篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="README_zh.html">Netutils 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id2">硬件连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#ip">以太网IP实验现象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#tftp-server"><strong>TFTP Server 发送测试</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#tftp"><strong>TFTP接收测试</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#ntp">NTP联网校时</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id3">NTP实验现象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_component_flash_fs/README_zh.html">Filesystem 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_flash_fs/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_flash_fs/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_flash_fs/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_flash_fs/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_flash_fs/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_component_mqtt/README_zh.html">MQTT 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_mqtt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_mqtt/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_mqtt/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_mqtt/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_mqtt/README_zh.html#id3">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_mqtt/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_mqtt/README_zh.html#mqttx">MQTTX配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_mqtt/README_zh.html#id5">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_component_mqtt/README_zh.html#id6">其他说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../protocol/index.html">工业协议篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html">EtherCAT EOE 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#twincat3">TwinCAT3配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#esi">安装ESI文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#twincat">添加TwinCAT网卡驱动</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#id4">EtherCAT EOE配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#id5">新建TwinCAT工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#eoe-app">从站启动EOE App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#id6">从站设备扫描</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#eeprom">更新EEPROM固件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#id7">EtherCAT EOE通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#eio">EIO测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#eoe">EOE测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#id8">拓展说明：3端口以太网EOE通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#id9">FSP配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README_zh.html#id10">ESI固件更新</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README_zh.html">Modbus-TCP/IP 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html">Ethernet/IP 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#id3">网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#plc">软PLC启动</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#codesys">CODESYS创建标准工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#gateway-plc">Gateway 及 软PLC 启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#ethernet-ip-eds">Ethernet/IP EDS文件添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#id4">设备添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#id5">任务响应</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#id6">网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#id7">EtherNet/IP线程应用启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#id8">工程编译并启动调试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README_zh.html#plccip-io">PLC编程及CIP IO控制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html">PROFINET 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#id3">网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#plc">软PLC启动</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#codesys">CODESYS创建标准工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#gateway-plc">Gateway 及 软PLC 启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#profinet-gsdml">profinet GSDML文件添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#id4">设备添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#id5">任务响应</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#id6">网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#id7">工程编译并启动调试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#id8">profinet 从站应用启动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#pndemo">PN协议栈运行demo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#led">LED闪烁</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#i-m">从站 I&amp;M(标识和维护) 数据修改</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README_zh.html#plcpnio">PLC编程及PNIO控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html">EtherCAT CoE 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#twincat3">TwinCAT3配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#esi">安装ESI文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#twincat">添加TwinCAT网卡驱动</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#id4">EtherCAT CoE配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#id5">新建TwinCAT工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#coe-app">从站启动CoE App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#id6">从站设备扫描</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#eeprom">更新EEPROM固件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#cia402">CiA402伺服使用说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#id7">CiA402对象字典定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#id8">EtherCAT COE测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#csp">csp位置模式控制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README_zh.html#csv">csv速度模式控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README_zh.html">Modbus-UART 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EtherKit_SDK_Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Netutils Usage Instructions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="netutils-usage-instructions">
+<h1>Netutils Usage Instructions<a class="headerlink" href="#netutils-usage-instructions" title="Link to this heading"></a></h1>
+<p><strong>English</strong> | <a class="reference internal" href="README_zh.html"><span class="std std-doc"><strong>中文</strong></span></a></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This project provides basic Ethernet functionalities, including <code class="docutils literal notranslate"><span class="pre">ping</span></code>, <code class="docutils literal notranslate"><span class="pre">tftp</span></code>, <code class="docutils literal notranslate"><span class="pre">ntp</span></code>, and <code class="docutils literal notranslate"><span class="pre">iperf</span></code>.</p>
+</section>
+<section id="hardware-connection">
+<h2>Hardware Connection<a class="headerlink" href="#hardware-connection" title="Link to this heading"></a></h2>
+<p>To use Ethernet, connect the development board to any one of the three network ports using an Ethernet cable, and the other end should be connected to a network switch that has internet access.</p>
+</section>
+<section id="fsp-configuration-instructions">
+<h2>FSP Configuration Instructions<a class="headerlink" href="#fsp-configuration-instructions" title="Link to this heading"></a></h2>
+<p>Open the project configuration file <code class="docutils literal notranslate"><span class="pre">configuration.xml</span></code> and add the <code class="docutils literal notranslate"><span class="pre">r_gamc</span></code> stack:</p>
+<p><img alt="image-20241126104408737" src="../../_images/image-202411261044087371.png" /></p>
+<p>Next, click on <code class="docutils literal notranslate"><span class="pre">g_ether0</span> <span class="pre">Ethernet</span></code>, and configure the interrupt callback function to <code class="docutils literal notranslate"><span class="pre">user_ether0_callback</span></code>:</p>
+<p><img alt="image-20241126104422910" src="../../_images/image-202411261044229101.png" /></p>
+<p>Now configure the PHY settings. Select <code class="docutils literal notranslate"><span class="pre">g_ether_phy0</span></code>, set the common configuration to “User Own Target”, change the PHY LSI address to <code class="docutils literal notranslate"><span class="pre">1</span></code> (refer to the schematic for the exact address), and set the PHY initialization callback function to <code class="docutils literal notranslate"><span class="pre">ether_phy_targets_initialize_rtl8211_rgmii()</span></code>. Also, set the MDIO to GMAC.</p>
+<p><img alt="image-20241126104437432" src="../../_images/image-202411261044374321.png" /></p>
+<p>Next, configure <code class="docutils literal notranslate"><span class="pre">g_ether_selector0</span></code>, set the Ethernet mode to “Switch Mode”, set the PHY link to “Default Active-Low”, and choose “RGMII” for the PHY interface mode.</p>
+<p><img alt="image-20241126104519290" src="../../_images/image-202411261045192901.png" /></p>
+<p>Configure the Ethernet pin parameters and select the operating mode to RGMII:</p>
+<p><img alt="image-20241126104533098" src="../../_images/image-202411261045330981.png" /></p>
+<p>Finally, configure <code class="docutils literal notranslate"><span class="pre">ETHER_GMAC</span></code>:</p>
+<p><img alt="image-20241126104603633" src="../../_images/image-202411261046036331.png" /></p>
+</section>
+<section id="rt-thread-studio-configuration">
+<h2>RT-Thread Studio Configuration<a class="headerlink" href="#rt-thread-studio-configuration" title="Link to this heading"></a></h2>
+<p>Return to the Studio project, and configure RT-Thread Settings. Click on “Hardware”, find the chip device driver, and enable Ethernet:</p>
+<p><img alt="image-20241126104852383" src="../../_images/image-20241126104852383.png" /></p>
+<p>In the RT-Thread Settings, search for the <code class="docutils literal notranslate"><span class="pre">netutils</span></code> software package and enable the <code class="docutils literal notranslate"><span class="pre">tftp</span></code>, <code class="docutils literal notranslate"><span class="pre">iperf</span></code>, and <code class="docutils literal notranslate"><span class="pre">ntp</span></code> features:</p>
+<p><img alt="image-20241126104905140" src="../../_images/image-20241126104905140.png" /></p>
+</section>
+<section id="ethernet-ip-experiment-results">
+<h2>Ethernet IP Experiment Results<a class="headerlink" href="#ethernet-ip-experiment-results" title="Link to this heading"></a></h2>
+<p>After flashing the code to the development board, open the serial terminal to view the logs:</p>
+<p><img alt="img" src="../../_images/image1.png" /></p>
+</section>
+<section id="tftp-server-send-test">
+<h2><strong>TFTP Server Send Test</strong><a class="headerlink" href="#tftp-server-send-test" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p>Install the Tftpd64-4.60-setup software from <code class="docutils literal notranslate"><span class="pre">netutils-v1.3.3\tools</span></code>:</p>
+<p><img alt="img" src="../../_images/image2.png" /></p>
+</li>
+<li><p>Go back to the development board serial terminal and input the <code class="docutils literal notranslate"><span class="pre">tftp_server</span></code> command to start the TFTP server service:</p></li>
+</ol>
+<p><img alt="img" src="../../_images/image_1.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Open the installed Tftpd64-4.60 software:</p>
+<ul class="simple">
+<li><p>Set <strong>Host</strong> to the development board’s IP address;</p></li>
+<li><p>Set <strong>Port</strong> to the TFTP server’s port (default is 69);</p></li>
+<li><p>Set <strong>Local File</strong> to the file path where the client will send the file (including filename);</p></li>
+<li><p>Click <strong>Put</strong> to send the file to the device.</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="img" src="../../_images/image_2.png" /></p>
+<p><img alt="img" src="../../_images/image3.png" /></p>
+<ol class="arabic simple" start="4">
+<li><p>After clicking “Put”, a message will indicate that the file has been sent:</p></li>
+</ol>
+<p><img alt="img" src="../../_images/image4.png" /></p>
+<ol class="arabic simple" start="5">
+<li><p>Back at the development board terminal, input <code class="docutils literal notranslate"><span class="pre">ls</span></code> to see that the <code class="docutils literal notranslate"><span class="pre">1.txt</span></code> file has been received. You can input <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">1.txt</span></code> to check if the file content matches what was sent:</p>
+<ul class="simple">
+<li><p>Note: Since <strong>ramfs</strong> is enabled, do not send files larger than 128KB. This is for testing purposes only.</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="img" src="../../_images/image5.png" /></p>
+</section>
+<section id="tftp-receive-test">
+<h2><strong>TFTP Receive Test</strong><a class="headerlink" href="#tftp-receive-test" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Back at the development board serial terminal, input <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;rtthread&quot;</span> <span class="pre">2.txt</span></code> to create a file with custom content:</p></li>
+</ol>
+<p><img alt="img" src="../../_images/image6.png" /></p>
+<ol class="arabic simple" start="2">
+<li><p>You can verify the file creation and content:</p></li>
+</ol>
+<p><img alt="img" src="../../_images/image7.png" /></p>
+<ol class="arabic simple" start="3">
+<li><p>Open the installed Tftpd64-4.60 software:</p>
+<ul class="simple">
+<li><p>Set <strong>Local File</strong> to the path where the client will save the received file (including filename);</p></li>
+<li><p>Set <strong>Remote File</strong> to the path of the file on the server (including filename), i.e., the file to be received;</p></li>
+<li><p>Set the TFTP server port to 69;</p></li>
+<li><p>Click <strong>Get</strong> to receive the file.</p></li>
+</ul>
+</li>
+</ol>
+<p><img alt="img" src="../../_images/image8.png" /></p>
+<ul class="simple">
+<li><p>You should see that <code class="docutils literal notranslate"><span class="pre">2.txt</span></code> has been successfully received, and its content matches the file in the development board’s file system:</p></li>
+</ul>
+<p><img alt="img" src="../../_images/image9.png" /></p>
+</section>
+<section id="ntp-network-time-synchronization">
+<h2>NTP Network Time Synchronization<a class="headerlink" href="#ntp-network-time-synchronization" title="Link to this heading"></a></h2>
+<blockquote>
+<div><p>NTP (Network Time Protocol) is a protocol used to synchronize computer clocks with a global time standard.</p>
+</div></blockquote>
+<section id="ntp-experiment-results">
+<h3>NTP Experiment Results<a class="headerlink" href="#ntp-experiment-results" title="Link to this heading"></a></h3>
+<p>After flashing the code to the development board, open the serial terminal to view the logs:</p>
+<p><img alt="img" src="../../_images/image10.png" /></p>
+<p>Input the <code class="docutils literal notranslate"><span class="pre">ntp_sync</span></code> command, and you should see the network time synchronization result. Input the <code class="docutils literal notranslate"><span class="pre">date</span></code> command to check that the RTC time has been synchronized:</p>
+<p><img alt="img" src="../../_images/image11.png" /></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

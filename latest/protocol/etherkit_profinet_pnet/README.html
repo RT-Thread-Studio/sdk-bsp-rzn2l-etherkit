@@ -1,0 +1,674 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="zh-CN" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PROFINET Usage Instructions &mdash; EtherKit_SDK_Docs 0.0.1 文档</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=069e4772"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/translations.js?v=beaddf03"></script>
+      <script src="../../_static/version_menu.js?v=462dce53"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            EtherKit_SDK_Docs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="搜索文档" aria-label="搜索文档" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="导航菜单">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">快速上手篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/template_project/README_zh.html">EtherKit 开发板 BSP 说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id2">开发板介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id3">外设支持</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id4">使用说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../start/template_project/README_zh.html#id5">快速上手</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../start/template_project/README_zh.html#id6">进阶使用</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id7">联系人信息</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README_zh.html#id8">贡献代码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">基础篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html">RTC及Alarm 使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id3">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html">RGB 使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html">按键中断使用说明</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id2">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id3">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id4">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id5">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README_zh.html#id6">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../driver/index.html">驱动篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html">GPT 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#fsp">FSP配置说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id2">示例工程说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_gpt/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html">IIC EEROM 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id3">示例工程说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_i2c/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html">USB-PMSC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pmsc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html">Ethernet 驱动示例</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#id2">硬件连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_ethernet/README_zh.html#ip">以太网IP实验现象</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html">WDT 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id3">软件说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id4">示例工程说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id5">运行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id6">编译&amp;下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id7">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id8">注意事项</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_wdt/README_zh.html#id9">引用参考</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html">ADC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#env">env配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id3">工程实例说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id5">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_adc/README_zh.html#id6">注意事项</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html">CANFD 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id3">软件说明</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id4">工程示例说明</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id5">运行</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id6">编译&amp;下载</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_canfd/README_zh.html#id7">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html">RS485 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id3">工程示例说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id4">编译&amp;下载</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../driver/etherkit_driver_rs485/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html">USB-PCDC 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_usb_pcdc/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html">SCI_SPI 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id3">示例工程介绍</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_spi/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html">HyperRAM 驱动例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../driver/etherkit_driver_hyperram/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../component/index.html">组件篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html">Netutils 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#id2">硬件连接</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#ip">以太网IP实验现象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#tftp-server"><strong>TFTP Server 发送测试</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#tftp"><strong>TFTP接收测试</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#ntp">NTP联网校时</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/etherkit_component_netutils/README_zh.html#id3">NTP实验现象</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html">Filesystem 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html#id3">软件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README_zh.html#id5">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html">MQTT 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id3">示例代码说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id4">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#mqttx">MQTTX配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id5">运行效果</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README_zh.html#id6">其他说明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">工业协议篇</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html">EtherCAT EOE 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#twincat3">TwinCAT3配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#esi">安装ESI文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#twincat">添加TwinCAT网卡驱动</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#id4">EtherCAT EOE配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#id5">新建TwinCAT工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#eoe-app">从站启动EOE App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#id6">从站设备扫描</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#eeprom">更新EEPROM固件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#id7">EtherCAT EOE通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#eio">EIO测试</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#eoe">EOE测试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#id8">拓展说明：3端口以太网EOE通信</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#id9">FSP配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_eoe/README_zh.html#id10">ESI固件更新</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html">Modbus-TCP/IP 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_tcpip/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html">Ethernet/IP 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id3">网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#plc">软PLC启动</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#codesys">CODESYS创建标准工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#gateway-plc">Gateway 及 软PLC 启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#ethernet-ip-eds">Ethernet/IP EDS文件添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id4">设备添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id5">任务响应</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id6">网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id7">EtherNet/IP线程应用启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#id8">工程编译并启动调试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethernetip_opener/README_zh.html#plccip-io">PLC编程及CIP IO控制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="README_zh.html">PROFINET 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#rt-thread-settings">RT-Thread Settings 配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id3">网络配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#plc">软PLC启动</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#codesys">CODESYS创建标准工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#gateway-plc">Gateway 及 软PLC 启动</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#profinet-gsdml">profinet GSDML文件添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id4">设备添加</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id5">任务响应</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id6">网络配置</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#id7">工程编译并启动调试</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#id8">profinet 从站应用启动</a></li>
+<li class="toctree-l3"><a class="reference internal" href="README_zh.html#pndemo">PN协议栈运行demo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#led">LED闪烁</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#i-m">从站 I&amp;M(标识和维护) 数据修改</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README_zh.html#plcpnio">PLC编程及PNIO控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html">EtherCAT CoE 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id2">前期准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#twincat3">TwinCAT3配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#esi">安装ESI文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#twincat">添加TwinCAT网卡驱动</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#fsp">FSP配置说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id3">构建配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#rt-thread-studio">RT-Thread Studio配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id4">EtherCAT CoE配置</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id5">新建TwinCAT工程</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#coe-app">从站启动CoE App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id6">从站设备扫描</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#eeprom">更新EEPROM固件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#cia402">CiA402伺服使用说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id7">CiA402对象字典定义</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#id8">EtherCAT COE测试</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#csp">csp位置模式控制</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_ethercat_coe/README_zh.html#csv">csv速度模式控制</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html">Modbus-UART 例程</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#id1">简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#id2">硬件说明</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#fsp">FSP配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#rt-thread-settings">RT-Thread Settings配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#id3">编译&amp;下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_modbus_uart/README_zh.html#id4">运行效果</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="移动版导航菜单" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EtherKit_SDK_Docs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="页面导航">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">PROFINET Usage Instructions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="profinet-usage-instructions">
+<h1>PROFINET Usage Instructions<a class="headerlink" href="#profinet-usage-instructions" title="Link to this heading"></a></h1>
+<p><strong>English</strong> | <a class="reference internal" href="README_zh.html"><span class="std std-doc"><strong>中文</strong></span></a></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>PROFINET is an industrial Ethernet standard developed and promoted by PI (PROFIBUS and PROFINET International) and is widely used in the industrial automation field.</p>
+<p>P-Net is an open-source PROFINET implementation, specifically designed for real-time network communication in embedded devices. It is a lightweight PROFINET protocol stack aimed at providing developers with a quick and efficient way to integrate PROFINET functionality into embedded platforms.</p>
+<p>In this example, we will use the P-Net software package to implement PROFINET master-slave communication.</p>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p><strong>Software Environment</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://us.store.codesys.com/">CODESYS</a> (PROFINET master simulation)</p>
+<ul>
+<li><p>CODESYS</p></li>
+<li><p>CODESYS Gateway (Gateway device)</p></li>
+<li><p>CODESYS Control Win SysTray (Soft PLC device)</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://npcap.com/dist/npcap-1.80.exe">Npcap</a>(The software is running CODESYS must, need installed in advance!)</p></li>
+</ul>
+<p><strong>Hardware Environment</strong>:</p>
+<ul class="simple">
+<li><p>EtherKit development board</p></li>
+</ul>
+</section>
+<section id="fsp-configuration-instructions">
+<h2>FSP Configuration Instructions<a class="headerlink" href="#fsp-configuration-instructions" title="Link to this heading"></a></h2>
+<p>Open the project configuration file <code class="docutils literal notranslate"><span class="pre">configuration.xml</span></code> and add the <code class="docutils literal notranslate"><span class="pre">r_gamc</span></code> stack:</p>
+<p><img alt="image-20241126104408737" src="../../_images/image-20241126104408737-17340606619556.png" /></p>
+<p>Next, click on <code class="docutils literal notranslate"><span class="pre">g_ether0</span> <span class="pre">Ethernet</span></code>, and configure the interrupt callback function to <code class="docutils literal notranslate"><span class="pre">user_ether0_callback</span></code>:</p>
+<p><img alt="image-20241126104422910" src="../../_images/image-20241126104422910-17340606619557.png" /></p>
+<p>Now configure the PHY settings. Select <code class="docutils literal notranslate"><span class="pre">g_ether_phy0</span></code>, set the common configuration to “User Own Target”, change the PHY LSI address to <code class="docutils literal notranslate"><span class="pre">1</span></code> (refer to the schematic for the exact address), and set the PHY initialization callback function to <code class="docutils literal notranslate"><span class="pre">ether_phy_targets_initialize_rtl8211_rgmii()</span></code>. Also, set the MDIO to GMAC.</p>
+<p><img alt="image-20241126104437432" src="../../_images/image-20241126104437432-17340606619558.png" /></p>
+<p>Next, configure <code class="docutils literal notranslate"><span class="pre">g_ether_selector0</span></code>, set the Ethernet mode to “Switch Mode”, set the PHY link to “Default Active-Low”, and choose “RGMII” for the PHY interface mode.</p>
+<p><img alt="image-20241126104519290" src="../../_images/image-20241126104519290-17340606619569.png" /></p>
+<p>Configure the Ethernet pin parameters and select the operating mode to RGMII:</p>
+<p><img alt="image-20241126104533098" src="../../_images/image-20241126104533098-173406066195610.png" /></p>
+<p>Finally, configure <code class="docutils literal notranslate"><span class="pre">ETHER_GMAC</span></code>:</p>
+<p><img alt="image-20241213113648018" src="../../_images/image-20241213113648018.png" /></p>
+</section>
+<section id="rt-thread-settings-configuration">
+<h2>RT-Thread Settings Configuration<a class="headerlink" href="#rt-thread-settings-configuration" title="Link to this heading"></a></h2>
+<p>Double-click to open RT-Thread Settings, search for the p-net package in the search bar and enable it. Below are the related user configuration details:</p>
+<p><img alt="image-20241217153316489" src="../../_images/image-20241217153316489.png" /></p>
+<ul class="simple">
+<li><p><strong>Default netif name for p-net</strong>: The interface name for the p-net network card device, default is e00.</p></li>
+<li><p><strong>Enable pnet sample board config</strong>: Configuration for user LED and button on the p-net application.</p></li>
+<li><p><strong>Default root filesystem path for p-net</strong>: Configuration for the p-net filesystem, default is using ramfs, with 8K of memory space allocated by default.</p></li>
+<li><p><strong>P-NET sample slave network ip config</strong>: Static IP configuration for the p-net slave device (<strong>Please disable RT_LWIP_DHCP functionality and use static IP</strong>).</p></li>
+</ul>
+<p>Next, we need to configure the system to disable DHCP and use a static IP. Click on the component -&gt; enable the lwip stack, and select to disable DHCP:</p>
+<p><img alt="image-20241213113246597" src="../../_images/image-20241213113246597.png" /></p>
+<p>After completing the above configurations, compile the program and download it to the development board.</p>
+</section>
+<section id="network-configuration">
+<h2>Network Configuration<a class="headerlink" href="#network-configuration" title="Link to this heading"></a></h2>
+<p>Connect the development board to the PC using an Ethernet cable, and configure a static IP on the PC:</p>
+<p><img alt="image-20241217145852034" src="../../_images/image-202412171458520341.png" /></p>
+<p>Check the IP information on the development board and test connectivity:</p>
+<p><img alt="image-20241217153547501" src="../../_images/image-20241217153547501.png" /></p>
+</section>
+<section id="soft-plc-startup">
+<h2>Soft PLC Startup<a class="headerlink" href="#soft-plc-startup" title="Link to this heading"></a></h2>
+<p><strong>CODESYS Overview</strong>: CODESYS is a PLC software developed by 3S (Germany), integrating PLC logic, motion control, configuration, display, and other functions. CODESYS, short for <strong>Controller Development System</strong>, is an industrial automation programming tool based on the IEC 61131-3 standard. It supports various programming languages (e.g., Ladder Diagram, Structured Text, Function Block Diagram) and provides libraries and function modules, making it a widely used platform in industrial automation for developing and debugging PLCs and control systems.</p>
+<section id="creating-a-standard-project-in-codesys">
+<h3>Creating a Standard Project in CODESYS<a class="headerlink" href="#creating-a-standard-project-in-codesys" title="Link to this heading"></a></h3>
+<p>Ensure that you have CODESYS installed. After installation, the following three software components are required:</p>
+<ul class="simple">
+<li><p><strong>CODESYS V3.5 SP20 Patch 3</strong>: PROFINET master simulation</p></li>
+<li><p><strong>CODESYS Gateway V3</strong>: Gateway device</p></li>
+<li><p><strong>CODESYS Control Win V3 -x64 SysTray</strong>: Soft PLC device</p></li>
+</ul>
+<p>First, open <strong>CODESYS V3.5 SP20 Patch 3</strong>, choose <strong>New Project</strong> -&gt; <strong>Projects</strong> -&gt; <strong>Standard project</strong>, configure the project name and location, and click <strong>OK</strong>:</p>
+<p><img alt="image-20241126114127411" src="../../_images/image-202411261141274111.png" /></p>
+<p>After the following popup, keep the default Settings (CODESYS Control Win V3 (CODESYS)/x64 (CODESYS)) and click OK:</p>
+<p><img alt="image-20241126114137199" src="../../_images/image-202411261141371991.png" /></p>
+<blockquote>
+<div><p><strong>Note</strong>: If you have purchased <strong>CODESYS Control RTE SL</strong>, select the device: <strong>CODESYS Control RTE V3 (CODESYS) / x64 (CODESYS)</strong>. For evaluation purposes, you can choose <strong>CODESYS Control Win V3 (CODESYS) / x64</strong> to create the project.</p>
+</div></blockquote>
+<p>After creation, you will see the main interface:</p>
+<p><img alt="image-20241126114149792" src="../../_images/image-202411261141497921.png" /></p>
+</section>
+<section id="starting-gateway-and-soft-plc">
+<h3>Starting Gateway and Soft PLC<a class="headerlink" href="#starting-gateway-and-soft-plc" title="Link to this heading"></a></h3>
+<p>Open the following two software components:</p>
+<ul class="simple">
+<li><p><strong>CODESYS Gateway V3</strong> (right-click <strong>Start Gateway</strong>)</p></li>
+<li><p><strong>CODESYS Control Win V3 -x64 SysTray</strong> (right-click <strong>Start PLC</strong>)</p></li>
+</ul>
+<p><img alt="image-20241126114204739" src="../../_images/image-202411261142047391.png" /></p>
+<p>Back in CODESYS, double-click <strong>Device(CODESYS Control Win V3 x64)</strong> -&gt; <strong>Communication Settings</strong> -&gt; <strong>Scan Network</strong>:</p>
+<p><img alt="image-20241126114216032" src="../../_images/image-202411261142160321.png" /></p>
+<p>In the user login window, configure the username and password (customizable):</p>
+<p><img alt="image-20241126114225267" src="../../_images/image-202411261142252671.png" /></p>
+<p>Check if the gateway and soft PLC devices are online:</p>
+<p><img alt="image-20241126114233871" src="../../_images/image-202411261142338711.png" /></p>
+</section>
+<section id="adding-profinet-gsdml-files">
+<h3>Adding PROFINET GSDML Files<a class="headerlink" href="#adding-profinet-gsdml-files" title="Link to this heading"></a></h3>
+<p><strong>GSD</strong> (Generic Station Description) files are used for PROFIBUS DP and PROFINET IO communication, describing parameters, diagnostic data, and user-defined data between the PLC and I/O modules.</p>
+<p>The GSDML file for this project is located at:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">..\src\ports\rtthread\pn_dev</span></code></p></li>
+</ul>
+<p>Install the GSDML file from the above path: <strong>GSDML-V2.4-RT-Labs-P-Net-Sample-App-20220324.xml</strong>.</p>
+<p><img alt="image-20241126114247755" src="../../_images/image-20241126114247755.png" /></p>
+<p>After installation, you should see the <strong>P-Net slave description file</strong>:</p>
+<p><img alt="image-20241126114257110" src="../../_images/image-20241126114257110.png" /></p>
+</section>
+<section id="adding-devices">
+<h3>Adding Devices<a class="headerlink" href="#adding-devices" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Adding Ethernet</strong>: Right-click <strong>Device</strong> in the left navigation bar and select <strong>Ethernet Adapter</strong>:</p></li>
+</ul>
+<p><img alt="image-20241126114309177" src="../../_images/image-202411261143091771.png" /></p>
+<ul class="simple">
+<li><p><strong>Adding PROFINET IO Master</strong>: Right-click <strong>Ethernet</strong> in the left navigation bar and select <strong>PN-Controller</strong>:</p></li>
+</ul>
+<p><img alt="image-20241126114338017" src="../../_images/image-20241126114338017.png" /></p>
+<ul class="simple">
+<li><p><strong>Adding PROFINET IO Slave</strong>: Right-click <strong>PN-Controller</strong> in the left navigation bar and select <strong>P-Net-multiple-module sample app</strong>:</p></li>
+</ul>
+<p><img alt="image-20241126114354826" src="../../_images/image-20241126114354826.png" /></p>
+</section>
+<section id="configuring-tasks">
+<h3>Configuring Tasks<a class="headerlink" href="#configuring-tasks" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Main Tasks Configuration</strong>: Select <strong>Application</strong> -&gt; <strong>Task Configuration</strong> in the left navigation bar, double-click <strong>MainTask (IEC-Tasks)</strong>, set the priority to 1, type to <strong>Cyclic</strong>, and cycle time to 4ms:</p></li>
+</ul>
+<p><img alt="image-20241126114416488" src="../../_images/image-20241126114416488.png" /></p>
+<ul class="simple">
+<li><p><strong>Profinet_CommunicationTask Configuration</strong>: Double-click <strong>Profinet_CommunicationTask (IEC-Tasks)</strong>, set the priority to 14, type to <strong>Cyclic</strong>, and cycle time to 10ms:</p></li>
+</ul>
+<p><img alt="image-20241126114430407" src="../../_images/image-20241126114430407.png" /></p>
+</section>
+<section id="id1">
+<h3>Network Configuration<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Ethernet Configuration</strong>: Double-click <strong>Ethernet (Ethernet)</strong> in the left navigation bar -&gt; <strong>General</strong>, and modify the network interface to the one connected to the development board.</p></li>
+</ul>
+<p><img alt="image-20241217150217077" src="../../_images/image-20241217150217077.png" /></p>
+<ul class="simple">
+<li><p><strong>PN_Controller Configuration</strong>: Double-click <strong>PN_Controller (PN-Controller)</strong> -&gt; <strong>General</strong>, and modify the default slave IP parameters as needed.</p></li>
+<li><p><strong>P-Net Slave Network Configuration</strong>: Double-click <strong>P-Net-multiple-module sample app</strong> -&gt; <strong>General</strong>, and modify the IP parameters to match the development board’s IP:</p></li>
+</ul>
+<p><img alt="image-20241217150534826" src="../../_images/image-20241217150534826.png" /></p>
+<p><img alt="image-20241217150820978" src="../../_images/image-20241217150820978.png" /></p>
+</section>
+<section id="compile-and-debug-the-project">
+<h3>Compile and Debug the Project<a class="headerlink" href="#compile-and-debug-the-project" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Step 1: From the navigation bar, select <strong>Compile</strong> -&gt; <strong>Generate Code</strong></p></li>
+<li><p>Step 2: Select <strong>Online</strong> -&gt; <strong>Login</strong></p></li>
+<li><p>Step 3: Click <strong>Debug</strong> -&gt; <strong>Start</strong></p></li>
+</ul>
+<p>You should see the PN master successfully online:</p>
+<p><img alt="image-20241126114526657" src="../../_images/image-20241126114526657.png" /></p>
+</section>
+</section>
+<section id="profinet-starts-from-the-station-application">
+<h2>profinet starts from the station application<a class="headerlink" href="#profinet-starts-from-the-station-application" title="Link to this heading"></a></h2>
+<p>After the development board is powered on, once the NIC link up is detected, the secondary PN station is automatically started:</p>
+<p><img alt="image-20241217152754556" src="../../_images/image-20241217152754556.png" /></p>
+<p><img alt="image-20241217153012620" src="../../_images/image-20241217153012620.png" /></p>
+</section>
+<section id="profinet-slave-application-startup">
+<h2>PROFINET Slave Application Startup<a class="headerlink" href="#profinet-slave-application-startup" title="Link to this heading"></a></h2>
+<p>Here we use the CODESYS software to test the interaction between the PN master and slave stations.</p>
+<section id="led-blinking">
+<h3>LED Blinking<a class="headerlink" href="#led-blinking" title="Link to this heading"></a></h3>
+<p>Back in the CODESYS software, in the left navigation panel, select <code class="docutils literal notranslate"><span class="pre">PN_Controller</span></code>, right-click and scan the devices. After clicking on the device name, click on “Blink LED”:</p>
+<p><img alt="image-20241126114601251" src="../../_images/image-20241126114601251.png" /></p>
+<p>At this point, the development board (PN slave I/O) will display log outputs, accompanied by the onboard User LED blinking:</p>
+<p><img alt="img" src="../../_images/clip_image050.jpg" /></p>
+</section>
+<section id="modifying-slave-i-m-identification-and-maintenance-data">
+<h3>Modifying Slave I&amp;M (Identification and Maintenance) Data<a class="headerlink" href="#modifying-slave-i-m-identification-and-maintenance-data" title="Link to this heading"></a></h3>
+<p>In the same device scanning interface, click on the I&amp;M section in the lower left corner, modify the information, and write it to the I&amp;M:</p>
+<p><img alt="image-20241209165958786" src="../../_images/image-20241209165958786.png" /></p>
+<p>At the same time, PNIO will update the slave station configuration:</p>
+<p><img alt="image-20241209170011069" src="../../_images/image-20241209170011069.png" /></p>
+<p>We can click to view the I&amp;M again, and we will see that the I&amp;M data has been successfully modified!</p>
+</section>
+<section id="plc-programming-and-pnio-control">
+<h3>PLC Programming and PNIO Control<a class="headerlink" href="#plc-programming-and-pnio-control" title="Link to this heading"></a></h3>
+<p>First, we click on the left panel under Device -&gt; PLC Logic -&gt; Application -&gt; PLC_PRG (PRG), and use ST language to program the variable and program code:</p>
+<ul class="simple">
+<li><p><strong>Variable Definition</strong>: These variables define the input state of the button (in_pin_button_LED), the output state of the LED (out_pin_LED), and the state variable controlling whether the LED should blink (flashing). The oscillator state (oscillator_state) and oscillator cycle counter (oscillator_cycles) are used to achieve a timed blinking effect.</p></li>
+</ul>
+<div class="highlight-st notranslate"><div class="highlight"><pre><span></span><span class="nc">PROGRAM</span> <span class="nf">PLC_PRG</span>
+<span class="nf">VAR</span>
+    <span class="nf">in_pin_button_LED:</span> <span class="nc">BOOL</span><span class="p">;</span>
+    <span class="nf">out_pin_LED:</span> <span class="nc">BOOL</span><span class="p">;</span>
+    <span class="nf">in_pin_button_LED_previous:</span> <span class="nc">BOOL</span><span class="p">;</span>
+    <span class="nf">flashing:</span> <span class="nc">BOOL</span> <span class="o">:=</span> <span class="nc">TRUE</span><span class="p">;</span>
+    <span class="nf">oscillator_state:</span> <span class="nc">BOOL</span> <span class="o">:=</span> <span class="nc">FALSE</span><span class="p">;</span>
+    <span class="nf">oscillator_cycles:</span> <span class="nc">UINT</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span>
+<span class="nf">END_VAR</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Program Definition</strong>:</p>
+<ol class="arabic simple">
+<li><p>First, in each cycle, the <code class="docutils literal notranslate"><span class="pre">oscillator_cycles</span></code> increases by 1. When the counter exceeds 200, the counter is reset, and the <code class="docutils literal notranslate"><span class="pre">oscillator_state</span></code> is toggled (TRUE or FALSE), achieving a periodic change.</p></li>
+<li><p>If the button is pressed (in_pin_button_LED is TRUE), and the button state in the previous cycle was FALSE, the <code class="docutils literal notranslate"><span class="pre">flashing</span></code> state is toggled. That is, every time the button is pressed, the LED blinking state is toggled.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">flashing</span></code> is TRUE, the LED will blink according to the oscillator state (<code class="docutils literal notranslate"><span class="pre">oscillator_state</span></code>). If <code class="docutils literal notranslate"><span class="pre">flashing</span></code> is FALSE, the LED will turn off directly.</p></li>
+<li><p>At the end of each cycle, the current button state is saved in <code class="docutils literal notranslate"><span class="pre">in_pin_button_LED_previous</span></code> to check the button press event in the next cycle.</p></li>
+</ol>
+</li>
+</ul>
+<div class="highlight-st notranslate"><div class="highlight"><pre><span></span><span class="nv">oscillator_cycles</span> <span class="o">:=</span> <span class="nv">oscillator_cycles</span> <span class="nf">+</span> <span class="m">1</span><span class="p">;</span>
+<span class="nf">IF</span> <span class="nf">oscillator_cycles</span> <span class="nf">&gt;</span> <span class="m">200</span> <span class="nf">THEN</span> 
+    <span class="nf">oscillator_cycles</span> <span class="o">:=</span> <span class="m">0</span><span class="p">;</span>
+    <span class="nf">oscillator_state</span> <span class="o">:=</span> <span class="nc">NOT</span> <span class="nf">oscillator_state</span><span class="p">;</span>
+<span class="nf">END_IF</span>
+<span class="nf">IF</span> <span class="nf">in_pin_button_LED</span> <span class="nf">=</span> <span class="nc">TRUE</span> <span class="nf">THEN</span> 
+    <span class="nf">IF</span> <span class="nf">in_pin_button_LED_previous</span> <span class="nf">=</span> <span class="nc">FALSE</span> <span class="nf">THEN</span> 
+        <span class="nf">flashing</span> <span class="o">:=</span> <span class="nc">NOT</span> <span class="nf">flashing</span><span class="p">;</span> 
+    <span class="nf">END_IF</span>
+    <span class="nf">out_pin_LED</span> <span class="o">:=</span> <span class="nc">TRUE</span><span class="p">;</span>
+<span class="nf">ELSIF</span> <span class="nf">flashing</span> <span class="nf">=</span> <span class="nc">TRUE</span> <span class="nf">THEN</span> 
+    <span class="nf">out_pin_LED</span> <span class="o">:=</span> <span class="nv">oscillator_state</span><span class="p">;</span>
+<span class="nf">ELSE</span> 
+    <span class="nf">out_pin_LED</span> <span class="o">:=</span> <span class="nc">FALSE</span><span class="p">;</span>
+<span class="nf">END_IF</span>
+<span class="nf">in_pin_button_LED_previous</span> <span class="o">:=</span> <span class="nv">in_pin_button_LED</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The configuration in the project is shown in the image below:</p>
+<p><img alt="image-20241217154402755" src="../../_images/image-20241217154402755.png" /></p>
+<p>Next, we need to add a built-in IO module. Right-click on <code class="docutils literal notranslate"><span class="pre">P_Net_multi_module_sample_app</span></code> and add an IO module (DIO 8xLogicLevel), as shown in the image below:</p>
+<p><img alt="image-20241217154411140" src="../../_images/image-20241217154411140.png" /></p>
+<p>Then, double-click on the <code class="docutils literal notranslate"><span class="pre">DIO_8xLogicLevel</span></code> node, select the <code class="docutils literal notranslate"><span class="pre">PNIO</span> <span class="pre">Module</span> <span class="pre">I/O</span> <span class="pre">Mapping</span></code>, edit Input Bit 7 and Output Bit 7, and bind the PLC variables:</p>
+<p><img alt="image-20241217154418088" src="../../_images/image-20241217154418088.png" /></p>
+<p>Next, click on the <strong>Build -&gt; Generate Code</strong> in the navigation bar, then select <strong>Online -&gt; Login</strong>, and run to observe the behavior:</p>
+<p><img alt="image-20241217154427784" src="../../_images/image-20241217154427784.png" /></p>
+<p>Next, go back to CODESYS, double-click <strong>Device -&gt; PLC Logic -&gt; Application</strong> and open the <code class="docutils literal notranslate"><span class="pre">PLC_PRG</span> <span class="pre">(PRG)</span></code>. At this point, you can dynamically observe the program’s running state. For example, if you press and hold the KEY0 on the EtherKit development board, you will find that both <code class="docutils literal notranslate"><span class="pre">in_pin_button_LED</span></code> and <code class="docutils literal notranslate"><span class="pre">in_pin_button_LED_previous</span></code> are FALSE. When you release KEY0, you will see that the <code class="docutils literal notranslate"><span class="pre">flashing</span></code> value toggles once.</p>
+<p><img alt="image-20241217154439788" src="../../_images/image-20241217154439788.png" /></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

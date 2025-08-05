@@ -1,0 +1,13 @@
+{
+  "versions": [
+    {
+      "name": "master",
+      "display_name": "最新版本",
+      "branch": "master",
+      "url_path": "latest",
+      "description": "最新开发版本"
+    }
+  ],
+  "default_version": "master",
+  "latest_version": "master"
+}
