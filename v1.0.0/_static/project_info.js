@@ -1,0 +1,1 @@
+window.projectInfo = {"projectName": "EtherKit SDK", "pdfFileName": "EtherKit_SDK.pdf"};

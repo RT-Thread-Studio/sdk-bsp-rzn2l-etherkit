@@ -1,0 +1,1 @@
+window.versionInfo = {"name": "1.0.0", "display_name": "1.0.0", "branch": "v1.0.0", "url_path": "v1.0.0", "description": "v1.0.0文档版本", "projectsDir": "projects", "copyFiles": ["README.md", "README_zh.md"]};
