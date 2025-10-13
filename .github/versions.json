@@ -8,10 +8,10 @@
       "description": "最新开发版本"
     },
     {
-      "name": "1.0.0",
+      "name": "docs_v1.0.0",
       "display_name": "1.0.0",
-      "branch": "v1.0.0",
-      "url_path": "v1.0.0",
+      "branch": "docs_v1.0.0",
+      "url_path": "docs_v1.0.0",
       "description": "v1.0.0文档版本"
     }
   ],
