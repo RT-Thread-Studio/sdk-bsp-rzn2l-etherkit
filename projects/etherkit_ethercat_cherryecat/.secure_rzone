@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<rzone>
+    <device Dvendor="Renesas" Dname="R9A07G084M04GBG">
+        <processor Pname="CR52_0" Dcore="Cortex-R52" Dfpu="1" Dmpu="1" Dtz="NO_TZ" Ddsp="1" Dendian="Little-endian" Dclock="400000000" DcoreVersion="r1p2" DnumInterrupts="448" DnumSauRegions="0"/>
+    </device>
+    <resources>
+        <memories>
+            <memory name="ATCM" type="RAM" start="0x00000000" size="0x00020000" security=""/>
+            <memory name="BTCM" type="RAM" start="0x00100000" size="0x00020000" security=""/>
+            <memory name="SYSTEM_RAM" type="RAM" start="0x10000000" size="0x00180000" security=""/>
+            <memory name="SYSTEM_RAM_MIRROR" type="RAM" start="0x30000000" size="0x00180000" security=""/>
+            <memory name="xSPI0_CS0_SPACE_MIRROR" type="ROM" start="0x40000000" size="0x04000000" security=""/>
+            <memory name="xSPI0_CS1_SPACE_MIRROR" type="ROM" start="0x44000000" size="0x04000000" security=""/>
+            <memory name="xSPI1_CS0_SPACE_MIRROR" type="ROM" start="0x48000000" size="0x04000000" security=""/>
+            <memory name="CS0_SPACE_MIRROR" type="ROM" start="0x50000000" size="0x04000000" security=""/>
+            <memory name="CS2_SPACE_MIRROR" type="ROM" start="0x54000000" size="0x04000000" security=""/>
+            <memory name="CS3_SPACE_MIRROR" type="ROM" start="0x58000000" size="0x04000000" security=""/>
+            <memory name="CS5_SPACE_MIRROR" type="ROM" start="0x5C000000" size="0x04000000" security=""/>
+            <memory name="xSPI0_CS0_SPACE" type="ROM" start="0x60000000" size="0x04000000" security=""/>
+            <memory name="xSPI0_CS1_SPACE" type="ROM" start="0x64000000" size="0x04000000" security=""/>
+            <memory name="xSPI1_CS0_SPACE" type="ROM" start="0x68000000" size="0x04000000" security=""/>
+            <memory name="CS0_SPACE" type="ROM" start="0x70000000" size="0x04000000" security=""/>
+            <memory name="CS2_SPACE" type="ROM" start="0x74000000" size="0x04000000" security=""/>
+            <memory name="CS3_SPACE" type="ROM" start="0x78000000" size="0x04000000" security=""/>
+            <memory name="CS5_SPACE" type="ROM" start="0x7C000000" size="0x04000000" security=""/>
+        </memories>
+        <peripherals/>
+    </resources>
+</rzone>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<iarProjectConnection version="1.8" name="Flex Software">
+    <device>
+        <name>R9A07G084M04</name>
+    </device>
+    <includePath>
+    </includePath>
+    <defines>
+        <define>_RZN_ORDINAL=1</define>
+        <define>_RZN_CORE=CR52_0</define>
+        <define>_RENESAS_RZN_</define>
+    </defines>
+    <asmIncludePath>
+    </asmIncludePath>
+    <asmDefines>
+        <define>_RZN_ORDINAL=1</define>
+        <define>_RZN_CORE=CR52_0</define>
+        <define>_RENESAS_RZN_</define>
+    </asmDefines>
+    <linkerFile>
+        <override>true</override>
+        <path>$PROJ_DIR$/script/fsp_xspi0_boot.icf</path>
+    </linkerFile>
+    <linkerExtraOptions>
+        <arg>--config_search "$PROJ_DIR$"</arg>
+    </linkerExtraOptions>
+    <programEntryPoint>
+        <symbol>system_init</symbol>
+    </programEntryPoint>
+    <customArgVars>
+        <group name="RA Smart Configurator">
+            <argVar>
+                <name>RASC_EXE_PATH</name>
+                <value>C:\Renesas\rzn\sc_v2024-01.1_fsp_v2.0.0\eclipse\rasc.exe</value>
+            </argVar>
+        </group>
+    </customArgVars>
+    <files>
+    </files>
+</iarProjectConnection>

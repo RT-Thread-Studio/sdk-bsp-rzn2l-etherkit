@@ -1,0 +1,35 @@
+{
+  "definedMacros": [
+    "_RZN_ORDINAL=1",
+    "_RZN_CORE=CR52_0",
+    "_RENESAS_RZN_"
+  ],
+  "sourcePaths": [
+    "rzn",
+    "rzn_gen",
+    "src"
+  ],
+  "excludedFilePaths": [],
+  "includePaths": [
+    "rzn/arm/CMSIS_5/CMSIS/Core_A/Include",
+    "rzn/arm/CMSIS_5/CMSIS/Core_R/Include",
+    "rzn/fsp/inc",
+    "rzn/fsp/inc/api",
+    "rzn/fsp/inc/instances",
+    "rzn/fsp/src/bsp/mcu/all/cr",
+    "rzn_cfg/fsp_cfg",
+    "rzn_cfg/fsp_cfg/bsp",
+    "rzn_gen",
+    "src"
+  ],
+  "libraryPaths": [],
+  "libraryNames": [],
+  "objectFiles": [],
+  "linkerScript": "script/fsp_xspi0_boot.ld",
+  "targetDeviceName": "R9A07G084M04GBG",
+  "entrySymbol": "system_init",
+  "isPreBuildContentGenEnabled": true,
+  "isPostBuildContentGenEnabled": true,
+  "isTargetDeviceSupportsTrustZone": false,
+  "buildOptionsMap": {}
+}

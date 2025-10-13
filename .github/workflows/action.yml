@@ -76,6 +76,7 @@ jobs:
          - {RTT_BSP: "etherkit_profinet_pnet"}
          - {RTT_BSP: "etherkit_ethernetip_opener"}
          - {RTT_BSP: "etherkit_factory"}
+         - {RTT_BSP: "etherkit_ethercat_cherryecat"}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python

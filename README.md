@@ -34,6 +34,7 @@ $ sdk-bsp-rzn2l-etherkit
 │   ├── etherkit_driver_rs485
 │   ├── etherkit_driver_spi
 │   ├── etherkit_driver_wdt
+│   ├── etherkit_ethercat_cherryecat
 │   ├── etherkit_driver_hyperram
 │   ├── etherkit_ethernet
 │   ├── etherkit_usb_pcdc
