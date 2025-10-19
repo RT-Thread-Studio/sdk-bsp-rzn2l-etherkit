@@ -42,11 +42,11 @@
 #endif
 
 #ifndef CONFIG_EC_SCAN_PRIO
-#define CONFIG_EC_SCAN_PRIO 1
+#define CONFIG_EC_SCAN_PRIO 10
 #endif
 
 #ifndef CONFIG_EC_SCAN_STACKSIZE
-#define CONFIG_EC_SCAN_STACKSIZE 2048
+#define CONFIG_EC_SCAN_STACKSIZE 4096
 #endif
 
 #ifndef CONFIG_EC_SCAN_INTERVAL_MS
@@ -79,5 +79,15 @@
 #endif
 
 // #define CONFIG_EC_FOE
+
+// #define CONFIG_EC_EOE
+
+#ifndef CONFIG_EC_EOE_PRIO
+#define CONFIG_EC_EOE_PRIO 1
+#endif
+
+#ifndef CONFIG_EC_EOE_STACKSIZE
+#define CONFIG_EC_EOE_STACKSIZE 4096
+#endif
 
 #endif

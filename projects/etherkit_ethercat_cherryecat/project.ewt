@@ -2941,6 +2941,9 @@
             <name>$PROJ_DIR$\packages\CherryECAT-latest\src\ec_datagram.c</name>
         </file>
         <file>
+            <name>$PROJ_DIR$\packages\CherryECAT-latest\src\ec_eoe.c</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\packages\CherryECAT-latest\src\ec_foe.c</name>
         </file>
         <file>

@@ -382,32 +382,32 @@
                     <state>$PROJ_DIR$\src\tcpip\renesas\oss_deps\lwip</state>
                     <state>$PROJ_DIR$\src\tcpip\oss\amazon-freertos\libraries\3rdparty\lwip_osal\include</state>
                     <state>$PROJ_DIR$\src\tcpip\oss\lwip\src\include</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
-                    <state>$PROJ_DIR$\.</state>
-                    <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
-                    <state>$PROJ_DIR$\rzn\arm\CMSIS_5\CMSIS\Core_R\Include</state>
-                    <state>$PROJ_DIR$\rt-thread\include</state>
-                    <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
-                    <state>$PROJ_DIR$\rzn_cfg\fsp_cfg\bsp</state>
-                    <state>$PROJ_DIR$\rzn\fsp\inc</state>
-                    <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
                     <state>$PROJ_DIR$\rzn\fsp\inc\instances</state>
-                    <state>$PROJ_DIR$\rzn_cfg\fsp_cfg</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
-                    <state>$PROJ_DIR$\board</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
-                    <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
-                    <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
-                    <state>$PROJ_DIR$\rzn\fsp\inc\api</state>
-                    <state>$PROJ_DIR$\board\ports</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
-                    <state>$PROJ_DIR$\rt-thread\components\finsh</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
                     <state>$PROJ_DIR$\packages\CherryECAT-latest\include</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
+                    <state>$PROJ_DIR$\rzn\arm\CMSIS_5\CMSIS\Core_R\Include</state>
+                    <state>$PROJ_DIR$\board\ports</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
+                    <state>$PROJ_DIR$\rzn\fsp\inc\api</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
+                    <state>$PROJ_DIR$\rt-thread\include</state>
                     <state>$PROJ_DIR$\rzn_gen</state>
                     <state>$PROJ_DIR$\src</state>
+                    <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
+                    <state>$PROJ_DIR$\.</state>
+                    <state>$PROJ_DIR$\rzn\fsp\inc</state>
+                    <state>$PROJ_DIR$\rzn_cfg\fsp_cfg\bsp</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
+                    <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
+                    <state>$PROJ_DIR$\rt-thread\components\finsh</state>
+                    <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
+                    <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
+                    <state>$PROJ_DIR$\board</state>
+                    <state>$PROJ_DIR$\rzn_cfg\fsp_cfg</state>
+                    <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -1530,32 +1530,32 @@
                     <state>$PROJ_DIR$/rzn_gen</state>
                     <state>$PROJ_DIR$/src</state>
                     <state>$PROJ_DIR$</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
-                    <state>$PROJ_DIR$\.</state>
-                    <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
-                    <state>$PROJ_DIR$\rzn\arm\CMSIS_5\CMSIS\Core_R\Include</state>
-                    <state>$PROJ_DIR$\rt-thread\include</state>
-                    <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
-                    <state>$PROJ_DIR$\rzn_cfg\fsp_cfg\bsp</state>
-                    <state>$PROJ_DIR$\rzn\fsp\inc</state>
-                    <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
                     <state>$PROJ_DIR$\rzn\fsp\inc\instances</state>
-                    <state>$PROJ_DIR$\rzn_cfg\fsp_cfg</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
-                    <state>$PROJ_DIR$\board</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
-                    <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
-                    <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
-                    <state>$PROJ_DIR$\rzn\fsp\inc\api</state>
-                    <state>$PROJ_DIR$\board\ports</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
-                    <state>$PROJ_DIR$\rt-thread\components\finsh</state>
-                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
                     <state>$PROJ_DIR$\packages\CherryECAT-latest\include</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\epoll</state>
+                    <state>$PROJ_DIR$\rzn\arm\CMSIS_5\CMSIS\Core_R\Include</state>
+                    <state>$PROJ_DIR$\board\ports</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\include</state>
+                    <state>$PROJ_DIR$\rzn\fsp\inc\api</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension\fcntl\octal</state>
+                    <state>$PROJ_DIR$\rt-thread\include</state>
                     <state>$PROJ_DIR$\rzn_gen</state>
                     <state>$PROJ_DIR$\src</state>
+                    <state>$PROJ_DIR$\libraries\HAL_Drivers</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\compilers\common\extension</state>
+                    <state>$PROJ_DIR$\.</state>
+                    <state>$PROJ_DIR$\rzn\fsp\inc</state>
+                    <state>$PROJ_DIR$\rzn_cfg\fsp_cfg\bsp</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\poll</state>
+                    <state>$PROJ_DIR$\libraries\HAL_Drivers\config</state>
+                    <state>$PROJ_DIR$\rt-thread\components\finsh</state>
+                    <state>$PROJ_DIR$\rt-thread\libcpu\arm\common</state>
+                    <state>$PROJ_DIR$\rt-thread\components\drivers\include</state>
+                    <state>$PROJ_DIR$\board</state>
+                    <state>$PROJ_DIR$\rzn_cfg\fsp_cfg</state>
+                    <state>$PROJ_DIR$\rt-thread\libcpu\arm\cortex-r52</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\ipc</state>
+                    <state>$PROJ_DIR$\rt-thread\components\libc\posix\io\eventfd</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -2362,6 +2362,9 @@
         </file>
         <file>
             <name>$PROJ_DIR$\packages\CherryECAT-latest\src\ec_datagram.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\packages\CherryECAT-latest\src\ec_eoe.c</name>
         </file>
         <file>
             <name>$PROJ_DIR$\packages\CherryECAT-latest\src\ec_foe.c</name>
