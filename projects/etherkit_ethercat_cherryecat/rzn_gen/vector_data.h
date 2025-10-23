@@ -8,7 +8,7 @@
 
                 /* Number of interrupts allocated */
         #ifndef VECTOR_DATA_IRQ_COUNT
-        #define VECTOR_DATA_IRQ_COUNT    (10)
+        #define VECTOR_DATA_IRQ_COUNT    (9)
         #endif
         /* ISR prototypes */
         void mtu3_counter_overflow_isr(void);
@@ -24,7 +24,6 @@
         /* Vector table allocations */
         #define VECTOR_NUMBER_TCIV0 ((IRQn_Type) 73) /* TCIV0 (MTU0.TCNT overflow) */
         #define VECTOR_NUMBER_GPT0_OVF ((IRQn_Type) 122) /* GPT_OVF (GPT0 GTCNT overflow (GTPR compare match)) */
-        #define VECTOR_NUMBER_GPT1_OVF ((IRQn_Type) 131) /* GPT_OVF (GPT1 GTCNT overflow (GTPR compare match)) */
         #define VECTOR_NUMBER_GMAC_PMT ((IRQn_Type) 251) /* GMAC_PMT (GMAC1 power management) */
         #define VECTOR_NUMBER_GMAC_SBD ((IRQn_Type) 252) /* GMAC_SBD (GMAC1 general interrupt) */
         #define VECTOR_NUMBER_ETHSW_INTR ((IRQn_Type) 253) /* ETHSW_INTR (Ethernet Switch interrupt) */
@@ -58,7 +57,6 @@
             NonSecurePhysicalTimerInt = -2,
             TCIV0_IRQn = 73, /* TCIV0 (MTU0.TCNT overflow) */
             GPT0_OVF_IRQn = 122, /* GPT_OVF (GPT0 GTCNT overflow (GTPR compare match)) */
-            GPT1_OVF_IRQn = 131, /* GPT_OVF (GPT1 GTCNT overflow (GTPR compare match)) */
             GMAC_PMT_IRQn = 251, /* GMAC_PMT (GMAC1 power management) */
             GMAC_SBD_IRQn = 252, /* GMAC_SBD (GMAC1 general interrupt) */
             ETHSW_INTR_IRQn = 253, /* ETHSW_INTR (Ethernet Switch interrupt) */

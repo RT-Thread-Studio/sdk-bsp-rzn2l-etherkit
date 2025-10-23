@@ -7,7 +7,6 @@
 #else
 #define ETHER_BUFFER_PLACE_IN_SECTION
 #endif
-
 mtu3_instance_ctrl_t g_mtu3_ctrl;
 #if 0
 const mtu3_extended_uvw_cfg_t g_mtu3_uvw_extend =
