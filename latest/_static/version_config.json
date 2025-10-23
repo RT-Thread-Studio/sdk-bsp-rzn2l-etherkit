@@ -1,0 +1,20 @@
+{
+  "versions": [
+    {
+      "name": "master",
+      "display_name": "latest",
+      "branch": "master",
+      "url_path": "latest",
+      "description": "最新开发版本"
+    },
+    {
+      "name": "docs_v1.0.0",
+      "display_name": "1.0.0",
+      "branch": "docs_v1.0.0",
+      "url_path": "docs_v1.0.0",
+      "description": "v1.0.0文档版本"
+    }
+  ],
+  "default_version": "master",
+  "latest_version": "master"
+}

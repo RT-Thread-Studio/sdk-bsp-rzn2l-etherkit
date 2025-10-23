@@ -1,0 +1,575 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCI_SPI Driver Usage Instructions &mdash; EtherKit SDK 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/version_menu.css?v=ad0e61b7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=694004e0" />
+      <link rel="stylesheet" type="text/css" href="../../_static/pdf_button.css?v=b2b664f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/edit_button.css?v=d629c565" />
+      <link rel="stylesheet" type="text/css" href="../../_static/language_switch.css?v=427b9138" />
+      <link rel="stylesheet" type="text/css" href="../../_static/dark_mode.css?v=72ec50b7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=a12e3537"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/version_menu.js?v=3b58d65d"></script>
+      <script src="../../_static/download_pdf.js?v=d1800c12"></script>
+      <script src="../../_static/version_info.js"></script>
+      <script src="../../_static/edit_on_github.js?v=5e1f1957"></script>
+      <script src="../../_static/language_switch.js?v=53d89164"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="USB-PCDC Driver Usage Instructions" href="../etherkit_usb_pcdc/README.html" />
+    <link rel="prev" title="RS485 Driver Usage Instructions" href="../etherkit_driver_rs485/README.html" />
+   
+  
+  
+    <script>window.SPHINX_EDIT_BASE_URL = "https://github.com/RT-Thread-Studio/sdk-bsp-rzn2l-etherkit/edit/";</script>
+    <meta name="edit-base-url" content="https://github.com/RT-Thread-Studio/sdk-bsp-rzn2l-etherkit/edit/">
+  
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            EtherKit SDK
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../start/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../start/template_project/README.html">EtherKit Development Board BSP Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README.html#introduction-to-the-development-board">Introduction to the Development Board</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README.html#peripheral-support">Peripheral Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README.html#usage-instructions">Usage Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../start/template_project/README.html#quick-start">Quick Start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../start/template_project/README.html#advanced-usage">Advanced Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README.html#contact-information">Contact Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../start/template_project/README.html#contribute-code">Contribute Code</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../basic/index.html">Basics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README.html">Button Interrupt Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README.html#example-code-description">Example Code Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_key_irq/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_blink_led/README.html">RGB Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README.html#software-description">Software Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_blink_led/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README.html">RTC and Alarm Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README.html#example-code-description">Example Code Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../basic/etherkit_basic_rtc/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Drivers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_driver_adc/README.html">ADC Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_adc/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_adc/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_adc/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_adc/README.html#env-configuration">ENV Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_adc/README.html#example-code-description">Example Code Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_adc/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_adc/README.html#run-effect">Run Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_adc/README.html#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_driver_canfd/README.html">CANFD Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_canfd/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_canfd/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_canfd/README.html#software-description">Software Description</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_canfd/README.html#fsp-configuration-guide">FSP Configuration Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_canfd/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_canfd/README.html#project-example-description">Project Example Description</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_canfd/README.html#operation">Operation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_canfd/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_canfd/README.html#running-effect">Running Effect</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_driver_ethernet/README.html">Ethernet Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_ethernet/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_ethernet/README.html#hardware-connection">Hardware Connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_ethernet/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_ethernet/README.html#rt-thread-studio-configuration">RT-Thread Studio Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_ethernet/README.html#ethernet-ip-experiment-results">Ethernet IP Experiment Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_driver_gpt/README.html">GPT Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_gpt/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_gpt/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_gpt/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_gpt/README.html#example-project-instructions">Example Project Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_gpt/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_gpt/README.html#running-results">Running Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_driver_hyperram/README.html">HyperRAM Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_hyperram/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_hyperram/README.html#hardware-overview">Hardware Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_hyperram/README.html#software-overview">Software Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_hyperram/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_hyperram/README.html#run-results">Run Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_driver_i2c/README.html">IIC EEPROM Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_i2c/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_i2c/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_i2c/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_i2c/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_i2c/README.html#example-project-description">Example Project Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_i2c/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_i2c/README.html#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_driver_rs485/README.html">RS485 Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_rs485/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_rs485/README.html#hardware-overview">Hardware Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_rs485/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_rs485/README.html#example-project-description">Example Project Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_rs485/README.html#build-download">Build &amp; Download</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_rs485/README.html#running-result">Running Result</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SCI_SPI Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-project-description">Example Project Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#run-effect">Run Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_usb_pcdc/README.html">USB-PCDC Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pcdc/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pcdc/README.html#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pcdc/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pcdc/README.html#build-configuration">Build Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pcdc/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pcdc/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pcdc/README.html#running-results">Running Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_usb_pmsc/README.html">USB-PMSC Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pmsc/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pmsc/README.html#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pmsc/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pmsc/README.html#build-configuration">Build Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pmsc/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pmsc/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_usb_pmsc/README.html#running-results">Running Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../etherkit_driver_wdt/README.html">WDT Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_wdt/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_wdt/README.html#hardware-description">Hardware Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_wdt/README.html#software-description">Software Description</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_wdt/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_wdt/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_wdt/README.html#example-project-description">Example project description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_wdt/README.html#running">Running</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_wdt/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../etherkit_driver_wdt/README.html#running-effects">Running Effects</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_wdt/README.html#notes">Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../etherkit_driver_wdt/README.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../component/index.html">Components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README.html">Filesystem Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README.html#hardware-overview">Hardware Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README.html#software-overview">Software Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README.html#build-download">Build &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_flash_fs/README.html#running-result">Running Result</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../component/etherkit_component_mqtt/README.html">MQTT Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README.html#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README.html#rt-thread-studio-configuration">RT-Thread Studio Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README.html#example-code-explanation">Example Code Explanation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README.html#mqttx-configuration">MQTTX Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README.html#running-results">Running Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_mqtt/README.html#additional-notes">Additional Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../component/etherkit_component_netutils/README.html">Netutils Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README.html#hardware-connection">Hardware Connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README.html#rt-thread-studio-configuration">RT-Thread Studio Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README.html#ethernet-ip-experiment-results">Ethernet IP Experiment Results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README.html#tftp-server-send-test"><strong>TFTP Server Send Test</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README.html#tftp-receive-test"><strong>TFTP Receive Test</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../component/etherkit_component_netutils/README.html#ntp-network-time-synchronization">NTP Network Time Synchronization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../component/etherkit_component_netutils/README.html#ntp-experiment-results">NTP Experiment Results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../protocol/index.html">Industrial Protocol</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_ethercat_cherryecat/README.html">CherryECAT Driver Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_cherryecat/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_cherryecat/README.html#hardware-connection">Hardware Connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_cherryecat/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_cherryecat/README.html#rt-thread-studio-configuration">RT-Thread Studio Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_cherryecat/README.html#running-results">Running Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html">EtherCAT CoE Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#preliminary-setup">Preliminary Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#twincat3-configuration">TwinCAT3 Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#install-esi-files">Install ESI Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#add-twincat-ethernet-driver">Add TwinCAT Ethernet Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#build-configuration">Build Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#rt-thread-studio-configuration">RT-Thread Studio Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#ethercat-coe-configuration">EtherCAT CoE Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#create-a-new-twincat-project">Create a New TwinCAT Project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#slave-startup-coe-app">Slave Startup CoE App</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#slave-device-scanning">Slave Device Scanning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#update-eeprom-firmware">Update EEPROM Firmware</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#cia402-servo-usage-instructions">CiA402 Servo Usage Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#cia402-object-dictionary-definition">CiA402 Object Dictionary Definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#ethercat-coe-testing">EtherCAT CoE Testing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#csp-position-mode-control">csp Position Mode Control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_coe/README.html#csv-speed-mode-control">csv Speed Mode Control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html">EtherCAT EOE Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#prerequisites">Prerequisites</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#software-environment">Software Environment:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#hardware-environment">Hardware Environment:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#twincat3-configuration">TwinCAT3 Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#install-the-esi-file">Install the ESI File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#add-twincat-ethernet-driver">Add TwinCAT Ethernet Driver</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#build-configuration">Build Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#rt-thread-studio-configuration">RT-Thread Studio Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#ethercat-eoe-configuration">EtherCAT EOE Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#create-a-new-twincat-project">Create a New TwinCAT Project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#start-the-eoe-app-on-the-slave">Start the EOE App on the Slave</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#scan-for-slave-devices">Scan for Slave Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#update-eeprom-firmware">Update EEPROM Firmware</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#ethercat-eoe-communication">EtherCAT EOE Communication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#enable-dhcp-or-assign-an-ip-address">Enable DHCP or Assign an IP Address</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#extension-explanation-3-port-ethernet-eoe-communication">Extension Explanation: 3-Port Ethernet EOE Communication</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethercat_eoe/README.html#esi-firmware-update">ESI Firmware Update</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html">Ethernet/IP Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#fsp-configuration">FSP Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#network-configuration">Network Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#soft-plc-startup">Soft PLC Startup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#create-a-standard-project-in-codesys">Create a Standard Project in CODESYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#gateway-and-soft-plc-startup">Gateway and Soft PLC Startup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#add-ethernet-ip-eds-file">Add Ethernet/IP EDS File</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#add-devices">Add Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#task-response">Task Response</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#id1">Network Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#ethernet-ip-thread-application-startup">EtherNet/IP Thread Application Startup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#compile-and-start-debugging-the-project">Compile and Start Debugging the Project</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_ethernetip_opener/README.html#plc-programming-and-cip-io-control">PLC Programming and CIP IO Control</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README.html">Modbus-TCP/IP Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README.html#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_tcpip/README.html#running-results">Running Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README.html">Modbus-UART Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README.html#hardware-requirements">Hardware Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README.html#compilation-download">Compilation &amp; Download</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_modbus_uart/README.html#running-results">Running Results</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html">PROFINET Usage Instructions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#fsp-configuration-instructions">FSP Configuration Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#rt-thread-settings-configuration">RT-Thread Settings Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#network-configuration">Network Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#soft-plc-startup">Soft PLC Startup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#creating-a-standard-project-in-codesys">Creating a Standard Project in CODESYS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#starting-gateway-and-soft-plc">Starting Gateway and Soft PLC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#adding-profinet-gsdml-files">Adding PROFINET GSDML Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#adding-devices">Adding Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#configuring-tasks">Configuring Tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#id1">Network Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#compile-and-debug-the-project">Compile and Debug the Project</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#profinet-starts-from-the-station-application">profinet starts from the station application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#profinet-slave-application-startup">PROFINET Slave Application Startup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#led-blinking">LED Blinking</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#modifying-slave-i-m-identification-and-maintenance-data">Modifying Slave I&amp;M (Identification and Maintenance) Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../protocol/etherkit_profinet_pnet/README.html#plc-programming-and-pnio-control">PLC Programming and PNIO Control</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">EtherKit SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Drivers</a></li>
+      <li class="breadcrumb-item active">SCI_SPI Driver Usage Instructions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="sci-spi-driver-usage-instructions">
+<h1>SCI_SPI Driver Usage Instructions<a class="headerlink" href="#sci-spi-driver-usage-instructions" title="Link to this heading"></a></h1>
+<p><strong>English</strong> | <a class="reference internal" href="README.html"><span class="std std-doc"><strong>中文</strong></span></a></p>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>This example demonstrates how to use the RT-Thread SCI_SPI framework on the EtherKit.</p>
+</section>
+<section id="hardware-description">
+<h2>Hardware Description<a class="headerlink" href="#hardware-description" title="Link to this heading"></a></h2>
+<p>The EtherKit board has a PMOD interface, which is connected to the SCI_SPI3 of the R9A07G084M08GBG chip.</p>
+<p><img alt="image-20241126101527223" src="../../_images/image-20241126101527223.png" /></p>
+</section>
+<section id="fsp-configuration-instructions">
+<h2>FSP Configuration Instructions<a class="headerlink" href="#fsp-configuration-instructions" title="Link to this heading"></a></h2>
+<p>Open the FSP tool, create a new stack, and select <code class="docutils literal notranslate"><span class="pre">r_sci_spi3</span></code>:</p>
+<p><img alt="image-20241204164343302" src="../../_images/image-20241204164343302.png" /></p>
+<p><img alt="image-20241204164348364" src="../../_images/image-20241204164348364.png" /></p>
+<p><img alt="image-20241204164400917" src="../../_images/image-20241204164400917.png" /></p>
+</section>
+<section id="rt-thread-settings-configuration">
+<h2>RT-Thread Settings Configuration<a class="headerlink" href="#rt-thread-settings-configuration" title="Link to this heading"></a></h2>
+<p>In RT-Thread Settings, enable SCI hardware and configure SCI3 mode as SPI:</p>
+<p><img alt="image-20241126101723823" src="../../_images/image-20241126101723823.png" /></p>
+</section>
+<section id="example-project-description">
+<h2>Example Project Description<a class="headerlink" href="#example-project-description" title="Link to this heading"></a></h2>
+<p>This example uses the RT-Thread SCI driver framework to perform a loopback test on the PMOD interface (connecting PMOD’s SPI3_MOSI to SPI3_MISO). The code is as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">spi_loop_test</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#define TEXT_NUMBER_SIZE 1024</span>
+<span class="cp">#define SPI_BUS_NAME &quot;sci3s&quot;</span>
+<span class="cp">#define SPI_NAME &quot;spi30&quot;</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">sendbuf</span><span class="p">[</span><span class="n">TEXT_NUMBER_SIZE</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">readbuf</span><span class="p">[</span><span class="n">TEXT_NUMBER_SIZE</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">readbuf</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sendbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_spi_device</span><span class="w"> </span><span class="o">*</span><span class="n">spi_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_spi_configuration</span><span class="w"> </span><span class="n">cfg</span><span class="p">;</span>
+<span class="w">    </span><span class="n">rt_hw_sci_spi_device_attach</span><span class="p">(</span><span class="n">SPI_BUS_NAME</span><span class="p">,</span><span class="w"> </span><span class="n">SPI_NAME</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cfg</span><span class="p">.</span><span class="n">data_width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cfg</span><span class="p">.</span><span class="n">mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RT_SPI_MASTER</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RT_SPI_MODE_0</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RT_SPI_MSB</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">RT_SPI_NO_CS</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cfg</span><span class="p">.</span><span class="n">max_hz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+<span class="w">    </span><span class="n">spi_dev</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">rt_spi_device</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">rt_device_find</span><span class="p">(</span><span class="n">SPI_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">RT_NULL</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">spi_dev</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;spi sample run failed! can&#39;t find %s device!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SPI_NAME</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">rt_spi_configure</span><span class="p">(</span><span class="n">spi_dev</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cfg</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;%s send:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SPI_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;%02x &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sendbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">rt_spi_transfer</span><span class="p">(</span><span class="n">spi_dev</span><span class="p">,</span><span class="w"> </span><span class="n">sendbuf</span><span class="p">,</span><span class="w"> </span><span class="n">readbuf</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">sendbuf</span><span class="p">));</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n\n</span><span class="s">%s rcv:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SPI_NAME</span><span class="p">);</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">readbuf</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">readbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">sendbuf</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;SPI test fail!!!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">            </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;%02x &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">readbuf</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">rt_kprintf</span><span class="p">(</span><span class="s">&quot;SPI test end</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="compilation-download">
+<h2>Compilation &amp; Download<a class="headerlink" href="#compilation-download" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>RT-Thread Studio</strong>: In RT-Thread Studio’s package manager, download the EtherKit resource package, create a new project, and compile it.</p></li>
+<li><p><strong>IAR</strong>: First, double-click <code class="docutils literal notranslate"><span class="pre">mklinks.bat</span></code> to create symbolic links between RT-Thread and the libraries folder. Then, use the <code class="docutils literal notranslate"><span class="pre">Env</span></code> tool to generate the IAR project. Finally, double-click <code class="docutils literal notranslate"><span class="pre">project.eww</span></code> to open the IAR project and compile it.</p></li>
+</ul>
+<p>After compilation, connect the development board’s JLink interface to the PC and download the firmware to the development board.</p>
+</section>
+<section id="run-effect">
+<h2>Run Effect<a class="headerlink" href="#run-effect" title="Link to this heading"></a></h2>
+<p>When using a serial tool, you can observe that the data sent and received in the SPI loopback test matches:</p>
+<p><img alt="image-20241126101931175" src="../../_images/image-20241126101931175.png" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../etherkit_driver_rs485/README.html" class="btn btn-neutral float-left" title="RS485 Driver Usage Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../etherkit_usb_pcdc/README.html" class="btn btn-neutral float-right" title="USB-PCDC Driver Usage Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Copyright (c) 2006-2025, RT-Thread Development Team.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+   
+  <div class="sdk-footer">
+    <div class="sdk-footer__inner">
+      <div class="sdk-footer__left">
+        <strong>EtherKit SDK</strong>
+        <span class="sdk-footer__sep">•</span> 版本：1.0.0
+      </div>
+      <div class="sdk-footer__right">
+        构建时间：<span id="sdk-build-time"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function(){
+      try {
+        var el = document.getElementById('sdk-build-time');
+        if (el) {
+          var d = new Date(document.lastModified);
+          el.textContent = d.toLocaleString();
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+
+</body>
+</html>
